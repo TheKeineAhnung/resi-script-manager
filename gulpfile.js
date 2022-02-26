@@ -3,6 +3,7 @@ const gulp = require("gulp");
 const plumber = require("gulp-plumber");
 const log = require("fancy-log");
 const argv = require("yargs").argv;
+const webpack = require("webpack-stream");
 
 // HTML
 const htmlmin = require("gulp-htmlmin");
@@ -18,6 +19,8 @@ const dist = "build";
 function isProd() {
   return argv.production ? true : false;
 }
+
+console.log(isProd());
 
 const views = () => {
   return gulp
@@ -42,6 +45,12 @@ const script = () => {
     .pipe(
       plumber((error) => {
         log.info(error.message);
+      })
+    )
+    .pipe(
+      webpack({
+        mode: isProd() ? "production" : "development",
+        output: { filename: "bundle.js" },
       })
     )
     .pipe(babel())
