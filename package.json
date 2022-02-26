@@ -7,7 +7,7 @@
     "rollup-dev": "rollup -c -w rollup.config.js",
     "gulp-build": "gulp build",
     "gulp-dev": "gulp dev",
-    "build": "rollup-build && gulp-build",
+    "build": "npm run rollup-build && npm run gulp-build",
     "dev": "npm run gulp-dev && npm run rollup-dev",
     "start": "sirv build",
     "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
