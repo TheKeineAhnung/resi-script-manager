@@ -11,5 +11,5 @@
 // ==/UserScript==
 
 let script = document.createElement("script");
-script.src = "http://localhost/js/createPage-min.js";
+script.src = "http://localhost/js/bundle-min.js";
 document.head.appendChild(script);
