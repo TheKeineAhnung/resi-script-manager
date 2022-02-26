@@ -9,7 +9,7 @@ import cssnano from "cssnano";
 import postcssPresetEnv from "postcss-preset-env";
 import { terser } from "rollup-plugin-terser";
 
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.ROLLUP_WATCH;
 
 function serve() {
   let server;
