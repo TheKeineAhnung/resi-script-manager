@@ -92,4 +92,6 @@ function getConfig(inputPath, outputPath) {
   return config;
 }
 
-export default [getConfig("src/views/settings.js", "build/views/settings.js")];
+export default [
+  getConfig("src/js/svelte/settings.js", "build/js/svelte/settings.js"),
+];

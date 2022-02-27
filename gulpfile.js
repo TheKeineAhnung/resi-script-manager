@@ -41,7 +41,7 @@ const views = () => {
 
 const script = () => {
   return gulp
-    .src(`${src}/js/**/*.js`)
+    .src([`${src}/js/**/*.js`, `!${src}/js/svelte/**/*.*`])
     .pipe(
       plumber((error) => {
         log.info(error.message);
