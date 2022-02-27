@@ -2,7 +2,6 @@ import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
-import css from "rollup-plugin-css-only";
 import autoPreprocess from "svelte-preprocess";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
@@ -36,7 +35,7 @@ function serve() {
   };
 }
 
-function getConfig(inputPath, outputPath, cssPath) {
+function getConfig(inputPath, outputPath) {
   let config = {
     input: inputPath,
     output: {
@@ -61,10 +60,6 @@ function getConfig(inputPath, outputPath, cssPath) {
           },
         }),
       }),
-
-      // we'll extract any component CSS out into
-      // a separate file - better for performance
-      css({ output: cssPath }),
 
       // If you have external dependencies installed from
       // npm, you'll most likely need these plugins. In
@@ -97,6 +92,4 @@ function getConfig(inputPath, outputPath, cssPath) {
   return config;
 }
 
-export default [
-  getConfig("src/views/settings.js", "build/views/settings.js", "settings.css"),
-];
+export default [getConfig("src/views/settings.js", "build/views/settings.js")];
