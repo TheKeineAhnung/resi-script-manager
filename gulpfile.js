@@ -20,8 +20,6 @@ function isProd() {
   return argv.production ? true : false;
 }
 
-console.log(isProd());
-
 const views = () => {
   return gulp
     .src(`${src}/views/**/*.html`)
