@@ -6,6 +6,7 @@ import autoPreprocess from "svelte-preprocess";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import postcssPresetEnv from "postcss-preset-env";
+import css from "rollup-plugin-css-only";
 import { terser } from "rollup-plugin-terser";
 
 const production = process.env.ROLLUP_WATCH;
@@ -35,7 +36,7 @@ function serve() {
   };
 }
 
-function getConfig(inputPath, outputPath) {
+function getConfig(inputPath, outputPath, cssPath) {
   let config = {
     input: inputPath,
     output: {
@@ -59,6 +60,10 @@ function getConfig(inputPath, outputPath) {
             ],
           },
         }),
+      }),
+
+      css({
+        output: cssPath,
       }),
 
       // If you have external dependencies installed from
@@ -93,5 +98,9 @@ function getConfig(inputPath, outputPath) {
 }
 
 export default [
-  getConfig("src/js/svelte/settings.js", "build/js/svelte/settings.js"),
+  getConfig(
+    "src/js/svelte/settings.js",
+    "build/js/svelte/settings.js",
+    "css/settings.css"
+  ),
 ];
