@@ -37,6 +37,13 @@ const views = () => {
     .pipe(gulp.dest(`${dist}/views`));
 };
 
+const scripts = () => {
+  return gulp
+    .src(`${src}/scripts/**/*.json`)
+    .pipe(plumber())
+    .pipe(gulp.dest(`${dist}/scripts`));
+};
+
 const script = () => {
   return gulp
     .src([`${src}/js/**/*.js`, `!${src}/js/svelte/**/*.*`])
@@ -58,13 +65,13 @@ const script = () => {
 
 const watch = () => {
   gulp.watch(
-    [`${src}/views/**/*.html`, `${src}/js/**/*.js`],
-    gulp.series(views, script)
+    [`${src}/views/**/*.html`, `${src}/js/**/*.js`, `${src}/scripts/**/*.json`],
+    gulp.series(views, script, scripts)
   );
 };
 
-const dev = gulp.series(views, script, watch);
-const build = gulp.series(views, script);
+const dev = gulp.series(views, script, scripts, watch);
+const build = gulp.series(views, script, scripts);
 
 exports.dev = dev;
 exports.build = build;

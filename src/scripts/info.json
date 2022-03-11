@@ -1,0 +1,229 @@
+[
+  {
+    "name": "alarmfax",
+    "displayName": "Alarmfax",
+    "description": "Add a alarm fax box to the mission page",
+    "author": "KeineAhnung",
+    "version": "1.1.1",
+    "category": "Missions",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": false
+  },
+  {
+    "name": "autoCollapseBuildings",
+    "displayName": "Auto collapse buildings",
+    "description": "Collapse buildings in overview automatically",
+    "author": "KeineAhnung",
+    "version": "1.0.3",
+    "category": "Design",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/"],
+    "requiresConfig": true,
+    "config": {
+      "autoCollapseBuildingsBuildingTypes": {
+        "type": "array",
+        "default": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      }
+    }
+  },
+  {
+    "name": "chatMessageAlert",
+    "displayName": "Chat message alert",
+    "description": "Alert when a new message is in the chat",
+    "author": "KeineAhnung",
+    "version": "1.0.3",
+    "category": "Chat",
+    "outdated": true,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/"],
+    "requiresConfig": true,
+    "config": {
+      "chatMessageAlertAudio": {
+        "type": "string",
+        "default": ""
+      }
+    }
+  },
+  {
+    "name": "completeLengthNoCallInfo",
+    "displayName": "No callinfo complete length",
+    "description": "Complete length for the info badge when no call is open",
+    "author": "KeineAhnung",
+    "version": "1.0.2",
+    "category": "Design",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/"],
+    "requiresConfig": false
+  },
+  {
+    "name": "countPatients",
+    "displayName": "Show patient count",
+    "description": "Show the number of patients in the hospital and the hospital capacity",
+    "author": "KeineAhnung",
+    "version": "1.0.2",
+    "category": "Patients",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": false
+  },
+  {
+    "name": "countPossibleMissions",
+    "displayName": "Possible missions count",
+    "description": "Count the number of possible missions in the missionoverview page",
+    "author": "KeineAhnung",
+    "version": "1.0.1",
+    "category": "Missions",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/missionOverview"],
+    "requiresConfig": false
+  },
+  {
+    "name": "customBuildingIcons",
+    "displayName": "Custom building icons",
+    "description": "Customize your building icons",
+    "author": "KeineAhnung",
+    "version": "2.1.1",
+    "category": "Buildings",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": true,
+    "config": {
+      "customBuildingIconsConfig": {
+        "type": "object",
+        "default": {
+          "Feuerwache": "null",
+          "Feuerwehrschule": "null",
+          "Rettungswache": "null",
+          "Krankenhaus": "null",
+          "Landespolizeiwache": "null",
+          "Bundespoliizeiwache": "null",
+          "Leitstelle": "null",
+          "Rettungsdienstschule": "null",
+          "Notarztstandort": "null"
+        }
+      }
+    }
+  },
+  {
+    "name": "customMissionIcons",
+    "displayName": "Custom mission icons",
+    "description": "Customize your mission icons",
+    "author": "KeineAhnung",
+    "version": "1.1.0",
+    "category": "Missions",
+    "outdated": false,
+    "usable": false,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": true,
+    "config": {
+      "customMissionIconsConfig": {
+        "type": "array-object",
+        "default": [
+          {
+            "name": "",
+            "1": "",
+            "2": "",
+            "3": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "expandMapLegend",
+    "displayName": "Expand map legend",
+    "description": "Add arrows to expand and fold cards on maplegend",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "Map",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/mapLegend"],
+    "requiresConfig": false
+  },
+  {
+    "name": "hideAchievementcard",
+    "displayName": "Hide achievementcard",
+    "description": "Hide achievementcard on your profile page",
+    "author": "KeineAhnung",
+    "version": "1.0.1",
+    "category": "Design",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/profile"],
+    "requiresConfig": false
+  },
+  {
+    "name": "hideBuildingIcons",
+    "displayName": "Hide building icons",
+    "description": "Hides the building icons on the map",
+    "author": "KeineAhnung",
+    "version": "1.1.2",
+    "category": "Map",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/"],
+    "requiresConfig": true,
+    "config": {
+      "hideBuildingIconsConfig": {
+        "type": "array",
+        "default": []
+      }
+    }
+  },
+  {
+    "name": "hideFreeText",
+    "displayName": "Hide free text",
+    "description": "Hide the free text input",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "Missions",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/missionNew/*"],
+    "requiresConfig": false
+  },
+  {
+    "name": "missionTime",
+    "displayName": "Show mission time",
+    "description": "Show mission time in mission list",
+    "author": "KeineAhnung",
+    "version": "1.0.6",
+    "category": "Missions",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": false
+  },
+  {
+    "name": "userBuildings",
+    "displayName": "Count buildings",
+    "description": "Count your buildings",
+    "author": "KeineAhnung",
+    "version": "2.0.2",
+    "category": "Buildings",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/profile/*"],
+    "requiresConfig": false
+  },
+  {
+    "name": "userVehicles",
+    "displayName": "Count vehicles",
+    "description": "Cont your vehicles",
+    "author": "KeineAhnung",
+    "version": "2.0.0",
+    "category": "Vehicles",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/profile/*"],
+    "requiresConfig": false
+  }
+]
