@@ -1,3 +1,5 @@
+import { getScriptNames } from "./scripts";
+
 export async function setConfig(scriptNames) {
   let config = new Object();
   scriptNames.forEach((scriptName) => {
@@ -11,9 +13,11 @@ export async function setConfig(scriptNames) {
 
 export async function getConfig() {
   let config;
-  config = JSON.parse(localStorage.getItem("resiScriptManagerConfig"));
-  if (config == null) {
-    config = await setConfig();
+  if (localStorage.getItem("resiScriptManagerConfig")) {
+    config = JSON.parse(localStorage.getItem("resiScriptManagerConfig"));
+  } else {
+    let scriptNames = await getScriptNames();
+    config = await setConfig(scriptNames);
   }
   return config;
 }
