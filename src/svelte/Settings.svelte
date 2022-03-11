@@ -80,9 +80,21 @@
         <div class="card-container">
           <Card style="border-radius: 0.75rem">
             <Content>
-              <h2 class="m-0">{info.displayName}</h2>
+              <div class="flex justify-content-between align-items-center">
+                <h2 class="m-0 h-fit">{info.displayName}</h2>
+                <Actions style="padding: 0;">
+                  <FormField>
+                    <Switch
+                      checked={config[info.name].active}
+                      on:SMUISwitch:change={(e) =>
+                        (config[info.name].active = !config[info.name].active)}
+                    />
+                  </FormField>
+                </Actions>
+              </div>
               <p>{info.description}</p>
-              <div class="labels grid column-gap-1 row-gap-1 columns-3">
+
+              <div class="labels grid column-gap-0_5 row-gap-1 columns-3">
                 <div>
                   <InfoLabel
                     rounded={true}
@@ -111,17 +123,6 @@
                 </div>
               </div>
             </Content>
-            <Actions>
-              <div>
-                <FormField>
-                  <Switch
-                    checked={config[info.name].active}
-                    on:SMUISwitch:change={(e) =>
-                      (config[info.name].active = !config[info.name].active)}
-                  />
-                </FormField>
-              </div>
-            </Actions>
           </Card>
         </div>
       {/each}
