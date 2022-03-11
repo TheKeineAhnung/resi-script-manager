@@ -2,9 +2,11 @@
   import Textfield from "@smui/textfield";
   import Button from "@smui/button";
   import { library, icon } from "@fortawesome/fontawesome-svg-core";
-  import { faTrash } from "@fortawesome/free-solid-svg-icons";
-  library.add(faTrash);
+  import { faTrash, faBan } from "@fortawesome/free-solid-svg-icons";
+  import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
+  library.add(faTrash, faBan);
   let trashIcon = icon(faTrash).html;
+  let banIcon = icon(faBan).html;
   export let inputArray = new Array();
   export let defaultConfig = new Array();
   export let scriptName = "";
@@ -42,6 +44,11 @@
         userInputValue[key] = Number(userInputValue[key]);
       }
     }
+    if (inputArray.length > 0) {
+      if (inputArray[0][Object.keys(inputArray[0])[0]] === "") {
+        inputArray = new Array();
+      }
+    }
     if (userInputValue !== null && userInputValue !== 0) {
       inputArray.push(userInputValue);
       inputArray.sort();
@@ -56,16 +63,17 @@
     localStorage.setItem(configName, JSON.stringify(inputArray));
   }
 
-  function removeFromConfig(value) {
-    inputArray = inputArray.filter(function (item) {
-      return item !== value;
-    });
+  function removeFromConfig(item) {
+    inputArray.pop(item);
     localStorage.setItem(configName, JSON.stringify(inputArray));
+    inputArray = inputArray;
   }
 </script>
 
 <div class="array-object-container grid columns-2" style="min-height: 120px;">
-  <div class="add flex justify-content-around align-items-start flex-column">
+  <div
+    class="add flex justify-content-start align-items-start flex-column mt-2"
+  >
     <div class="w-95">
       {#if !loading}
         {#each defaultConfig as defaultConfigItem}
@@ -74,7 +82,7 @@
               <Textfield
                 variant="outlined"
                 bind:value={userInputValue[key]}
-                label={`Add item '${key}' to Config`}
+                label={`Add item '${key}' to config`}
                 style="width: 100%;"
               />
             </div>
@@ -82,7 +90,7 @@
         {/each}
       {/if}
     </div>
-    <div class="w-95 flex justify-content-between mt-1">
+    <div class="w-95 flex justify-content-between mt-2">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
         >Reset</Button
       >
@@ -91,13 +99,51 @@
       >
     </div>
   </div>
-  <div class="existing">
+  <div
+    class="existing flex justify-content-start align-items-start flex-column"
+  >
     Current config for {scriptName}
-    {#each inputArray as inputArrayItem}
-      {#each Object.entries(inputArrayItem) as [key, value]}
-        <div>{key} : {value}</div>
+    <div class="datatables flex flex-wrap">
+      {#each inputArray as inputArrayItem}
+        <div class="m-0_5 w-fit">
+          <DataTable
+            table$aria-label="{scriptName} config"
+            style="max-width: 100%;"
+          >
+            <Head>
+              <Row>
+                <Cell>Key</Cell>
+                <Cell>Value</Cell>
+                <Cell>Remove</Cell>
+              </Row>
+            </Head>
+            <Body>
+              {#each Object.entries(inputArrayItem) as [key, value]}
+                <Row>
+                  <Cell>{key}</Cell>
+                  <Cell>
+                    {#if value.startsWith("http")}
+                      <a href={value} target="_blank" rel="noopener noreferrer"
+                        >{value}</a
+                      >
+                    {:else}
+                      {value}
+                    {/if}
+                  </Cell>
+                  <Cell style="text-align: center;">
+                    <span
+                      class="color-danger transition-duration-250 cursor-pointer"
+                      on:click={() => removeFromConfig(inputArrayItem)}
+                      >{@html trashIcon}</span
+                    >
+                  </Cell>
+                </Row>
+              {/each}
+            </Body>
+          </DataTable>
+        </div>
       {/each}
-    {/each}
+    </div>
   </div>
 </div>
 
