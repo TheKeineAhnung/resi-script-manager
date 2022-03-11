@@ -217,7 +217,7 @@
   {
     "name": "userVehicles",
     "displayName": "Count vehicles",
-    "description": "Cont your vehicles",
+    "description": "Count your vehicles",
     "author": "KeineAhnung",
     "version": "2.0.0",
     "category": "Vehicles",
