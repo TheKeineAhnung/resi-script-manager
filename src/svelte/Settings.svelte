@@ -25,14 +25,16 @@
     faUser,
     faBorderAll,
     faSkull,
+    faRotate,
   } from "@fortawesome/free-solid-svg-icons";
-  library.add(faSave, faBan, faCodeBranch, faUser, faBorderAll);
+  library.add(faSave, faBan, faCodeBranch, faUser, faBorderAll, faRotate);
   let saveIcon = icon(faSave).html;
   let cancelIcon = icon(faBan).html;
   let versionIcon = icon(faCodeBranch).html;
   let authorIcon = icon(faUser).html;
   let borderIcon = icon(faBorderAll).html;
   let outdatedIcon = icon(faSkull).html;
+  let reloadIcon = icon(faRotate).html;
   let scriptInfo;
   let scriptNames = new Array();
   let config = new Object();
@@ -133,70 +135,72 @@
             {#each scriptInfo as scriptInfoElement}
               {#if name === scriptInfoElement.name}
                 {#if scriptInfoElement.requiresConfig}
-                  <Panel extend>
-                    <Header>
-                      {scriptInfoElement.displayName}
-                    </Header>
-                    <AccordionContent>
-                      {#each Object.entries(scriptInfoElement.config) as [configElementName, configElementValue]}
-                        <div
-                          id={scriptInfoElement.name}
-                          data-settingStorageName={configElementName}
-                        >
-                          <div>
-                            {#if configElementValue.type === "array"}
-                              <ConfigArrayElement
-                                inputArray={localStorage.getItem(
-                                  configElementName
-                                )
-                                  ? JSON.parse(
-                                      localStorage.getItem(configElementName)
-                                    )
-                                  : configElementValue.default}
-                                scriptName={scriptInfoElement.displayName}
-                                configName={configElementName}
-                              />
-                            {:else if configElementValue.type === "string"}
-                              <ConfigStringElement
-                                inputString={localStorage.getItem(
-                                  configElementName
-                                )
-                                  ? localStorage.getItem(configElementName)
-                                  : configElementValue.default}
-                                scriptName={scriptInfoElement.displayName}
-                                configName={configElementName}
-                              />
-                            {:else if configElementValue.type === "object"}
-                              <ConfigObjectElement
-                                inputObject={localStorage.getItem(
-                                  configElementName
-                                )
-                                  ? JSON.parse(
-                                      localStorage.getItem(configElementName)
-                                    )
-                                  : configElementValue.default}
-                                scriptName={scriptInfoElement.displayName}
-                                configName={configElementName}
-                              />
-                            {:else if configElementValue.type === "array-object"}
-                              <ConfigArrayObjectElement
-                                inputArray={localStorage.getItem(
-                                  configElementName
-                                )
-                                  ? JSON.parse(
-                                      localStorage.getItem(configElementName)
-                                    )
-                                  : configElementValue.default}
-                                defaultConfig={configElementValue.default}
-                                scriptName={scriptInfoElement.displayName}
-                                configName={configElementName}
-                              />
-                            {/if}
+                  {#if value.active}
+                    <Panel extend>
+                      <Header>
+                        {scriptInfoElement.displayName}
+                      </Header>
+                      <AccordionContent>
+                        {#each Object.entries(scriptInfoElement.config) as [configElementName, configElementValue]}
+                          <div
+                            id={scriptInfoElement.name}
+                            data-settingStorageName={configElementName}
+                          >
+                            <div>
+                              {#if configElementValue.type === "array"}
+                                <ConfigArrayElement
+                                  inputArray={localStorage.getItem(
+                                    configElementName
+                                  )
+                                    ? JSON.parse(
+                                        localStorage.getItem(configElementName)
+                                      )
+                                    : configElementValue.default}
+                                  scriptName={scriptInfoElement.displayName}
+                                  configName={configElementName}
+                                />
+                              {:else if configElementValue.type === "string"}
+                                <ConfigStringElement
+                                  inputString={localStorage.getItem(
+                                    configElementName
+                                  )
+                                    ? localStorage.getItem(configElementName)
+                                    : configElementValue.default}
+                                  scriptName={scriptInfoElement.displayName}
+                                  configName={configElementName}
+                                />
+                              {:else if configElementValue.type === "object"}
+                                <ConfigObjectElement
+                                  inputObject={localStorage.getItem(
+                                    configElementName
+                                  )
+                                    ? JSON.parse(
+                                        localStorage.getItem(configElementName)
+                                      )
+                                    : configElementValue.default}
+                                  scriptName={scriptInfoElement.displayName}
+                                  configName={configElementName}
+                                />
+                              {:else if configElementValue.type === "array-object"}
+                                <ConfigArrayObjectElement
+                                  inputArray={localStorage.getItem(
+                                    configElementName
+                                  )
+                                    ? JSON.parse(
+                                        localStorage.getItem(configElementName)
+                                      )
+                                    : configElementValue.default}
+                                  defaultConfig={configElementValue.default}
+                                  scriptName={scriptInfoElement.displayName}
+                                  configName={configElementName}
+                                />
+                              {/if}
+                            </div>
                           </div>
-                        </div>
-                      {/each}
-                    </AccordionContent>
-                  </Panel>
+                        {/each}
+                      </AccordionContent>
+                    </Panel>
+                  {/if}
                 {/if}
               {/if}
             {/each}
@@ -205,27 +209,37 @@
       </div>
     {/if}
   </div>
-  <div class="save mt-1 flex align-items-center justify-content-end">
-    <Button
-      on:click={() => window.location.reload()}
-      variant="raised"
-      style="margin-right: 1rem;"
-      class="button-shaped-round"
-    >
-      <Label>
-        {@html cancelIcon}
-        Abbrechen
-      </Label>
-    </Button>
-    <Button
-      on:click={() => saveConfig()}
-      variant="raised"
-      class="button-shaped-round"
-      id="saveButton"
-    >
-      <Label>{@html saveIcon} Speichern & neuladen</Label>
-    </Button>
-  </div>
+  {#if active === "Scripts"}
+    <div class="save mt-1 flex align-items-center justify-content-end">
+      <Button
+        on:click={() => window.location.reload()}
+        variant="raised"
+        style="margin-right: 1rem;"
+        class="button-shaped-round"
+      >
+        <Label>
+          {@html cancelIcon}
+          Abbrechen
+        </Label>
+      </Button>
+      <Button
+        on:click={() => saveConfig()}
+        variant="raised"
+        style="margin-right: 1rem;"
+        class="button-shaped-round"
+      >
+        <Label>{@html saveIcon} Speichern</Label>
+      </Button>
+      <Button
+        on:click={() => saveConfig()}
+        variant="raised"
+        class="button-shaped-round"
+        id="saveButtonReload"
+      >
+        <Label>{@html reloadIcon} Speichern & neuladen</Label>
+      </Button>
+    </div>
+  {/if}
 {/if}
 
 <style lang="scss">

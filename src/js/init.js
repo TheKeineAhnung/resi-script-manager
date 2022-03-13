@@ -74,11 +74,11 @@ function createPageLink() {
             if (
               document
                 .querySelector("#iframe")
-                .contentDocument.querySelector("#saveButton")
+                .contentDocument.querySelector("#saveButtonReload")
             ) {
               document
                 .querySelector("#iframe")
-                .contentDocument.querySelector("#saveButton")
+                .contentDocument.querySelector("#saveButtonReload")
                 .addEventListener("click", function () {
                   window.location.reload();
                 });
