@@ -1,5 +1,5 @@
 <script>
-  import Card, { Content, Actions } from "@smui/card";
+  import Card, { Content, Actions, Media } from "@smui/card";
   import Switch from "@smui/switch";
   import FormField from "@smui/form-field";
   import Button, { Label } from "@smui/button";
@@ -17,6 +17,7 @@
   import ConfigArrayObjectElement from "./components/types/ArrayObject.svelte";
   import { getConfig, setConfig, updateConfig } from "../js/config";
   import { getScripts, getScriptNames } from "../js/scripts";
+  import { getCredits } from "../js/credits";
   import { library, icon } from "@fortawesome/fontawesome-svg-core";
   import {
     faSave,
@@ -52,10 +53,11 @@
   let bugIcon = icon(faBug).html;
   let featureIcon = icon(faCodePullRequest).html;
   let scriptInfo;
+  let creditsInfo;
   let scriptNames = new Array();
   let config = new Object();
   let loading = true;
-  let tabs = ["Scripts", "Config"];
+  let tabs = ["Scripts", "Config", "Credits"];
   let active = "Scripts";
   let openAccordion = new Object();
 
@@ -67,6 +69,7 @@
     loading = true;
     scriptInfo = await getScripts();
     scriptNames = await getScriptNames();
+    creditsInfo = await getCredits();
 
     for (let i = 0; i < scriptInfo.length; i++) {
       if (scriptInfo[i].requiresConfig) {
@@ -144,7 +147,7 @@
           </Card>
         </div>
       {/each}
-    {:else}
+    {:else if active === "Config"}
       <div class="accordion-container w-100 area-1-1-1-6">
         <Accordion>
           {#each Object.entries(config) as [name, value]}
@@ -222,6 +225,33 @@
             {/each}
           {/each}
         </Accordion>
+      </div>
+    {:else}
+      <div class="card-dislay w-100 area-1-1-1-6 grid gap-1 columns-auto">
+        {#each creditsInfo as creditInfoObject}
+          <Card style="height: fit-content;">
+            <div class="p-1">
+              <h3 class="mdc-typography--headline6 m-0">
+                {creditInfoObject["name"]}
+              </h3>
+              <h4 class="mdc-typography--subtitle1 m-0" style="color: #888">
+                Licence: {creditInfoObject["licence"]}
+              </h4>
+            </div>
+            <Media
+              class="card-media-16x9"
+              aspectRatio="16x9"
+              style="background-image: url(https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{creditInfoObject[
+                'icon'
+              ]}); background-size: auto;"
+            />
+            <Content class="mdc-typography--body2">
+              {#if creditInfoObject["text"] !== null && creditInfoObject["text"] !== undefined}
+                <p>{@html creditInfoObject["text"]}</p>
+              {/if}
+            </Content>
+          </Card>
+        {/each}
       </div>
     {/if}
   </div>
