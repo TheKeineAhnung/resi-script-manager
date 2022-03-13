@@ -16,7 +16,7 @@ function getEventlistenerContent(script, eventlistener) {
 }
 
 export async function loadScripts() {
-  let url = "https://keineahnung.eu/scripts/";
+  let url = "https://keineahnung.eu/resi-script-manager/scripts/";
   let scriptInfo = await getScripts();
   let iframe = document.querySelector("#iframe");
   let config = getConfig().then((element) => {
