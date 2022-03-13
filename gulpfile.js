@@ -39,9 +39,9 @@ const views = () => {
 
 const scripts = () => {
   return gulp
-    .src(`${src}/scripts/**/*.json`)
+    .src(`${src}/json/**/*.json`)
     .pipe(plumber())
-    .pipe(gulp.dest(`${dist}/scripts`));
+    .pipe(gulp.dest(`${dist}/json`));
 };
 
 const script = () => {
@@ -65,7 +65,7 @@ const script = () => {
 
 const watch = () => {
   gulp.watch(
-    [`${src}/views/**/*.html`, `${src}/js/**/*.js`, `${src}/scripts/**/*.json`],
+    [`${src}/views/**/*.html`, `${src}/js/**/*.js`, `${src}/json/**/*.json`],
     gulp.series(views, script, scripts)
   );
 };
