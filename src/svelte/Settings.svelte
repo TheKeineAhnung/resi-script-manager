@@ -26,8 +26,21 @@
     faBorderAll,
     faSkull,
     faRotate,
+    faBug,
+    faCodePullRequest,
   } from "@fortawesome/free-solid-svg-icons";
-  library.add(faSave, faBan, faCodeBranch, faUser, faBorderAll, faRotate);
+  import { faGithub } from "@fortawesome/free-brands-svg-icons";
+  library.add(
+    faSave,
+    faBan,
+    faCodeBranch,
+    faUser,
+    faBorderAll,
+    faRotate,
+    faGithub,
+    faBug,
+    faCodePullRequest
+  );
   let saveIcon = icon(faSave).html;
   let cancelIcon = icon(faBan).html;
   let versionIcon = icon(faCodeBranch).html;
@@ -35,6 +48,9 @@
   let borderIcon = icon(faBorderAll).html;
   let outdatedIcon = icon(faSkull).html;
   let reloadIcon = icon(faRotate).html;
+  let githubIcon = icon(faGithub).html;
+  let bugIcon = icon(faBug).html;
+  let featureIcon = icon(faCodePullRequest).html;
   let scriptInfo;
   let scriptNames = new Array();
   let config = new Object();
@@ -209,37 +225,80 @@
       </div>
     {/if}
   </div>
-  {#if active === "Scripts"}
-    <div class="save mt-1 flex align-items-center justify-content-end">
-      <Button
-        on:click={() => window.location.reload()}
-        variant="raised"
-        style="margin-right: 1rem;"
-        class="button-shaped-round"
-      >
-        <Label>
-          {@html cancelIcon}
-          Abbrechen
-        </Label>
-      </Button>
-      <Button
-        on:click={() => saveConfig()}
-        variant="raised"
-        style="margin-right: 1rem;"
-        class="button-shaped-round"
-      >
-        <Label>{@html saveIcon} Speichern</Label>
-      </Button>
-      <Button
-        on:click={() => saveConfig()}
-        variant="raised"
-        class="button-shaped-round"
-        id="saveButtonReload"
-      >
-        <Label>{@html reloadIcon} Speichern & neuladen</Label>
-      </Button>
+  <div class="flex align-items-center justify-content-between flex-wrap">
+    <div>
+      <div class="mt-1 flex align-items-center justify-content-end">
+        <Button
+          style="margin-right: 1rem;"
+          variant="raised"
+          href="https://github.com/TheKeineAhnung/resi-script-manager/issues/new?assignees=&labels=bug&template=bug_report.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Label>
+            {@html bugIcon} Bug report
+          </Label>
+        </Button>
+        <Button
+          style="margin-right: 1rem;"
+          variant="raised"
+          href="https://github.com/TheKeineAhnung/resi-script-manager/issues/new?assignees=&labels=enhancement&template=feature_request.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Label>
+            {@html featureIcon} Feature request
+          </Label>
+        </Button>
+        <Button
+          style="margin-right: 1rem;"
+          variant="raised"
+          color="secondary"
+          href="https://github.com/TheKeineAhnung/resi-script-manager"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Label>
+            {@html githubIcon} Repository
+          </Label>
+        </Button>
+      </div>
     </div>
-  {/if}
+    <div>
+      {#if active === "Scripts"}
+        <div class="save mt-1 flex align-items-center justify-content-end">
+          <Button
+            on:click={() => window.location.reload()}
+            variant="raised"
+            style="margin-right: 1rem;"
+            class="button-shaped-round"
+            color="secondary"
+          >
+            <Label>
+              {@html cancelIcon}
+              Abbrechen
+            </Label>
+          </Button>
+          <Button
+            on:click={() => saveConfig()}
+            variant="raised"
+            style="margin-right: 1rem;"
+            class="button-shaped-round"
+          >
+            <Label>{@html saveIcon} Speichern</Label>
+          </Button>
+          <Button
+            on:click={() => saveConfig()}
+            variant="raised"
+            class="button-shaped-round"
+            id="saveButtonReload"
+          >
+            <Label>{@html reloadIcon} Speichern & neuladen</Label>
+          </Button>
+        </div>
+      {/if}
+    </div>
+  </div>
 {/if}
 
 <style lang="scss">
