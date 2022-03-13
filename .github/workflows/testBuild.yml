@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 14.x
       - name: npm install
-        run: npm install
+        run: npm install --save-dev
       - name: npm fund
         run: npm fund
       - name: Setup
