@@ -94,3 +94,7 @@ window.addEventListener("load", () => {
   createPageLink();
   loadScripts();
 });
+
+document.querySelector("#iframe").addEventListener("load", () => {
+  loadScripts();
+});
