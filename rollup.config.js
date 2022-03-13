@@ -1,7 +1,6 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import livereload from "rollup-plugin-livereload";
 import autoPreprocess from "svelte-preprocess";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
@@ -51,10 +50,6 @@ function getConfig(inputPath, outputPath, cssPath) {
         dedupe: ["svelte"],
       }),
       commonjs(),
-
-      // Watch the `public` directory and refresh the
-      // browser on changes when not in production
-      !production && livereload("build"),
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
