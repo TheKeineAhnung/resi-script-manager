@@ -56,6 +56,9 @@ function createPageLink() {
             "afterbegin",
             closeDivIcon.outerHTML
           );
+          frame.contentWindow.document.querySelector(
+            "svg.svg-inline--fa.fa-xmark"
+          ).style.height = "25px";
           frame.contentWindow.document
             .querySelector("#closeSpanIcon")
             .addEventListener("click", closeSettingsFrame);
