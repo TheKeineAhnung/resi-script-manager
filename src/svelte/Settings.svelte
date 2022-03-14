@@ -15,7 +15,12 @@
   import ConfigStringElement from "./components/types/String.svelte";
   import ConfigObjectElement from "./components/types/Object.svelte";
   import ConfigArrayObjectElement from "./components/types/ArrayObject.svelte";
-  import { getConfig, setConfig, updateConfig } from "../js/config";
+  import {
+    getConfig,
+    setConfig,
+    updateConfig,
+    setConfigItem,
+  } from "../js/config";
   import { getScripts, getScriptNames } from "../js/scripts";
   import { getCredits } from "../js/credits";
   import { library, icon } from "@fortawesome/fontawesome-svg-core";
@@ -82,6 +87,12 @@
     } else {
       config = await getConfig();
     }
+
+    scriptNames.forEach((element) => {
+      if (config[element] === undefined) {
+        setConfigItem(element, { active: false });
+      }
+    });
 
     loading = false;
   }
