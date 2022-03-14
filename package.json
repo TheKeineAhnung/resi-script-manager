@@ -6,6 +6,7 @@
     "rollup-build": "rollup -c rollup.config.js",
     "rollup-dev": "rollup -c -w rollup.config.js",
     "gulp-build": "gulp build",
+    "gulp-build:prod": "gulp build --production",
     "gulp-dev": "gulp dev",
     "prepare": "npm run setup && npm run smui-theme-light && npm run smui-theme-dark",
     "smui-theme-light": "smui-theme compile build/theme/smui.css -i src/theme",
