@@ -203,6 +203,18 @@
     "requiresConfig": false
   },
   {
+    "name": "showOnlyLatestRadioMessage",
+    "displayName": "Show latest radio message",
+    "description": "Show only the latest radio message in the radio message field",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "Vehicles",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "requiresConfig": false
+  },
+  {
     "name": "userBuildings",
     "displayName": "Count buildings",
     "description": "Count your buildings",
