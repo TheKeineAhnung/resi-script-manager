@@ -243,7 +243,10 @@
               aspectRatio="16x9"
               style="background-image: url(https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{creditInfoObject[
                 'icon'
-              ]}); background-size: auto;"
+              ]}); background-size: auto; {creditInfoObject['icon'] ===
+              'github/github-original.svg'
+                ? 'filter: invert(1);'
+                : ''}"
             />
             <Content class="mdc-typography--body2">
               {#if creditInfoObject["text"] !== null && creditInfoObject["text"] !== undefined}
