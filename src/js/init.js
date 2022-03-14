@@ -6,7 +6,12 @@ import { loadScripts } from "./scriptLoader";
 library.add(faJsSquare, faTimes);
 let jsSquare = icon(faJsSquare);
 let closeIcon = icon(faTimes);
-let server = "localhost";
+let server;
+if (process.env.NODE_ENV === "development") {
+  server = "localhost";
+} else {
+  server = "keineahnung.eu/resi-script-manager";
+}
 
 function createPageLink() {
   if (document.querySelector("#darkMode")) {
