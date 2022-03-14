@@ -8,9 +8,9 @@ let jsSquare = icon(faJsSquare);
 let closeIcon = icon(faTimes);
 let server;
 if (process.env.NODE_ENV === "development") {
-  server = "localhost";
+  server = "http://localhost";
 } else {
-  server = "keineahnung.eu/resi-script-manager";
+  server = "https://keineahnung.eu/resi-script-manager";
 }
 
 function createPageLink() {
@@ -68,14 +68,14 @@ function createPageLink() {
             .querySelector("#closeSpanIcon")
             .addEventListener("click", closeSettingsFrame);
           let script = document.createElement("script");
-          script.src = `http://${server}/js/svelte/settings.js`;
+          script.src = `${server}/js/svelte/settings.js`;
           head.appendChild(script);
           let link = document.createElement("link");
           link.rel = "stylesheet";
-          link.href = `http://${server}/theme/smui-dark.css`;
+          link.href = `${server}/theme/smui-dark.css`;
           head.appendChild(link);
           let link2 = document.createElement("link");
-          link2.href = `http://${server}/js/svelte/css/settings.css`;
+          link2.href = `${server}/js/svelte/css/settings.css`;
           link2.rel = "stylesheet";
           head.appendChild(link2);
           setTimeout(() => {
