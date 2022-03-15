@@ -80,7 +80,8 @@ function createPageLink() {
           link2.href = `${server}/js/svelte/css/settings.css`;
           link2.rel = "stylesheet";
           head.appendChild(link2);
-          setTimeout(() => {
+          let buttonInterval = setInterval(addReloadAction, 100);
+          function addReloadAction() {
             if (
               document
                 .querySelector("#iframe")
@@ -92,8 +93,9 @@ function createPageLink() {
                 .addEventListener("click", function () {
                   window.location.reload();
                 });
+              clearInterval(buttonInterval);
             }
-          }, 1000);
+          }
         });
       }
     });
