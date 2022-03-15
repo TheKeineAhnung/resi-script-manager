@@ -1,6 +1,6 @@
 # ReSi script manager
 
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa] ![Version](https://img.shields.io/github/package-json/v/thekeineahnung/resi-script-manager/main?style=flat-square)
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa] ![Version](https://img.shields.io/github/package-json/v/thekeineahnung/resi-script-manager/main?style=flat-square) [![Test build](https://github.com/TheKeineAhnung/resi-script-manager/actions/workflows/testBuild.yml/badge.svg?branch=main&style=flat-square)](https://github.com/TheKeineAhnung/resi-script-manager/actions/workflows/testBuild.yml?style=flat-square)
 
 Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator/). Please take a look to the [licence](https://github.com/TheKeineAhnung/resi-script-manager/blob/main/LICENCE.md).
 
