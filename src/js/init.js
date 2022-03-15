@@ -3,6 +3,8 @@ import { faJsSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { closeSettingsFrame } from "./iframe";
 import { loadScripts } from "./scriptLoader";
+import { getScriptNames } from "./scripts";
+import { getConfig, setConfigItem } from "./config";
 library.add(faJsSquare, faTimes);
 let jsSquare = icon(faJsSquare);
 let closeIcon = icon(faTimes);
@@ -98,9 +100,21 @@ function createPageLink() {
   }
 }
 
+async function checkConfig() {
+  let scriptNames = await getScriptNames();
+  let config = await getConfig();
+
+  scriptNames.forEach((element) => {
+    if (config[element] === undefined) {
+      setConfigItem(element, { active: false });
+    }
+  });
+}
+
 window.addEventListener("load", () => {
   createPageLink();
   loadScripts();
+  checkConfig();
 });
 
 document.querySelector("#iframe").addEventListener("load", () => {

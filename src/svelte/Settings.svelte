@@ -88,12 +88,6 @@
       config = await getConfig();
     }
 
-    scriptNames.forEach((element) => {
-      if (config[element] === undefined) {
-        setConfigItem(element, { active: false });
-      }
-    });
-
     loading = false;
   }
 
