@@ -82,7 +82,7 @@
               <Textfield
                 variant="outlined"
                 bind:value={userInputValue[key]}
-                label={`Add item '${key}' to config`}
+                label={`Wert '${key}' zur Konfiguration hinzufügen`}
                 style="width: 100%;"
               />
             </div>
@@ -92,17 +92,17 @@
     </div>
     <div class="w-95 flex justify-content-between mt-2">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Reset</Button
+        >Zurücksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Submit</Button
+        >Hinzufügen</Button
       >
     </div>
   </div>
   <div
     class="existing flex justify-content-start align-items-start flex-column"
   >
-    Current config for {scriptName}
+    Aktuelle Konfiguration für {scriptName}
     <div class="datatables flex flex-wrap">
       {#each inputArray as inputArrayItem}
         <div class="m-0_5 w-fit">
@@ -112,9 +112,9 @@
           >
             <Head>
               <Row>
-                <Cell>Key</Cell>
-                <Cell>Value</Cell>
-                <Cell>Remove</Cell>
+                <Cell>Schlüssel</Cell>
+                <Cell>Wert</Cell>
+                <Cell>Entfernen</Cell>
               </Row>
             </Head>
             <Body>

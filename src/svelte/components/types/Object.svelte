@@ -49,35 +49,38 @@
       <Textfield
         variant="outlined"
         bind:value={userInputKey}
-        label="Set key for config"
+        label="Schlüssel für Konfiguration hinzufügen"
         style="width: 100%;"
       />
       <Textfield
         variant="outlined"
         bind:value={userInputValue}
-        label="Set value for config"
+        label="Wert für Konfiguration hinzufügen"
         style="width: 100%; margin-top: 1rem"
       />
     </div>
     <div class="w-95 flex justify-content-between mt-2">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Reset</Button
+        >Zurücksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Submit</Button
+        >Hinzufügen</Button
       >
     </div>
   </div>
   <div
     class="existing flex justify-content-center align-items-center flex-column"
   >
-    Current config for {scriptName}
-    <DataTable table$aria-label="{scriptName} config" style="max-width: 100%;">
+    Aktuelle Konfiguration für {scriptName}
+    <DataTable
+      table$aria-label="{scriptName} Konfiguration"
+      style="max-width: 100%;"
+    >
       <Head>
         <Row>
-          <Cell>Key</Cell>
-          <Cell>Value</Cell>
-          <Cell>Remove</Cell>
+          <Cell>Schlüssel</Cell>
+          <Cell>Wert</Cell>
+          <Cell>Entfernen</Cell>
         </Row>
       </Head>
       <Body>

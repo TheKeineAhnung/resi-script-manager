@@ -32,21 +32,21 @@
       <Textfield
         variant="outlined"
         bind:value={userInputValue}
-        label="Add item to config"
+        label="Wert zur Konfiguration hinzufügen"
         style="width: 100%;"
       />
     </div>
     <div class="w-95 flex justify-content-between">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Reset</Button
+        >Zurücksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Submit</Button
+        >Hinzufügen</Button
       >
     </div>
   </div>
   <div class="existing">
-    Current config for {scriptName}
+    Aktuelle Konfiguration für {scriptName}
     <div>
       <div class="w-fit bg-success rounded px-1 py-0_5 mt-1">
         {#if inputString !== ""}
@@ -65,7 +65,7 @@
             on:click={removeFromConfig}>{@html trashIcon}</span
           >
         {:else}
-          No config found
+          Keine Konfiguration gefunden
         {/if}
       </div>
     </div>

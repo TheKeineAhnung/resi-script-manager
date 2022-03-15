@@ -274,7 +274,7 @@
           rel="noopener noreferrer"
         >
           <Label>
-            {@html bugIcon} Bug report
+            {@html bugIcon} Fehlermeldung
           </Label>
         </Button>
         <Button
@@ -285,7 +285,7 @@
           rel="noopener noreferrer"
         >
           <Label>
-            {@html featureIcon} Feature request
+            {@html featureIcon} Feature anfrage
           </Label>
         </Button>
         <Button

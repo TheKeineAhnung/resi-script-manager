@@ -41,21 +41,21 @@
       <Textfield
         variant="outlined"
         bind:value={userInputValue}
-        label="Add item to config"
+        label="Wert zur Konfiguration hinzufügen"
         style="width: 100%;"
       />
     </div>
     <div class="w-95 flex justify-content-between">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Reset</Button
+        >Zurücksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Submit</Button
+        >Hinzufügen</Button
       >
     </div>
   </div>
   <div class="existing">
-    Current config for {scriptName}
+    Aktuelle Konfiguration für {scriptName}
     <ul class="p-0 m-0">
       {#each inputArray as inputArrayElement}
         <li
