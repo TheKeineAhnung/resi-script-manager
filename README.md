@@ -27,6 +27,7 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 
 - `npm run rollup-build`: Builds the script manager.
 - `npm run gulp-build`: Builds the script manager.
+- `npm run gulp-build:prod`: Builds the script manager in production mode.
 - `npm run rollup-dev`: Builds the script manager for development.
 - `npm run gulp-dev`: Builds the script manager for development.
 - `npm run prepare`: Builds the theme.
