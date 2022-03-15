@@ -40,7 +40,7 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 1. Run `npm run gulp-dev`
 1. Run `npm run rollup-dev`
 1. Run `npm run prepare`
-1. Configurate your server to watch the build folder
+1. Configurate your server to watch the build folder (For the best result use XAMPP)
 1. Start your server
 1. Install the script manager in your browser with the code of [`init-test.user.js`](https://github.com/TheKeineAhnung/resi-script-manager/blob/main/init-test.user.js)
 1. Start developing
