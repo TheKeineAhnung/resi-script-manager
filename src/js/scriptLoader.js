@@ -16,7 +16,7 @@ function getEventlistenerContent(script, eventlistener) {
 }
 
 export async function loadScripts() {
-  let url = "https://keineahnung.eu/resi-script-manager/scripts/";
+  let url = "https://api.github.com/repos/";
   let scriptInfo = await getScripts();
   let iframe = document.querySelector("#iframe");
   let config = getConfig().then((element) => {
@@ -26,12 +26,13 @@ export async function loadScripts() {
         document.querySelector(`#${key}`) === null
       )
         if (element[key].active) {
-          j.ajax({
-            url: `${url}${key}.user.js`,
-            success: function (data) {
-              for (const e of scriptInfo) {
-                if (e["name"] === key) {
+          for (const e of scriptInfo) {
+            if (e["name"] === key) {
+              j.ajax({
+                url: `${url}${e["src"]}`,
+                success: function (data) {
                   for (let i = 0; i < e["match"].length; i++) {
+                    data = atob(decodeURI(data["content"]));
                     let elem = e["match"][i];
                     let iframe = document.querySelector("#iframe");
                     if (
@@ -60,10 +61,10 @@ export async function loadScripts() {
                       }
                     }
                   }
-                }
-              }
-            },
-          });
+                },
+              });
+            }
+          }
         }
     }
   });

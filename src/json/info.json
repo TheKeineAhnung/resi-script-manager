@@ -9,6 +9,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/alarmfax.user.js",
     "requiresConfig": false
   },
   {
@@ -21,6 +22,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
+    "src": "thekeineahnung/resi-scripte/contents/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
       "autoCollapseBuildingsBuildingTypes": {
@@ -39,6 +41,7 @@
     "outdated": true,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
+    "src": "thekeineahnung/resi-scripte/contents/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
       "chatMessageAlertAudio": {
@@ -57,6 +60,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
+    "src": "thekeineahnung/resi-scripte/contents/completeLengthNoCallInfo.user.js",
     "requiresConfig": false
   },
   {
@@ -69,6 +73,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/countPatients.user.js",
     "requiresConfig": false
   },
   {
@@ -81,6 +86,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/missionOverview"],
+    "src": "thekeineahnung/resi-scripte/contents/countPossibleMissions.user.js",
     "requiresConfig": false
   },
   {
@@ -93,6 +99,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/customBuildingIcons.user.js",
     "requiresConfig": true,
     "config": {
       "customBuildingIconsConfig": {
@@ -121,6 +128,7 @@
     "outdated": false,
     "usable": false,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/customMissionIcons.user.js",
     "requiresConfig": true,
     "config": {
       "customMissionIconsConfig": {
@@ -146,6 +154,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/mapLegend"],
+    "src": "thekeineahnung/resi-scripte/contents/expandMapLegend.user.js",
     "requiresConfig": false
   },
   {
@@ -158,6 +167,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile"],
+    "src": "thekeineahnung/resi-scripte/contents/hideAchievementcard.user.js",
     "requiresConfig": false
   },
   {
@@ -170,6 +180,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
+    "src": "thekeineahnung/resi-scripte/contents/hideBuildingIcons.user.js",
     "requiresConfig": true,
     "config": {
       "hideBuildingIconsConfig": {
@@ -188,6 +199,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/missionNew/*"],
+    "src": "thekeineahnung/resi-scripte/contents/hideFreeText.user.js",
     "requiresConfig": false
   },
   {
@@ -200,6 +212,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/missionTime.user.js",
     "requiresConfig": false
   },
   {
@@ -212,6 +225,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
+    "src": "thekeineahnung/resi-scripte/contents/showOnlyLatestRadioMessage.user.js",
     "requiresConfig": false
   },
   {
@@ -224,6 +238,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile/*"],
+    "src": "thekeineahnung/resi-scripte/contents/userBuildings.user.js",
     "requiresConfig": false
   },
   {
@@ -236,6 +251,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile/*"],
+    "src": "thekeineahnung/resi-scripte/contents/userVehicles.user.js",
     "requiresConfig": false
   }
 ]
