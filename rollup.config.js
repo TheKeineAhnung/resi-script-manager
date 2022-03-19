@@ -6,6 +6,7 @@ import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import postcssPresetEnv from "postcss-preset-env";
 import css from "rollup-plugin-css-only";
+import injectProcessEnv from "rollup-plugin-inject-process-env";
 import { terser } from "rollup-plugin-terser";
 
 const production = process.env.ROLLUP_WATCH;
@@ -54,6 +55,11 @@ function getConfig(inputPath, outputPath, cssPath) {
       // If we're building for production (npm run build
       // instead of npm run dev), minify
       production && terser(),
+
+      // set process.env.NODE_ENV to production or development
+      injectProcessEnv({
+        NODE_ENV: !production ? "production" : "development",
+      }),
     ],
     watch: {
       clearScreen: false,
