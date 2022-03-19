@@ -10,7 +10,7 @@ let jsSquare = icon(faJsSquare);
 let closeIcon = icon(faTimes);
 let server;
 if (process.env.NODE_ENV === "development") {
-  server = "http://localhost";
+  server = "https://localhost";
 } else {
   server = "https://keineahnung.eu/resi-script-manager";
 }
