@@ -37,6 +37,13 @@ const views = () => {
     .pipe(gulp.dest(`${dist}/views`));
 };
 
+const htaccess = () => {
+  return gulp
+    .src(`${src}/.htaccess`)
+    .pipe(plumber())
+    .pipe(gulp.dest(`${dist}`));
+};
+
 const scripts = () => {
   return gulp
     .src(`${src}/json/**/*.json`)
@@ -65,13 +72,18 @@ const script = () => {
 
 const watch = () => {
   gulp.watch(
-    [`${src}/views/**/*.html`, `${src}/js/**/*.js`, `${src}/json/**/*.json`],
-    gulp.series(views, script, scripts)
+    [
+      `${src}/views/**/*.html`,
+      `${src}/js/**/*.js`,
+      `${src}/json/**/*.json`,
+      `${src}/.htaccess`,
+    ],
+    gulp.series(views, script, scripts, htaccess)
   );
 };
 
-const dev = gulp.series(views, script, scripts, watch);
-const build = gulp.series(views, script, scripts);
+const dev = gulp.series(views, script, scripts, htaccess, watch);
+const build = gulp.series(views, script, scripts, htaccess);
 
 exports.dev = dev;
 exports.build = build;
