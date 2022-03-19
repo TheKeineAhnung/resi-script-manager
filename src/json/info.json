@@ -9,7 +9,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/alarmfax.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/alarmfax.user.js",
     "requiresConfig": false
   },
   {
@@ -22,7 +22,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
-    "src": "thekeineahnung/resi-scripte/contents/autoCollapseBuildings.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
       "autoCollapseBuildingsBuildingTypes": {
@@ -41,7 +41,7 @@
     "outdated": true,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
-    "src": "thekeineahnung/resi-scripte/contents/autoCollapseBuildings.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
       "chatMessageAlertAudio": {
@@ -60,7 +60,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
-    "src": "thekeineahnung/resi-scripte/contents/completeLengthNoCallInfo.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/completeLengthNoCallInfo.user.js",
     "requiresConfig": false
   },
   {
@@ -73,7 +73,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/countPatients.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPatients.user.js",
     "requiresConfig": false
   },
   {
@@ -86,7 +86,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/missionOverview"],
-    "src": "thekeineahnung/resi-scripte/contents/countPossibleMissions.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPossibleMissions.user.js",
     "requiresConfig": false
   },
   {
@@ -99,7 +99,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/customBuildingIcons.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/customBuildingIcons.user.js",
     "requiresConfig": true,
     "config": {
       "customBuildingIconsConfig": {
@@ -128,7 +128,7 @@
     "outdated": false,
     "usable": false,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/customMissionIcons.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/customMissionIcons.user.js",
     "requiresConfig": true,
     "config": {
       "customMissionIconsConfig": {
@@ -154,7 +154,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/mapLegend"],
-    "src": "thekeineahnung/resi-scripte/contents/expandMapLegend.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/expandMapLegend.user.js",
     "requiresConfig": false
   },
   {
@@ -167,7 +167,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile"],
-    "src": "thekeineahnung/resi-scripte/contents/hideAchievementcard.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/hideAchievementcard.user.js",
     "requiresConfig": false
   },
   {
@@ -180,7 +180,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
-    "src": "thekeineahnung/resi-scripte/contents/hideBuildingIcons.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/hideBuildingIcons.user.js",
     "requiresConfig": true,
     "config": {
       "hideBuildingIconsConfig": {
@@ -199,7 +199,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/missionNew/*"],
-    "src": "thekeineahnung/resi-scripte/contents/hideFreeText.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/hideFreeText.user.js",
     "requiresConfig": false
   },
   {
@@ -212,7 +212,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/missionTime.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/missionTime.user.js",
     "requiresConfig": false
   },
   {
@@ -225,7 +225,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
-    "src": "thekeineahnung/resi-scripte/contents/showOnlyLatestRadioMessage.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/showOnlyLatestRadioMessage.user.js",
     "requiresConfig": false
   },
   {
@@ -238,7 +238,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile/*"],
-    "src": "thekeineahnung/resi-scripte/contents/userBuildings.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/userBuildings.user.js",
     "requiresConfig": false
   },
   {
@@ -251,7 +251,7 @@
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/profile/*"],
-    "src": "thekeineahnung/resi-scripte/contents/userVehicles.user.js",
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/userVehicles.user.js",
     "requiresConfig": false
   }
 ]

@@ -16,7 +16,6 @@ function getEventlistenerContent(script, eventlistener) {
 }
 
 export async function loadScripts() {
-  let url = "https://api.github.com/repos/";
   let scriptInfo = await getScripts();
   let iframe = document.querySelector("#iframe");
   let config = getConfig().then((element) => {
@@ -29,10 +28,9 @@ export async function loadScripts() {
           for (const e of scriptInfo) {
             if (e["name"] === key) {
               j.ajax({
-                url: `${url}${e["src"]}`,
+                url: `${e["src"]}`,
                 success: function (data) {
                   for (let i = 0; i < e["match"].length; i++) {
-                    data = atob(decodeURI(data["content"]));
                     let elem = e["match"][i];
                     let iframe = document.querySelector("#iframe");
                     if (
@@ -52,6 +50,7 @@ export async function loadScripts() {
                       let scriptElem = document.createElement("script");
                       scriptElem.innerHTML = script;
                       scriptElem.id = key;
+                      console.log(key);
                       if (window.location.href.match(elem)) {
                         let head = document.head;
                         head.appendChild(scriptElem);
