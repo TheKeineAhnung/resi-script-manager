@@ -1,4 +1,4 @@
-name: Build to server
+name: Deploy to server
 
 on:
   push:
@@ -36,8 +36,8 @@ jobs:
       - name: Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.2
         with:
-          username: sftp_script_manager_github@keineahnung.eu
-          server: ssh.strato.de
+          username: "sftp_script_manager_github@keineahnung.eu"
+          server: "ssh.strato.de"
           ssh_private_key: ${{ secrets.FTP_DEPLOY_PW }}
           local_path: "./build/*"
           remote_path: "/"
