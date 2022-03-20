@@ -36,8 +36,8 @@ jobs:
       - name: Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.2
         with:
-          username: sftp_script_manager_github@keineahnung.eu
-          server: ssh.strato.de
+          username: root
+          server: keineahnung.eu
           port: 22
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: ./build/*
