@@ -3,7 +3,6 @@ import * as j from "jquery";
 async function getCredits() {
   let scriptInfo;
   let url;
-  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === "development") {
     url = "https://localhost/json/credits.json";
   } else {

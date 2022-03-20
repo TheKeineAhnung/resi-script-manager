@@ -50,7 +50,6 @@ export async function loadScripts() {
                       let scriptElem = document.createElement("script");
                       scriptElem.innerHTML = script;
                       scriptElem.id = key;
-                      console.log(key);
                       if (window.location.href.match(elem)) {
                         let head = document.head;
                         head.appendChild(scriptElem);
