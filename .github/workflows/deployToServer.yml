@@ -38,7 +38,7 @@ jobs:
         with:
           server: ssh.strato.de
           username: sftp_script_manager_github@keineahnung.eu
-          ssh_private_key: ${{ secrets.FTP_PW_GH }}
+          password: ${{ secrets.FTP_PW_GH }}
           protocol: ftps
           port: 22
           local_dir: ./build/*
