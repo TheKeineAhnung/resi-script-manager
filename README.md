@@ -49,7 +49,7 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 
 ## Bug reports
 
-Have you found a bug? Please open an [issue](https://github.com/TheKeineAhnung/resi-script-manager/issues/new).
+Have you found a bug? Please open an [issue](https://github.com/TheKeineAhnung/resi-script-manager/issues/new?assignees=&labels=bug&template=bug_report.md).
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
