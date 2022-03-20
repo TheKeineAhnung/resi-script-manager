@@ -21,7 +21,7 @@ export async function loadScripts() {
   let config = getConfig().then((element) => {
     for (let key in element) {
       if (
-        iframe.contentWindow.document.querySelector(`#${key}`) === null &&
+        iframe.contentWindow.document.querySelector(`#${key}`) === null ||
         document.querySelector(`#${key}`) === null
       )
         if (element[key].active) {
@@ -50,10 +50,19 @@ export async function loadScripts() {
                       let scriptElem = document.createElement("script");
                       scriptElem.innerHTML = script;
                       scriptElem.id = key;
-                      if (window.location.href.match(elem)) {
+                      if (
+                        window.location.href.match(elem) &&
+                        document.querySelector(`#${key}`) === null
+                      ) {
                         let head = document.head;
                         head.appendChild(scriptElem);
-                      } else if (iframe.src.match(elem)) {
+                      }
+                      if (
+                        iframe.src.match(elem) &&
+                        iframe.contentWindow.document.querySelector(
+                          `#${key}`
+                        ) === null
+                      ) {
                         let head = iframe.contentDocument.head;
                         head.appendChild(scriptElem);
                       }
