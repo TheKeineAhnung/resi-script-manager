@@ -39,7 +39,6 @@ jobs:
           server: ftp.strato.de
           username: sftp_script_manager_github@keineahnung.eu
           password: ${{ secrets.FTP_PW_GH }}
-          protocol: ftps
           port: 21
           local-dir: ./build/
           exclude: |
