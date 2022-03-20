@@ -38,6 +38,6 @@ jobs:
         with:
           username: sftp_script_manager_github@keineahnung.eu
           server: ssh.strato.de
-          password: ${{ secrets.FTP_DEPLOY_PW }}
+          ssh_private_key: ${{ secrets.FTP_DEPLOY_PW }}
           local_path: "./build/*"
           remote_path: "/"
