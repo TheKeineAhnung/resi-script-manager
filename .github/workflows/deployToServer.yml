@@ -42,3 +42,6 @@ jobs:
           protocol: ftps
           port: 22
           local-dir: ./build/
+          exclude: |
+            **/views/**
+          log-level: verbose
