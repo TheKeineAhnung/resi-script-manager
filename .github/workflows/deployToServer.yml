@@ -36,12 +36,11 @@ jobs:
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ssh.strato.de
+          server: ftp.strato.de
           username: sftp_script_manager_github@keineahnung.eu
           password: ${{ secrets.FTP_PW_GH }}
           protocol: ftps
-          port: 22
+          port: 21
           local-dir: ./build/
           exclude: |
             **/views/**
-          log-level: verbose
