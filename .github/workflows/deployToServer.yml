@@ -41,4 +41,4 @@ jobs:
           password: ${{ secrets.FTP_PW_GH }}
           protocol: ftps
           port: 22
-          local_dir: ./build/*
+          local-dir: ./build/*
