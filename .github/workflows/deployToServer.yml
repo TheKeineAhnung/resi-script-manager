@@ -34,11 +34,11 @@ jobs:
       - name: Theme
         run: npm run prepare
       - name: Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.2
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          username: root
           server: ssh.strato.de
+          username: sftp_script_manager_github@keineahnung.eu
+          ssh_private_key: ${{ secrets.FTP_PW_GH }}
+          protocol: ftps
           port: 22
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ./build/*
-          remote_path: ./
+          local_dir: ./build/*
