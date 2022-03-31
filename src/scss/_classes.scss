@@ -60,6 +60,11 @@
   padding-right: 1rem;
 }
 
+.px-2 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .py-0_5 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -219,4 +224,12 @@
 
 .text-center {
   text-align: center;
+}
+
+.none {
+  display: none;
+}
+
+.absolute {
+  position: absolute;
 }

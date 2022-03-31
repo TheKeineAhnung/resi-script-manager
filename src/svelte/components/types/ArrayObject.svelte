@@ -1,18 +1,53 @@
 <script>
   import Textfield from "@smui/textfield";
-  import Button from "@smui/button";
+  import Button, { Label } from "@smui/button";
+  import Dialog, {
+    Title,
+    Content as DialogContent,
+    Actions as DialogActions,
+  } from "@smui/dialog";
   import { library, icon } from "@fortawesome/fontawesome-svg-core";
-  import { faTrash, faBan } from "@fortawesome/free-solid-svg-icons";
+  import {
+    faTrash,
+    faBan,
+    faCloudArrowDown,
+    faCloudArrowUp,
+    faCopy,
+    faXmark,
+    faSave,
+  } from "@fortawesome/free-solid-svg-icons";
   import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
-  library.add(faTrash, faBan);
+  library.add(
+    faTrash,
+    faBan,
+    faCloudArrowDown,
+    faCloudArrowUp,
+    faCopy,
+    faXmark,
+    faSave
+  );
   let trashIcon = icon(faTrash).html;
   let banIcon = icon(faBan).html;
+  let exportIcon = icon(faCloudArrowDown).html;
+  let importIcon = icon(faCloudArrowUp).html;
+  let copyIcon = icon(faCopy).html;
+  let closeIcon = icon(faXmark).html;
+  let saveIcon = icon(faSave).html;
   export let inputArray = new Array();
   export let defaultConfig = new Array();
   export let scriptName = "";
   export let configName = "";
   let userInputValue = new Object();
   let loading = true;
+  let dialogOpen = false;
+  let dialogTitle = "";
+  let dialogContent = "";
+  let snackbarContent = "";
+  let snackbarOpen = false;
+  let dialogCopy = false;
+  let dialogInput = false;
+  let dialogInputValue = "";
+  let dialogInputDesc = "";
 
   for (const item of defaultConfig) {
     for (const key in item) {
@@ -61,6 +96,43 @@
       inputArray = inputArray;
     }
     localStorage.setItem(configName, JSON.stringify(inputArray));
+  }
+
+  function exportConfig() {
+    let config = localStorage.getItem(configName);
+    dialogTitle = "Deine Einstellungen für den Script-manager";
+    dialogContent = config;
+    dialogCopy = true;
+    dialogOpen = true;
+  }
+
+  function importConfig() {
+    dialogTitle = "Importiere Einstellungen";
+    dialogContent =
+      "Importiere Einstellungen von Freunden oder aus einem anderen Browser";
+    dialogInput = true;
+    dialogInputDesc = "Einstellungen";
+    dialogOpen = true;
+  }
+
+  function resetDialog() {
+    dialogTitle = "";
+    dialogContent = "";
+    dialogInputValue = "";
+    dialogInputDesc = "";
+    dialogInput = false;
+    dialogCopy = false;
+    dialogOpen = false;
+  }
+
+  function toggleSnackbar(newSnackbarContent, closeTimeout = 5000) {
+    snackbarContent = newSnackbarContent;
+    snackbarOpen = true;
+
+    setTimeout(() => {
+      snackbarOpen = false;
+      snackbarContent = "";
+    }, closeTimeout);
   }
 
   function removeFromConfig(item) {
@@ -144,8 +216,94 @@
         </div>
       {/each}
     </div>
+    <div
+      class="config-options mt-1 flex align-items-center justify-content-end float-left"
+    >
+      <Button
+        on:click={() => exportConfig()}
+        variant="raised"
+        style="margin-right: 1rem;"
+        class="button-shaped-round"
+      >
+        <Label>{@html exportIcon} Einstellungen exportieren</Label>
+      </Button>
+      <Button
+        on:click={() => importConfig()}
+        variant="raised"
+        class="button-shaped-round"
+      >
+        <Label>{@html importIcon} Einstellungen importieren</Label>
+      </Button>
+    </div>
   </div>
 </div>
+
+<Dialog
+  bind:open={dialogOpen}
+  aria-labelledby="simple-title"
+  aria-describedby="simple-content"
+  scrimClickAction=""
+  escapeKeyAction=""
+>
+  <Title id="simple-title">{dialogTitle}</Title>
+  <DialogContent id="simple-content" style="word-wrap: break-word;"
+    >{dialogContent}</DialogContent
+  >
+  {#if dialogInput}
+    <div class="flex justify-content-center align-items-center px-2">
+      <Textfield
+        bind:value={dialogInputValue}
+        label={dialogInputDesc}
+        style="width: 100%"
+      />
+    </div>
+  {/if}
+  <DialogActions>
+    {#if dialogCopy}
+      <Button
+        on:click={(() => navigator.clipboard.writeText(dialogContent),
+        console.log(navigator.clipboard.writeText(dialogContent)),
+        toggleSnackbar("Einstellungen in die Zwischenablage kopiert"),
+        resetDialog())}
+      >
+        <Label>{@html copyIcon} Kopieren</Label>
+      </Button>
+    {/if}
+    {#if dialogInput}
+      <Button
+        on:click={() =>
+          localStorage.setItem(
+            configName,
+            JSON.parse(
+              JSON.stringify(dialogInputValue),
+              (inputArray = dialogInputValue)
+            )
+          )}
+      >
+        <Label>{@html saveIcon} Speichern</Label>
+      </Button>
+    {/if}
+    <Button on:click={() => resetDialog()}>
+      <Label>{@html closeIcon} Schließen</Label>
+    </Button>
+  </DialogActions>
+</Dialog>
+
+{#if snackbarOpen}
+  <div class="snackbar">
+    <div class="bg-success snackbar-child">
+      <span>{snackbarContent}</span>
+    </div>
+  </div>
+{/if}
+
+{#if snackbarOpen}
+  <div class="snackbar">
+    <div class="bg-success snackbar-child">
+      <span>{snackbarContent}</span>
+    </div>
+  </div>
+{/if}
 
 <style lang="scss">
   @import "../../../scss/components/types/array.scss";
