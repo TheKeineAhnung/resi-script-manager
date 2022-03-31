@@ -5,6 +5,12 @@ on:
     types:
       - created
 
+  push:
+    branches:
+      - main
+    paths:
+      - src/json/**.*
+
   workflow_dispatch:
 
 jobs:
