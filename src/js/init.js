@@ -122,3 +122,13 @@ window.addEventListener("load", () => {
 document.querySelector("#iframe").addEventListener("load", () => {
   loadScripts();
 });
+
+new MutationObserver(function onSrcChange() {
+  let srcURL = document.querySelector("#iframe").src;
+  closeSettingsFrame();
+  document.querySelector("#iframe").src = srcURL;
+  document.querySelector("#iframe").style.display = "grid";
+}).observe(document.querySelector("#iframe"), {
+  attributes: true,
+  attributeFilter: ["src"],
+});
