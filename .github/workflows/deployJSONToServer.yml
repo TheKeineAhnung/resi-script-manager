@@ -3,7 +3,7 @@ name: Deploy JSON to server
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - src/json/**.*
 
