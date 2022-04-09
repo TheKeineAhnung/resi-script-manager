@@ -120,11 +120,15 @@ window.addEventListener("load", () => {
   loadScripts();
 });
 
+document.querySelector("#iframe").addEventListener("load", function () {
+  loadScripts();
+});
+
 new MutationObserver(function onSrcChange() {
   let iframe = document.querySelector("#iframe");
   let srcURL = iframe.src;
   let dataSRC = iframe.getAttribute("data-source");
-  if (!dataSRC === "scriptManager") {
+  if (dataSRC !== "scriptManager") {
     closeSettingsFrame();
     document.querySelector("#iframe").src = srcURL;
     document.querySelector("#iframe").style.display = "grid";
