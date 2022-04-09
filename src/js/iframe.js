@@ -17,3 +17,10 @@ export function closeSettingsFrame() {
   // You can find it in the controlCenter.js file
   hidePanels();
 }
+
+export function isSettingsFrame() {
+  return (
+    document.querySelector("#iframe").getAttribute("data-source") ===
+    "scriptManager"
+  );
+}

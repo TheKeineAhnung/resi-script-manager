@@ -1,7 +1,7 @@
 import { library, icon } from "@fortawesome/fontawesome-svg-core";
 import { faJsSquare } from "@fortawesome/free-brands-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { closeSettingsFrame } from "./iframe";
+import { closeSettingsFrame, isSettingsFrame } from "./iframe";
 import { loadScripts } from "./scriptLoader";
 import { getScriptNames } from "./scripts";
 import { getConfig, setConfigItem } from "./config";
@@ -69,7 +69,10 @@ function createPageLink() {
           ).style.height = "25px";
           frame.contentWindow.document
             .querySelector("#closeSpanIcon")
-            .addEventListener("click", closeSettingsFrame);
+            .addEventListener("click", () => {
+              closeSettingsFrame();
+              addIframeListener();
+            });
           let script = document.createElement("script");
           script.src = `${server}/js/svelte/settings.js`;
           head.appendChild(script);
@@ -114,13 +117,19 @@ async function checkConfig() {
   });
 }
 
+function addIframeListener() {
+  document.querySelector("#iframe").addEventListener("load", function () {
+    if (!isSettingsFrame()) {
+      loadScripts();
+    } else {
+    }
+  });
+}
+
 window.addEventListener("load", () => {
   createPageLink();
+  addIframeListener();
   checkConfig();
-  loadScripts();
-});
-
-document.querySelector("#iframe").addEventListener("load", function () {
   loadScripts();
 });
 
@@ -133,6 +142,7 @@ new MutationObserver(function onSrcChange() {
     document.querySelector("#iframe").src = srcURL;
     document.querySelector("#iframe").style.display = "grid";
   }
+  addIframeListener();
 }).observe(document.querySelector("#iframe"), {
   attributes: true,
   attributeFilter: ["src"],
