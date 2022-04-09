@@ -229,7 +229,6 @@
     {#if dialogCopy}
       <Button
         on:click={(() => navigator.clipboard.writeText(dialogContent),
-        console.log(navigator.clipboard.writeText(dialogContent)),
         toggleSnackbar("Einstellungen in die Zwischenablage kopiert"),
         resetDialog())}
       >

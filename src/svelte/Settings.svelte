@@ -135,9 +135,7 @@
   }
 
   function dialogInputFunc() {
-    console.log(typeof dialogInputValue);
     updateConfig(JSON.parse(dialogInputValue));
-    //console.log(dialogInputValue)
     toggleSnackbar("Einstellungen gespeichert");
     resetDialog();
   }
@@ -453,7 +451,6 @@
     {#if dialogCopy}
       <Button
         on:click={(() => navigator.clipboard.writeText(dialogContent),
-        console.log(navigator.clipboard.writeText(dialogContent)),
         toggleSnackbar("Einstellungen in die Zwischenablage kopiert"),
         resetDialog())}
       >
