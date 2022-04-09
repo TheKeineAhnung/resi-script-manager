@@ -25,6 +25,7 @@ function createPageLink() {
     document.querySelector("#scriptManager").addEventListener("click", () => {
       openFrame("", "1/1/4/5");
       let frame = document.querySelector("#iframe");
+      frame.setAttribute("data-source", "scriptManager");
       if (
         (frame.src === "" ||
           frame.src === "https://rettungssimulator.online/") &&
@@ -115,19 +116,19 @@ async function checkConfig() {
 
 window.addEventListener("load", () => {
   createPageLink();
-  loadScripts();
   checkConfig();
-});
-
-document.querySelector("#iframe").addEventListener("load", () => {
   loadScripts();
 });
 
 new MutationObserver(function onSrcChange() {
-  let srcURL = document.querySelector("#iframe").src;
-  closeSettingsFrame();
-  document.querySelector("#iframe").src = srcURL;
-  document.querySelector("#iframe").style.display = "grid";
+  let iframe = document.querySelector("#iframe");
+  let srcURL = iframe.src;
+  let dataSRC = iframe.getAttribute("data-source");
+  if (!dataSRC === "scriptManager") {
+    closeSettingsFrame();
+    document.querySelector("#iframe").src = srcURL;
+    document.querySelector("#iframe").style.display = "grid";
+  }
 }).observe(document.querySelector("#iframe"), {
   attributes: true,
   attributeFilter: ["src"],
