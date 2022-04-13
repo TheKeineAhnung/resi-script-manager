@@ -211,8 +211,21 @@
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/*"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/missionTime.user.js",
+    "requiresConfig": false
+  },
+  {
+    "name": "missionHelper",
+    "displayName": "Einsatzhilfe anzeigen",
+    "description": "Einsatzhilfe im Einsatzfenster",
+    "author": "Ron31",
+    "version": "1.3.0",
+    "category": "Einsätze",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/mission/*"],
+    "src": "https://raw.githubusercontent.com/Ron31/LSS-Scripts/dev/resi-missionHelper/missionHelper.user.js",
     "requiresConfig": false
   },
   {
