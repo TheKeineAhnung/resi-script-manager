@@ -17,8 +17,7 @@ if (process.env.NODE_ENV === "development") {
 
 function loadSettingsFrame(event) {
   let frame = document.querySelector("#iframe");
-  frame.removeEventListener('load', loadSettingsFrame);
-  console.log("new Load")
+  frame.removeEventListener("load", loadSettingsFrame);
   let head = frame.contentWindow.document.querySelector("head");
   if (head.querySelectorAll("script").length > 0) {
     let scripts = head.querySelectorAll("script");
@@ -48,18 +47,18 @@ function loadSettingsFrame(event) {
   closeSpanIcon.style.marginRight = "5px";
   closeDivIcon.insertAdjacentHTML("beforeend", closeSpanIcon.outerHTML);
   frame.contentWindow.document.body.insertAdjacentHTML(
-      "afterbegin",
-      closeDivIcon.outerHTML
+    "afterbegin",
+    closeDivIcon.outerHTML
   );
   frame.contentWindow.document.querySelector(
-      "svg.svg-inline--fa.fa-xmark"
+    "svg.svg-inline--fa.fa-xmark"
   ).style.height = "25px";
   frame.contentWindow.document
-      .querySelector("#closeSpanIcon")
-      .addEventListener("click", () => {
-        closeSettingsFrame();
-        addIframeListener();
-      });
+    .querySelector("#closeSpanIcon")
+    .addEventListener("click", () => {
+      closeSettingsFrame();
+      addIframeListener();
+    });
   let script = document.createElement("script");
   script.src = `${server}/js/svelte/settings.js`;
   head.appendChild(script);
@@ -74,16 +73,16 @@ function loadSettingsFrame(event) {
   let buttonInterval = setInterval(addReloadAction, 100);
   function addReloadAction() {
     if (
-        document
-            .querySelector("#iframe")
-            .contentDocument.querySelector("#saveButtonReload")
+      document
+        .querySelector("#iframe")
+        .contentDocument.querySelector("#saveButtonReload")
     ) {
       document
-          .querySelector("#iframe")
-          .contentDocument.querySelector("#saveButtonReload")
-          .addEventListener("click", function () {
-            window.location.reload();
-          });
+        .querySelector("#iframe")
+        .contentDocument.querySelector("#saveButtonReload")
+        .addEventListener("click", function () {
+          window.location.reload();
+        });
       clearInterval(buttonInterval);
     }
   }
@@ -104,7 +103,7 @@ function createPageLink() {
         (frame.src === "" ||
           frame.src === "https://rettungssimulator.online/") &&
         !frame.contentWindow.document.querySelector("#scriptManagerSettings") &&
-          frame.getAttribute('data-source') === "scriptManager"
+        frame.getAttribute("data-source") === "scriptManager"
       ) {
         frame.addEventListener("load", loadSettingsFrame);
       }
@@ -125,7 +124,6 @@ async function checkConfig() {
 
 function addIframeListener() {
   document.querySelector("#iframe")?.addEventListener("load", function (e) {
-    console.log(e);
     if (!isSettingsFrame()) {
       loadScripts();
     }
@@ -133,28 +131,9 @@ function addIframeListener() {
 }
 
 window.addEventListener("load", () => {
-  if(!self.top) return;
+  if (!self.top) return;
   createPageLink();
   addIframeListener();
   checkConfig();
   loadScripts();
 });
-
-/*
-new MutationObserver(function onSrcChange() {
-  console.log("srcchange");
-  let iframe = document.querySelector("#iframe");
-  let srcURL = iframe.src;
-  let dataSRC = iframe.getAttribute("data-source");
-  if (dataSRC !== "scriptManager") {
-    closeSettingsFrame();
-    console.log("frameclosed");
-    document.querySelector("#iframe").src = srcURL;
-    document.querySelector("#iframe").style.display = "grid";
-  }
-  addIframeListener();
-}).observe(document.querySelector("#iframe"), {
-  attributes: true,
-  attributeFilter: ["src"],
-});
-*/
