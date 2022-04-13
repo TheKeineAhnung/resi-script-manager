@@ -10,7 +10,6 @@ const htmlmin = require("gulp-htmlmin");
 
 // JavaScript
 const babel = require("gulp-babel");
-const minify = require("gulp-minify");
 
 // Important variables
 const src = "src";
@@ -66,7 +65,6 @@ const script = () => {
       })
     )
     .pipe(babel())
-    .pipe(minify())
     .pipe(gulp.dest(`${dist}/js`));
 };
 
