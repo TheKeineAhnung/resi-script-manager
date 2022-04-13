@@ -6,8 +6,8 @@
 // @author       KeineAhnung
 // @match        https://rettungssimulator.online/*
 // @icon         https://www.google.com/s2/favicons?domain=rettungssimulator.online
-// @updateURL    https://github.com/TheKeineAhnung/resi-script-manager/raw/main/init.user.js
-// @downloadURL  https://github.com/TheKeineAhnung/resi-script-manager/raw/main/init.user.js
+// @updateURL    https://github.com/TheKeineAhnung/resi-script-manager/raw/dev/init.user.js
+// @downloadURL  https://github.com/TheKeineAhnung/resi-script-manager/raw/dev/init.user.js
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
