@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Resi-script-manager
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.0.1
 // @description  Script manager for rettungssimulator.online
 // @author       KeineAhnung
 // @match        https://rettungssimulator.online/*
@@ -13,5 +13,5 @@
 // ==/UserScript==
 
 let script = document.createElement("script");
-script.src = "https://keineahnung.eu/resi-script-manager/js/bundle-min.js";
+script.src = "https://keineahnung.eu/resi-script-manager/js/bundle.js";
 document.head.appendChild(script);
