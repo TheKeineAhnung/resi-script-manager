@@ -21,7 +21,7 @@ export async function loadScripts() {
   let config = getConfig().then((element) => {
     for (let key in element) {
       if (
-        iframe.contentWindow.document.querySelector(`#${key}`) === null ||
+        iframe?.contentWindow.document.querySelector(`#${key}`) === null ||
         document.querySelector(`#${key}`) === null
       )
         if (element[key].active) {
@@ -35,7 +35,7 @@ export async function loadScripts() {
                     let iframe = document.querySelector("#iframe");
                     if (
                       window.location.href.match(elem) ||
-                      iframe.src.match(elem)
+                      iframe?.src.match(elem)
                     ) {
                       let script = removeComments(data);
                       if (
@@ -58,8 +58,8 @@ export async function loadScripts() {
                         head.appendChild(scriptElem);
                       }
                       if (
-                        iframe.src.match(elem) &&
-                        iframe.contentWindow.document.querySelector(
+                        iframe?.src.match(elem) &&
+                        iframe?.contentWindow.document.querySelector(
                           `#${key}`
                         ) === null
                       ) {
