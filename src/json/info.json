@@ -231,7 +231,7 @@
   {
     "name": "showOnlyLatestRadioMessage",
     "displayName": "Nur neueste Radiomeldung anzeigen",
-    "description": "Nur die letzte Funkmeldung im Funkmeldungsfeld anzeigen",
+    "description": "Nur die letzte Funkmeldung eines Fahrzeuges im Funkmeldungsfeld anzeigen",
     "author": "KeineAhnung",
     "version": "1.0.0",
     "category": "Vehicles",
