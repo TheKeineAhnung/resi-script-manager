@@ -68,7 +68,7 @@
     "displayName": "Patientenanzahl anzeigen",
     "description": "Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität",
     "author": "KeineAhnung",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "category": "Patienten",
     "outdated": false,
     "usable": true,
