@@ -450,9 +450,11 @@
   <DialogActions>
     {#if dialogCopy}
       <Button
-        on:click={(() => navigator.clipboard.writeText(dialogContent),
-        toggleSnackbar("Einstellungen in die Zwischenablage kopiert"),
-        resetDialog())}
+        on:click={async () => {
+          await navigator.clipboard.writeText(dialogContent),
+            toggleSnackbar("Einstellungen in die Zwischenablage kopiert");
+          resetDialog();
+        }}
       >
         <Label>{@html copyIcon} Kopieren</Label>
       </Button>
