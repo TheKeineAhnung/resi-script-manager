@@ -199,7 +199,7 @@
     "outdated": false,
     "usable": true,
     "match": [
-      "\\/https:\\/\\/rettungssimulator.online\\/association\\/[0-9]*#associationMembers"
+      "https:\\/\\/rettungssimulator.online\\/association\\/[0-9]*#associationMembers"
     ],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/ReSi-Scripte/main/filterMemberList.js",
     "requiresConfig": false
