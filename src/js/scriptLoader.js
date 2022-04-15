@@ -27,52 +27,78 @@ export async function loadScripts() {
         if (element[key].active) {
           for (const e of scriptInfo) {
             if (e["name"] === key) {
-              j.ajax({
-                url: `${e["src"]}`,
-                success: function (data) {
-                  for (let i = 0; i < e["match"].length; i++) {
-                    let elem = e["match"][i];
-                    let iframe = document.querySelector("#iframe");
-                    if (
-                      window.location.href.match(elem) ||
-                      iframe?.src.match(elem)
-                    ) {
-                      let script = removeComments(data);
-                      if (
-                        script.includes('.addEventListener("load", () => {')
-                      ) {
-                        let eventlistenerCode = getEventlistenerContent(
-                          script,
-                          "load"
-                        );
-                        script += eventlistenerCode;
-                      }
-                      let scriptElem = document.createElement("script");
-                      scriptElem.innerHTML = script;
-                      scriptElem.id = key;
-                      if (
-                        window.location.href.match(elem) &&
-                        document.querySelector(`#${key}`) === null
-                      ) {
-                        let head = document.head;
-                        head.appendChild(scriptElem);
-                      }
-                      if (
-                        iframe?.src.match(elem) &&
-                        iframe?.contentWindow.document.querySelector(
-                          `#${key}`
-                        ) === null
-                      ) {
-                        let head = iframe.contentDocument.head;
-                        head.appendChild(scriptElem);
-                      }
-                    }
-                  }
-                },
-              });
+              let storageKey = key + "Script";
+              if (localStorage.getItem(storageKey)) {
+                let info = JSON.parse(localStorage.getItem(storageKey));
+                if (e["version"] !== info["version"]) {
+                  j.ajax({
+                    url: `${e["src"]}`,
+                    success: function (data) {
+                      addScriptToHead(e, data);
+                      let infoForStorage = {
+                        version: e["version"],
+                        script: data,
+                      };
+                      localStorage.setItem(
+                        storageKey,
+                        JSON.stringify(infoForStorage)
+                      );
+                    },
+                  });
+                } else {
+                  addScriptToHead(e, info["script"]);
+                }
+              } else {
+                j.ajax({
+                  url: `${e["src"]}`,
+                  success: function (data) {
+                    addScriptToHead(e, data);
+                    let infoForStorage = {
+                      version: e["version"],
+                      script: data,
+                    };
+                    localStorage.setItem(
+                      storageKey,
+                      JSON.stringify(infoForStorage)
+                    );
+                  },
+                });
+              }
             }
           }
         }
     }
   });
+}
+
+function addScriptToHead(e, data) {
+  for (let i = 0; i < e["match"].length; i++) {
+    let key = e["name"];
+    let elem = e["match"][i];
+    let iframe = document.querySelector("#iframe");
+    if (window.location.href.match(elem) || iframe?.src.match(elem)) {
+      let script = removeComments(data);
+      if (script.includes('.addEventListener("load", () => {')) {
+        let eventlistenerCode = getEventlistenerContent(script, "load");
+        script += eventlistenerCode;
+      }
+      let scriptElem = document.createElement("script");
+      scriptElem.innerHTML = script;
+      scriptElem.id = key;
+      if (
+        window.location.href.match(elem) &&
+        document.querySelector(`#${key}`) === null
+      ) {
+        let head = document.head;
+        head.appendChild(scriptElem);
+      }
+      if (
+        iframe?.src.match(elem) &&
+        iframe?.contentWindow.document.querySelector(`#${key}`) === null
+      ) {
+        let head = iframe.contentDocument.head;
+        head.appendChild(scriptElem);
+      }
+    }
+  }
 }
