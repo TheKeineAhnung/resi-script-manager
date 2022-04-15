@@ -160,7 +160,7 @@
   {
     "name": "hideAchievementcard",
     "displayName": "Errungenschaftenkarte ausblenden",
-    "description": "Errungenschaftenkarte auf Ihrer Profilseite ausblenden",
+    "description": "Errungenschaftenkarte auf der Profilseite ausblenden",
     "author": "KeineAhnung",
     "version": "1.0.1",
     "category": "Design",
