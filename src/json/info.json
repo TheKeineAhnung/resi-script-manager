@@ -284,7 +284,7 @@
     "category": "AAO",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/aaoEdit/*"],
+    "match": ["https://rettungssimulator.online/aaoStore"],
     "src": "https://github.com/TheKeineAhnung/ReSi-Scripte/raw/main/filterAAOEditVehicles.user.js",
     "requiresConfig": true,
     "config": {
