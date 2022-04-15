@@ -153,7 +153,7 @@
     "category": "Fahrzeuge",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/*"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/ReSi-Scripte/main/deleteNewestFMSAfterTime.js",
     "requiresConfig": true,
     "config": {
