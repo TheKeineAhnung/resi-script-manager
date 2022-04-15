@@ -276,6 +276,25 @@
     "requiresConfig": false
   },
   {
+    "name": "filterAAOEditVehicles",
+    "displayName": "AAO Fahrzeuge filtern",
+    "description": "Filtere die Fahrzeuge die im AAO-Fahrzeug-Editor angezeigt werden",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "AAO",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/aaoEdit/*"],
+    "src": "https://github.com/TheKeineAhnung/ReSi-Scripte/raw/main/filterAAOEditVehicles.user.js",
+    "requiresConfig": true,
+    "config": {
+      "removeVehicleOptions": {
+        "type": "array",
+        "default": []
+      }
+    }
+  },
+  {
     "name": "showOnlyLatestRadioMessage",
     "displayName": "Nur neueste Radiomeldung anzeigen",
     "description": "Nur die letzte Funkmeldung eines Fahrzeuges im Funkmeldungsfeld anzeigen",
