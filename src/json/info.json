@@ -157,8 +157,8 @@
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/ReSi-Scripte/main/deleteNewestFMSAfterTime.user.js",
     "requiresConfig": true,
     "config": {
-      "chatMessageAlertAudio": {
-        "type": "deleteNewestFMSAfterTime",
+      "deleteNewestFMSAfterTime": {
+        "type": "string",
         "default": "2000"
       }
     }
