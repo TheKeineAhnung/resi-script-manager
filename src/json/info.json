@@ -164,6 +164,19 @@
     }
   },
   {
+    "name": "expandAssociationCards",
+    "displayName": "Verbandskarten erweitern",
+    "description": "Hinzufügen von Pfeilen zum Erweitern und Falten von Karten auf der Verbandsseite",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "Verband",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/association/*"],
+    "src": "https://github.com/TheKeineAhnung/ReSi-Scripte/raw/main/expandAssociationCards.user.js",
+    "requiresConfig": false
+  },
+  {
     "name": "expandMapLegend",
     "displayName": "Kartenlegende erweitern",
     "description": "Hinzufügen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende",
@@ -253,7 +266,7 @@
     "description": "Nur die letzte Funkmeldung eines Fahrzeuges im Funkmeldungsfeld anzeigen",
     "author": "KeineAhnung",
     "version": "1.0.0",
-    "category": "Vehicles",
+    "category": "Fahrzeuge",
     "outdated": false,
     "usable": true,
     "match": ["https://rettungssimulator.online/*"],
