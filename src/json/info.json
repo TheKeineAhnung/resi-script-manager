@@ -145,6 +145,25 @@
     }
   },
   {
+    "name": "deleteNewestFMSAfterTime",
+    "displayName": "Neueste FMS nach bestimmter Zeit löschen",
+    "description": "Löscht die neueste FMS nach einer bestimmter Zeit",
+    "author": "KeineAhnung",
+    "version": "1.0.0",
+    "category": "Fahrzeuge",
+    "outdated": false,
+    "usable": true,
+    "match": ["https://rettungssimulator.online/*"],
+    "src": "https://raw.githubusercontent.com/TheKeineAhnung/ReSi-Scripte/main/deleteNewestFMSAfterTime.js",
+    "requiresConfig": true,
+    "config": {
+      "chatMessageAlertAudio": {
+        "type": "deleteNewestFMSAfterTime",
+        "default": "2000"
+      }
+    }
+  },
+  {
     "name": "expandMapLegend",
     "displayName": "Kartenlegende erweitern",
     "description": "Hinzufügen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende",
