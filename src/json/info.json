@@ -198,7 +198,7 @@
     "category": "AAO",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/aaoStore/"],
+    "match": ["https://rettungssimulator.online/aaoStore"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/filterAAOEditVehicles.user.js",
     "requiresConfig": true,
     "config": {
