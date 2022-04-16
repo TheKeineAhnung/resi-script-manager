@@ -4,7 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { closeSettingsFrame, isSettingsFrame } from "./iframe";
 import { loadScripts } from "./scriptLoader";
 import { getScriptNames } from "./scripts";
-import { getConfig, setConfigItem } from "./config";
+import { getConfig, setConfigItem, updateConfig } from "./config";
 library.add(faJsSquare, faTimes);
 let jsSquare = icon(faJsSquare);
 let closeIcon = icon(faTimes);
@@ -116,10 +116,21 @@ async function checkConfig() {
   let config = await getConfig();
 
   scriptNames.forEach((element) => {
+    console.log(config[element] === undefined);
     if (config[element] === undefined) {
       setConfigItem(element, { active: false });
     }
   });
+  // sort config object by key
+  let sortedConfig = {};
+  Object.keys(config)
+    .sort()
+    .forEach((key) => {
+      sortedConfig[key] = config[key];
+    });
+  updateConfig(sortedConfig);
+
+  console.log(await getConfig());
 }
 
 function addIframeListener() {

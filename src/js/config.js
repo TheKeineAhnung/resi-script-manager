@@ -25,7 +25,7 @@ export async function getConfig() {
 export async function setConfigItem(scriptName, value) {
   let config = await getConfig();
   config[scriptName] = value;
-  localStorage.setItem("resiScriptManagerConfig", JSON.stringify(config));
+  updateConfig(config);
 }
 
 export function updateConfig(config) {
