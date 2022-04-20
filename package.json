@@ -1,6 +1,6 @@
 {
   "name": "resi-script-manager",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A simple script manager for rettungssimulator.online.",
   "scripts": {
     "rollup-build": "rollup -c rollup.config.js",
