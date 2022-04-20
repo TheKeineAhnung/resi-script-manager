@@ -240,13 +240,13 @@
     {#if dialogInput}
       <Button
         on:click={() =>
-          localStorage.setItem(
-            configName,
-            JSON.parse(
-              JSON.stringify(dialogInputValue),
-              (inputObject = dialogInputValue)
-            )
-          )}
+          setTimeout(() => {
+            localStorage.setItem(
+              configName,
+              JSON.parse(JSON.stringify(dialogInputValue))
+            ),
+              (inputObject = JSON.parse(dialogInputValue));
+          }, 250)}
       >
         <Label>{@html saveIcon} Speichern</Label>
       </Button>
