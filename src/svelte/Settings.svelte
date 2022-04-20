@@ -21,12 +21,7 @@
   import ConfigStringElement from "./components/types/String.svelte";
   import ConfigObjectElement from "./components/types/Object.svelte";
   import ConfigArrayObjectElement from "./components/types/ArrayObject.svelte";
-  import {
-    getConfig,
-    setConfig,
-    updateConfig,
-    setConfigItem,
-  } from "../js/config";
+  import { getConfig, setConfig, updateConfig } from "../js/config";
   import { getScripts, getScriptNames } from "../js/scripts";
   import { getCredits } from "../js/credits";
   import { library, icon } from "@fortawesome/fontawesome-svg-core";
@@ -134,8 +129,9 @@
     }, closeTimeout);
   }
 
-  function dialogInputFunc() {
+  async function dialogInputFunc() {
     updateConfig(JSON.parse(dialogInputValue));
+    config = await getConfig();
     toggleSnackbar("Einstellungen gespeichert");
     resetDialog();
   }
