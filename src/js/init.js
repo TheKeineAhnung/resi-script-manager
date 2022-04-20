@@ -116,7 +116,6 @@ async function checkConfig() {
   let config = await getConfig();
 
   scriptNames.forEach((element) => {
-    console.log(config[element] === undefined);
     if (config[element] === undefined) {
       setConfigItem(element, { active: false });
     }
@@ -129,8 +128,6 @@ async function checkConfig() {
       sortedConfig[key] = config[key];
     });
   updateConfig(sortedConfig);
-
-  console.log(await getConfig());
 }
 
 function addIframeListener() {
