@@ -372,7 +372,7 @@
       {#if active === "Scripts"}
         <div class="save mt-1 flex align-items-center justify-content-end">
           <Button
-            on:click={() => window.location.reload()}
+            on:click={async () => await init()}
             variant="raised"
             style="margin-right: 1rem;"
             class="button-shaped-round"
