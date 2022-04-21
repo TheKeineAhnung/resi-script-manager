@@ -36,6 +36,7 @@
   export let inputObject = new Object();
   export let scriptName = "";
   export let configName = "";
+  export let configDescription;
   let userInputKey = null;
   let userInputValue = null;
   let dialogOpen = false;
@@ -142,7 +143,11 @@
   <div
     class="existing flex justify-content-center align-items-center flex-column"
   >
-    Aktuelle Konfiguration für {scriptName}
+    Aktuelle Konfiguration für {scriptName}.
+    <br />
+    {#if configDescription !== undefined && configDescription !== null}
+      {@html configDescription}
+    {/if}
     <DataTable
       table$aria-label="{scriptName} Konfiguration"
       style="max-width: 100%;"

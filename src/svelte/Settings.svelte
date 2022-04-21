@@ -248,6 +248,7 @@
                                     : configElementValue.default}
                                   scriptName={scriptInfoElement.displayName}
                                   configName={configElementName}
+                                  configDescription={configElementValue.description}
                                 />
                               {:else if configElementValue.type === "string"}
                                 <ConfigStringElement
@@ -258,6 +259,7 @@
                                     : configElementValue.default}
                                   scriptName={scriptInfoElement.displayName}
                                   configName={configElementName}
+                                  configDescription={configElementValue.description}
                                 />
                               {:else if configElementValue.type === "object"}
                                 <ConfigObjectElement
@@ -270,6 +272,7 @@
                                     : configElementValue.default}
                                   scriptName={scriptInfoElement.displayName}
                                   configName={configElementName}
+                                  configDescription={configElementValue.description}
                                 />
                               {:else if configElementValue.type === "array-object"}
                                 <ConfigArrayObjectElement
@@ -283,6 +286,7 @@
                                   defaultConfig={configElementValue.default}
                                   scriptName={scriptInfoElement.displayName}
                                   configName={configElementName}
+                                  configDescription={configElementValue.description}
                                 />
                               {/if}
                             </div>

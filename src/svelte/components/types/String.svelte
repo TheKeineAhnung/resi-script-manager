@@ -32,6 +32,7 @@
   export let inputString = "";
   export let scriptName = "";
   export let configName = "";
+  export let configDescription;
   let userInputValue = "";
   let dialogOpen = false;
   let dialogTitle = "";
@@ -116,7 +117,11 @@
     </div>
   </div>
   <div class="existing">
-    Aktuelle Konfiguration für {scriptName}
+    Aktuelle Konfiguration für {scriptName}.
+    <br />
+    {#if configDescription !== undefined && configDescription !== null}
+      {@html configDescription}
+    {/if}
     <div>
       <div class="w-fit bg-success rounded px-1 py-0_5 mt-1">
         {#if inputString !== ""}

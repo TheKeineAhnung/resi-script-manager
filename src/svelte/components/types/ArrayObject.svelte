@@ -27,7 +27,6 @@
     faSave
   );
   let trashIcon = icon(faTrash).html;
-  let banIcon = icon(faBan).html;
   let exportIcon = icon(faCloudArrowDown).html;
   let importIcon = icon(faCloudArrowUp).html;
   let copyIcon = icon(faCopy).html;
@@ -37,6 +36,7 @@
   export let defaultConfig = new Array();
   export let scriptName = "";
   export let configName = "";
+  export let configDescription;
   let userInputValue = new Object();
   let loading = true;
   let dialogOpen = false;
@@ -174,7 +174,11 @@
   <div
     class="existing flex justify-content-start align-items-start flex-column"
   >
-    Aktuelle Konfiguration für {scriptName}
+    Aktuelle Konfiguration für {scriptName}.
+    <br />
+    {#if configDescription !== undefined && configDescription !== null}
+      {@html configDescription}
+    {/if}
     <div class="datatables flex flex-wrap">
       {#each inputArray as inputArrayItem}
         <div class="m-0_5 w-fit">
