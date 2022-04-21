@@ -32,6 +32,7 @@
   export let inputArray = new Array();
   export let scriptName = "";
   export let configName = "";
+  export let configDescription;
   let userInputValue = null;
   let dialogOpen = false;
   let dialogTitle = "";
@@ -125,7 +126,11 @@
     </div>
   </div>
   <div class="existing">
-    Aktuelle Konfiguration für {scriptName}
+    Aktuelle Konfiguration für {scriptName}.
+    <br />
+    {#if configDescription !== undefined && configDescription !== null}
+      {@html configDescription}
+    {/if}
     <ul class="p-0 m-0">
       {#each inputArray as inputArrayElement}
         <li
