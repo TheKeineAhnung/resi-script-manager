@@ -59,7 +59,7 @@
     "author": "KeineAhnung",
     "version": "1.0.2",
     "category": "Design",
-    "outdated": false,
+    "outdated": true,
     "usable": true,
     "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/completeLengthNoCallInfo.user.js",
