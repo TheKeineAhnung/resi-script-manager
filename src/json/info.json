@@ -291,7 +291,7 @@
     "displayName": "Missionen zählen",
     "description": "Anzahl der Missionen bei der Einsatzliste",
     "author": "Ron31",
-    "version": "0.8",
+    "version": "0.8.1",
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
