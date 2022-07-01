@@ -70,11 +70,11 @@
     "displayName": "Patientenanzahl anzeigen",
     "description": "Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität",
     "author": "KeineAhnung",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "category": "Patienten",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/*"],
+    "match": ["^https://rettungssimulator.online/*$"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPatients.user.js",
     "requiresConfig": false
   },
@@ -87,7 +87,7 @@
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/missionOverview"],
+    "match": ["^https://rettungssimulator.online/missionOverview$"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPossibleMissions.user.js",
     "requiresConfig": false
   },
@@ -308,7 +308,7 @@
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["^https://rettungssimulator.online/*$"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/missionTime.user.js",
     "requiresConfig": false
   },
