@@ -18,19 +18,38 @@ function getEventlistenerContent(script, eventlistener) {
 export async function loadScripts() {
   let scriptInfo = await getScripts();
   let iframe = document.querySelector("#iframe");
-  let config = getConfig().then((element) => {
-    for (let key in element) {
-      if (
-        iframe?.contentWindow.document.querySelector(`#${key}`) === null ||
-        document.querySelector(`#${key}`) === null
-      )
-        if (element[key].active) {
-          for (const e of scriptInfo) {
-            if (e["name"] === key) {
-              let storageKey = key + "Script";
-              if (localStorage.getItem(storageKey)) {
-                let info = JSON.parse(localStorage.getItem(storageKey));
-                if (e["version"] !== info["version"]) {
+  if (iframe.contentDocument.body.innerHTML !== "") {
+    let config = getConfig().then((element) => {
+      for (let key in element) {
+        if (
+          iframe?.contentWindow.document.querySelector(`#${key}`) === null ||
+          document.querySelector(`#${key}`) === null
+        )
+          if (element[key].active) {
+            for (const e of scriptInfo) {
+              if (e["name"] === key) {
+                let storageKey = key + "Script";
+                if (localStorage.getItem(storageKey)) {
+                  let info = JSON.parse(localStorage.getItem(storageKey));
+                  if (e["version"] !== info["version"]) {
+                    j.ajax({
+                      url: `${e["src"]}`,
+                      success: function (data) {
+                        addScriptToHead(e, data);
+                        let infoForStorage = {
+                          version: e["version"],
+                          script: data,
+                        };
+                        localStorage.setItem(
+                          storageKey,
+                          JSON.stringify(infoForStorage)
+                        );
+                      },
+                    });
+                  } else {
+                    addScriptToHead(e, info["script"]);
+                  }
+                } else {
                   j.ajax({
                     url: `${e["src"]}`,
                     success: function (data) {
@@ -45,30 +64,13 @@ export async function loadScripts() {
                       );
                     },
                   });
-                } else {
-                  addScriptToHead(e, info["script"]);
                 }
-              } else {
-                j.ajax({
-                  url: `${e["src"]}`,
-                  success: function (data) {
-                    addScriptToHead(e, data);
-                    let infoForStorage = {
-                      version: e["version"],
-                      script: data,
-                    };
-                    localStorage.setItem(
-                      storageKey,
-                      JSON.stringify(infoForStorage)
-                    );
-                  },
-                });
               }
             }
           }
-        }
-    }
-  });
+      }
+    });
+  }
 }
 
 function addScriptToHead(e, data) {
