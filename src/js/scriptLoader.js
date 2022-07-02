@@ -18,7 +18,7 @@ function getEventlistenerContent(script, eventlistener) {
 export async function loadScripts() {
   let scriptInfo = await getScripts();
   let iframe = document.querySelector("#iframe");
-  if (iframe.contentDocument === null || iframe.contentDocument.body.innerHTML !== "") {
+  if (iframe === null || iframe.contentDocument.body.innerHTML !== "") {
     let config = getConfig().then((element) => {
       for (let key in element) {
         if (
