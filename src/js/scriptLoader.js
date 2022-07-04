@@ -78,7 +78,7 @@ function addScriptToHead(e, data) {
     let key = e["name"];
     let elem = e["match"][i];
     let iframe = document.querySelector("#iframe");
-    if (window.location.href.match(elem) || iframe?.src.match(elem)) {
+    if (new RegExp(elem).test(window.location.href) || new RegExp(elem).test(iframe?.src)) {
       let script = removeComments(data);
       if (script.includes('.addEventListener("load", () => {')) {
         let eventlistenerCode = getEventlistenerContent(script, "load");
@@ -88,14 +88,14 @@ function addScriptToHead(e, data) {
       scriptElem.innerHTML = script;
       scriptElem.id = key;
       if (
-        window.location.href.match(elem) &&
+        new RegExp(elem).test(window.location.href) &&
         document.querySelector(`#${key}`) === null
       ) {
         let head = document.head;
         head.appendChild(scriptElem);
       }
       if (
-        iframe?.src.match(elem) &&
+        new RegExp(elem).test(iframe?.src) &&
         iframe?.contentWindow.document.querySelector(`#${key}`) === null
       ) {
         let head = iframe.contentDocument.head;
