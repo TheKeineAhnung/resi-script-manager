@@ -21,7 +21,7 @@
     "category": "Design",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
@@ -41,7 +41,7 @@
     "category": "Chat",
     "outdated": true,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/autoCollapseBuildings.user.js",
     "requiresConfig": true,
     "config": {
@@ -61,7 +61,7 @@
     "category": "Design",
     "outdated": true,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/completeLengthNoCallInfo.user.js",
     "requiresConfig": false
   },
@@ -74,7 +74,7 @@
     "category": "Patienten",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPatients.user.js",
     "requiresConfig": false
   },
@@ -157,7 +157,7 @@
     "category": "Fahrzeuge",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/ReSi-Scripte/main/deleteNewestFMSAfterTime.user.js",
     "requiresConfig": true,
     "config": {
@@ -203,7 +203,7 @@
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/Ron31/LSS-Scripts/dev/scriptManagerScripts/fastMissionSpeed.js",
     "requiresConfig": false
   },
@@ -262,7 +262,7 @@
     "category": "Map",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/hideBuildingIcons.user.js",
     "requiresConfig": true,
     "config": {
@@ -295,7 +295,7 @@
     "category": "Einsätze",
     "outdated": false,
     "usable": true,
-    "match": ["^https://rettungssimulator.online/$"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/Ron31/LSS-Scripts/dev/resi-missionCount/resi-missions.user.js",
     "requiresConfig": false
   },
