@@ -70,11 +70,11 @@
     "displayName": "Patientenanzahl anzeigen",
     "description": "Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität",
     "author": "KeineAhnung",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "category": "Patienten",
     "outdated": false,
     "usable": true,
-    "match": ["https://rettungssimulator.online/*"],
+    "match": ["https://rettungssimulator.online/"],
     "src": "https://raw.githubusercontent.com/TheKeineAhnung/resi-scripte/main/countPatients.user.js",
     "requiresConfig": false
   },
