@@ -1,10 +1,10 @@
+import { closeSettingsFrame } from './iframe';
 import { Config } from '../types/Config';
 import { faJsSquare } from '@fortawesome/free-brands-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getScriptNames } from './scripts';
 import { loadScripts } from './scriptLoader';
 import { variableIsNull } from '../ts/errors/console';
-import { closeSettingsFrame, isSettingsFrame } from './iframe';
 import { getConfig, setConfigItem, updateConfig } from './config';
 import { Icon, icon, library } from '@fortawesome/fontawesome-svg-core';
 
@@ -18,22 +18,6 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   server = 'https://keineahnung.eu/resi-script-manager';
 }
-
-const addIframeListener = function (): void {
-  const frame: HTMLIFrameElement | null = document.querySelector('#iframe');
-
-  if (frame === null) {
-    variableIsNull(Object.keys({ frame })[0], 'init.ts');
-
-    return;
-  }
-
-  frame.addEventListener('load', async (): Promise<void> => {
-    if (!isSettingsFrame()) {
-      await loadScripts();
-    }
-  });
-};
 
 const loadSettingsFrame = function (): void {
   const frame: HTMLIFrameElement | null = document.querySelector('#iframe');
@@ -124,7 +108,6 @@ const loadSettingsFrame = function (): void {
 
   closeSpanIcon.addEventListener('click', (): void => {
     closeSettingsFrame();
-    addIframeListener();
   });
   const script: HTMLScriptElement = document.createElement('script');
 
@@ -256,7 +239,6 @@ window.addEventListener('load', async (): Promise<void> => {
   }
   sessionStorage.removeItem('scriptManagerActiveScripts');
   createPageLink();
-  addIframeListener();
   await checkConfig();
   await loadScripts();
 });
