@@ -1,12 +1,12 @@
-<script>
-  export let rounded = false;
-  export let type = "info";
-  export let text = "";
-  let colorClass = {
-    info: "bg-info",
-    success: "bg-success",
-    warning: "bg-warning",
-    danger: "bg-danger",
+<script lang="ts">
+  export let rounded: boolean = false;
+  export let type: 'info' | 'success' | 'warning' | 'danger' = 'info';
+  export let text: string = '';
+  let colorClass: Record<string, string> = {
+    info: 'bg-info',
+    success: 'bg-success',
+    warning: 'bg-warning',
+    danger: 'bg-danger'
   };
 </script>
 
@@ -19,5 +19,5 @@
 </div>
 
 <style lang="scss">
-  @import "../../scss/components/label.scss";
+  @import '../../scss/components/label.scss';
 </style>

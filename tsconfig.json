@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": "src",
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "module": "ES2022",
+    "noImplicitOverride": true,
+    "outDir": "./build",
+    "strict": true,
+    "target": "ES2019",
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src/ts/**/*.ts",
+    "./src/types/**/*.ts",
+    "./src/scripts/**/*.ts",
+    "./src/data/**/*.ts"
+  ],
+  "exclude": ["./node_modules", "./build", "./src/ts/svelte/**/*.ts"],
+  "rules": {
+    "orderedImports": [true]
+  }
+}

@@ -10,6 +10,7 @@
 // @run-at       document-end
 // ==/UserScript==
 
-let script = document.createElement("script");
-script.src = "https://localhost/js/bundle.js";
+const script = document.createElement('script');
+
+script.src = 'https://localhost/js/bundle.js';
 document.head.appendChild(script);

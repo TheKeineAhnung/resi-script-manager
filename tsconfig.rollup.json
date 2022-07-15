@@ -1,0 +1,25 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "src",
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "lib": ["esnext", "DOM"],
+    "module": "ES2015",
+    "noImplicitOverride": true,
+    "outDir": "./build",
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "ES2019",
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true
+  },
+  "include": ["./src/ts/**/*.ts", "./src/types/**/*.ts"],
+  "exclude": ["./node_modules", "./build", "./src/ts/svelte/**/*.ts"],
+  "rules": {
+    "orderedImports": [true]
+  }
+}
