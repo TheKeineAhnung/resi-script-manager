@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Config } from '../types/Config';
-  import type { ScriptInfo, ScriptInfoConfig } from '../types/Scripts';
-  import type { Credits } from '../types/Credits';
+  import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
+  import type { Credit } from '../types/Credit';
   import Card, { Content, Actions, Media } from '@smui/card';
   import Switch from '@smui/switch';
   import FormField from '@smui/form-field';
@@ -75,7 +75,7 @@
   let copyIcon = icon(faCopy).html;
   let closeIcon = icon(faXmark).html;
   let scriptInfo: (ScriptInfo | ScriptInfoConfig)[];
-  let creditsInfo: Credits[];
+  let creditsInfo: Credit[];
   let scriptNames: string[] = [];
   let config: Config = {};
   let loading: boolean = true;
