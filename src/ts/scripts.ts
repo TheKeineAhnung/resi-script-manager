@@ -1,5 +1,5 @@
-import { info } from '../data/info';
-import type { ScriptInfo, ScriptInfoConfig } from '../types/Scripts';
+import { info } from '../data/scriptInfo';
+import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
 
 const getScriptInfo = async function (): Promise<
   (ScriptInfo | ScriptInfoConfig)[]

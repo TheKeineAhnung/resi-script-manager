@@ -1,6 +1,6 @@
 import { getConfig } from './config';
 import { getScriptInfo } from './scripts';
-import type { ScriptInfo, ScriptInfoConfig } from '../types/Scripts';
+import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
 import * as scripts from '../scripts/scripts';
 
 type ActiveScripts = Record<

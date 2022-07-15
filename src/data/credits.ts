@@ -1,6 +1,6 @@
-import { Credits } from '../types/Credits';
+import { Credit } from '../types/Credit';
 
-const credits: Credits[] = [
+const credits: Credit[] = [
   {
     name: '@babel/core',
     icon: 'babel/babel-original.svg',

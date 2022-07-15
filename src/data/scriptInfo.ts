@@ -1,4 +1,4 @@
-import type { ScriptInfo, ScriptInfoConfig } from '../types/Scripts';
+import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
 
 const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
