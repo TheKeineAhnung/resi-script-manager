@@ -18,14 +18,13 @@ const missionCounter = async function (): Promise<any> {
     const attendedMissions = document.querySelectorAll(
       'div#missions-container-shared div.mission-list-mission svg.mission-participation[class*="text"]'
     );
-    // @ts-ignore
-    document.getElementById('missionCount').innerText =
+    // set Counts in text
+    (document.getElementById('missionCount') as HTMLElement).innerText =
       ownMissions.length.toString();
-    // @ts-ignore
-    document.getElementById('missionCountSharedAttended').innerText =
-      attendedMissions.length.toString();
-    // @ts-ignore
-    document.getElementById('missionCountShared').innerText =
+    (
+      document.getElementById('missionCountSharedAttended') as HTMLElement
+    ).innerText = attendedMissions.length.toString();
+    (document.getElementById('missionCountShared') as HTMLElement).innerText =
       sharedMissions.length.toString();
   }
 
@@ -103,8 +102,8 @@ const missionCounter = async function (): Promise<any> {
     dep = aBuildings.filter(x =>
       GENERATING_BUILDING_IDS.includes(x.buildingType)
     );
-    // @ts-ignore
-    document.querySelector('missionCountPossible').innerText = f(dep.length);
+    (document.querySelector('missionCountPossible') as HTMLElement).innerText =
+      String(f(dep.length));
   });
 };
 
