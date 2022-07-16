@@ -125,7 +125,7 @@ const missionTime = async function (): Promise<any> {
         );
 
         if (timeContainer === null) {
-          variableIsNull(Object.keys({ timeContainer })[0], __dirname);
+          variableIsNull(Object.keys({ timeContainer })[0], 'missionTime');
 
           return;
         }
