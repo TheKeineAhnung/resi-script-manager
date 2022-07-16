@@ -1,4 +1,4 @@
-export interface Mission {
+interface Mission {
   id: number;
   name: string;
   icon: string;
@@ -17,3 +17,5 @@ export interface Mission {
   event?: number;
   achievements?: string[];
 }
+
+export { Mission };
