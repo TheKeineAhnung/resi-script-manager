@@ -5,6 +5,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getScriptNames } from './scripts';
 import { loadScripts } from './scriptLoader';
 import { variableIsNull } from '../ts/errors/console';
+import { User } from '../types/api/User';
 import { getConfig, setConfigItem, updateConfig } from './config';
 import { Icon, icon, library } from '@fortawesome/fontawesome-svg-core';
 
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
   server = 'https://keineahnung.eu/resi-script-manager';
 }
 
-const loadSettingsFrame = function (): void {
+const loadSettingsFrame = async function (): Promise<void> {
   const frame: HTMLIFrameElement | null = document.querySelector('#iframe');
 
   if (frame === null) {
@@ -115,8 +116,15 @@ const loadSettingsFrame = function (): void {
   head.appendChild(script);
   const link: HTMLLinkElement = document.createElement('link');
 
+  const userApi: User = await (await fetch('/api/user')).json();
+
+  if (userApi.usesDarkMode) {
+    link.href = `${server}/theme/smui-dark.css`;
+  } else {
+    link.href = `${server}/theme/smui.css`;
+  }
+
   link.rel = 'stylesheet';
-  link.href = `${server}/theme/smui-dark.css`;
   head.appendChild(link);
   const link2: HTMLLinkElement = document.createElement('link');
 
