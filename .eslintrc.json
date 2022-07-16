@@ -1,5 +1,10 @@
 {
-  "extends": "es/node",
+  "plugins": ["@typescript-eslint", "svelte3", "prettier", "unicorn"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "@typescript-eslint/space-before-function-paren": 0,
@@ -40,7 +45,8 @@
     "unicorn/no-for-loop": 0,
     "unicorn/consistent-function-scoping": 0,
     "no-mixed-operators": 0,
-    "no-plusplus": 0
+    "no-plusplus": 0,
+    "semi": ["error", "always"]
   },
   "parserOptions": {
     "sourceType": "module"
@@ -48,18 +54,17 @@
   "env": {
     "browser": true
   },
-  "plugins": ["@typescript-eslint"],
   "overrides": [
     {
       "files": ["*.svelte"],
       "parserOptions": {
         "project": ["./tsconfig.rollup.json"]
       },
-      "settings": {
-        "svelte3/typescript": true
-      },
-      "processor": "svelte3/svelte3",
-      "plugins": ["svelte3"]
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "processor": "svelte3/svelte3"
     },
     {
       "files": [
@@ -82,5 +87,8 @@
     "src/ts/svelte/**/*.ts",
     "init.user.js",
     "init-test.user.js"
-  ]
+  ],
+  "settings": {
+    "svelte3/typescript": true
+  }
 }
