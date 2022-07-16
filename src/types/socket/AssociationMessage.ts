@@ -1,5 +1,4 @@
 interface AssociationMessage {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   associationChatMessageID: number;
   createdAt: string;
 }

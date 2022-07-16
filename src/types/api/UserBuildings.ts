@@ -1,5 +1,4 @@
 interface UserBuildings {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   userBuildingID: number;
   buildingType: number;
   userBuildingName: string;

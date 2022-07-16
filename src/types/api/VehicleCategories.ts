@@ -4,7 +4,6 @@ interface VehicleCategories {
   readableShortName: string;
   ids: number[];
   roles: string[];
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   organisationID: number;
   shopSubFrom?: string;
   shopSubName?: string;
