@@ -1,8 +1,8 @@
 // @ts-ignore
-import Settings from "../../svelte/Settings.svelte";
+import Settings from '../../svelte/Settings.svelte';
 
 const settings = new Settings({
-  target: document.body,
+  target: document.body
 });
 
 export default settings;
