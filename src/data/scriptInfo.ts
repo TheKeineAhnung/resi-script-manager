@@ -171,6 +171,19 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'fastMissionSpeed',
+    displayName: 'Geschwindigkeit schnell wechseln',
+    description: 'Lässt einen die Einsatzgeschwindigkeit schneller wechseln',
+    author: 'Ron31',
+    version: '1.5',
+    category: 'Einsätze',
+    outdated: false,
+    usable: true,
+    match: ['^https://rettungssimulator.online/(#)?$'],
+    oneTime: true,
+    requiresConfig: false
+  },
+  {
     name: 'filterAaoEditVehicles',
     displayName: 'AAO Fahrzeuge filtern',
     description:
@@ -254,6 +267,19 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'missionCounter',
+    displayName: 'Missionen zählen',
+    description: "Anzahl der Missionen bei der Einsatzliste",
+    author: 'Ron31',
+    version: '0.9',
+    category: 'Einsätze',
+    outdated: false,
+    usable: true,
+    match: ['^https://rettungssimulator.online/(#)?$'],
+    oneTime: true,
+    requiresConfig: false
+  },
+  {
     name: 'missionTime',
     displayName: 'Einsatzzeit anzeigen',
     description: 'Einsatzzeit in der Einsatzliste anzeigen',
@@ -263,6 +289,19 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     outdated: false,
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
+    name: 'missionHelper',
+    displayName: "Einsatzhilfe anzeigen",
+    description: "Einsatzhilfe im Einsatzfenster",
+    author: 'Ron31',
+    version: '1.4.0',
+    category: 'Einsätze',
+    outdated: false,
+    usable: true,
+    match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
     requiresConfig: false
   },
