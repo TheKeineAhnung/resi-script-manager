@@ -26,6 +26,7 @@ const fastMissionSpeed = async function (): Promise<any> {
     setIconToPlay();
   } else {
     div.id = 'dropdown-notification';
+    missionSpeedSVG.style.display = 'inline';
   }
 
   ControlCenter.setMissionSpeed = (missionSpeed: number) => {
