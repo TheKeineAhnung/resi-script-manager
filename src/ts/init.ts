@@ -124,7 +124,7 @@ const loadSettingsFrame = function (): void {
   link2.rel = 'stylesheet';
   head.appendChild(link2);
 
-  const buttonInterval: NodeJS.Timer = setInterval((): void => {
+  const buttonInterval: number = setInterval((): void => {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     addReloadAction(frame);
   }, 100);
