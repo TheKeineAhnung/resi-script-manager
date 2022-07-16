@@ -13,7 +13,7 @@ type ScriptName =
   | 'filterMemberList'
   | 'hideAchievementcard'
   | 'hideBuildingIcons'
-  | 'hideFreeText' 
+  | 'hideFreeText'
   | 'missionCounter'
   | 'missionTime'
   | 'missionHelper'

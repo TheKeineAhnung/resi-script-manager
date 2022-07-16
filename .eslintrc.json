@@ -46,7 +46,12 @@
     "unicorn/consistent-function-scoping": 0,
     "no-mixed-operators": 0,
     "no-plusplus": 0,
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-unused-vars": "error",
+    "no-unused-expressions": "error",
+    "no-unused-labels": "error",
+    "no-var": "error",
+    "prettier/prettier": "error"
   },
   "parserOptions": {
     "sourceType": "module"

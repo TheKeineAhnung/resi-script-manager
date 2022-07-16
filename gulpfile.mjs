@@ -13,6 +13,7 @@ const src = 'src';
 const dist = 'build';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// eslint-disable-next-line no-undef
 const argv = yargs(process.argv.slice(2));
 
 const isProd = function () {
@@ -63,7 +64,12 @@ const script = () =>
 
 const watch = () => {
   gulp.watch(
-    [`${src}/ts/**/*.ts`, `${src}/scripts/**/*.ts`, `${src}/.htaccess`],
+    [
+      `${src}/ts/**/*.ts`,
+      `${src}/scripts/**/*.ts`,
+      `${src}/data/**/*.ts`,
+      `${src}/.htaccess`
+    ],
     gulp.series(htaccess, script)
   );
 };
