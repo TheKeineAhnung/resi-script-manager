@@ -190,8 +190,6 @@ const missionTime = async function (): Promise<any> {
 
   setInterval(refreshIds, 1_000);
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on(
     'missionStatus',
     (missionStatusObject: MissionStatus | MissionStatusOnWork): void => {
@@ -199,8 +197,6 @@ const missionTime = async function (): Promise<any> {
     }
   );
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on('finishMission', (userMissionId: FinishMission): void => {
     setIds(userMissionId, 'finishMission');
   });

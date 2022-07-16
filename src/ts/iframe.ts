@@ -1,6 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import { variableIsNull } from '../ts/errors/console';
 
 const closeSettingsFrame = function (): void {
@@ -30,18 +27,14 @@ const closeSettingsFrame = function (): void {
 
   // ! frameVisible is a variable of rettungssimulator.online
   // ! You can find it in the controlCenter.js file
-  // @ts-expect-error
-  // eslint-disable-next-line no-undef
   for (const i in frameVisible) {
-    // @ts-expect-error
+    // @ts-expect-error frameVisible is a variable of rettungssimulator.online
     // eslint-disable-next-line no-undef
     frameVisible[i] = true;
   }
 
   // ! hidePanels is a function of rettungssimulator.online
   // ! You can find it in the controlCenter.js file
-  // @ts-expect-error
-  // eslint-disable-next-line no-undef
   hidePanels();
 };
 

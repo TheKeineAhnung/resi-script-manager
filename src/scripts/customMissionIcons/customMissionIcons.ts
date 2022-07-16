@@ -84,8 +84,6 @@ const customMissionIcons = async function (): Promise<any> {
     }
   };
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on(
     'missionStatus',
     (missionStatusObject: MissionStatus | MissionStatusOnWork): void => {
@@ -93,8 +91,6 @@ const customMissionIcons = async function (): Promise<any> {
     }
   );
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on('newMission', (missionObject: NewMission): void => {
     replaceIcons(missionObject.icon);
   });

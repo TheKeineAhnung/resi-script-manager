@@ -15,8 +15,6 @@ const showOnlyLatestRadioMessage = async function (): Promise<any> {
     }
   };
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
     updateField(vehicleFmsObject);
   });

@@ -269,7 +269,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'missionCounter',
     displayName: 'Missionen zählen',
-    description: "Anzahl der Missionen bei der Einsatzliste",
+    description: 'Anzahl der Missionen bei der Einsatzliste',
     author: 'Ron31',
     version: '0.9',
     category: 'Einsätze',
@@ -294,8 +294,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'missionHelper',
-    displayName: "Einsatzhilfe anzeigen",
-    description: "Einsatzhilfe im Einsatzfenster",
+    displayName: 'Einsatzhilfe anzeigen',
+    description: 'Einsatzhilfe im Einsatzfenster',
     author: 'Ron31',
     version: '1.4.0',
     category: 'Einsätze',

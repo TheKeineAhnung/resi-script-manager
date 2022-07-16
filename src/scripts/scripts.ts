@@ -1,4 +1,3 @@
-// TODO: [>=0.6.0] Add scripts from @Ron31
 import { alarmfax } from './alarmfax/alarmfax';
 import { autoCollapseBuildings } from './autoCollapseBuildings/autoCollapseBuildings';
 import { countPatients } from './countPatients/countPatients';
@@ -8,7 +7,7 @@ import { customMissionIcons } from './customMissionIcons/customMissionIcons';
 import { deleteNewestFmsAfterTime } from './deleteNewestFmsAfterTime/deleteNewestFmsAfterTime';
 import { expandAssociationCards } from './expandAssociationCards/expandAssociationCards';
 import { expandMapLegend } from './expandMapLegend/expandMapLegend';
-import { fastMissionSpeed } from "./fastMissionSpeed/fastMissionSpeed";
+import { fastMissionSpeed } from './fastMissionSpeed/fastMissionSpeed';
 import { filterAaoEditVehicles } from './filterAaoEditVehicles/filterAaoEditVehicles';
 import { filterMemberList } from './filterMemberList/filterMemberList';
 import { hideAchievementcard } from './hideAchievementcard/hideAchievementcard';

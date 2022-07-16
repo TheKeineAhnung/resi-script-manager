@@ -167,8 +167,6 @@ const alarmfax = async function (): Promise<any> {
     card();
   };
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on(
     'vehicleFMS',
     async (vehicleFmsObject: VehicleFms): Promise<void> => {

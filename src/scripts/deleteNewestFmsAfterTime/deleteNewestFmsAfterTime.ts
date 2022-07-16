@@ -24,8 +24,6 @@ const deleteNewestFmsAfterTime = async function (): Promise<any> {
     }, parsedTime);
   };
 
-  // @ts-expect-error socket is a variable from rettungssimulator.online
-  // eslint-disable-next-line no-undef
   socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
     updateField(vehicleFmsObject);
   });
