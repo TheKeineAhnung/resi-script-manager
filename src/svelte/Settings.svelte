@@ -1,30 +1,33 @@
-<script>
-  import Card, { Content, Actions, Media } from "@smui/card";
-  import Switch from "@smui/switch";
-  import FormField from "@smui/form-field";
-  import Button, { Label } from "@smui/button";
-  import Tab from "@smui/tab";
-  import TabBar from "@smui/tab-bar";
+<script lang="ts">
+  import type { Config } from '../types/Config';
+  import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
+  import type { Credit } from '../types/Credit';
+  import Card, { Content, Actions, Media } from '@smui/card';
+  import Switch from '@smui/switch';
+  import FormField from '@smui/form-field';
+  import Button, { Label } from '@smui/button';
+  import Tab from '@smui/tab';
+  import TabBar from '@smui/tab-bar';
   import Accordion, {
     Panel,
     Header,
-    Content as AccordionContent,
-  } from "@smui-extra/accordion";
+    Content as AccordionContent
+  } from '@smui-extra/accordion';
   import Dialog, {
     Title,
     Content as DialogContent,
-    Actions as DialogActions,
-  } from "@smui/dialog";
-  import Textfield from "@smui/textfield";
-  import InfoLabel from "./components/Label.svelte";
-  import ConfigArrayElement from "./components/types/Array.svelte";
-  import ConfigStringElement from "./components/types/String.svelte";
-  import ConfigObjectElement from "./components/types/Object.svelte";
-  import ConfigArrayObjectElement from "./components/types/ArrayObject.svelte";
-  import { getConfig, setConfig, updateConfig } from "../js/config";
-  import { getScripts, getScriptNames } from "../js/scripts";
-  import { getCredits } from "../js/credits";
-  import { library, icon } from "@fortawesome/fontawesome-svg-core";
+    Actions as DialogActions
+  } from '@smui/dialog';
+  import Textfield from '@smui/textfield';
+  import InfoLabel from './components/Label.svelte';
+  import ConfigArrayElement from './components/types/Array.svelte';
+  import ConfigStringElement from './components/types/String.svelte';
+  import ConfigObjectElement from './components/types/Object.svelte';
+  import ConfigArrayObjectElement from './components/types/ArrayObject.svelte';
+  import { getConfig, setConfig, updateConfig } from '../ts/config';
+  import { getScriptInfo, getScriptNames } from '../ts/scripts';
+  import { getCredits } from '../ts/credits';
+  import { library, icon } from '@fortawesome/fontawesome-svg-core';
   import {
     faSave,
     faBan,
@@ -38,9 +41,9 @@
     faCloudArrowDown,
     faCloudArrowUp,
     faCopy,
-    faXmark,
-  } from "@fortawesome/free-solid-svg-icons";
-  import { faGithub } from "@fortawesome/free-brands-svg-icons";
+    faXmark
+  } from '@fortawesome/free-solid-svg-icons';
+  import { faGithub } from '@fortawesome/free-brands-svg-icons';
   library.add(
     faSave,
     faBan,
@@ -56,6 +59,7 @@
     faCopy,
     faXmark
   );
+  type Tab = 'Scripts' | 'Config' | 'Credits';
   let saveIcon = icon(faSave).html;
   let cancelIcon = icon(faBan).html;
   let versionIcon = icon(faCodeBranch).html;
@@ -70,104 +74,93 @@
   let importIcon = icon(faCloudArrowUp).html;
   let copyIcon = icon(faCopy).html;
   let closeIcon = icon(faXmark).html;
-  let scriptInfo;
-  let creditsInfo;
-  let scriptNames = new Array();
-  let config = new Object();
-  let loading = true;
-  let tabs = ["Scripts", "Config", "Credits"];
-  let active = "Scripts";
-  let openAccordion = new Object();
-  let dialogOpen = false;
-  let dialogTitle = "";
-  let dialogContent = "";
-  let snackbarContent = "";
-  let snackbarOpen = false;
-  let dialogCopy = false;
-  let dialogInput = false;
-  let dialogInputValue = "";
-  let dialogInputDesc = "";
-
-  function saveConfig() {
+  let scriptInfo: (ScriptInfo | ScriptInfoConfig)[];
+  let creditsInfo: Credit[];
+  let scriptNames: string[] = [];
+  let config: Config = {};
+  let loading: boolean = true;
+  let tabs: Tab[] = ['Scripts', 'Config', 'Credits'];
+  let active: Tab = 'Scripts';
+  let openAccordion: Record<string, boolean> = {};
+  let dialogOpen: boolean = false;
+  let dialogTitle: string = '';
+  let dialogContent: string = '';
+  let snackbarContent: string = '';
+  let snackbarOpen: boolean = false;
+  let dialogCopy: boolean = false;
+  let dialogInput: boolean = false;
+  let dialogInputValue: string = '';
+  let dialogInputDesc: string = '';
+  function saveConfig(): void {
     updateConfig(config);
   }
-
-  async function exportConfig() {
-    let config = JSON.stringify(await getConfig());
-    dialogTitle = "Deine Einstellungen für den Script-manager";
+  async function exportConfig(): Promise<void> {
+    let config: string = JSON.stringify(await getConfig());
+    dialogTitle = 'Deine Einstellungen für den Script-manager';
     dialogContent = config;
     dialogCopy = true;
     dialogOpen = true;
   }
-
-  function importConfig() {
-    dialogTitle = "Importiere Einstellungen";
+  function importConfig(): void {
+    dialogTitle = 'Importiere Einstellungen';
     dialogContent =
-      "Importiere Einstellungen von Freunden oder aus einem anderen Browser";
+      'Importiere Einstellungen von Freunden oder aus einem anderen Browser';
     dialogInput = true;
-    dialogInputDesc = "Einstellungen";
+    dialogInputDesc = 'Einstellungen';
     dialogOpen = true;
   }
-
-  function resetDialog() {
-    dialogTitle = "";
-    dialogContent = "";
-    dialogInputValue = "";
-    dialogInputDesc = "";
+  function resetDialog(): void {
+    dialogTitle = '';
+    dialogContent = '';
+    dialogInputValue = '';
+    dialogInputDesc = '';
     dialogInput = false;
     dialogCopy = false;
     dialogOpen = false;
   }
-
-  function toggleSnackbar(newSnackbarContent, closeTimeout = 5000) {
+  function toggleSnackbar(
+    newSnackbarContent: string,
+    closeTimeout = 5000
+  ): void {
     snackbarContent = newSnackbarContent;
     snackbarOpen = true;
-
     setTimeout(() => {
       snackbarOpen = false;
-      snackbarContent = "";
+      snackbarContent = '';
     }, closeTimeout);
   }
-
-  async function dialogInputFunc() {
+  async function dialogInputFunc(): Promise<void> {
     updateConfig(JSON.parse(dialogInputValue));
     config = await getConfig();
-    toggleSnackbar("Einstellungen gespeichert");
+    toggleSnackbar('Einstellungen gespeichert');
     resetDialog();
   }
-
   async function init() {
     loading = true;
-    scriptInfo = await getScripts();
+    scriptInfo = await getScriptInfo();
     scriptNames = await getScriptNames();
     creditsInfo = await getCredits();
-
     for (let i = 0; i < scriptInfo.length; i++) {
       if (scriptInfo[i].requiresConfig) {
         openAccordion[scriptInfo[i].name] = false;
       }
     }
-
-    if (!localStorage.getItem("resiScriptManagerConfig")) {
+    if (!localStorage.getItem('resiScriptManagerConfig')) {
       config = await setConfig(scriptNames);
     } else {
       config = await getConfig();
     }
-
     loading = false;
   }
-
   init();
 </script>
 
 {#if !loading}
   <TabBar {tabs} let:tab bind:active
-    ><Tab {tab}>
-      <Label>{tab}</Label></Tab
-    ></TabBar
+    ><Tab {tab}><Label>{tab}</Label></Tab></TabBar
   >
   <div class="mt-2 grid gap-1 columns-auto" id="scriptManagerSettings">
-    {#if active === "Scripts"}
+    {#if active === 'Scripts'}
       {#each scriptInfo as info}
         <div class="card-container">
           <Card style="border-radius: 0.75rem">
@@ -178,14 +171,13 @@
                   <FormField>
                     <Switch
                       checked={config[info.name].active}
-                      on:SMUISwitch:change={(e) =>
+                      on:SMUISwitch:change={e =>
                         (config[info.name].active = !config[info.name].active)}
                     />
                   </FormField>
                 </Actions>
               </div>
               <p>{info.description}</p>
-
               <div class="labels grid column-gap-0_5 row-gap-1 columns-3">
                 <div>
                   <InfoLabel
@@ -210,7 +202,7 @@
                   <InfoLabel
                     rounded={true}
                     type="warning"
-                    text={`${outdatedIcon} ${info.outdated ? "True" : "False"}`}
+                    text={`${outdatedIcon} ${info.outdated ? 'True' : 'False'}`}
                   />
                 </div>
               </div>
@@ -218,18 +210,16 @@
           </Card>
         </div>
       {/each}
-    {:else if active === "Config"}
+    {:else if active === 'Config'}
       <div class="accordion-container w-100 area-1-1-1-6">
         <Accordion>
           {#each Object.entries(config) as [name, value]}
             {#each scriptInfo as scriptInfoElement}
-              {#if name === scriptInfoElement.name}
+              {#if name.toLowerCase() === scriptInfoElement.name.toLowerCase()}
                 {#if scriptInfoElement.requiresConfig}
                   {#if value.active}
                     <Panel extend>
-                      <Header>
-                        {scriptInfoElement.displayName}
-                      </Header>
+                      <Header>{scriptInfoElement.displayName}</Header>
                       <AccordionContent>
                         {#each Object.entries(scriptInfoElement.config) as [configElementName, configElementValue]}
                           <div
@@ -237,12 +227,13 @@
                             data-settingStorageName={configElementName}
                           >
                             <div>
-                              {#if configElementValue.type === "array"}
+                              {#if configElementValue.type === 'array'}
                                 <ConfigArrayElement
                                   inputArray={localStorage.getItem(
                                     configElementName
                                   )
                                     ? JSON.parse(
+                                        // @ts-ignore-error
                                         localStorage.getItem(configElementName)
                                       )
                                     : configElementValue.default}
@@ -250,7 +241,7 @@
                                   configName={configElementName}
                                   configDescription={configElementValue.description}
                                 />
-                              {:else if configElementValue.type === "string"}
+                              {:else if configElementValue.type === 'string'}
                                 <ConfigStringElement
                                   inputString={localStorage.getItem(
                                     configElementName
@@ -261,12 +252,13 @@
                                   configName={configElementName}
                                   configDescription={configElementValue.description}
                                 />
-                              {:else if configElementValue.type === "object"}
+                              {:else if configElementValue.type === 'object'}
                                 <ConfigObjectElement
                                   inputObject={localStorage.getItem(
                                     configElementName
                                   )
                                     ? JSON.parse(
+                                        // @ts-ignore-error
                                         localStorage.getItem(configElementName)
                                       )
                                     : configElementValue.default}
@@ -274,12 +266,13 @@
                                   configName={configElementName}
                                   configDescription={configElementValue.description}
                                 />
-                              {:else if configElementValue.type === "array-object"}
+                              {:else if configElementValue.type === 'arrayobject'}
                                 <ConfigArrayObjectElement
                                   inputArray={localStorage.getItem(
                                     configElementName
                                   )
                                     ? JSON.parse(
+                                        // @ts-ignore-error
                                         localStorage.getItem(configElementName)
                                       )
                                     : configElementValue.default}
@@ -307,25 +300,25 @@
           <Card style="height: fit-content;">
             <div class="p-1">
               <h3 class="mdc-typography--headline6 m-0">
-                {creditInfoObject["name"]}
+                {creditInfoObject['name']}
               </h3>
               <h4 class="mdc-typography--subtitle1 m-0" style="color: #888">
-                Licence: {creditInfoObject["licence"]}
+                Licence: {creditInfoObject['licence']}
               </h4>
             </div>
             <Media
               class="card-media-16x9"
               aspectRatio="16x9"
-              style="background-image: url(https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{creditInfoObject[
+              style="background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{creditInfoObject[
                 'icon'
-              ]}); background-size: auto; {creditInfoObject['icon'] ===
+              ]}'); background-size: auto; {creditInfoObject['icon'] ===
               'github/github-original.svg'
                 ? 'filter: invert(1);'
                 : ''}"
             />
             <Content class="mdc-typography--body2">
-              {#if creditInfoObject["text"] !== null && creditInfoObject["text"] !== undefined}
-                <p>{@html creditInfoObject["text"]}</p>
+              {#if creditInfoObject['text'] !== null && creditInfoObject['text'] !== undefined}
+                <p>{@html creditInfoObject['text']}</p>
               {/if}
             </Content>
           </Card>
@@ -343,9 +336,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Label>
-            {@html bugIcon} Fehlermeldung
-          </Label>
+          <Label>{@html bugIcon} Fehlermeldung</Label>
         </Button>
         <Button
           style="margin-right: 1rem;"
@@ -354,9 +345,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Label>
-            {@html featureIcon} Feature anfrage
-          </Label>
+          <Label>{@html featureIcon} Feature anfrage</Label>
         </Button>
         <Button
           style="margin-right: 1rem;"
@@ -366,14 +355,12 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Label>
-            {@html githubIcon} Repository
-          </Label>
+          <Label>{@html githubIcon} Repository</Label>
         </Button>
       </div>
     </div>
     <div>
-      {#if active === "Scripts"}
+      {#if active === 'Scripts'}
         <div class="save mt-1 flex align-items-center justify-content-end">
           <Button
             on:click={async () => await init()}
@@ -382,10 +369,7 @@
             class="button-shaped-round"
             color="secondary"
           >
-            <Label>
-              {@html cancelIcon}
-              Abbrechen
-            </Label>
+            <Label>{@html cancelIcon} Abbrechen</Label>
           </Button>
           <Button
             on:click={() => saveConfig()}
@@ -404,7 +388,7 @@
             <Label>{@html reloadIcon} Speichern & neuladen</Label>
           </Button>
         </div>
-      {:else if active === "Config"}
+      {:else if active === 'Config'}
         <div
           class="config-options mt-1 flex align-items-center justify-content-end"
         >
@@ -428,7 +412,6 @@
     </div>
   </div>
 {/if}
-
 <Dialog
   bind:open={dialogOpen}
   aria-labelledby="simple-title"
@@ -452,7 +435,7 @@
       <Button
         on:click={async () => {
           await navigator.clipboard.writeText(dialogContent),
-            toggleSnackbar("Einstellungen in die Zwischenablage kopiert");
+            toggleSnackbar('Einstellungen in die Zwischenablage kopiert');
           resetDialog();
         }}
       >
@@ -469,15 +452,12 @@
     </Button>
   </DialogActions>
 </Dialog>
-
 {#if snackbarOpen}
   <div class="snackbar">
-    <div class="bg-success snackbar-child">
-      <span>{snackbarContent}</span>
-    </div>
+    <div class="bg-success snackbar-child"><span>{snackbarContent}</span></div>
   </div>
 {/if}
 
 <style lang="scss">
-  @import "../scss/settings.scss";
+  @import '../scss/settings.scss';
 </style>

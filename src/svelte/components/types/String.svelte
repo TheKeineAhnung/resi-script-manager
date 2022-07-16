@@ -1,20 +1,21 @@
-<script>
-  import Textfield from "@smui/textfield";
-  import Button, { Label } from "@smui/button";
+<script lang="ts">
+  import { variableIsNull } from '../../../ts/errors/console';
+  import Textfield from '@smui/textfield';
+  import Button, { Label } from '@smui/button';
   import Dialog, {
     Title,
     Content as DialogContent,
-    Actions as DialogActions,
-  } from "@smui/dialog";
-  import { library, icon } from "@fortawesome/fontawesome-svg-core";
+    Actions as DialogActions
+  } from '@smui/dialog';
+  import { library, icon } from '@fortawesome/fontawesome-svg-core';
   import {
     faTrash,
     faCloudArrowDown,
     faCloudArrowUp,
     faCopy,
     faXmark,
-    faSave,
-  } from "@fortawesome/free-solid-svg-icons";
+    faSave
+  } from '@fortawesome/free-solid-svg-icons';
   library.add(
     faTrash,
     faCloudArrowDown,
@@ -29,70 +30,77 @@
   let copyIcon = icon(faCopy).html;
   let closeIcon = icon(faXmark).html;
   let saveIcon = icon(faSave).html;
-  export let inputString = "";
-  export let scriptName = "";
-  export let configName = "";
-  export let configDescription;
-  let userInputValue = "";
-  let dialogOpen = false;
-  let dialogTitle = "";
-  let dialogContent = "";
-  let snackbarContent = "";
-  let snackbarOpen = false;
-  let dialogCopy = false;
-  let dialogInput = false;
-  let dialogInputValue = "";
-  let dialogInputDesc = "";
+  export let inputString = '';
+  export let scriptName = '';
+  export let configName = '';
+  export let configDescription: undefined | null | string;
+  let userInputValue: string = '';
+  let dialogOpen: boolean = false;
+  let dialogTitle: string = '';
+  let dialogContent: string = '';
+  let snackbarContent: string = '';
+  let snackbarOpen: boolean = false;
+  let dialogCopy: boolean = false;
+  let dialogInput: boolean = false;
+  let dialogInputValue: string = '';
+  let dialogInputDesc: string = '';
 
-  function clearUserInput() {
-    userInputValue = "";
+  function clearUserInput(): void {
+    userInputValue = '';
   }
 
-  function addToConfig() {
+  function addToConfig(): void {
     localStorage.setItem(configName, userInputValue);
     inputString = userInputValue;
   }
 
-  function exportConfig() {
+  function exportConfig(): void {
     let config = localStorage.getItem(configName);
-    dialogTitle = "Deine Einstellungen für den Script-manager";
+    dialogTitle = 'Deine Einstellungen für den Script-manager';
+
+    if (config === null) {
+      variableIsNull(Object.keys({ config })[0], __filename);
+
+      return;
+    }
+
     dialogContent = config;
     dialogCopy = true;
     dialogOpen = true;
   }
 
-  function importConfig() {
-    dialogTitle = "Importiere Einstellungen";
+  function importConfig(): void {
+    dialogTitle = 'Importiere Einstellungen';
     dialogContent =
-      "Importiere Einstellungen von Freunden oder aus einem anderen Browser";
+      'Importiere Einstellungen von Freunden oder aus einem anderen Browser';
     dialogInput = true;
-    dialogInputDesc = "Einstellungen";
+    dialogInputDesc = 'Einstellungen';
     dialogOpen = true;
   }
 
-  function resetDialog() {
-    dialogTitle = "";
-    dialogContent = "";
-    dialogInputValue = "";
-    dialogInputDesc = "";
+  function resetDialog(): void {
+    dialogTitle = '';
+    dialogContent = '';
+    dialogInputValue = '';
+    dialogInputDesc = '';
     dialogInput = false;
     dialogCopy = false;
     dialogOpen = false;
   }
 
-  function toggleSnackbar(newSnackbarContent, closeTimeout = 5000) {
+  function toggleSnackbar(newSnackbarContent: string, closeTimeout = 5000) {
     snackbarContent = newSnackbarContent;
     snackbarOpen = true;
 
     setTimeout(() => {
       snackbarOpen = false;
-      snackbarContent = "";
+      snackbarContent = '';
     }, closeTimeout);
   }
 
   function removeFromConfig() {
     localStorage.removeItem(configName);
-    userInputValue = "";
+    userInputValue = '';
     inputString = userInputValue;
   }
 </script>
@@ -124,8 +132,8 @@
     {/if}
     <div>
       <div class="w-fit bg-success rounded px-1 py-0_5 mt-1">
-        {#if inputString !== ""}
-          {#if inputString.startsWith("http")}
+        {#if inputString !== ''}
+          {#if inputString.startsWith('http')}
             <a
               class="color-white"
               href={inputString}
@@ -191,7 +199,7 @@
       <Button
         on:click={async () => {
           await navigator.clipboard.writeText(dialogContent),
-            toggleSnackbar("Einstellungen in die Zwischenablage kopiert");
+            toggleSnackbar('Einstellungen in die Zwischenablage kopiert');
           resetDialog();
         }}
       >
@@ -227,5 +235,5 @@
 {/if}
 
 <style lang="scss">
-  @import "../../../scss/components/types/string.scss";
+  @import '../../../scss/components/types/string.scss';
 </style>
