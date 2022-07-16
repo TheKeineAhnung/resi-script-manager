@@ -17,7 +17,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const argv = yargs(process.argv.slice(2));
 
 const isProd = function () {
-  return Boolean(argv.production);
+  return Boolean(!argv.production);
 };
 
 const htaccess = () =>
