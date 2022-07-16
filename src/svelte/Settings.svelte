@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Config } from '../types/Config';
+  import type { Config } from '../types/Config';
   import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
   import type { Credit } from '../types/Credit';
   import Card, { Content, Actions, Media } from '@smui/card';
