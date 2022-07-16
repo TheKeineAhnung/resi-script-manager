@@ -14,10 +14,10 @@ const dist = 'build';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // eslint-disable-next-line no-undef
-const argv = yargs(process.argv.slice(2));
+const argv = yargs(process.argv.slice(2)).argv;
 
 const isProd = function () {
-  return Boolean(!argv.production);
+  return Boolean(argv.production);
 };
 
 const htaccess = () =>

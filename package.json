@@ -77,7 +77,7 @@
   },
   "scripts": {
     "gulp-build": "gulp build",
-    "gulp-build:prod": "gulp build --production",
+    "gulp-build:prod": "gulp build --production=true",
     "gulp-dev": "gulp dev",
     "prepare": "npm run setup && npm run smui-theme-light && npm run smui-theme-dark",
     "rollup-build": "rollup -c rollup.config.js",
