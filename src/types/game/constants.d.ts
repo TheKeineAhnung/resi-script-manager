@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/naming-convention */
 declare const COURSE_NEW_STATUS: 'Warten auf Start';
 declare const COURSE_MAX_SEATS: 10;
 

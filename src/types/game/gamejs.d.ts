@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/naming-convention */
 interface ReSiControlCenter {
   resi: ReSiMain;
   missions: any;
@@ -56,10 +54,9 @@ declare let controlCenterArray: {
 declare const SITE_TUTORIAL_STEPS: number[];
 declare const SITE_TUTORIAL_REPEAT_STEPS: Record<number, number>;
 
-// eslint-disable-next-line vars-on-top, no-var
+// eslint-disable-next-line no-var
 declare var departmentMarkers: Record<any, any>;
-// eslint-disable-next-line vars-on-top, no-var
+// eslint-disable-next-line no-var
 declare var missionMarkers: Record<any, any>;
 
-// eslint-disable-next-line no-undef
 declare const socket: socket;
