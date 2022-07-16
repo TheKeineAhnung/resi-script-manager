@@ -1,4 +1,6 @@
-const missionHelper = async function (): Promise<any> {
+import { Mission } from '../../types/api/Mission';
+
+const missionHelper = async function (): Promise<void> {
   //  * Copyright (c) 2022 by Ron31
   //  * missionHelper
   //  * Script for the browser-side of the rettungssimulator.online
@@ -35,12 +37,12 @@ const missionHelper = async function (): Promise<any> {
     data: {
       id: missionID
     },
-    success: function (r) {
-      showPanel(r);
+    success: function (result: Mission) {
+      showPanel(result);
     }
   });
 
-  function showPanel(r: any) {
+  function showPanel(r: Mission) {
     const helper = document.createElement('div');
     helper.classList.add('card', 'missionHelper');
     helper.innerHTML =
@@ -84,7 +86,7 @@ const missionHelper = async function (): Promise<any> {
       const number2 = document.createElement('td');
       number2.innerText =
         r.patients.min === r.patients.max
-          ? r.patients.max
+          ? String(r.patients.max)
           : r.patients.min + '-' + r.patients.max;
       const vehicle2 = document.createElement('td');
       vehicle2.innerText = 'Patienten:';
