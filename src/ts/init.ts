@@ -232,7 +232,11 @@ window.addEventListener('load', async (): Promise<void> => {
     return;
   }
 
-  if (window.location.href !== 'https://rettungssimulator.online/') {
+  if (
+    !RegExp(/https:\/\/(www.)?rettungssimulator.online(\/#?\??)?/).test(
+      window.location.href
+    )
+  ) {
     await loadScripts();
 
     return;
