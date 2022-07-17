@@ -161,7 +161,7 @@ const missionTime = async function (): Promise<any> {
       const minutes: string = time.split(':')[0];
       const seconds: string = time.split(':')[1];
 
-      if (!(time.indexOf(':') > 1) || minutes === 'NaN' || seconds === 'NaN') {
+      if (minutes === 'NaN' || seconds === 'NaN') {
         // eslint-disable-next-line no-param-reassign
         elem.innerHTML = '0:00';
       } else if (elem.innerText !== '0:00') {
