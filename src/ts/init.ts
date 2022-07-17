@@ -185,10 +185,6 @@ const createPageLink = function (): void {
   }
 
   scriptManagerSettingsOpener.addEventListener('click', (): void => {
-    // ! openFrame is a function of rettungssimulator.online
-    // ! You can find it in the controlCenter.js file
-    // @ts-expect-error Function from external file
-    // eslint-disable-next-line no-undef
     openFrame('', '1/1/4/5');
     const frame: HTMLIFrameElement | null = document.querySelector('#iframe');
 
