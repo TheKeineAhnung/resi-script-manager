@@ -24,15 +24,16 @@ const countPatients = async function (): Promise<any> {
     }
 
     const span: HTMLSpanElement = document.createElement('span');
+    span.id = 'patientInformation';
 
     const spanActual: HTMLSpanElement = document.createElement('span');
 
-    spanActual.classList.add('patients-actual');
+    spanActual.id = 'patients-actual';
     spanActual.innerText = localStorage.getItem('allPatients') ?? '0';
 
     const spanTotal: HTMLSpanElement = document.createElement('span');
 
-    spanTotal.classList.add('patients-total');
+    spanTotal.id = 'patients-total';
     spanTotal.innerText = localStorage.getItem('totalPatientSlots') ?? '0';
 
     span.innerHTML = ` | `;
@@ -48,7 +49,7 @@ const countPatients = async function (): Promise<any> {
     const areaActual = document.getElementById('patients-actual');
 
     if (areaActual === null) {
-      variableIsNull(Object.keys({ areaActual })[0], 'alarmfax');
+      variableIsNull(Object.keys({ areaActual })[0], 'countPatients');
 
       return;
     }
@@ -57,7 +58,7 @@ const countPatients = async function (): Promise<any> {
     const areaTotal = document.getElementById('patients-total');
 
     if (areaTotal === null) {
-      variableIsNull(Object.keys({ areaTotal })[0], 'alarmfax');
+      variableIsNull(Object.keys({ areaTotal })[0], 'countPatients');
 
       return;
     }
@@ -94,6 +95,8 @@ const countPatients = async function (): Promise<any> {
     const allPatientsOnLoad: NodeListOf<HTMLSpanElement> =
       document.querySelectorAll('.currentpatients');
 
+    localStorage.removeItem('allPatients');
+
     for (let i = 0; i < allPatientsOnLoad.length; i++) {
       const actualPatients =
         Number.parseInt(localStorage.getItem('allPatients') ?? '0', 10) +
@@ -111,7 +114,7 @@ const countPatients = async function (): Promise<any> {
   await count();
 
   document.querySelectorAll('.currentpatients').forEach((elem): void => {
-    elem.addEventListener('DomSubtreeModified', async (): Promise<void> => {
+    elem.addEventListener('DOMSubtreeModified', async (): Promise<void> => {
       await count();
     });
   });
