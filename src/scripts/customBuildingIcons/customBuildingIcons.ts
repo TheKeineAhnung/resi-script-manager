@@ -53,8 +53,9 @@ const customBuildingIcons = async function (): Promise<any> {
   };
 
   const customBuildingIconsFunc = function (): void {
-    const images = document.getElementsByTagName('img');
-    const buildingData: Buildings[] = JSON.parse(
+    const images: NodeListOf<HTMLImageElement> =
+      document.querySelectorAll('img');
+    const buildingData: { value: Buildings[] } = JSON.parse(
       sessionStorage.getItem('buildingIconsBuildingData') ?? '{}'
     );
 
@@ -62,13 +63,13 @@ const customBuildingIcons = async function (): Promise<any> {
       const actualImage = images[i];
       const src = actualImage.src;
 
-      for (const elem in buildingData) {
+      for (let i = 0; i < buildingData.value.length; i++) {
         if (
           src ===
-            `https://rettungssimulator.online/images/marker/departments/${buildingData[elem].markerName}.png` &&
-          config[buildingData[elem].buildingName] !== 'null'
+            `https://rettungssimulator.online/images/marker/departments/${buildingData.value[i].markerName}.png` &&
+          config[buildingData.value[i].buildingName] !== undefined
         ) {
-          actualImage.src = config[buildingData[elem].buildingName];
+          actualImage.src = config[buildingData.value[i].buildingName];
           actualImage.style.width = 'auto';
           actualImage.style.height = 'auto';
         }
