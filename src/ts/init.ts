@@ -237,7 +237,7 @@ window.addEventListener('load', async (): Promise<void> => {
   }
 
   if (
-    !RegExp(/https:\/\/(www.)?rettungssimulator.online(\/#?\??)?/).test(
+    !RegExp(/^https:\/\/(www.)?rettungssimulator.online(\/#?\??)?$/).test(
       window.location.href
     )
   ) {
