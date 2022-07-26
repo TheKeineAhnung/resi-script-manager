@@ -78,6 +78,12 @@
       }
     },
     {
+      "files": ["src/types/game/*.d.ts"],
+      "rules": {
+        "no-var": "off"
+      }
+    },
+    {
       "files": [
         "src/ts/**/*.ts",
         "src/types/**/*.ts",
