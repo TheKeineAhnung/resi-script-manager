@@ -62,6 +62,7 @@ const loadSettingsFrame = async function (): Promise<void> {
   }
 
   frame.contentWindow.document.body.innerHTML = '';
+  frame.contentWindow.document.body.style.overflowX = 'hidden';
 
   const closeDivIconCreation: HTMLDivElement = document.createElement('div');
 
@@ -132,12 +133,12 @@ const loadSettingsFrame = async function (): Promise<void> {
   link2.rel = 'stylesheet';
   head.appendChild(link2);
 
-  const buttonInterval = setInterval((): void => {
+  const afterLoadingInterfal = setInterval((): void => {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    addReloadAction(frame);
+    addActionsAfterLoading(frame);
   }, 100);
 
-  const addReloadAction = function (frameVar: HTMLIFrameElement): void {
+  const addActionsAfterLoading = function (frameVar: HTMLIFrameElement): void {
     if (frameVar.contentDocument === null) {
       variableIsNull(
         `${Object.keys({ frameVar })[0]}.contentDocument`,
@@ -154,9 +155,12 @@ const loadSettingsFrame = async function (): Promise<void> {
         button.addEventListener('click', (): void => {
           window.location.reload();
         });
+        frameVar.style.height = 'initial';
+        setTimeout(() => {
+          frameVar.style.height = '100%';
+        }, 25);
       }
-
-      clearInterval(buttonInterval);
+      clearInterval(afterLoadingInterfal);
     }
   };
 };
