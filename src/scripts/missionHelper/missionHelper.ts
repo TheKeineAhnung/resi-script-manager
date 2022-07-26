@@ -75,7 +75,10 @@ const missionHelper = async function (): Promise<void> {
     const tr = document.createElement('tr');
     const number = document.createElement('td');
     number.innerText =
-      new Intl.NumberFormat('de-DE').format(r.credits) + ' Münzen';
+      new Intl.NumberFormat('de-DE').format(r.credits) +
+      ' Münzen (80%: ' +
+      new Intl.NumberFormat('de-DE').format(r.credits * 0.8) +
+      ')';
     const vehicle = document.createElement('td');
     vehicle.innerText = 'Vergütung:';
     tr.appendChild(vehicle);
