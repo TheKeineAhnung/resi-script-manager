@@ -238,7 +238,7 @@ window.addEventListener('load', async (): Promise<void> => {
 
   if (
     !RegExp(
-      /^https:\/\/(www.)?rettungssimulator.online(\/#?\??[A-Za-z=]*?)?$/
+      /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
     ).test(window.location.href)
   ) {
     await loadScripts();

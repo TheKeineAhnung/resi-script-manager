@@ -180,7 +180,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     outdated: false,
     usable: true,
     match: [
-      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#???[A-Za-z=]*?)?$'
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
     requiresConfig: false
@@ -278,7 +278,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     outdated: false,
     usable: true,
     match: [
-      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??[A-Za-z=]*?)?$'
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
     requiresConfig: false
