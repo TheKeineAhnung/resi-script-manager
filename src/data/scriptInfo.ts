@@ -6,9 +6,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Alarmfax',
     description: 'Hinzufügen eines Alarmfax-Feldes auf der Missionsseite',
     author: 'KeineAhnung',
-    version: '1.1.1',
     category: 'Einsätze',
-    outdated: false,
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -19,9 +17,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Automatisches Gebäudekarten einklappen',
     description: 'Gebäudekarten in der Übersicht automatisch einklappen',
     author: 'KeineAhnung',
-    version: '1.0.3',
     category: 'Design',
-    outdated: false,
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -40,9 +36,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität',
     author: 'KeineAhnung',
-    version: '1.0.4',
     category: 'Patienten',
-    outdated: false,
+
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
     oneTime: true,
@@ -54,9 +49,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Zählen der Anzahl der möglichen Einsätze auf der Einsatzübersichtsseite',
     author: 'KeineAhnung',
-    version: '1.0.1',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: ['^https://rettungssimulator.online/missionOverview$'],
     oneTime: false,
@@ -67,9 +61,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Benutzerdefinierte Gebäudesymbole',
     description: 'Anpassen der Gebäudesymbole',
     author: 'KeineAhnung',
-    version: '2.1.1',
     category: 'Gebäude',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -98,9 +91,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Benutzerdefinierte Einsatzsymbole',
     description: 'Anpassen der Einsatzsymbole',
     author: 'KeineAhnung',
-    version: '1.1.0',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -126,9 +118,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Neueste FMS nach bestimmter Zeit löschen',
     description: 'Löscht die neueste FMS nach einer bestimmter Zeit',
     author: 'KeineAhnung',
-    version: '1.0.1',
     category: 'Fahrzeuge',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -148,9 +139,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten auf der Verbandsseite',
     author: 'KeineAhnung',
-    version: '1.0.1',
     category: 'Verband',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/association/*'],
     oneTime: false,
@@ -162,9 +152,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende',
     author: 'KeineAhnung',
-    version: '1.0.1',
     category: 'Karte',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/mapLegend'],
     oneTime: false,
@@ -175,9 +164,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Geschwindigkeit schnell wechseln',
     description: 'Lässt einen die Einsatzgeschwindigkeit schneller wechseln',
     author: 'Ron31',
-    version: '1.5.0',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -191,9 +179,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Filtere die Fahrzeuge die im AAO-Fahrzeug-Editor angezeigt werden',
     author: 'KeineAhnung',
-    version: '1.0.0',
     category: 'AAO',
-    outdated: false,
+
     usable: false,
     match: ['https://rettungssimulator.online/aaoStore'],
     oneTime: false,
@@ -213,9 +200,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Filtere die Verbandsmitgliederliste nach online, offline und abwesenden Spielern',
     author: 'KeineAhnung',
-    version: '1.0.0',
     category: 'Verband',
-    outdated: false,
+
     usable: true,
     match: ['https:\\/\\/rettungssimulator.online\\/association\\/[0-9]*'],
     oneTime: false,
@@ -226,9 +212,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Errungenschaftenkarte ausblenden',
     description: 'Errungenschaftenkarte auf der Profilseite ausblenden',
     author: 'KeineAhnung',
-    version: '1.0.1',
     category: 'Design',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/profile'],
     oneTime: false,
@@ -239,9 +224,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Gebäudesymbole ausblenden',
     description: 'Blendet die Gebäudesymbole auf der Karte aus',
     author: 'KeineAhnung',
-    version: '1.1.2',
     category: 'Karte',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -260,9 +244,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Freitextfeld verbergen',
     description: 'Ausblenden der Freitexteingabe auf der Anrufannahme-Seite',
     author: 'KeineAhnung',
-    version: '1.0.0',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/missionNew/*'],
     oneTime: false,
@@ -273,9 +256,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Missionen zählen',
     description: 'Anzahl der Missionen bei der Einsatzliste',
     author: 'Ron31',
-    version: '0.9.0',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -288,9 +270,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Einsatzzeit anzeigen',
     description: 'Einsatzzeit in der Einsatzliste anzeigen',
     author: 'KeineAhnung',
-    version: '1.0.6',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
     oneTime: false,
@@ -301,9 +282,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Einsatzhilfe anzeigen',
     description: 'Einsatzhilfe im Einsatzfenster',
     author: 'Ron31',
-    version: '1.4.0',
     category: 'Einsätze',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
@@ -315,9 +295,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Nur die letzte Funkmeldung eines Fahrzeuges im Funkmeldungsfeld anzeigen',
     author: 'KeineAhnung',
-    version: '1.0.0',
     category: 'Fahrzeuge',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -328,9 +307,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Gebäude zählen',
     description: 'Zählen der eigenen Gebäude auf der Profilseite',
     author: 'KeineAhnung',
-    version: '2.0.3',
     category: 'Gebäude',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/profile/*'],
     oneTime: false,
@@ -341,9 +319,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Fahrzeuge zählen',
     description: 'Zählen der eigenen Fahrzeuge auf der Profilseite',
     author: 'KeineAhnung',
-    version: '2.0.1',
     category: 'Fahrzeuge',
-    outdated: false,
+
     usable: true,
     match: ['https://rettungssimulator.online/profile/*'],
     oneTime: false,

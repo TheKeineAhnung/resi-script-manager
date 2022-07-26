@@ -7,9 +7,7 @@ interface ScriptInfo {
   displayName: string;
   description: string;
   author: string;
-  version: string;
   category: ScriptCategory;
-  outdated: boolean;
   usable: boolean;
   match: string[];
   oneTime: boolean;
@@ -22,6 +20,7 @@ interface ScriptInfoConfig extends Omit<ScriptInfo, 'requiresConfig'> {
     string,
     {
       type: SettingTypes;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       default: any;
       description: string;
     }

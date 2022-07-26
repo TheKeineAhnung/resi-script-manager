@@ -31,10 +31,8 @@
   import {
     faSave,
     faBan,
-    faCodeBranch,
     faUser,
     faBorderAll,
-    faSkull,
     faRotate,
     faBug,
     faCodePullRequest,
@@ -47,7 +45,6 @@
   library.add(
     faSave,
     faBan,
-    faCodeBranch,
     faUser,
     faBorderAll,
     faRotate,
@@ -62,10 +59,8 @@
   type Tab = 'Scripts' | 'Config' | 'Credits';
   let saveIcon = icon(faSave).html;
   let cancelIcon = icon(faBan).html;
-  let versionIcon = icon(faCodeBranch).html;
   let authorIcon = icon(faUser).html;
   let borderIcon = icon(faBorderAll).html;
-  let outdatedIcon = icon(faSkull).html;
   let reloadIcon = icon(faRotate).html;
   let githubIcon = icon(faGithub).html;
   let bugIcon = icon(faBug).html;
@@ -178,31 +173,17 @@
                 </Actions>
               </div>
               <p>{info.description}</p>
-              <div class="labels grid column-gap-0_5 row-gap-1 columns-3">
-                <div>
+              <div class="labels grid column-gap-0_5 row-gap-1 columns-2">
+                <div class="flex justify-content-center align-items-center">
                   <InfoLabel
                     rounded={true}
                     text={`${authorIcon} ${info.author}`}
                   />
                 </div>
-                <div>
-                  <InfoLabel
-                    rounded={true}
-                    type="warning"
-                    text={`${versionIcon} ${info.version}`}
-                  />
-                </div>
-                <div>
+                <div class="flex justify-content-center align-items-center">
                   <InfoLabel
                     rounded={true}
                     text={`${borderIcon} ${info.category}`}
-                  />
-                </div>
-                <div>
-                  <InfoLabel
-                    rounded={true}
-                    type="warning"
-                    text={`${outdatedIcon} ${info.outdated ? 'True' : 'False'}`}
                   />
                 </div>
               </div>
