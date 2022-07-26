@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Config } from '../types/Config';
-  import type { ScriptInfo, ScriptInfoConfig } from '../types/Script';
+  import type { ScriptInfo, ScriptInfoConfig } from '../types/ScriptInfo';
   import type { Credit } from '../types/Credit';
   import Card, { Content, Actions, Media } from '@smui/card';
   import Switch from '@smui/switch';
