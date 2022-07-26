@@ -179,7 +179,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Einsätze',
     outdated: false,
     usable: true,
-    match: ['^https://rettungssimulator.online/(#)?$'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#???[A-Za-z=]*?)?$'
+    ],
     oneTime: true,
     requiresConfig: false
   },
@@ -275,7 +277,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Einsätze',
     outdated: false,
     usable: true,
-    match: ['^https://rettungssimulator.online/(#)?$'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??[A-Za-z=]*?)?$'
+    ],
     oneTime: true,
     requiresConfig: false
   },
