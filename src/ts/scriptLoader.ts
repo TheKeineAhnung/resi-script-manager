@@ -28,7 +28,7 @@ const loadScripts = async function (): Promise<void> {
 
               const url = window.location.href;
 
-              const urlTest = url.match(matchElem)?.length;
+              const urlTest = RegExp(matchElem).test(url);
 
               const activeScripts: ActiveScripts = JSON.parse(
                 sessionStorage.getItem('scriptManagerActiveScripts') ?? '{}'
@@ -46,7 +46,7 @@ const loadScripts = async function (): Promise<void> {
 
               if (
                 urlTest !== undefined &&
-                urlTest > 0 &&
+                urlTest &&
                 !activeScripts[elem.name].runned
               ) {
                 await script();

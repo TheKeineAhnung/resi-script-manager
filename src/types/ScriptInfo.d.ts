@@ -9,7 +9,7 @@ interface ScriptInfo {
   author: string;
   category: ScriptCategory;
   usable: boolean;
-  match: string[];
+  match: (string | RegExp)[];
   oneTime: boolean;
   requiresConfig: false;
 }
