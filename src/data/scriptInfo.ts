@@ -310,7 +310,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Gebäude',
 
     usable: true,
-    match: [/^https:\/\/(www.)?rettungssimulator.online(\/profile)$/],
+    match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
     requiresConfig: false
   },
@@ -322,7 +322,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Fahrzeuge',
 
     usable: true,
-    match: [/^https:\/\/(www.)?rettungssimulator.online(\/profile)$/],
+    match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
     requiresConfig: false
   }
