@@ -310,7 +310,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Gebäude',
 
     usable: true,
-    match: ['https://rettungssimulator.online/profile/*'],
+    match: ['https://rettungssimulator.online/profile/'],
     oneTime: false,
     requiresConfig: false
   },
