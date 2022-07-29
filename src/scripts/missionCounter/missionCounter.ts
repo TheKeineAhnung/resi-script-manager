@@ -29,21 +29,21 @@ const missionCounter = async function (): Promise<any> {
   }
 
   if (
-    !localStorage.aBuildings ||
-    JSON.parse(localStorage.aBuildings).lastUpdate <
+    !localStorage.aUserBuildings ||
+    JSON.parse(localStorage.aUserBuildings).lastUpdate <
       new Date().getTime() - 5 * 1000 * 60
   )
     await $.getJSON('/api/userBuildings').done(data =>
       localStorage.setItem(
-        'aBuildings',
+        'aUserBuildings',
         JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
       )
     );
-  const aBuildings: Array<UserBuildings> = JSON.parse(
-    localStorage.aBuildings
+  const aUserBuildings: Array<UserBuildings> = JSON.parse(
+    localStorage.aUserBuildings
   ).value;
   const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.05 * x) - 4;
-  let dep = aBuildings.filter(x =>
+  let dep = aUserBuildings.filter(x =>
     GENERATING_BUILDING_IDS.includes(x.buildingType)
   );
   //document.querySelector('div[tab-id="ownMissions"]').style.width = null;
@@ -93,13 +93,13 @@ const missionCounter = async function (): Promise<any> {
   socket.on('departmentBuy', async () => {
     await $.getJSON('/api/userBuildings').done(data =>
       localStorage.setItem(
-        'aBuildings',
+        'aUserBuildings',
         JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
       )
     );
-    const aBuildings = JSON.parse(localStorage.aBuildings)
+    const aUserBuildings = JSON.parse(localStorage.aUserBuildings)
       .value as Array<UserBuildings>;
-    dep = aBuildings.filter(x =>
+    dep = aUserBuildings.filter(x =>
       GENERATING_BUILDING_IDS.includes(x.buildingType)
     );
     (document.querySelector('missionCountPossible') as HTMLElement).innerText =
