@@ -54,7 +54,13 @@ const countPatients = async function (): Promise<any> {
       return;
     }
 
-    areaActual.innerText = localStorage.getItem('allPatients') ?? '0';
+    let currentPatients = localStorage.getItem('allPatients') ?? '0';
+
+    if (parseInt(currentPatients) < 0) {
+      currentPatients = '0';
+    }
+
+    areaActual.innerText = currentPatients;
     const areaTotal = document.getElementById('patients-total');
 
     if (areaTotal === null) {
@@ -68,11 +74,22 @@ const countPatients = async function (): Promise<any> {
 
   const count = async function (): Promise<void> {
     // eslint-disable-next-line no-undef
-    const userBuildings: UserBuildings[] = await $.ajax({
-      url: '/api/userBuildings',
-      dataType: 'json',
-      type: 'GET'
-    });
+    if (
+      !localStorage.aUserBuildings ||
+      JSON.parse(localStorage.aUserBuildings).lastUpdate <
+        new Date().getTime() - 5 * 1000 * 60
+    ) {
+      await $.getJSON('/api/userBuildings').done(data => {
+        localStorage.setItem(
+          'aUserBuildings',
+          JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
+        );
+      });
+    }
+
+    const userBuildings: UserBuildings[] = JSON.parse(
+      localStorage.aUserBuildings
+    ).value;
 
     if (localStorage.getItem('totalPatientSlots') === null) {
       for (const actualBuilding in userBuildings) {
