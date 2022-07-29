@@ -32,7 +32,7 @@ jobs:
       - name: Rollup
         run: npm run rollup-build
       - name: Theme
-        run: npm run prepare
+        run: npm run theme
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:

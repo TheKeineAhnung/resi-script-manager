@@ -35,4 +35,4 @@ jobs:
       - name: Rollup
         run: npm run rollup-build
       - name: Theme
-        run: npm run prepare
+        run: npm run theme
