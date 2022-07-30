@@ -2,78 +2,7 @@ import { UserBuildings } from '../../types/api/UserBuildings';
 import { variableIsNull } from '../../ts/errors/console';
 
 const countPatients = async function (): Promise<any> {
-  let allPatients: number;
-
-  if (localStorage.allPatients !== null && localStorage.allPatients >= 0) {
-    allPatients = Number.parseInt(
-      localStorage.getItem('allPatients') ?? '0',
-      10
-    );
-  } else {
-    allPatients = 0;
-    localStorage.setItem('allPatients', allPatients.toString());
-  }
-
-  const showPanel = function (): void {
-    const position = document.querySelector('.muenzen_marken');
-
-    if (position === null) {
-      variableIsNull(Object.keys({ position })[0], 'countPatients');
-
-      return;
-    }
-
-    const span: HTMLSpanElement = document.createElement('span');
-    span.id = 'patientInformation';
-
-    const spanActual: HTMLSpanElement = document.createElement('span');
-
-    spanActual.id = 'patients-actual';
-    spanActual.innerText = localStorage.getItem('allPatients') ?? '0';
-
-    const spanTotal: HTMLSpanElement = document.createElement('span');
-
-    spanTotal.id = 'patients-total';
-    spanTotal.innerText = localStorage.getItem('totalPatientSlots') ?? '0';
-
-    span.innerHTML = ` | `;
-    span.appendChild(spanActual);
-    span.innerHTML += ' Patient(en) bei ';
-    span.appendChild(spanTotal);
-    span.innerHTML += ' Betten';
-
-    position.appendChild(span);
-  };
-
-  const updatePanel = function (): void {
-    const areaActual = document.getElementById('patients-actual');
-
-    if (areaActual === null) {
-      variableIsNull(Object.keys({ areaActual })[0], 'countPatients');
-
-      return;
-    }
-
-    let currentPatients = localStorage.getItem('allPatients') ?? '0';
-
-    if (parseInt(currentPatients) < 0) {
-      currentPatients = '0';
-    }
-
-    areaActual.innerText = currentPatients;
-    const areaTotal = document.getElementById('patients-total');
-
-    if (areaTotal === null) {
-      variableIsNull(Object.keys({ areaTotal })[0], 'countPatients');
-
-      return;
-    }
-
-    areaTotal.innerText = localStorage.getItem('totalPatientSlots') ?? '0';
-  };
-
-  const count = async function (): Promise<void> {
-    // eslint-disable-next-line no-undef
+  const getUserBuildingData = async function (): Promise<void> {
     if (
       !localStorage.aUserBuildings ||
       JSON.parse(localStorage.aUserBuildings).lastUpdate <
@@ -86,55 +15,139 @@ const countPatients = async function (): Promise<any> {
         );
       });
     }
+  };
+
+  const getPatientSlots = async function (): Promise<number> {
+    if (!localStorage.aUserBuildings) {
+      await getUserBuildingData();
+    }
 
     const userBuildings: UserBuildings[] = JSON.parse(
       localStorage.aUserBuildings
     ).value;
 
-    if (localStorage.getItem('totalPatientSlots') === null) {
-      for (const actualBuilding in userBuildings) {
-        if (userBuildings[actualBuilding].buildingType === 4) {
-          const totalPatientSlots =
-            userBuildings[actualBuilding].level +
-            9 +
-            Number.parseInt(
-              localStorage.getItem('totalPatientSlots') ?? '0',
-              10
-            );
+    let patientSlots = 0;
 
-          localStorage.setItem(
-            'totalPatientSlots',
-            totalPatientSlots.toString()
-          );
-        }
+    userBuildings.forEach((elem: UserBuildings): void => {
+      if (elem.buildingType === 4) {
+        patientSlots += elem.level + 9;
       }
-    }
-    const allPatientsOnLoad: NodeListOf<HTMLSpanElement> =
-      document.querySelectorAll('.currentpatients');
+    });
 
-    localStorage.removeItem('allPatients');
-
-    for (let i = 0; i < allPatientsOnLoad.length; i++) {
-      const actualPatients =
-        Number.parseInt(localStorage.getItem('allPatients') ?? '0', 10) +
-        Number.parseInt(allPatientsOnLoad[i].innerText, 10);
-
-      localStorage.setItem('allPatients', actualPatients.toString());
-    }
-
-    if (document.querySelector('#patientInformation') === null) {
-      showPanel();
-    }
-    updatePanel();
+    return patientSlots;
   };
 
-  await count();
+  const getCurrentPatients = function (): number {
+    return parseInt(localStorage.currentPatients);
+  };
 
-  document.querySelectorAll('.currentpatients').forEach((elem): void => {
-    elem.addEventListener('DOMSubtreeModified', async (): Promise<void> => {
-      await count();
+  const getPatientWord = function (): 'Patient' | 'Patienten' {
+    return getCurrentPatients() === 1 ? 'Patient' : 'Patienten';
+  };
+
+  const showPanel = async function (): Promise<void> {
+    const parent: HTMLDivElement | null =
+      document.querySelector('div.muenzen_marken');
+
+    if (parent === null) {
+      variableIsNull(Object.keys({ parent })[0], 'countPatients');
+
+      return;
+    }
+
+    parent.innerHTML += ' | ';
+
+    const currentPatientContainer: HTMLSpanElement =
+      document.createElement('span');
+    currentPatientContainer.id = 'currentPatients';
+
+    const patientWordContainer: HTMLSpanElement =
+      document.createElement('span');
+    patientWordContainer.id = 'patientWord';
+
+    const totalPatientContainer: HTMLSpanElement =
+      document.createElement('span');
+    totalPatientContainer.id = 'totalPatients';
+
+    parent.appendChild(currentPatientContainer);
+    parent.insertAdjacentText('beforeend', ' ');
+    parent.appendChild(patientWordContainer);
+    parent.insertAdjacentText('beforeend', ' bei ');
+    parent.appendChild(totalPatientContainer);
+    parent.insertAdjacentText('beforeend', ' Betten');
+    await updatePanel();
+  };
+
+  const updatePanel = async function () {
+    const currentPatientContainer: HTMLSpanElement | null =
+      document.querySelector('#currentPatients');
+    if (currentPatientContainer === null) {
+      variableIsNull(
+        Object.keys({ currentPatientContainer })[0],
+        'countPatients'
+      );
+
+      return;
+    }
+
+    const patientWordContainer: HTMLSpanElement | null =
+      document.querySelector('#patientWord');
+    if (patientWordContainer === null) {
+      variableIsNull(Object.keys({ patientWordContainer })[0], 'countPatients');
+
+      return;
+    }
+
+    const totalPatientContainer: HTMLSpanElement | null =
+      document.querySelector('#totalPatients');
+    if (totalPatientContainer === null) {
+      variableIsNull(
+        Object.keys({ totalPatientContainer })[0],
+        'countPatients'
+      );
+
+      return;
+    }
+
+    if (isNaN(getCurrentPatients()) || getCurrentPatients() < 0) {
+      await countPatients();
+    }
+
+    currentPatientContainer.innerText = getCurrentPatients().toString();
+    patientWordContainer.innerText = getPatientWord();
+    totalPatientContainer.innerText = (await getPatientSlots()).toString();
+  };
+
+  const countPatients = async function (): Promise<void> {
+    const allPatientSlots: NodeListOf<HTMLSpanElement> | null =
+      document.querySelectorAll('.currentpatients');
+
+    if (allPatientSlots === null) {
+      variableIsNull(Object.keys({ allPatientSlots })[0], 'countPatients');
+
+      return;
+    }
+
+    let newCountedPatients = 0;
+
+    allPatientSlots.forEach((patientSlot): void => {
+      newCountedPatients += parseInt(patientSlot.innerText);
     });
+
+    localStorage.currentPatients = newCountedPatients.toString();
+  };
+
+  async function init() {
+    await countPatients();
+    await showPanel();
+  }
+
+  socket.on('patientStatus', async () => {
+    await countPatients();
+    await updatePanel();
   });
+
+  await init();
 };
 
 export { countPatients };
