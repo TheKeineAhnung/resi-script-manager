@@ -1,5 +1,4 @@
 import type { ScriptInfo, ScriptInfoConfig } from '../types/ScriptInfo';
-
 const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'alarmfax',
@@ -37,7 +36,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität',
     author: 'KeineAhnung',
     category: 'Patienten',
-
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
     oneTime: true,
@@ -50,7 +48,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Zählen der Anzahl der möglichen Einsätze auf der Einsatzübersichtsseite',
     author: 'KeineAhnung',
     category: 'Einsätze',
-
     usable: true,
     match: ['^https://rettungssimulator.online/missionOverview$'],
     oneTime: false,
@@ -62,7 +59,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Anpassen der Gebäudesymbole',
     author: 'KeineAhnung',
     category: 'Gebäude',
-
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -92,7 +88,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Anpassen der Einsatzsymbole',
     author: 'KeineAhnung',
     category: 'Einsätze',
-
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -100,14 +95,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     config: {
       customMissionIconsConfig: {
         type: 'arrayobject',
-        default: [
-          {
-            name: '',
-            1: '',
-            2: '',
-            3: ''
-          }
-        ],
+        default: [{ name: '', 1: '', 2: '', 3: '' }],
         description:
           'Link zu Einsatzsymbolen, die benutzt werden sollen. Die Symbole müssen auf ein valides Format verweisen (png, jpg, ...)'
       }
@@ -119,7 +107,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Löscht die neueste FMS nach einer bestimmter Zeit',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
-
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -140,7 +127,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten auf der Verbandsseite',
     author: 'KeineAhnung',
     category: 'Verband',
-
     usable: true,
     match: ['https://rettungssimulator.online/association/*'],
     oneTime: false,
@@ -153,7 +139,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende',
     author: 'KeineAhnung',
     category: 'Karte',
-
     usable: true,
     match: ['https://rettungssimulator.online/mapLegend'],
     oneTime: false,
@@ -165,7 +150,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Lässt einen die Einsatzgeschwindigkeit schneller wechseln',
     author: 'Ron31',
     category: 'Einsätze',
-
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -180,7 +164,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Filtere die Fahrzeuge die im AAO-Fahrzeug-Editor angezeigt werden',
     author: 'KeineAhnung',
     category: 'AAO',
-
     usable: false,
     match: ['https://rettungssimulator.online/aaoStore'],
     oneTime: false,
@@ -201,7 +184,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Filtere die Verbandsmitgliederliste nach online, offline und abwesenden Spielern',
     author: 'KeineAhnung',
     category: 'Verband',
-
     usable: true,
     match: ['https:\\/\\/rettungssimulator.online\\/association\\/[0-9]*'],
     oneTime: false,
@@ -213,7 +195,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Errungenschaftenkarte auf der Profilseite ausblenden',
     author: 'KeineAhnung',
     category: 'Design',
-
     usable: true,
     match: ['https://rettungssimulator.online/profile'],
     oneTime: false,
@@ -225,7 +206,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Blendet die Gebäudesymbole auf der Karte aus',
     author: 'KeineAhnung',
     category: 'Karte',
-
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -245,7 +225,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Ausblenden der Freitexteingabe auf der Anrufannahme-Seite',
     author: 'KeineAhnung',
     category: 'Einsätze',
-
     usable: true,
     match: ['https://rettungssimulator.online/missionNew/*'],
     oneTime: false,
@@ -257,7 +236,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Anzahl der Missionen bei der Einsatzliste',
     author: 'Ron31',
     category: 'Einsätze',
-
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -271,7 +249,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Einsatzzeit in der Einsatzliste anzeigen',
     author: 'KeineAhnung',
     category: 'Einsätze',
-
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
     oneTime: false,
@@ -283,7 +260,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Einsatzhilfe im Einsatzfenster',
     author: 'Ron31',
     category: 'Einsätze',
-
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
@@ -296,7 +272,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       'Nur die letzte Funkmeldung eines Fahrzeuges im Funkmeldungsfeld anzeigen',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
-
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -308,7 +283,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Zählen der eigenen Gebäude auf der Profilseite',
     author: 'KeineAhnung',
     category: 'Gebäude',
-
     usable: true,
     match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
@@ -320,12 +294,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description: 'Zählen der eigenen Fahrzeuge auf der Profilseite',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
-
     usable: true,
     match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
     requiresConfig: false
   }
 ];
-
 export { info };
