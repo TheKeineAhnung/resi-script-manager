@@ -167,16 +167,31 @@ const alarmfax = async function (): Promise<any> {
     card();
   };
 
-  socket.on(
-    'vehicleFMS',
-    async (vehicleFmsObject: VehicleFms): Promise<void> => {
-      if (vehicleFmsObject.userVehicleFMS === 3) {
-        await storeData(vehicleFmsObject);
-      } else if (vehicleFmsObject.userVehicleFMS === 1) {
-        removeData(vehicleFmsObject);
+  let afterLoadingInterval: NodeJS.Timer | null = setInterval((): void => {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (typeof socket !== 'undefined') {
+      socket.on(
+        'vehicleFMS',
+        async (vehicleFmsObject: VehicleFms): Promise<void> => {
+          if (vehicleFmsObject.userVehicleFMS === 3) {
+            await storeData(vehicleFmsObject);
+          } else if (vehicleFmsObject.userVehicleFMS === 1) {
+            removeData(vehicleFmsObject);
+          }
+        }
+      );
+      if (afterLoadingInterval !== null) {
+        clearInterval(afterLoadingInterval);
+        afterLoadingInterval = null;
       }
     }
-  );
+    setTimeout(() => {
+      if (afterLoadingInterval !== null) {
+        clearInterval(afterLoadingInterval);
+        afterLoadingInterval = null;
+      }
+    }, 5_000);
+  }, 1_000);
 
   card();
 };
