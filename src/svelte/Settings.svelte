@@ -19,13 +19,15 @@
     Actions as DialogActions
   } from '@smui/dialog';
   import Textfield from '@smui/textfield';
+  import HelperText from '@smui/textfield/helper-text';
+  import Icon from '@smui/textfield/icon';
   import InfoLabel from './components/Label.svelte';
   import ConfigArrayElement from './components/types/Array.svelte';
   import ConfigStringElement from './components/types/String.svelte';
   import ConfigObjectElement from './components/types/Object.svelte';
   import ConfigArrayObjectElement from './components/types/ArrayObject.svelte';
   import { getConfig, setConfig, updateConfig } from '../ts/config';
-  import { getScriptInfo, getScriptNames } from '../ts/scripts';
+  import { getScriptInfo, getScriptNames, filterScripts } from '../ts/scripts';
   import { getCredits } from '../ts/credits';
   import { library, icon } from '@fortawesome/fontawesome-svg-core';
   import {
@@ -42,6 +44,7 @@
     faXmark
   } from '@fortawesome/free-solid-svg-icons';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
+  import { event } from 'jquery';
   library.add(
     faSave,
     faBan,
@@ -86,6 +89,12 @@
   let dialogInput: boolean = false;
   let dialogInputValue: string = '';
   let dialogInputDesc: string = '';
+  let filterTextInput = '';
+  let categoryTextInput: string = '';
+  let activeFilterCategories: string[] = [];
+  let categoryTextInputFocused: boolean = false;
+  let keyName: string;
+
   function saveConfig(): void {
     updateConfig(config);
   }
@@ -130,6 +139,43 @@
     toggleSnackbar('Einstellungen gespeichert');
     resetDialog();
   }
+  async function handleWindowKeydown(event: KeyboardEvent) {
+    keyName = event.key;
+
+    switch (keyName) {
+      case 'Enter':
+        if (categoryTextInputFocused) {
+          await categoryFilterInputHandling('add', categoryTextInput);
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+  async function categoryFilterInputHandling(
+    action: 'add' | 'remove',
+    category: string
+  ) {
+    switch (action) {
+      case 'remove':
+        if (activeFilterCategories.indexOf(category) !== -1) {
+          activeFilterCategories.splice(
+            activeFilterCategories.indexOf(category),
+            1
+          );
+          break;
+        }
+      default:
+        if (!activeFilterCategories.includes(category)) {
+          activeFilterCategories.push(category);
+        }
+        break;
+    }
+    activeFilterCategories = activeFilterCategories;
+    scriptInfo = await filterScripts(activeFilterCategories, filterTextInput);
+    categoryTextInput = '';
+  }
   async function init() {
     loading = true;
     scriptInfo = await getScriptInfo();
@@ -150,49 +196,129 @@
   init();
 </script>
 
+<svelte:head>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  />
+</svelte:head>
+
+<svelte:window on:keydown={async event => await handleWindowKeydown(event)} />
+
 {#if !loading}
   <TabBar {tabs} let:tab bind:active
     ><Tab {tab}><Label>{tab}</Label></Tab></TabBar
   >
-  <div class="mt-2 grid gap-1 columns-auto" id="scriptManagerSettings">
+  <div id="scriptManagerSettings">
     {#if active === 'Scripts'}
-      {#each scriptInfo as info}
-        <div class="card-container">
-          <Card style="border-radius: 0.75rem">
-            <Content>
-              <div class="flex justify-content-between align-items-center">
-                <h2 class="m-0 h-fit">{info.displayName}</h2>
-                <Actions style="padding: 0;">
-                  <FormField>
-                    <Switch
-                      checked={config[info.name].active}
-                      on:SMUISwitch:change={e =>
-                        (config[info.name].active = !config[info.name].active)}
-                    />
-                  </FormField>
-                </Actions>
-              </div>
-              <p>{info.description}</p>
-              <div class="labels grid column-gap-0_5 row-gap-1 columns-2">
-                <div class="flex justify-content-center align-items-center">
-                  <InfoLabel
-                    rounded={true}
-                    text={`${authorIcon} ${info.author}`}
-                  />
-                </div>
-                <div class="flex justify-content-center align-items-center">
-                  <InfoLabel
-                    rounded={true}
-                    text={`${borderIcon} ${info.category}`}
-                  />
-                </div>
-              </div>
-            </Content>
-          </Card>
+      <div
+        class="mt-1 w-100 filter flex justify-content-start align-items-start text-filter"
+        id="filter"
+      >
+        <div class="text-filter mr-2" style="width: 15%;">
+          <Textfield
+            style="width: 100%;"
+            variant="outlined"
+            bind:value={filterTextInput}
+            label="Suchbegriff"
+            on:input={async () => {
+              scriptInfo = await filterScripts(
+                activeFilterCategories,
+                filterTextInput
+              );
+            }}
+          >
+            <HelperText slot="helper">Suche Skripte mit ihrem Namen.</HelperText
+            ></Textfield
+          >
         </div>
-      {/each}
+        <div class="category-filter" style="width: 15%;">
+          <div>
+            <Textfield
+              style="width: 100%;"
+              variant="outlined"
+              bind:value={categoryTextInput}
+              label="Kategorie"
+              on:focus={() => (categoryTextInputFocused = true)}
+              on:blur={() => (categoryTextInputFocused = false)}
+            >
+              <span
+                slot="trailingIcon"
+                class="h-100 flex"
+                on:click={async () => {
+                  await categoryFilterInputHandling('add', categoryTextInput);
+                }}
+              >
+                <Icon class="material-icons">add</Icon>
+              </span>
+              <HelperText slot="helper"
+                >Suche Skripte mit Hilfe ihrer Kategorien.</HelperText
+              >
+            </Textfield>
+          </div>
+        </div>
+        <div class="active-categories w-stretch flex">
+          {#each activeFilterCategories as activeFilterCategory}
+            <div
+              style="height: 56px;"
+              class="flex justify-content-start align-items-center ml-1 w-fit"
+              on:click={async () => {
+                await categoryFilterInputHandling(
+                  'remove',
+                  activeFilterCategory
+                );
+              }}
+            >
+              <InfoLabel
+                dismissable={true}
+                rounded={true}
+                text={activeFilterCategory}
+                type="info"
+              />
+            </div>
+          {/each}
+        </div>
+      </div>
+      <div class="grid gap-1 columns-auto mt-1" id="scriptManagerSettings">
+        {#each scriptInfo as info}
+          <div class="card-container">
+            <Card style="border-radius: 0.75rem">
+              <Content>
+                <div class="flex justify-content-between align-items-center">
+                  <h2 class="m-0 h-fit">{info.displayName}</h2>
+                  <Actions style="padding: 0;">
+                    <FormField>
+                      <Switch
+                        checked={config[info.name].active}
+                        on:SMUISwitch:change={e =>
+                          (config[info.name].active =
+                            !config[info.name].active)}
+                      />
+                    </FormField>
+                  </Actions>
+                </div>
+                <p>{info.description}</p>
+                <div class="labels grid column-gap-0_5 row-gap-1 columns-2">
+                  <div class="flex justify-content-center align-items-center">
+                    <InfoLabel
+                      rounded={true}
+                      text={`${authorIcon} ${info.author}`}
+                    />
+                  </div>
+                  <div class="flex justify-content-center align-items-center">
+                    <InfoLabel
+                      rounded={true}
+                      text={`${borderIcon} ${info.category}`}
+                    />
+                  </div>
+                </div>
+              </Content>
+            </Card>
+          </div>
+        {/each}
+      </div>
     {:else if active === 'Config'}
-      <div class="accordion-container w-100 area-1-1-1-6">
+      <div class="accordion-container w-100 mt-2">
         <Accordion>
           {#each Object.entries(config) as [name, value]}
             {#each scriptInfo as scriptInfoElement}
@@ -276,7 +402,7 @@
         </Accordion>
       </div>
     {:else}
-      <div class="card-dislay w-100 area-1-1-1-6 grid gap-1 columns-auto">
+      <div class="card-dislay w-100 grid gap-1 columns-auto mt-2">
         {#each creditsInfo as creditInfoObject}
           <Card style="height: fit-content;">
             <div class="p-1">
