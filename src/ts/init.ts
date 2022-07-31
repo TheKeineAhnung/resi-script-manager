@@ -133,7 +133,7 @@ const loadSettingsFrame = async function (): Promise<void> {
   link2.rel = 'stylesheet';
   head.appendChild(link2);
 
-  const afterLoadingInterfal = setInterval((): void => {
+  const afterLoadingInterval = setInterval((): void => {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     addActionsAfterLoading(frame);
   }, 100);
@@ -160,7 +160,7 @@ const loadSettingsFrame = async function (): Promise<void> {
           frameVar.style.height = '100%';
         }, 25);
       }
-      clearInterval(afterLoadingInterfal);
+      clearInterval(afterLoadingInterval);
     }
   };
 };
