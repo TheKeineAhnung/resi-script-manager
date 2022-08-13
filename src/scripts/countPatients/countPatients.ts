@@ -18,7 +18,11 @@ const countPatients = async function (): Promise<any> {
   };
 
   const getPatientSlots = async function (): Promise<number> {
-    if (!localStorage.aUserBuildings) {
+    if (
+      !localStorage.aUserBuildings ||
+      JSON.parse(localStorage.aUserBuildings).lastUpdate <
+        new Date().getTime() - 5 * 1000 * 60
+    ) {
       await getUserBuildingData();
     }
 
