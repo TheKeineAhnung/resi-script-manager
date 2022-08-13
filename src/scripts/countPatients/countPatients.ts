@@ -1,41 +1,24 @@
-import { UserBuildings } from '../../types/api/UserBuildings';
-import { variableIsNull } from '../../ts/errors/console';
+import { variableIsNull, variableIsUndefined } from '../../ts/errors/console';
 
 const countPatients = async function (): Promise<any> {
-  const getUserBuildingData = async function (): Promise<void> {
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      await $.getJSON('/api/userBuildings').done(data => {
-        localStorage.setItem(
-          'aUserBuildings',
-          JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
-        );
-      });
-    }
-  };
-
-  const getPatientSlots = async function (): Promise<number> {
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      await getUserBuildingData();
-    }
-
-    const userBuildings: UserBuildings[] = JSON.parse(
-      localStorage.aUserBuildings
-    ).value;
+  const getPatientSlots = function (): number {
+    const elements: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+      'div.card-body div.vehicle.hospital-capacity div.vehicle-name'
+    );
 
     let patientSlots = 0;
 
-    userBuildings.forEach((elem: UserBuildings): void => {
-      if (elem.buildingType === 4) {
-        patientSlots += elem.level + 9;
+    elements.forEach((e): void => {
+      let text = e.textContent?.split('/')[1];
+
+      if (text === undefined) {
+        variableIsUndefined(Object.keys({ text })[0], 'countPatients');
+
+        return;
       }
+
+      text = text.replace(/['a-zA-Z ']/g, '');
+      patientSlots += parseInt(text);
     });
 
     return patientSlots;
@@ -119,7 +102,7 @@ const countPatients = async function (): Promise<any> {
 
     currentPatientContainer.innerText = getCurrentPatients().toString();
     patientWordContainer.innerText = getPatientWord();
-    totalPatientContainer.innerText = (await getPatientSlots()).toString();
+    totalPatientContainer.innerText = getPatientSlots().toString();
   };
 
   const countPatients = async function (): Promise<void> {
@@ -149,6 +132,14 @@ const countPatients = async function (): Promise<any> {
   socket.on('patientStatus', async () => {
     await countPatients();
     await updatePanel();
+  });
+
+  const capacity: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+    'div.card-body div.vehicle.hospital-capacity div.vehicle-name'
+  );
+
+  capacity.forEach((e): void => {
+    e.addEventListener('DOMSubtreeModified', updatePanel);
   });
 
   await init();
