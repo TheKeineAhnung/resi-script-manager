@@ -60,8 +60,8 @@ const customBuildingIcons = async function (): Promise<any> {
     );
 
     for (const i in images) {
-      const actualImage = images[i];
-      const src = actualImage.src;
+      const currentImage = images[i];
+      const src = currentImage.src;
 
       for (let i = 0; i < buildingData.value.length; i++) {
         if (
@@ -69,9 +69,9 @@ const customBuildingIcons = async function (): Promise<any> {
             `https://rettungssimulator.online/images/marker/departments/${buildingData.value[i].markerName}.png` &&
           config[buildingData.value[i].buildingName] !== undefined
         ) {
-          actualImage.src = config[buildingData.value[i].buildingName];
-          actualImage.style.width = 'auto';
-          actualImage.style.height = 'auto';
+          currentImage.src = config[buildingData.value[i].buildingName];
+          currentImage.style.width = 'auto';
+          currentImage.style.height = 'auto';
         }
       }
     }

@@ -15,8 +15,8 @@ const hideBuildingIcons = async function (): Promise<any> {
     );
 
     for (const i of images) {
-      for (const actualIcon in iconsToRemove) {
-        if (i.src === iconsToRemove[actualIcon]) {
+      for (const currentIcon in iconsToRemove) {
+        if (i.src === iconsToRemove[currentIcon]) {
           i.style.display = 'none';
           break;
         }

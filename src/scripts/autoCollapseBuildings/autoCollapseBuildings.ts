@@ -15,9 +15,11 @@ const autoCollapseBuildings = async function (): Promise<any> {
   const cards: NodeListOf<HTMLDivElement> =
     document.querySelectorAll('#departments .card');
 
-  for (const actualFilter of collapseBuildingTypes) {
+  for (const currentBuildingType of collapseBuildingTypes) {
     for (let i = 0; i < cards.length; i++) {
-      if (cards[i].getAttribute('buildingtype') === actualFilter.toString()) {
+      if (
+        cards[i].getAttribute('buildingtype') === currentBuildingType.toString()
+      ) {
         cards[i].classList.add('collapsed');
       }
     }

@@ -32,9 +32,9 @@ const userVehicles = async function (): Promise<any> {
     }
 
     const assignVehicleCategories = async function (
-      actualVehicle: UserVehicles
+      currentVehicle: UserVehicles
     ): Promise<void> {
-      const id = actualVehicle.vehicleID;
+      const id = currentVehicle.vehicleID;
 
       const categories: string | null =
         sessionStorage.getItem('vehicleCategories');
@@ -213,8 +213,8 @@ const userVehicles = async function (): Promise<any> {
       dataType: 'json',
       type: 'GET',
       async success(data: UserVehicles[]): Promise<void> {
-        for (const actualVehicle of data) {
-          await assignVehicleCategories(actualVehicle);
+        for (const currentVehicle of data) {
+          await assignVehicleCategories(currentVehicle);
         }
         await countVehicles(data);
         await showCard();
