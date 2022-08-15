@@ -1,3 +1,4 @@
+// TODO: @TheKeineAhnung add displaying vehicles of type lf
 import { UserVehicles } from '../../types/api/UserVehicles';
 import { variableIsNull } from '../../ts/errors/console';
 import { VehicleCategories } from '../../types/api/VehicleCategories';
@@ -156,7 +157,8 @@ const userVehicles = async function (): Promise<any> {
           if (
             !(ids.length <= 0) &&
             ids[0] < 10_000 &&
-            vehicleCategories.value[elem].roles.length === 0
+            (vehicleCategories.value[elem].roles.length === 0 ||
+              vehicleCategories.value[elem].shortName === 'lgf')
           ) {
             vehiclesInternal[vehicleCategories.value[elem].shortName] = {
               readableShortName:
@@ -190,7 +192,8 @@ const userVehicles = async function (): Promise<any> {
         for (const key in vehicleCategories.value) {
           if (
             vehicleCategories.value[key].ids.includes(elem.vehicleID) &&
-            vehicleCategories.value[key].roles.length === 0
+            (vehicleCategories.value[key].roles.length === 0 ||
+              vehicleCategories.value[key].shortName === 'lgf')
           ) {
             stats[vehicleCategories.value[key].shortName].count += 1;
           }
