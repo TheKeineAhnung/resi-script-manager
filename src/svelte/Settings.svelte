@@ -44,7 +44,6 @@
     faXmark
   } from '@fortawesome/free-solid-svg-icons';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
-  import { event } from 'jquery';
   library.add(
     faSave,
     faBan,
