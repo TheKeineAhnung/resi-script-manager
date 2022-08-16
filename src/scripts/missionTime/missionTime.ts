@@ -1,4 +1,3 @@
-import { FinishMission } from '../../types/socket/FinishMission';
 import { variableIsNull } from '../../ts/errors/console';
 import {
   isMissionStatusOnWork,
@@ -7,199 +6,313 @@ import {
 } from '../../types/socket/MissionStatus';
 
 const missionTime = async function (): Promise<any> {
-  const ids: number[] = [];
+  type IntervalStorage = Record<
+    number,
+    {
+      remainingTime?: number | null;
+      interval?: NodeJS.Timer;
+      paused: boolean;
+    }
+  >;
 
-  const setIds = function (
-    missionStatusObject: MissionStatus | MissionStatusOnWork | FinishMission,
-    socketType: 'missionStatus' | 'finishMission'
-  ): any {
-    const missionListContent: NodeListOf<HTMLDivElement> =
-      document.querySelectorAll('div.mission-list-content');
+  const initTimerTime = function (
+    missionObject: MissionStatus | MissionStatusOnWork
+  ): void | string {
+    if (!isMissionStatusOnWork(missionObject)) {
+      return;
+    }
 
-    const isMissionStatus = function (
-      object: object
-    ): object is MissionStatus | MissionStatusOnWork {
-      return 'icon' in object;
-    };
+    let displayTime = '00:00';
 
-    missionListContent.forEach((elem: HTMLDivElement): void => {
-      if (
-        isMissionStatus(missionStatusObject) &&
-        isMissionStatusOnWork(missionStatusObject) &&
-        elem.getAttribute('frame-url') ===
-          `mission/${missionStatusObject.userMissionID}` &&
-        missionStatusObject.userMissionStatus === 3
-      ) {
-        if (!ids.includes(missionStatusObject.userMissionID)) {
-          ids.push(missionStatusObject.userMissionID);
-        }
-        const container: HTMLDivElement | null = elem.querySelector(
-          'div.mission-list-text div.mission-list-name'
+    let remainingTime: Date;
+    if (missionObject.icon === '') {
+      remainingTime = new Date(missionObject.userMissionFinishTime);
+    } else {
+      const utcFinishTime = new Date(
+        missionObject.userMissionFinishTime
+      ).getTime();
+      const currentDate = new Date();
+      const currentTime = currentDate.getTime();
+      remainingTime = new Date(utcFinishTime - currentTime);
+    }
+
+    if (remainingTime.getTime() < 0 || remainingTime.getTime() === undefined) {
+      return displayTime;
+    }
+
+    const newIntervals = getStorageIntervals();
+    if (newIntervals !== null) {
+      intervals = newIntervals;
+    }
+    if (intervals[missionObject.userMissionID] === undefined) {
+      intervals[missionObject.userMissionID] = {
+        paused: false
+      };
+    }
+    intervals[missionObject.userMissionID].remainingTime =
+      remainingTime.getTime();
+    setStorageIntervals(intervals);
+
+    const formatOptions: Intl.DateTimeFormatOptions = {};
+
+    if (remainingTime.getHours() > 1) {
+      formatOptions.hour = '2-digit';
+      formatOptions.minute = '2-digit';
+      formatOptions.second = '2-digit';
+    } else {
+      formatOptions.minute = '2-digit';
+      formatOptions.second = '2-digit';
+    }
+
+    displayTime = remainingTime.toLocaleTimeString('de-de', formatOptions);
+    return displayTime;
+  };
+
+  const displayTimer = function (
+    missionObject: MissionStatus | MissionStatusOnWork
+  ): void {
+    const container: HTMLDivElement | null = document.querySelector(
+      `div.mission-list-mission[usermissionid="${missionObject.userMissionID.toString()}"]`
+    );
+
+    if (container === null) {
+      variableIsNull(Object.keys({ container })[0], 'missionTime.ts');
+
+      return;
+    }
+
+    const timerParent: HTMLDivElement | null = container.querySelector(
+      'a div.mission-list-content div.mission-list-text'
+    );
+
+    if (timerParent === null) {
+      variableIsNull(Object.keys({ timerParent })[0], 'missionTime.ts');
+
+      return;
+    }
+
+    const timerContainer: HTMLDivElement = document.createElement('div');
+    timerContainer.id = `timer-${missionObject.userMissionID.toString()}`;
+    timerContainer.classList.add('timer', 'mission-timer');
+    timerContainer.style.width = 'fit-content';
+    timerContainer.style.position = 'absolute';
+    timerContainer.style.right = '27px';
+    timerContainer.style.top = '7px';
+
+    timerParent.insertAdjacentElement('beforeend', timerContainer);
+    updateTimer(missionObject);
+  };
+
+  const updateTimer = function (
+    missionObject?: MissionStatus | MissionStatusOnWork
+  ): void {
+    const missionContainer: NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(`div.mission-list-content`);
+    if (missionObject !== undefined) {
+      const newTime = initTimerTime(missionObject);
+      if (typeof newTime === 'string') {
+        const container: HTMLDivElement | null = document.querySelector(
+          `div#timer-${missionObject.userMissionID}`
         );
-
         if (container === null) {
-          variableIsNull(Object.keys({ container })[0], 'missionTime');
-
           return;
         }
-
-        container.style.display = 'flex';
-        const date: Date = new Date();
-        const finishTime = new Date(missionStatusObject.userMissionFinishTime);
-        let remainingTime: string[] = String(finishTime).split(' ');
-
-        remainingTime = remainingTime[4].split(':');
-        let remainingTimeUnix =
-          Number(remainingTime[0]) * 3_600 +
-          Number(remainingTime[1]) * 60 +
-          Number(remainingTime[2]);
-        const hoursUnix = date.getHours() * 3_600;
-        const minutesUnix = date.getMinutes() * 60;
-        const secondsUnix = date.getSeconds();
-        const completeNowUnix = hoursUnix + minutesUnix + secondsUnix;
-
-        remainingTimeUnix -= completeNowUnix;
-        const finishSeconds: number | string = remainingTimeUnix % 60;
-
-        let beautifulFinishSeconds: string | null = null;
-
-        if (finishSeconds <= 9) {
-          beautifulFinishSeconds = `0${String(finishSeconds)}`;
-        }
-        const remainingTimeDisplay = `${String(
-          (remainingTimeUnix - finishSeconds) / 60
-        )} 
-            :${
-              beautifulFinishSeconds !== null
-                ? beautifulFinishSeconds
-                : String(finishSeconds)
-            }`;
-
-        if (container.querySelector('.mission-time') === null) {
-          container.innerHTML += `<div class='mission-time id-${missionStatusObject.userMissionID}' style="margin-left: 5px"></div>`;
-        }
-
-        const missionTimeContainer: HTMLDivElement | null =
-          container.querySelector('.mission-time');
-
-        if (missionTimeContainer === null) {
-          variableIsNull(
-            Object.keys({ missionTimeContainer })[0],
-            'missionTime'
+        container.innerText = newTime;
+      }
+      return;
+    }
+    missionContainer.forEach((container: HTMLDivElement): void => {
+      if (container.innerText !== '') {
+        const missionIconContainer: HTMLDivElement | null =
+          container.querySelector(
+            'div.mission-list-icon-container div.mission-list-icon'
           );
-
-          return;
-        }
-
-        missionTimeContainer.innerHTML = `${remainingTimeDisplay}`;
-      }
-      if (
-        ids.includes(missionStatusObject.userMissionID) &&
-        socketType === 'finishMission'
-      ) {
-        const index = ids.indexOf(missionStatusObject.userMissionID);
-
-        if (index > -1) {
-          ids.splice(index, 1);
-        }
-      }
-
-      const idContainer: null | HTMLDivElement = document.querySelector(
-        `.id-${missionStatusObject.userMissionID}`
-      );
-
-      if (idContainer === null) {
-        variableIsNull(Object.keys({ idContainer })[0], 'missionTime');
-
-        return;
-      }
-
-      if (
-        idContainer.classList.contains('mission-time') &&
-        isMissionStatus(missionStatusObject) &&
-        (missionStatusObject.userMissionStatus === 2 ||
-          missionStatusObject.userMissionStatus === 1)
-      ) {
-        const timeContainer = document.querySelector(
-          `.${missionStatusObject.userMissionID}`
+        const timerContainer: HTMLDivElement | null = container.querySelector(
+          'div.timer.mission-timer'
         );
-
-        if (timeContainer === null) {
-          variableIsNull(Object.keys({ timeContainer })[0], 'missionTime');
-
+        if (missionIconContainer === null || timerContainer === null) {
           return;
         }
-
-        timeContainer.classList.replace('mission-time', 'mission-time-paused');
-      }
-      if (
-        idContainer.classList.contains('mission-time-paused') &&
-        isMissionStatus(missionStatusObject) &&
-        missionStatusObject.userMissionStatus === 3
-      ) {
-        const timeContainer = document.querySelector(
-          `.${missionStatusObject.userMissionID}`
+        let missionStatus = 0;
+        if (missionIconContainer.classList.contains('mission-list-icon-1')) {
+          missionStatus = 1;
+        } else if (
+          missionIconContainer.classList.contains('mission-list-icon-2')
+        ) {
+          missionStatus = 2;
+        } else if (
+          missionIconContainer.classList.contains('mission-list-icon-3')
+        ) {
+          missionStatus = 3;
+        }
+        if (missionStatus !== 3) {
+          return;
+        }
+        const newTime = updateTimerTime(
+          timerContainer.innerText,
+          parseInt(timerContainer.id.replace('timer-', ''))
         );
-
-        if (timeContainer === null) {
-          variableIsNull(Object.keys({ timeContainer })[0], 'missionTime');
-
-          return;
+        if (typeof newTime === 'string') {
+          timerContainer.innerText = newTime;
         }
-
-        timeContainer.classList.replace('mission-time-paused', 'mission-time');
       }
     });
   };
 
-  const refreshIds = function (): void {
-    const elements: NodeListOf<HTMLDivElement> =
-      document.querySelectorAll('div.mission-time');
+  const updateTimerTime = function name(
+    currentRemainingTime: string,
+    missionId: number
+  ): string {
+    let remainingTime = '00:00';
+    if (
+      currentRemainingTime === '00:00' ||
+      currentRemainingTime === '00:00:00'
+    ) {
+      return remainingTime;
+    }
 
-    elements.forEach((elem): void => {
-      const time: string = elem.innerText;
-      const minutes: string = time.split(':')[0];
-      const seconds: string = time.split(':')[1];
+    if (currentRemainingTime.length === 5) {
+      currentRemainingTime = '00:' + currentRemainingTime;
+    }
+    const splittedTime = currentRemainingTime.split(':');
+    const hours = parseInt(splittedTime[0]);
+    const minutes = parseInt(splittedTime[1]);
+    const seconds = parseInt(splittedTime[2]);
 
-      if (minutes === 'NaN' || seconds === 'NaN') {
-        // eslint-disable-next-line no-param-reassign
-        elem.innerHTML = '0:00';
-      } else if (elem.innerText !== '0:00') {
-        const minutesInSeconds: number = Math.floor(Number(minutes) * 60);
-        const targetTimeSeconds: number = minutesInSeconds + Number(seconds);
-        let targetSeconds: number = targetTimeSeconds % 60;
+    const currentDate = new Date(
+      `${new Date().getFullYear()} ${hours}:${minutes}:${seconds}`
+    );
 
-        if (targetSeconds === 0) {
-          targetSeconds = 59;
-        } else {
-          targetSeconds--;
-        }
-        const targetMinutes: number = Math.round(
-          targetTimeSeconds - targetSeconds
-        );
+    const remainingTimeCalc = currentDate.getTime() - 1000;
 
-        const targetTime = `${String(Math.floor(targetMinutes / 60))}:${String(
-          targetSeconds <= 9 ? `0${targetSeconds}` : targetSeconds
-        )}`;
+    const newIntervals = getStorageIntervals();
+    if (newIntervals !== null) {
+      intervals = newIntervals;
+    }
+    intervals[missionId].remainingTime = remainingTimeCalc;
+    setStorageIntervals(intervals);
 
-        // eslint-disable-next-line no-param-reassign
-        elem.innerHTML = targetTime;
-      }
-    });
+    const formatOptions: Intl.DateTimeFormatOptions = {};
+
+    if (new Date(remainingTimeCalc).getHours() > 0) {
+      formatOptions.hour = '2-digit';
+      formatOptions.minute = '2-digit';
+      formatOptions.second = '2-digit';
+    } else {
+      formatOptions.minute = '2-digit';
+      formatOptions.second = '2-digit';
+    }
+
+    remainingTime = new Date(remainingTimeCalc).toLocaleTimeString(
+      'de-de',
+      formatOptions
+    );
+
+    return remainingTime;
   };
 
-  setInterval(refreshIds, 1_000);
+  const init = function (missionObject: MissionStatus | MissionStatusOnWork) {
+    const missionTextContainer: NodeListOf<HTMLDivElement> =
+      document.querySelectorAll('div.mission-list-text');
+    const missionNameContainer: NodeListOf<HTMLDivElement> =
+      document.querySelectorAll('div.mission-list-name');
+
+    missionTextContainer.forEach((e: HTMLDivElement): void => {
+      e.style.width = '100%';
+    });
+
+    missionNameContainer.forEach((e: HTMLDivElement): void => {
+      e.style.width = 'calc(100% - 55px)';
+    });
+    displayTimer(missionObject);
+  };
+
+  let intervals: IntervalStorage = {};
+
+  const getStorageIntervals = function (): IntervalStorage | null {
+    const data = sessionStorage.getItem('missionTimeIntervals');
+    if (data === null) {
+      return data;
+    }
+    return JSON.parse(data);
+  };
+
+  const setStorageIntervals = function (data: IntervalStorage): void {
+    sessionStorage.setItem('missionTimeIntervals', JSON.stringify(data));
+  };
 
   socket.on(
     'missionStatus',
-    (missionStatusObject: MissionStatus | MissionStatusOnWork): void => {
-      setIds(missionStatusObject, 'missionStatus');
+    (missionObject: MissionStatus | MissionStatusOnWork): void => {
+      if (isMissionStatusOnWork(missionObject)) {
+        init(missionObject);
+        intervals[missionObject.userMissionID] = {
+          remainingTime: new Date(
+            missionObject.userMissionFinishTime.toString()
+          ).getTime(),
+          interval: setInterval(function () {
+            updateTimer(missionObject);
+          }, 1_000),
+          paused: false
+        };
+      } else {
+        if (missionObject.userMissionStatus !== 3) {
+          if (intervals[missionObject.userMissionID] !== undefined) {
+            clearInterval(intervals[missionObject.userMissionID].interval);
+            intervals[missionObject.userMissionID] = {
+              paused: true,
+              remainingTime:
+                intervals[missionObject.userMissionID].remainingTime
+            };
+          }
+        }
+      }
+      setStorageIntervals(intervals);
     }
   );
 
-  socket.on('finishMission', (userMissionId: FinishMission): void => {
-    setIds(userMissionId, 'finishMission');
+  socket.on('finishMission', (missionObject: number): void => {
+    const newIntervals = getStorageIntervals();
+    if (newIntervals !== null) {
+      intervals = newIntervals;
+    }
+    clearInterval(intervals[missionObject].interval);
+    delete intervals[missionObject];
+    setStorageIntervals(intervals);
   });
+
+  const storageIntervals = getStorageIntervals();
+  if (storageIntervals === null) {
+    setStorageIntervals({});
+  } else {
+    intervals = storageIntervals;
+  }
+
+  for (const [key, value] of Object.entries(intervals)) {
+    const fakeMissionObject: MissionStatusOnWork = {
+      icon: '',
+      missingVehicles: { test: 3 },
+      userMissionFinishTime:
+        value.remainingTime !== undefined && value.remainingTime !== null
+          ? value.remainingTime
+          : 0,
+      userMissionID: parseInt(key),
+      userMissionProgress: 1.0,
+      userMissionStatus: 3,
+      userName: 'User'
+    };
+    init(fakeMissionObject);
+    if (value.paused) {
+      intervals[parseInt(key)] = {
+        paused: true,
+        remainingTime: value.remainingTime
+      };
+    }
+  }
+  setStorageIntervals(intervals);
+  setInterval(() => {
+    updateTimer();
+  }, 1000);
 };
 
 export { missionTime };
