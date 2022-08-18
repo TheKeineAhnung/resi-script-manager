@@ -1,3 +1,4 @@
+// TODO: @TheKeineAhnung add displaying vehicles of type lf
 import { UserVehicles } from '../../types/api/UserVehicles';
 import { variableIsNull } from '../../ts/errors/console';
 import { VehicleCategories } from '../../types/api/VehicleCategories';
@@ -32,9 +33,9 @@ const userVehicles = async function (): Promise<any> {
     }
 
     const assignVehicleCategories = async function (
-      actualVehicle: UserVehicles
+      currentVehicle: UserVehicles
     ): Promise<void> {
-      const id = actualVehicle.vehicleID;
+      const id = currentVehicle.vehicleID;
 
       const categories: string | null =
         sessionStorage.getItem('vehicleCategories');
@@ -156,7 +157,8 @@ const userVehicles = async function (): Promise<any> {
           if (
             !(ids.length <= 0) &&
             ids[0] < 10_000 &&
-            vehicleCategories.value[elem].roles.length === 0
+            (vehicleCategories.value[elem].roles.length === 0 ||
+              vehicleCategories.value[elem].shortName === 'lgf')
           ) {
             vehiclesInternal[vehicleCategories.value[elem].shortName] = {
               readableShortName:
@@ -190,7 +192,8 @@ const userVehicles = async function (): Promise<any> {
         for (const key in vehicleCategories.value) {
           if (
             vehicleCategories.value[key].ids.includes(elem.vehicleID) &&
-            vehicleCategories.value[key].roles.length === 0
+            (vehicleCategories.value[key].roles.length === 0 ||
+              vehicleCategories.value[key].shortName === 'lgf')
           ) {
             stats[vehicleCategories.value[key].shortName].count += 1;
           }
@@ -213,8 +216,8 @@ const userVehicles = async function (): Promise<any> {
       dataType: 'json',
       type: 'GET',
       async success(data: UserVehicles[]): Promise<void> {
-        for (const actualVehicle of data) {
-          await assignVehicleCategories(actualVehicle);
+        for (const currentVehicle of data) {
+          await assignVehicleCategories(currentVehicle);
         }
         await countVehicles(data);
         await showCard();

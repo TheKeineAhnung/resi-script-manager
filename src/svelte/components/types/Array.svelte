@@ -145,7 +145,7 @@
     <ul class="p-0 m-0">
       {#each inputArray as inputArrayElement}
         <li
-          class="list-none w-fit float-left mr-1 bg-success rounded px-1 py-0_5 mt-1"
+          class="list-none w-fit float-left mr-1 bg-success rounded p-0_5 mt-1"
         >
           {inputArrayElement}
           <span
@@ -190,7 +190,7 @@
     >{dialogContent}</DialogContent
   >
   {#if dialogInput}
-    <div class="flex justify-content-center align-items-center px-2">
+    <div class="flex justify-content-center align-items-center py-2">
       <Textfield
         bind:value={dialogInputValue}
         label={dialogInputDesc}
