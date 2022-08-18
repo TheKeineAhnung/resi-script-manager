@@ -167,7 +167,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'AAO',
     usable: false,
-    match: ['https://rettungssimulator.online/aaoStore'],
+    match: ['https://rettungssimulator.online/aaoEdit/[0-9]*'],
     oneTime: false,
     requiresConfig: true,
     config: {
