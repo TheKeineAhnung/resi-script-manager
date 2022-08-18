@@ -38,15 +38,17 @@ const userBuildings = async function (): Promise<any> {
   };
 
   const buildingStats = async function (): Promise<void> {
-    const buildings: BuildingCountBuildings = JSON.parse(
-      localStorage.getItem('buildingCountBuildings') ??
-        `{userBuildings: ${await (
-          await fetch('/api/userBuildings')
-        ).json()}, update: ${Date.now()}`
-    );
+    const storageValue = localStorage.getItem('buildingCountBuildings');
+    const buildings: BuildingCountBuildings =
+      storageValue !== null
+        ? JSON.parse(storageValue)
+        : {
+            userBuildings: await (await fetch('/api/userBuildings')).json(),
+            update: Date.now()
+          };
     const buildingCategories: Buildings[] = JSON.parse(
       localStorage.getItem('buildingCountBuildingCategories') ??
-        `${await await (await fetch('/api/userBuildings')).json()}`
+        `${JSON.stringify(await (await fetch('/api/buildings')).json())}`
     );
 
     const countedBuildings: CountBuildings = {};
@@ -160,12 +162,15 @@ const userBuildings = async function (): Promise<any> {
     await storeBuildingTypes();
   }
 
-  const buildingCountBuildingsStorage: BuildingCountBuildings = JSON.parse(
-    localStorage.getItem('buildingCountBuildings') ??
-      `{userBuildings: ${await (
-        await fetch('/api/userBuildings')
-      ).json()}, update: ${Date.now()}}`
-  );
+  const storageValue = localStorage.getItem('buildingCountBuildings');
+  const buildingCountBuildingsStorage: BuildingCountBuildings =
+    storageValue !== null
+      ? JSON.parse(storageValue)
+      : {
+          userBuildings: await (await fetch('/api/userBuildings')).json(),
+          update: Date.now()
+        };
+
   const lastUpdateTime = Number(buildingCountBuildingsStorage.update);
 
   if (
