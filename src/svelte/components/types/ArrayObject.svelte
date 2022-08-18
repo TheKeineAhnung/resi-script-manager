@@ -266,7 +266,7 @@
     >{dialogContent}</DialogContent
   >
   {#if dialogInput}
-    <div class="flex justify-content-center align-items-center px-2">
+    <div class="flex justify-content-center align-items-center py-2">
       <Textfield
         bind:value={dialogInputValue}
         label={dialogInputDesc}
