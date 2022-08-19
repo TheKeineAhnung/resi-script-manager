@@ -121,15 +121,31 @@ const missionTime = async function (): Promise<any> {
       }
       return;
     }
+    const newIntervals = getStorageIntervals();
+    if (newIntervals !== null) {
+      intervals = newIntervals;
+    }
     missionContainer.forEach((container: HTMLDivElement): void => {
+      const timerContainer: HTMLDivElement | null = container.querySelector(
+        'div.timer.mission-timer'
+      );
       if (container.innerText !== '') {
+        if (timerContainer?.innerText === '00:00') {
+          const frameUrlAttribute = container.getAttribute('frame-url');
+          if (frameUrlAttribute !== null) {
+            const missionId = parseInt(
+              frameUrlAttribute.replace('mission/', '')
+            );
+            intervals[missionId].remainingTime = 0;
+            intervals[missionId].paused = true;
+            setStorageIntervals(intervals);
+          }
+          return;
+        }
         const missionIconContainer: HTMLDivElement | null =
           container.querySelector(
             'div.mission-list-icon-container div.mission-list-icon'
           );
-        const timerContainer: HTMLDivElement | null = container.querySelector(
-          'div.timer.mission-timer'
-        );
         if (missionIconContainer === null || timerContainer === null) {
           return;
         }
