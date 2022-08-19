@@ -96,6 +96,7 @@
 
   function saveConfig(): void {
     updateConfig(config);
+    window.parent.location.reload();
   }
   async function exportConfig(): Promise<void> {
     let config: string = JSON.stringify(await getConfig());
