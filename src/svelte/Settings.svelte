@@ -96,7 +96,6 @@
 
   function saveConfig(): void {
     updateConfig(config);
-    window.parent.location.reload();
   }
   async function exportConfig(): Promise<void> {
     let config: string = JSON.stringify(await getConfig());
@@ -487,7 +486,9 @@
             <Label>{@html saveIcon} Speichern</Label>
           </Button>
           <Button
-            on:click={() => saveConfig()}
+            on:click={() => {
+              saveConfig(), window.parent.location.reload();
+            }}
             variant="raised"
             class="button-shaped-round"
             id="saveButtonReload"
