@@ -266,9 +266,6 @@ const missionTime = async function (): Promise<any> {
           remainingTime: new Date(
             missionObject.userMissionFinishTime.toString()
           ).getTime(),
-          interval: setInterval(function () {
-            updateTimer(missionObject);
-          }, 1_000),
           paused: false
         };
       } else {
