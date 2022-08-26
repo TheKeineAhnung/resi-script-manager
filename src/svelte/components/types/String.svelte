@@ -131,7 +131,7 @@
       {@html configDescription}
     {/if}
     <div>
-      <div class="w-fit bg-success rounded py-1 py-0_5 mt-1">
+      <div class="w-fit bg-success rounded p-0_5 mt-1">
         {#if inputString !== ''}
           {#if inputString.startsWith('http')}
             <a
