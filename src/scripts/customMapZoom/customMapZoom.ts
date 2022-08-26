@@ -2,7 +2,6 @@ import { variableIsNull } from '../../ts/errors/console';
 
 const customMapZoom = async function (): Promise<any> {
   const focusMap = function () {
-    console.log('TRIGGER!');
     const northernCoordinate = localStorage.getItem('customMapZoomNorth');
     const easternCoordinate = localStorage.getItem('customMapZoomEast');
     const southernCoordinate = localStorage.getItem('customMapZoomSouth');
