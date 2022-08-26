@@ -59,7 +59,7 @@
     dialogTitle = 'Deine Einstellungen für den Script-manager';
 
     if (config === null) {
-      variableIsNull(Object.keys({ config })[0], __filename);
+      variableIsNull(Object.keys({ config })[0], 'String.svelte');
 
       return;
     }
