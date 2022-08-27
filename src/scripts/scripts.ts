@@ -3,6 +3,7 @@ import { autoCollapseBuildings } from './autoCollapseBuildings/autoCollapseBuild
 import { countPatients } from './countPatients/countPatients';
 import { countPossibleMissions } from './countPossibleMissions/countPossibleMissions';
 import { customBuildingIcons } from './customBuildingIcons/customBuildingIcons';
+import { customMapZoom } from './customMapZoom/customMapZoom';
 import { customMissionIcons } from './customMissionIcons/customMissionIcons';
 import { deleteNewestFmsAfterTime } from './deleteNewestFmsAfterTime/deleteNewestFmsAfterTime';
 import { expandAssociationCards } from './expandAssociationCards/expandAssociationCards';
@@ -26,6 +27,7 @@ export {
   countPatients,
   countPossibleMissions,
   customBuildingIcons,
+  customMapZoom,
   customMissionIcons,
   deleteNewestFmsAfterTime,
   expandAssociationCards,

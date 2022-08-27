@@ -1,6 +1,6 @@
 {
   "name": "resi-script-manager",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A simple script manager for rettungssimulator.online.",
   "contributors": [],
   "private": false,
@@ -36,6 +36,7 @@
     "@smui/textfield": "6.0.0-beta.15",
     "@tsconfig/svelte": "1.0.0",
     "@types/jquery": "3.5.14",
+    "@types/leaflet": "1.7.11",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "autoprefixer": "10.4.8",

@@ -486,7 +486,9 @@
             <Label>{@html saveIcon} Speichern</Label>
           </Button>
           <Button
-            on:click={() => saveConfig()}
+            on:click={() => {
+              saveConfig(), window.parent.location.reload();
+            }}
             variant="raised"
             class="button-shaped-round"
             id="saveButtonReload"

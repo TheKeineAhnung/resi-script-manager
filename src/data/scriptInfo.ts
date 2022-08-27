@@ -85,6 +85,44 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     }
   },
   {
+    name: 'customMapZoom',
+    displayName: 'Eigener Kartenzoom',
+    description:
+      'Eigenen Bereich der Karte zum Standard zoom festlegen. <b>Die Eckpunkte sind Südwesten und Nordosten.</b>',
+    author: 'KeineAhnung',
+    category: 'Karte',
+    usable: true,
+    match: ['https://rettungssimulator.online/*'],
+    oneTime: false,
+    requiresConfig: true,
+    config: {
+      customMapZoomNorth: {
+        type: 'string',
+        default: '0',
+        description:
+          'Lege den nördlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+      },
+      customMapZoomEast: {
+        type: 'string',
+        default: '0',
+        description:
+          'Lege den östlichsten (Longitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+      },
+      customMapZoomSouth: {
+        type: 'string',
+        default: '0',
+        description:
+          'Lege den südlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+      },
+      customMapZoomWest: {
+        type: 'string',
+        default: '0',
+        description:
+          'Lege den westlichsten (Longitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+      }
+    }
+  },
+  {
     name: 'customMissionIcons',
     displayName: 'Benutzerdefinierte Einsatzsymbole',
     description: 'Anpassen der Einsatzsymbole',
@@ -167,7 +205,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'AAO',
     usable: false,
-    match: ['https://rettungssimulator.online/aaoStore'],
+    match: ['https://rettungssimulator.online/aaoEdit/[0-9]*'],
     oneTime: false,
     requiresConfig: true,
     config: {

@@ -132,37 +132,6 @@ const loadSettingsFrame = async function (): Promise<void> {
   link2.href = `${server}/js/svelte/css/settings.css`;
   link2.rel = 'stylesheet';
   head.appendChild(link2);
-
-  const afterLoadingInterval = setInterval((): void => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    addActionsAfterLoading(frame);
-  }, 100);
-
-  const addActionsAfterLoading = function (frameVar: HTMLIFrameElement): void {
-    if (frameVar.contentDocument === null) {
-      variableIsNull(
-        `${Object.keys({ frameVar })[0]}.contentDocument`,
-        'init.ts'
-      );
-
-      return;
-    }
-    if (frameVar.contentDocument.querySelector('#saveButtonReload')) {
-      const button: HTMLButtonElement | null =
-        frameVar.contentDocument.querySelector('#saveButtonReload');
-
-      if (button !== null) {
-        button.addEventListener('click', (): void => {
-          window.location.reload();
-        });
-        frameVar.style.height = 'initial';
-        setTimeout(() => {
-          frameVar.style.height = '100%';
-        }, 25);
-      }
-      clearInterval(afterLoadingInterval);
-    }
-  };
 };
 
 const createPageLink = function (): void {

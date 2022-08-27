@@ -4,6 +4,7 @@ type ScriptName =
   | 'countPatients'
   | 'countPossibleMissions'
   | 'customBuildingIcons'
+  | 'customMapZoom'
   | 'customMissionIcons'
   | 'deleteNewestFmsAfterTime'
   | 'expandAssociationCards'

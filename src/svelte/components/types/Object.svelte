@@ -79,7 +79,7 @@
     let config = localStorage.getItem(configName);
 
     if (config === null) {
-      variableIsNull(Object.keys({ config })[0], __filename);
+      variableIsNull(Object.keys({ config })[0], 'Object.svelte');
 
       return;
     }
