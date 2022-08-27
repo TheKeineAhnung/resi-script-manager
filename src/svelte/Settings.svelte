@@ -296,7 +296,7 @@
                     </FormField>
                   </Actions>
                 </div>
-                <p>{info.description}</p>
+                <p>{@html info.description}</p>
                 <div class="labels grid column-gap-0_5 row-gap-1 columns-2">
                   <div class="flex justify-content-center align-items-center">
                     <InfoLabel
