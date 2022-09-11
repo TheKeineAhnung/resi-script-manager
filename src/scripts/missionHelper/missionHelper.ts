@@ -23,6 +23,64 @@ const missionHelper = async function (): Promise<void> {
     sessionStorage.aVehicleCategories
   ).value;
 
+  const sortBy = {
+    tlf: 0,
+    lgf: 1,
+    lf: 2,
+    hlf: 3,
+    rw_lf: 4,
+    rw_hlf: 5,
+    'h*lf_rw_kef': 6,
+    'h*lf_kef': 7,
+    'h*lf_kef_mtw_gw_tier': 8,
+    'h*lf_mtw': 9,
+    kdow: 10,
+    kdow_mzf: 11,
+    elw1_kdow_mzf: 12,
+    elw1_kdow: 13,
+    elw1: 14,
+    führungsdienst: 15,
+    elw_elw2: 16,
+    dlk: 20,
+    dlk_tmf: 21,
+    tmf: 22,
+    elw2: 25,
+    sw: 29,
+    rw: 30,
+    'rw_rw-k': 31,
+    sw_tlf: 40,
+    gw_öl_gw_g: 41,
+    gw_g: 50,
+    gw_mess: 51,
+    gw_a: 52,
+    gw_dekon: 53,
+    gw_h: 54,
+    gw_tier: 55,
+    gw_tier_mtw: 56,
+    gw_tier_lf: 57,
+    kef: 57,
+    gw_öl: 70,
+    'h*lf_rw_kef_gw_öl': 71,
+    kran: 74,
+    'rw-k': 75,
+    fwk: 76,
+    pol: 80,
+    fustw: 81,
+    lpol: 82,
+    bpol: 83,
+    mtw: 2000,
+    mzf: 2001,
+    mtw_mzf: 2002,
+    sonstiges: 2003,
+    rtw: 2004,
+    nef: 2005,
+    na: 2006,
+    rd: 2007,
+    na_standort: 2008,
+    gws: 2009,
+    sonstigesSub: 2010,
+  };
+
   const style = document.createElement('style');
   style.innerText =
     '.card-headline.card-headline-info{background-color:#2196f3;color:#fff}.card';
@@ -42,6 +100,19 @@ const missionHelper = async function (): Promise<void> {
     }
   });
 
+  function compare(a: string, b: string): number {
+    const aVal = sortBy[a as never];
+    const bVal = sortBy[b as never];
+    console.log(aVal + ' - ' + a + ' || ' + bVal + ' - ' + b);
+    if (aVal < bVal) {
+      return -1;
+    }
+    if (aVal > bVal) {
+      return 1;
+    }
+    return 0;
+  }
+
   function showPanel(r: Mission) {
     const helper = document.createElement('div');
     helper.classList.add('card', 'missionHelper');
@@ -55,8 +126,16 @@ const missionHelper = async function (): Promise<void> {
     a?.insertAdjacentElement('afterbegin', helper);
     const table = document.querySelector('table#missionHelper-' + missionID);
     const tbody = document.createElement('tbody');
+    const needed = Object.keys(r.neededVehicles)
+      .sort(compare)
+      .reduce((obj, key: string) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        obj[key] = r.neededVehicles[key];
+        return obj;
+      }, {});
     let key, value;
-    for ([key, value] of Object.entries(r.neededVehicles)) {
+    for ([key, value] of Object.entries(needed)) {
       const tr = document.createElement('tr');
       const number = document.createElement('td');
       number.innerText = String(value as number);
