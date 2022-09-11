@@ -134,14 +134,6 @@ const countPatients = async function (): Promise<any> {
     await updatePanel();
   });
 
-  const capacity: NodeListOf<HTMLDivElement> = document.querySelectorAll(
-    'div.card-body div.vehicle.hospital-capacity div.vehicle-name'
-  );
-
-  capacity.forEach((e): void => {
-    e.addEventListener('DOMSubtreeModified', updatePanel);
-  });
-
   await init();
 };
 
