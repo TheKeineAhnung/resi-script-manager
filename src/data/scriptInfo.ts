@@ -306,6 +306,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'selectedVehicles',
+    displayName: 'Ausgewählte Fahrzeuge anzeigen',
+    description: 'Ausgewählte Fahrzeuge in Tabelle anzeigen',
+    author: 'Ron31',
+    category: 'Einsätze',
+    usable: true,
+    match: ['https://rettungssimulator.online/mission/[0-9]*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'showOnlyLatestRadioMessage',
     displayName: 'Nur neueste Radiomeldung anzeigen',
     description:

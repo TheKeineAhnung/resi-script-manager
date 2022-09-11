@@ -20,6 +20,7 @@ type ScriptName =
   | 'missionHelper'
   | 'showOnlyLatestRadioMessage'
   | 'userBuildings'
-  | 'userVehicles';
+  | 'userVehicles'
+  | 'selectedVehicles';
 
 export type { ScriptName };

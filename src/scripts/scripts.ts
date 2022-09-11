@@ -20,6 +20,7 @@ import { missionHelper } from './missionHelper/missionHelper';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
+import { selectedVehicles } from './selectedVehicles/selectedVehicles';
 
 export {
   alarmfax,
@@ -43,5 +44,6 @@ export {
   missionHelper,
   showOnlyLatestRadioMessage,
   userBuildings,
-  userVehicles
+  userVehicles,
+  selectedVehicles
 };
