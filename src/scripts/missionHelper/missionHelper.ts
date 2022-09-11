@@ -103,7 +103,6 @@ const missionHelper = async function (): Promise<void> {
   function compare(a: string, b: string): number {
     const aVal = sortBy[a as never];
     const bVal = sortBy[b as never];
-    console.log(aVal + ' - ' + a + ' || ' + bVal + ' - ' + b);
     if (aVal < bVal) {
       return -1;
     }
