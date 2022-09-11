@@ -17,18 +17,15 @@ const userVehicles = async function (): Promise<any> {
 
   const vehicleStats = async function (): Promise<void> {
     if (
-      !sessionStorage.vehicleCategories ||
-      JSON.parse(sessionStorage.vehicleCategories).lastUpdate <
-        Date.now() - 6_000_000_000
+      !sessionStorage.aVehicleCategories ||
+      JSON.parse(sessionStorage.aVehicleCategories).lastUpdate <
+        new Date().getTime() - 60 * 1000 * 60
     ) {
-      // eslint-disable-next-line no-undef
-      await $.getJSON('/api/vehicleCategories').done(
-        (data: VehicleCategories): void => {
-          sessionStorage.setItem(
-            'vehicleCategories',
-            JSON.stringify({ lastUpdate: Date.now(), value: data })
-          );
-        }
+      await $.getJSON('/api/vehicleCategories').done(data =>
+        sessionStorage.setItem(
+          'aVehicleCategories',
+          JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
+        )
       );
     }
 
@@ -38,7 +35,7 @@ const userVehicles = async function (): Promise<any> {
       const id = currentVehicle.vehicleID;
 
       const categories: string | null =
-        sessionStorage.getItem('vehicleCategories');
+        sessionStorage.getItem('aVehicleCategories');
 
       if (categories === null) {
         variableIsNull(Object.keys({ categories })[0], 'userVehicles');
@@ -182,7 +179,7 @@ const userVehicles = async function (): Promise<any> {
       userVehiclesParam: UserVehicles[]
     ): Promise<void> {
       const vehicleCategories: VehicleCountVehicles = JSON.parse(
-        sessionStorage.getItem('vehicleCategories') ?? '{}'
+        sessionStorage.getItem('aVehicleCategories') ?? '{}'
       );
       const stats: Record<string, CountVehicles> = JSON.parse(
         sessionStorage.getItem('vehicles') ?? '{}'
