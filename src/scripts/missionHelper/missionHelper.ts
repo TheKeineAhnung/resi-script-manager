@@ -51,8 +51,8 @@ const missionHelper = async function (): Promise<void> {
     sw_tlf: 40,
     gw_öl_gw_g: 41,
     gw_g: 50,
-    gw_mess: 51,
-    gw_a: 52,
+    gw_a: 51,
+    gw_mess: 52,
     gw_dekon: 53,
     gw_h: 54,
     gw_tier: 55,
@@ -78,7 +78,7 @@ const missionHelper = async function (): Promise<void> {
     rd: 2007,
     na_standort: 2008,
     gws: 2009,
-    sonstigesSub: 2010,
+    sonstigesSub: 2010
   };
 
   const style = document.createElement('style');
