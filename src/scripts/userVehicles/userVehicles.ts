@@ -201,7 +201,7 @@ const userVehicles = async function (): Promise<any> {
     };
 
     const vehicleCategories: VehicleCountVehicles = JSON.parse(
-      sessionStorage.vehicleCategories
+      sessionStorage.aVehicleCategories
     );
 
     await saveVehicleCategories(vehicleCategories);
