@@ -18,7 +18,12 @@ const selectedVehicles = async function (): Promise<void> {
     for (const mutation of mutationList) {
       if (mutation.type === 'attributes') {
         if (mutation.attributeName === 'class') {
-          if (mutation.target.classList.contains('mission-vehicle-selected')) {
+          if (
+            mutation.target.classList.contains('mission-vehicle-selected') &&
+            !mutation.target.classList.contains(
+              'mission-vehicle-selected-enroute'
+            )
+          ) {
             const tr = document.createElement('tr');
             tr.classList.add(
               'vehicle' + mutation.target.getAttribute('uservehicleid')
