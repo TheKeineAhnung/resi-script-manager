@@ -46,7 +46,8 @@
     faCloudArrowDown,
     faCloudArrowUp,
     faCopy,
-    faXmark
+    faXmark,
+    faShuffle
   } from '@fortawesome/free-solid-svg-icons';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
   library.add(
@@ -61,7 +62,8 @@
     faCloudArrowDown,
     faCloudArrowUp,
     faCopy,
-    faXmark
+    faXmark,
+    faShuffle
   );
   type Tab = 'Scripts' | 'Config' | 'Credits';
   let saveIcon = icon(faSave).html;
@@ -76,6 +78,7 @@
   let importIcon = icon(faCloudArrowUp).html;
   let copyIcon = icon(faCopy).html;
   let closeIcon = icon(faXmark).html;
+  let shuffleIcon = icon(faShuffle).html;
   let scriptInfo: (ScriptInfo | ScriptInfoConfig)[];
   let creditsInfo: Credit[];
   let scriptNames: string[] = [];
@@ -179,6 +182,22 @@
     activeFilterCategories = activeFilterCategories;
     scriptInfo = await filterScripts(activeFilterCategories, filterTextInput);
     categoryTextInput = '';
+  }
+  function allScriptOnOf() {
+    let miniumOneActive = false;
+
+    for (const [key, value] of Object.entries(config)) {
+      if (value.active) {
+        miniumOneActive = true;
+        break;
+      }
+    }
+
+    Object.keys(config).forEach((key, index) => {
+      setTimeout(() => {
+        config[key].active = !miniumOneActive;
+      }, index * 70);
+    });
   }
   async function init() {
     loading = true;
@@ -486,6 +505,17 @@
             color="secondary"
           >
             <Label>{@html cancelIcon} Abbrechen</Label>
+          </Button>
+          <Button
+            on:click={() => allScriptOnOf()}
+            variant="raised"
+            style="margin-right: 1rem;"
+            class="button-shaped-round"
+          >
+            <Label
+              data-tooltip="Die Einstellungen müssen trotzdem manuell gespeichert werden!"
+              >{@html shuffleIcon} Alle Skripte (de-)aktivieren</Label
+            >
           </Button>
           <Button
             on:click={() => saveConfig()}
