@@ -21,7 +21,7 @@ const selectedVehicles = async function (): Promise<void> {
           if (
             mutation.target.classList.contains('mission-vehicle-selected') &&
             !mutation.target.classList.contains(
-              'mission-vehicle-selected-enroute'
+              'mission-vehicle-involved-enroute'
             )
           ) {
             const tr = document.createElement('tr');
