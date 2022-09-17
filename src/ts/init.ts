@@ -15,7 +15,7 @@ const closeIcon: Icon = icon(faTimes);
 let server: string;
 
 if (process.env.NODE_ENV === 'development') {
-  server = 'https://localhost';
+  server = 'http://localhost:8080';
 } else {
   server = 'https://keineahnung.eu/resi-script-manager';
 }
