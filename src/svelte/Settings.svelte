@@ -512,10 +512,7 @@
             style="margin-right: 1rem;"
             class="button-shaped-round"
           >
-            <Label
-              data-tooltip="Die Einstellungen müssen trotzdem manuell gespeichert werden!"
-              >{@html shuffleIcon} Alle Skripte (de-)aktivieren</Label
-            >
+            <Label>{@html shuffleIcon} Alle Skripte (de-)aktivieren</Label>
           </Button>
           <Button
             on:click={() => saveConfig()}
