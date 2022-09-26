@@ -16,8 +16,6 @@ const deleteNewestFmsAfterTime = async function (): Promise<any> {
         `div.radio-vehicle.frame-opener[uservehicleid="${vehicleFsmObject.userVehicleID}"]`
       );
 
-      console.log('timeout', messages);
-
       if (messages.length > 0) {
         for (let i = 0; i < messages.length; i++) {
           messages[i].remove();
