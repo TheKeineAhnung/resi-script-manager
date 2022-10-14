@@ -55,7 +55,7 @@ const missionTime = async function (): Promise<any> {
 
     let remainingTimeCalc = remainingTime.getTime();
 
-    if (remainingTime.getTime() > 0) {
+    if (remainingTime.getHours() > 0) {
       remainingTimeCalc -= 60 * 60 * 1000;
     }
 
