@@ -53,9 +53,15 @@ const missionTime = async function (): Promise<any> {
       remainingTime.getTime();
     setStorageIntervals(intervals);
 
+    let remainingTimeCalc = remainingTime.getTime();
+
+    if (remainingTime.getTime() > 0) {
+      remainingTimeCalc -= 60 * 60 * 1000;
+    }
+
     const formatOptions: Intl.DateTimeFormatOptions = {};
 
-    if (remainingTime.getHours() > 1) {
+    if (new Date(remainingTimeCalc).getHours() > 0) {
       formatOptions.hour = '2-digit';
       formatOptions.minute = '2-digit';
       formatOptions.second = '2-digit';
@@ -64,7 +70,10 @@ const missionTime = async function (): Promise<any> {
       formatOptions.second = '2-digit';
     }
 
-    displayTime = remainingTime.toLocaleTimeString('de-de', formatOptions);
+    displayTime = new Date(remainingTimeCalc).toLocaleTimeString(
+      'de-de',
+      formatOptions
+    );
     return displayTime;
   };
 
