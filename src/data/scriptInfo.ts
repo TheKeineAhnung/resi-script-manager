@@ -1,4 +1,5 @@
 import type { ScriptInfo, ScriptInfoConfig } from '../types/ScriptInfo';
+
 const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'alarmfax',
