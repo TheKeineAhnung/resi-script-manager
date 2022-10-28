@@ -15,8 +15,8 @@ import { hideAchievementcard } from './hideAchievementcard/hideAchievementcard';
 import { hideBuildingIcons } from './hideBuildingIcons/hideBuildingIcons';
 import { hideFreeText } from './hideFreeText/hideFreeText';
 import { missionCounter } from './missionCounter/missionCounter';
-import { missionTime } from './missionTime/missionTime';
 import { missionHelper } from './missionHelper/missionHelper';
+import { missionTime } from './missionTime/missionTime';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
@@ -40,8 +40,8 @@ export {
   hideBuildingIcons,
   hideFreeText,
   missionCounter,
-  missionTime,
   missionHelper,
+  missionTime,
   showOnlyLatestRadioMessage,
   userBuildings,
   userVehicles,
