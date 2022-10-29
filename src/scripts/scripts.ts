@@ -17,6 +17,7 @@ import { hideFreeText } from './hideFreeText/hideFreeText';
 import { missionCounter } from './missionCounter/missionCounter';
 import { missionHelper } from './missionHelper/missionHelper';
 import { missionTime } from './missionTime/missionTime';
+import { multipleStaffAssignment } from './multipleStaffAssignment/multipleStaffAssignment';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
@@ -42,6 +43,7 @@ export {
   missionCounter,
   missionHelper,
   missionTime,
+  multipleStaffAssignment,
   showOnlyLatestRadioMessage,
   userBuildings,
   userVehicles,

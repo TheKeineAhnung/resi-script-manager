@@ -296,6 +296,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'multipleStaffAssignment',
+    displayName: 'Mehrere Personen zuweisen',
+    description:
+      'Zuweisen von mehreren Personen gleichzeitig auf Fahrzeuge, Lehrgangsplanungen, etc.',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/[0-9]*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'missionHelper',
     displayName: 'Einsatzhilfe anzeigen',
     description: 'Einsatzhilfe im Einsatzfenster',

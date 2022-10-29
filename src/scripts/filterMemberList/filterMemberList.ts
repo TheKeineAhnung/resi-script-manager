@@ -1,5 +1,7 @@
 import { variableIsNull } from '../../ts/errors/console';
 
+// TODO: Better selection interface
+
 const filterMemberList = async function (): Promise<any> {
   const element: Element = document.querySelectorAll('div.card')[4];
   const head: HTMLDivElement | null =

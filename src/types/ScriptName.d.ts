@@ -18,6 +18,7 @@ type ScriptName =
   | 'missionCounter'
   | 'missionHelper'
   | 'missionTime'
+  | 'multipleStaffAssignment'
   | 'showOnlyLatestRadioMessage'
   | 'userBuildings'
   | 'userVehicles'
