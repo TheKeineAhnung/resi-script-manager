@@ -1,4 +1,3 @@
-// TODO: @TheKeineAhnung add displaying vehicles of type lf
 import { UserVehicles } from '../../types/api/UserVehicles';
 import { variableIsNull } from '../../ts/errors/console';
 import { VehicleCategories } from '../../types/api/VehicleCategories';

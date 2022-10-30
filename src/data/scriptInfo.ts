@@ -1,4 +1,5 @@
 import type { ScriptInfo, ScriptInfoConfig } from '../types/ScriptInfo';
+
 const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'alarmfax',
@@ -291,6 +292,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Einsätze',
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
+    name: 'multipleStaffAssignment',
+    displayName: 'Mehrere Personen zuweisen',
+    description:
+      'Zuweisen von mehreren Personen gleichzeitig auf Fahrzeuge, Lehrgangsplanungen, etc.',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/[0-9]*'],
     oneTime: false,
     requiresConfig: false
   },

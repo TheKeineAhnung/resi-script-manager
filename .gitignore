@@ -113,3 +113,4 @@ build/
 # Backup files for settings
 
 backup.settings.json
+.vscode
