@@ -2,6 +2,7 @@ import { alarmfax } from './alarmfax/alarmfax';
 import { autoCollapseBuildings } from './autoCollapseBuildings/autoCollapseBuildings';
 import { countPatients } from './countPatients/countPatients';
 import { countPossibleMissions } from './countPossibleMissions/countPossibleMissions';
+import { countVehicleStatus } from './countVehicleStatus/countVehicleStatus';
 import { customBuildingIcons } from './customBuildingIcons/customBuildingIcons';
 import { customMapZoom } from './customMapZoom/customMapZoom';
 import { customMissionIcons } from './customMissionIcons/customMissionIcons';
@@ -28,6 +29,7 @@ export {
   autoCollapseBuildings,
   countPatients,
   countPossibleMissions,
+  countVehicleStatus,
   customBuildingIcons,
   customMapZoom,
   customMissionIcons,

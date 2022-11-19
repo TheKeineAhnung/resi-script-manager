@@ -3,6 +3,7 @@ type ScriptName =
   | 'autoCollapseBuildings'
   | 'countPatients'
   | 'countPossibleMissions'
+  | 'countVehicleStatus'
   | 'customBuildingIcons'
   | 'customMapZoom'
   | 'customMissionIcons'
