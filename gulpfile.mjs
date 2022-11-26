@@ -20,6 +20,12 @@ const isProd = function () {
   return Boolean(argv.production);
 };
 
+const assets = () =>
+  gulp
+    .src(`${src}/assets/**/*.*`)
+    .pipe(plumber())
+    .pipe(gulp.dest(`${dist}/assets`))
+    .pipe(gulp.dest(`${dist}/js/svelte/assets`));
 const htaccess = () =>
   gulp
     .src(`${src}/.htaccess`)
@@ -68,13 +74,14 @@ const watch = () => {
       `${src}/ts/**/*.ts`,
       `${src}/scripts/**/*.ts`,
       `${src}/data/**/*.ts`,
-      `${src}/.htaccess`
+      `${src}/.htaccess`,
+      `${src}/assets/**/*`
     ],
-    gulp.series(htaccess, script)
+    gulp.series(assets, htaccess, script)
   );
 };
 
-const dev = gulp.series(htaccess, script, watch);
-const build = gulp.series(htaccess, script);
+const dev = gulp.series(assets, htaccess, script, watch);
+const build = gulp.series(assets, htaccess, script);
 
 export { dev, build };

@@ -57,6 +57,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'countVehicleStatus',
+    displayName: 'Fahrzeugstatus zählen',
+    description: 'Zählen der Fahrzeugstatus',
+    author: 'KeineAhnung',
+    category: 'Fahrzeuge',
+    usable: true,
+    match: ['^https://rettungssimulator.online/*$'],
+    oneTime: true,
+    requiresConfig: false
+  },
+  {
     name: 'customBuildingIcons',
     displayName: 'Benutzerdefinierte Gebäudesymbole',
     description: 'Anpassen der Gebäudesymbole',
