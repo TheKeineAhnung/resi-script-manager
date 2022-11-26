@@ -113,14 +113,25 @@ const missionHelper = async function (): Promise<void> {
   }
 
   function showPanel(r: Mission) {
+    const hideHintUsers: string[] = ['KeineAhnung', 'Ron31'];
+
     const helper = document.createElement('div');
     helper.classList.add('card', 'missionHelper');
-    helper.innerHTML =
-      '<div class="card-headline card-headline-info">Mindestens benötigte Mittel</div><div class="card-body"><div class="alert alert-info"><div class="alert-content"><b>Anforderungen können sich durch Variationen ändern.</b></div></div><table id="missionHelper-' +
-      missionID +
-      '"></table><div class="alert alert-info"><div class="alert-content"><b>Generelle Informationen:</b></div></div><table id="informationHelper-' +
-      missionID +
-      '"></table></div>';
+    helper.innerHTML = `<div class="card-headline card-headline-info">Mindestens benötigte Mittel</div>
+      <div class="card-body">
+          ${
+            !hideHintUsers.includes(ReSi.userName)
+              ? `<div class="alert alert-info">
+                  <div class="alert-content"><b>Anforderungen können sich durch Variationen ändern.</b></div>
+                </div>`
+              : ''
+          }
+        <table id="missionHelper-${missionID}"></table>
+        <div class="alert alert-info"><div class="alert-content"><b>Generelle Informationen:</b></div></div>
+        <table id="informationHelper-${missionID}"></table>
+      </div>
+    `;
+
     const a = document.querySelector('.alarmed-vehicles');
     a?.insertAdjacentElement('afterbegin', helper);
     const table = document.querySelector('table#missionHelper-' + missionID);
