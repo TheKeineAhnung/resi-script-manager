@@ -224,13 +224,6 @@
   init();
 </script>
 
-<svelte:head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  />
-</svelte:head>
-
 <svelte:window on:keydown={async event => await handleWindowKeydown(event)} />
 
 {#if !loading}
