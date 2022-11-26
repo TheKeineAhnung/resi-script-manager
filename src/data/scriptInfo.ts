@@ -319,6 +319,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'renameManager',
+    displayName: 'Fahrzeuge umbenennen',
+    description: 'Bennenne Fahrzeuge einfach nach einem System um',
+    author: 'KeineAhnung',
+    category: 'Fahrzeuge',
+    usable: true,
+    match: ['^https://rettungssimulator.online/*$'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'missionHelper',
     displayName: 'Einsatzhilfe anzeigen',
     description: 'Einsatzhilfe im Einsatzfenster',

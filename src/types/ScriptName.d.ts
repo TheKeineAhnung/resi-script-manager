@@ -20,6 +20,7 @@ type ScriptName =
   | 'missionHelper'
   | 'missionTime'
   | 'multipleStaffAssignment'
+  | 'renameManager'
   | 'showOnlyLatestRadioMessage'
   | 'userBuildings'
   | 'userVehicles'
