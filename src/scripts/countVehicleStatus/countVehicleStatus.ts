@@ -43,12 +43,17 @@ const countVehicleStatus = async function (): Promise<any> {
       return;
     }
 
+    parent.style.display = 'flex';
+
     const infoContainer: HTMLDivElement = document.createElement('div');
     infoContainer.id = 'vehicleStatusCountContainer';
     infoContainer.classList.add('vehicle');
-    infoContainer.style.display = 'fley';
+    infoContainer.style.display = 'flex';
     infoContainer.style.justifyContent = 'space-evenly';
     infoContainer.style.alignItems = 'center';
+    infoContainer.style.width = '100%';
+    infoContainer.style.fontSize = '1rem';
+    infoContainer.style.margin = '0';
 
     for (const key of Object.keys(vehicleStatus)) {
       const statusContainer = document.createElement('div');
@@ -61,7 +66,7 @@ const countVehicleStatus = async function (): Promise<any> {
       infoContainer.insertAdjacentElement('beforeend', statusContainer);
     }
 
-    parent.insertAdjacentElement('afterend', infoContainer);
+    parent.insertAdjacentElement('beforeend', infoContainer);
   };
 
   const updateInfobar = function () {
