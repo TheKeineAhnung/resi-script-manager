@@ -103,25 +103,27 @@ const countVehicleStatus = async function (): Promise<any> {
   updateInfobar();
 
   socket.on('vehicleFMS', (vehicleFMSObject: VehicleFms) => {
-    for (let key = 1; key <= 8; key++) {
-      if (
-        vehicleStatus[key].userVehicleIDs.includes(
-          vehicleFMSObject.userVehicleID
-        )
-      ) {
-        const index = vehicleStatus[key].userVehicleIDs.indexOf(
-          vehicleFMSObject.userVehicleID
-        );
-        vehicleStatus[key].userVehicleIDs.splice(index, 1);
-        vehicleStatus[key].count--;
-        break;
+    if (vehicleFMSObject.userName === ReSi.userName) {
+      for (let key = 1; key <= 8; key++) {
+        if (
+          vehicleStatus[key].userVehicleIDs.includes(
+            vehicleFMSObject.userVehicleID
+          )
+        ) {
+          const index = vehicleStatus[key].userVehicleIDs.indexOf(
+            vehicleFMSObject.userVehicleID
+          );
+          vehicleStatus[key].userVehicleIDs.splice(index, 1);
+          vehicleStatus[key].count--;
+          break;
+        }
       }
+      vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
+        vehicleFMSObject.userVehicleID
+      );
+      vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
+      updateInfobar();
     }
-    vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
-      vehicleFMSObject.userVehicleID
-    );
-    vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
-    updateInfobar();
   });
 
   socket.on('vehicleBuy', (vehicleBuyObject: VehicleBuy) => {
