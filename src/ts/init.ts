@@ -12,12 +12,18 @@ import { Icon, icon, library } from '@fortawesome/fontawesome-svg-core';
 library.add(faJsSquare, faTimes);
 const jsSquare: Icon = icon(faJsSquare);
 const closeIcon: Icon = icon(faTimes);
-let server: string;
+let hostServer: string;
+let gameServer: string;
 
-if (process.env.NODE_ENV === 'development') {
-  server = 'http://localhost:8080';
+if (process.env.MODE === 'beta') {
+  gameServer = 'https://beta.rettungssimulator.online/';
+  hostServer = 'http://localhost:8080';
+} else if (process.env.MODE === 'development') {
+  gameServer = 'https://rettungssimulator.online/';
+  hostServer = 'http://localhost:8080';
 } else {
-  server = 'https://keineahnung.eu/resi-script-manager';
+  gameServer = 'https://rettungssimulator.online/';
+  hostServer = 'https://keineahnung.eu/resi-script-manager';
 }
 
 const loadSettingsFrame = async function (): Promise<void> {
@@ -113,23 +119,23 @@ const loadSettingsFrame = async function (): Promise<void> {
   });
   const script: HTMLScriptElement = document.createElement('script');
 
-  script.src = `${server}/js/svelte/settings.js`;
+  script.src = `${hostServer}/js/svelte/settings.js`;
   head.appendChild(script);
   const link: HTMLLinkElement = document.createElement('link');
 
   const userApi: User = await (await fetch('/api/user')).json();
 
   if (userApi.usesDarkMode) {
-    link.href = `${server}/theme/smui-dark.css`;
+    link.href = `${hostServer}/theme/smui-dark.css`;
   } else {
-    link.href = `${server}/theme/smui.css`;
+    link.href = `${hostServer}/theme/smui.css`;
   }
 
   link.rel = 'stylesheet';
   head.appendChild(link);
   const link2: HTMLLinkElement = document.createElement('link');
 
-  link2.href = `${server}/js/svelte/css/settings.css`;
+  link2.href = `${hostServer}/js/svelte/css/settings.css`;
   link2.rel = 'stylesheet';
   head.appendChild(link2);
 };
@@ -173,7 +179,7 @@ const createPageLink = function (): void {
 
     frame.setAttribute('data-source', 'scriptManager');
     if (
-      (frame.src === '' || frame.src === 'https://rettungssimulator.online/') &&
+      (frame.src === '' || frame.src === gameServer) &&
       !frame.contentWindow.document.querySelector('#scriptManagerSettings') &&
       frame.getAttribute('data-source') === 'scriptManager'
     ) {
@@ -209,15 +215,28 @@ window.addEventListener('load', async (): Promise<void> => {
     return;
   }
 
-  if (
-    !RegExp(
-      /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
-    ).test(window.location.href)
-  ) {
-    await loadScripts();
+  if (process.env.MODE === 'beta') {
+    if (
+      !RegExp(
+        /^https:\/\/(beta.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
+      ).test(window.location.href)
+    ) {
+      await loadScripts();
 
-    return;
+      return;
+    }
+  } else {
+    if (
+      !RegExp(
+        /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
+      ).test(window.location.href)
+    ) {
+      await loadScripts();
+
+      return;
+    }
   }
+
   sessionStorage.removeItem('scriptManagerActiveScripts');
   createPageLink();
   await checkConfig();
