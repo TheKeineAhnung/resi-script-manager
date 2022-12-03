@@ -28,7 +28,7 @@ jobs:
       - name: Gulp
         run: npm run gulp-build:prod
       - name: Rollup
-        run: npm run rollup-build
+        run: npm run rollup-build:prod
       - name: Theme
         run: npm run theme
       - name: Deploy
