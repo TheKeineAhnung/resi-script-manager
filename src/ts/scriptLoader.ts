@@ -24,7 +24,16 @@ const loadScripts = async function (): Promise<void> {
             const script = scripts[scriptName];
 
             for (let i = 0; i < elem.match.length; i++) {
-              const matchElem = elem.match[i];
+              let matchElem = elem.match[i];
+
+              if (process.env.MODE === 'beta') {
+                matchElem = matchElem
+                  .toString()
+                  .replace(
+                    'rettungssimulator.online',
+                    'beta.rettungssimulator.online'
+                  );
+              }
 
               const url = window.location.href;
 

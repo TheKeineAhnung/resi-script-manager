@@ -10,8 +10,14 @@ import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import yargs from 'yargs';
 
-const production = process.env.ROLLUP_WATCH;
+// eslint-disable-next-line no-undef
+const argv = yargs(process.argv.slice(2)).argv;
+
+const getMode = function () {
+  return argv.mode;
+};
 
 function getConfig(inputPath, outputPath, cssPath) {
   let config = {
@@ -26,7 +32,7 @@ function getConfig(inputPath, outputPath, cssPath) {
       svelte({
         compilerOptions: {
           // enable run-time checks when not in production
-          dev: !production
+          dev: getMode() === 'production' ? false : true
         },
         preprocess: autoPreprocess({
           postcss: {
@@ -53,15 +59,21 @@ function getConfig(inputPath, outputPath, cssPath) {
         dedupe: ['svelte']
       }),
       commonjs(),
-      typescript({ sourceMap: !production }),
+      typescript({ sourceMap: getMode() === 'production' ? false : true }),
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
-      production && terser(),
+      getMode() === 'production' && terser(),
 
       // set process.env.NODE_ENV to production or development
       injectProcessEnv({
-        NODE_ENV: !production ? 'production' : 'development'
+        NODE_ENV: getMode() === 'production' ? 'production' : 'development',
+        MODE:
+          getMode() === 'production'
+            ? 'production'
+            : getMode() === 'beta'
+            ? 'beta'
+            : 'development'
       })
     ],
     watch: {
