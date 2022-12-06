@@ -26,24 +26,29 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 
 ### Commands
 
-- `npm run rollup-build`: Builds the script manager.
 - `npm run gulp-build`: Builds the script manager.
 - `npm run gulp-build:prod`: Builds the script manager in production mode.
-- `npm run rollup-dev`: Builds the script manager for development.
+- `npm run gulp-build:beta`: Builds the script manager in beta mode.
 - `npm run gulp-dev`: Builds the script manager for development.
-- `npm run prepare`: Builds the theme.
+- `npm run gulp-dev:beta`: Builds the script manager in beta mode.
+- `npm run rollup-build`: Builds the script manager.
+- `npm run rollup-build:prod`: Builds the script manager in production mode.
+- `npm run rollup-build:beta`: Builds the script manager in beta mode.
+- `npm run rollup-dev`: Builds the script manager for development.
+- `npm run rollup-dev:beta`: Builds the script manager in beta node.
+- `npm run theme`: Builds the theme.
 - `npm run smui-theme-light`: Builds the light theme.
 - `npm run smui-theme-dark`: Builds the dark theme.
 - `npm run setup`: Prepares the script manager for development.
+- `npm run server`: Starts the development server.
 
 ### Development
 
 1. Run `npm run setup`
 1. Run `npm run gulp-dev`
 1. Run `npm run rollup-dev`
-1. Run `npm run prepare`
-1. Configurate your server to watch the build folder (For the best result use XAMPP)
-1. Start your server
+1. Run `npm run theme`
+1. Start the development server.
 1. Install the script manager in your browser with the code of [`init-test.user.js`](https://github.com/TheKeineAhnung/resi-script-manager/blob/main/init-test.user.js)
 1. Start developing
 
