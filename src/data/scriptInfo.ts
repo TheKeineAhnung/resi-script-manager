@@ -338,7 +338,21 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      showBelowAAO: {
+        type: 'string',
+        default: 'false',
+        description:
+          'Zeige die ausgewählten Fahrzeuge unterhalb der AAO (true/false)'
+      },
+      showDistance: {
+        type: 'string',
+        default: 'false',
+        description:
+          'Zeige die Entfernung der Fahrzeuge zum Einsatzort (true/false)'
+      }
+    }
   },
   {
     name: 'showOnlyLatestRadioMessage',
