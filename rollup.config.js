@@ -22,6 +22,7 @@ const getMode = function () {
 function getConfig(inputPath, outputPath, cssPath) {
   let config = {
     input: inputPath,
+
     output: {
       sourcemap: true,
       format: 'iife',
@@ -59,7 +60,10 @@ function getConfig(inputPath, outputPath, cssPath) {
         dedupe: ['svelte']
       }),
       commonjs(),
-      typescript({ sourceMap: getMode() === 'production' ? false : true }),
+      typescript({
+        sourceMap: getMode() === 'production' ? false : true,
+        tsconfig: './tsconfig.rollup.json'
+      }),
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify

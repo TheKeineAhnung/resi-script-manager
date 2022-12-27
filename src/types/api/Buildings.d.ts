@@ -3,7 +3,7 @@ interface Buildings {
   buildingName: string;
   buildingCategory: string;
   organisationID: number;
-  organisationName: string;
+  organisationName: 'Feuerwehr' | 'Rettungsdienst' | 'Polizei' | 'Leitstelle';
   defaultPersonal: number;
   defaultMuenzen: number;
   defaultMarken: number;
