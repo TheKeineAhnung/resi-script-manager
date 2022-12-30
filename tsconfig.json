@@ -16,7 +16,6 @@
     "isolatedModules": true,
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true
   },
   "include": [
     "./src/ts/**/*.ts",

@@ -15,8 +15,7 @@
     "target": "ES2019",
     "skipLibCheck": true,
     "useDefineForClassFields": true,
-    "isolatedModules": true,
-    "sourceMap": true
+    "isolatedModules": true
   },
   "include": ["./src/ts/**/*.ts", "./src/types/**/*.ts"],
   "exclude": ["./node_modules", "./build", "./src/ts/svelte/**/*.ts"],
