@@ -18,7 +18,6 @@
     faSave
   } from '@fortawesome/free-solid-svg-icons';
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
-  import Input from '@smui/textfield/Input.svelte';
   library.add(
     faTrash,
     faBan,
