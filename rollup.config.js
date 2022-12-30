@@ -8,7 +8,6 @@ import postcssPresetEnv from 'postcss-preset-env';
 import css from 'rollup-plugin-css-only';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
 import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import yargs from 'yargs';
 
