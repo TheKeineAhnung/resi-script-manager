@@ -34,7 +34,7 @@ function getConfig(inputPath, outputPath, cssPath) {
           dev: getMode() === 'production' ? false : true
         },
         onwarn: (warning, handler) => {
-          const { code, frame } = warning;
+          const { code } = warning;
           const ignoreCodes = ['css-unused-selector'];
           if (ignoreCodes.includes(code)) return;
 
