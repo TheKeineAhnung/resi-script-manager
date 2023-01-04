@@ -26,6 +26,8 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 
 ### Commands
 
+- `npm run build`: Creates a basic directory setup and builds the theme files.
+- `npm run dev`: Creates a basic directory setup and builds the theme files. Additionally a development server is started.
 - `npm run gulp-build`: Builds the script manager.
 - `npm run gulp-build:prod`: Builds the script manager in production mode.
 - `npm run gulp-build:beta`: Builds the script manager in beta mode.
@@ -41,15 +43,13 @@ Script manager for the [@Rettungssimulator](https://github.com/Rettungssimulator
 - `npm run theme`: Builds the theme.
 - `npm run smui-theme-light`: Builds the light theme.
 - `npm run smui-theme-dark`: Builds the dark theme.
-- `npm run server`: Starts the development server.
 
 ### Development
 
-1. Run `npm run setup`
+1. This project requires NodeJS (version >= 18.12.0) and NPM (version >= 9.2.0).
+1. Run `npm run dev`
 1. Run `npm run gulp-dev`
 1. Run `npm run rollup-dev`
-1. Run `npm run theme`
-1. Start the development server.
 1. Install the script manager in your browser with the code of [`init-test.user.js`](https://github.com/TheKeineAhnung/resi-script-manager/blob/main/init-test.user.js)
 1. Start developing
 
