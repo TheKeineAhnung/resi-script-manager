@@ -75,12 +75,8 @@
     "yargs": "17.3.0"
   },
   "scripts": {
-    "build": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='development' --cmd='build'",
-    "build:beta": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='beta' --cmd='build'",
-    "build:prod": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='production' --cmd='build'",
-    "dev": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='development' --cmd='dev'",
-    "dev:beta": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='beta' --cmd='dev'",
-    "dev:prod": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --mode='production' --cmd='dev'",
+    "build": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --cmd='build'",
+    "dev": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings build.ts --cmd='dev'",
     "gulp-build": "gulp build --mode='development'",
     "gulp-build:prod": "gulp build --mode='production'",
     "gulp-build:beta": "gulp build --mode='beta'",
@@ -94,7 +90,6 @@
     "rollup-dev": "rollup -c -w rollup.config.js --mode='development'",
     "rollup-dev:beta": "rollup -c -w rollup.config.js --mode='beta'",
     "rollup-dev:prod": "rollup -c -w rollup.config.js --mode='production'",
-    "server": "node --loader=ts-node/esm --experimental-specifier-resolution=node --no-warnings server.ts",
     "smui-theme-dark": "smui-theme compile build/theme/smui-dark.css -i src/theme/dark",
     "smui-theme-light": "smui-theme compile build/theme/smui.css -i src/theme",
     "update": "npx npm-check -u"
