@@ -1,103 +1,71 @@
-import { spawn, spawnSync, execSync } from 'child_process';
-import { existsSync, mkdirSync } from 'fs';
+import { spawnSync } from 'child_process';
+import { existsSync, mkdirSync, readFile } from 'fs';
 import { info } from 'fancy-log';
+import { createServer } from 'http';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const isWin = process.platform === 'win32';
 
-// //! Important to use, because only `npm` & `npx` doesn't work on windows sometimes
-// const npm = isWin ? 'npm.cmd' : 'npm';
-const npx = isWin ? 'npx.cmd' : 'npx';
+//! Important to use, because only `npm` & `npx` doesn't work on windows sometimes
+const npm = isWin ? 'npm.cmd' : 'npm';
 
-// const argv = yargs(hideBin(process.argv))
-//   .options({
-//     mode: { type: 'string' },
-//     cmd: { type: 'string' }
-//   })
-//   .parseSync();
+const argv = yargs(hideBin(process.argv))
+  .options({
+    cmd: { type: 'string' }
+  })
+  .parseSync();
 
-// const getMode = function () {
-//   return argv.mode ?? 'production';
-// };
+const getCmd = function () {
+  return argv.cmd ?? 'build';
+};
 
-// const getCmd = function () {
-//   return argv.cmd ?? 'build';
-// };
+interface Command {
+  command: string;
+  args: string[];
+}
 
-// interface Command {
-//   command: string;
-//   args: string[];
-// }
+const onetimeCommands: Command[] = [
+  {
+    command: npm,
+    args: [`run`, `theme`]
+  }
+];
 
-// const onetimeCommands: Command[] = [
-//   {
-//     command: npm,
-//     args: [`run`, `theme`]
-//   }
-// ];
+// Set up directories if they don't exist
+if (!existsSync('build')) {
+  mkdirSync('build');
+  info('Created build directory');
+}
 
-// let longtimeCommands: Command[] = [
-//   {
-//     command: npx,
-//     args: ['gulp', getCmd(), `--mode='${getMode()}'`]
-//   },
-//   {
-//     command: npx,
-//     args: [
-//       `rollup`,
-//       `-c`,
-//       `rollup.config.js`,
-//       getCmd() === 'dev' ? '-w' : '',
-//       `--mode='${getMode()}'`
-//     ]
-//   }
-// ];
+if (!existsSync('build/theme')) {
+  mkdirSync('build/theme');
+  info('Created build/theme directory');
+}
 
-const out = spawn(npx, [
-  'rollup',
-  '-c',
-  'rollup.config.js',
-  '--mode',
-  '"development"'
-]);
-
-out.stdout.on('data', output => {
-  console.log(output.toString());
+onetimeCommands.forEach(command => {
+  info('Starting command');
+  const stdout = spawnSync(command.command, command.args);
+  console.log(stdout.output.toString());
 });
 
-out.on('error', e => {
-  console.log(e);
-});
+if (getCmd() === 'dev') {
+  createServer((req, res) => {
+    info(req.url);
+    readFile(__dirname + '/build' + req.url, (err, data) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      if (err) {
+        res.writeHead(404);
+        res.end(JSON.stringify(err));
+        return;
+      }
+      res.writeHead(200);
+      res.end(data);
+    });
+  }).listen(8080);
 
-out.stdout.on('error', e => {
-  console.log(e);
-});
-
-// // Set up directories if they don't exist
-// if (!existsSync('build')) {
-//   mkdirSync('build');
-//   info('Created build directory');
-// }
-
-// if (!existsSync('build/theme')) {
-//   mkdirSync('build/theme');
-//   info('Created build/theme directory');
-// }
-
-// onetimeCommands.forEach(command => {
-//   info('Starting command');
-//   const stdout = spawnSync(command.command, command.args);
-//   console.log(stdout.output.toString());
-// });
-
-// // longtimeCommands.forEach(command => {
-// //   const stdout = spawn(command.command, command.args);
-// //   stdout.stdout.on('data', output => {
-// //     console.log(output.toString());
-// //   });
-// // });
-
-// for (const command of longtimeCommands) {
-//   const stdout = spawn(command.command, command.args);
-// }
+  info('Started server');
+}
