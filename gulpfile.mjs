@@ -21,8 +21,6 @@ const getMode = function () {
   return argv.mode;
 };
 
-console.log(getMode());
-
 const assets = () =>
   gulp
     .src(`${src}/assets/**/*.*`)
