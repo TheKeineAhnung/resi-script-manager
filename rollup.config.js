@@ -89,10 +89,5 @@ export default [
     'src/ts/svelte/settings.ts',
     'build/js/svelte/settings.js',
     'css/settings.css'
-  ),
-  getConfig(
-    'src/scripts/renameManager/renameManager.svelte.ts',
-    'build/scripts/renameManager/renameManager.js',
-    'css/renameManager.css'
   )
 ];

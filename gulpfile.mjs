@@ -28,8 +28,7 @@ const assets = () =>
     .src(`${src}/assets/**/*.*`)
     .pipe(plumber())
     .pipe(gulp.dest(`${dist}/assets`))
-    .pipe(gulp.dest(`${dist}/js/svelte/assets`))
-    .pipe(gulp.dest(`${dist}/scripts/renameManager/assets`));
+    .pipe(gulp.dest(`${dist}/js/svelte/assets`));
 
 const htaccess = () =>
   gulp

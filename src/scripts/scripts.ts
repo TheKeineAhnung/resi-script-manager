@@ -19,7 +19,6 @@ import { missionCounter } from './missionCounter/missionCounter';
 import { missionHelper } from './missionHelper/missionHelper';
 import { missionTime } from './missionTime/missionTime';
 import { multipleStaffAssignment } from './multipleStaffAssignment/multipleStaffAssignment';
-import { renameManager } from './renameManager/renameManager';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
@@ -47,7 +46,6 @@ export {
   missionHelper,
   missionTime,
   multipleStaffAssignment,
-  renameManager,
   showOnlyLatestRadioMessage,
   userBuildings,
   userVehicles,
