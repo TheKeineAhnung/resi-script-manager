@@ -33,6 +33,13 @@ function getConfig(inputPath, outputPath, cssPath) {
           // enable run-time checks when not in production
           dev: getMode() === 'production' ? false : true
         },
+        onwarn: (warning, handler) => {
+          const { code, frame } = warning;
+          const ignoreCodes = ['css-unused-selector'];
+          if (ignoreCodes.includes(code)) return;
+
+          handler(warning);
+        },
         preprocess: autoPreprocess({
           postcss: {
             plugins: [

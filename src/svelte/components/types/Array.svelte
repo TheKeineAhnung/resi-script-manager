@@ -151,7 +151,9 @@
           <span
             class="color-danger transition-duration-250 cursor-pointer"
             on:click={() => removeFromConfig(inputArrayElement)}
-            >{@html trashIcon}</span
+            on:keyup={e => {
+              e.code === 'Enter' ? removeFromConfig(inputArrayElement) : '';
+            }}>{@html trashIcon}</span
           >
         </li>
       {/each}

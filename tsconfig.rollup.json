@@ -6,7 +6,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "importHelpers": true,
-    "lib": ["esnext", "DOM"],
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
     "module": "ES2015",
     "noImplicitOverride": true,
     "outDir": "./build",
@@ -15,7 +15,12 @@
     "target": "ES2019",
     "skipLibCheck": true,
     "useDefineForClassFields": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "types": [
+      "./node_modules/@types/jquery",
+      "./node_modules/@types/node",
+      "./node_modules/@types/leaflet"
+    ]
   },
   "include": ["./src/ts/**/*.ts", "./src/types/**/*.ts"],
   "exclude": ["./node_modules", "./build", "./src/ts/svelte/**/*.ts"],

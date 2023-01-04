@@ -33,7 +33,7 @@ const missionCounter = async function (): Promise<any> {
     JSON.parse(localStorage.aUserBuildings).lastUpdate <
       new Date().getTime() - 5 * 1000 * 60
   )
-    await $.getJSON('/api/userBuildings').done(data =>
+    await $.getJSON('/api/userBuildings').done((data: unknown) =>
       localStorage.setItem(
         'aUserBuildings',
         JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
@@ -91,7 +91,7 @@ const missionCounter = async function (): Promise<any> {
   });
 
   socket.on('departmentBuy', async () => {
-    await $.getJSON('/api/userBuildings').done(data =>
+    await $.getJSON('/api/userBuildings').done((data: unknown) =>
       localStorage.setItem(
         'aUserBuildings',
         JSON.stringify({ lastUpdate: new Date().getTime(), value: data })

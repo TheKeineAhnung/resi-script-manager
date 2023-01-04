@@ -34,6 +34,17 @@
               nodeRef.parentNode.removeChild(nodeRef);
             }
           }}
+          on:keyup={e => {
+            if (e.code === 'Enter') {
+              if (
+                nodeRef !== undefined &&
+                nodeRef !== null &&
+                nodeRef.parentNode !== null
+              ) {
+                nodeRef.parentNode.removeChild(nodeRef);
+              }
+            }
+          }}
         >
           {@html dismissIcon}
         </span>

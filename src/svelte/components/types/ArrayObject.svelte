@@ -221,7 +221,11 @@
                     <span
                       class="color-danger transition-duration-250 cursor-pointer"
                       on:click={() => removeFromConfig(inputArrayItem)}
-                      >{@html trashIcon}</span
+                      on:keyup={e => {
+                        e.code === 'Enter'
+                          ? removeFromConfig(inputArrayItem)
+                          : '';
+                      }}>{@html trashIcon}</span
                     >
                   </Cell>
                 </Row>
