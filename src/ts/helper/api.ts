@@ -34,9 +34,9 @@ const apiCacheStatus = function (
 
 const apiGet = async function (
   api: string,
-  params: object,
   storageType: BrowserStorage,
-  cache = true
+  cache = true,
+  params?: object
 ): Promise<unknown> {
   const storage = storageType === 'local' ? localStorage : sessionStorage;
   const cacheStatus = apiCacheStatus(api, storageType);
