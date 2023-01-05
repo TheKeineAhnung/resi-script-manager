@@ -2,7 +2,6 @@ import axios from 'axios';
 import { firstLetterUppercase } from './general';
 import { getGameServer } from './config';
 
-type BrowserStorage = 'local' | 'session';
 type ApiCacheStatus = 'up-to-date' | 'outdated' | 'non-existent';
 
 const getCacheKey = function (api: string): string {
@@ -11,9 +10,8 @@ const getCacheKey = function (api: string): string {
 
 const apiCacheStatus = function (
   api: string,
-  storageType: BrowserStorage
+  storage: Storage
 ): ApiCacheStatus {
-  const storage = storageType === 'local' ? localStorage : sessionStorage;
   const cacheKey = getCacheKey(api);
   if (
     storage.getItem(cacheKey) &&
@@ -34,12 +32,11 @@ const apiCacheStatus = function (
 
 const apiGet = async function (
   api: string,
-  storageType: BrowserStorage,
+  storage: Storage,
   cache = true,
   params?: object
 ): Promise<unknown> {
-  const storage = storageType === 'local' ? localStorage : sessionStorage;
-  const cacheStatus = apiCacheStatus(api, storageType);
+  const cacheStatus = apiCacheStatus(api, storage);
   const cacheKey = getCacheKey(api);
   if (cacheStatus === 'up-to-date' && cache) {
     return JSON.parse(storage.getItem(cacheKey) ?? '{}').value;
