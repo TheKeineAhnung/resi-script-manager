@@ -62,4 +62,16 @@ const apiGet = async function (
   return reqData;
 };
 
-export { apiGet };
+const apiPost = async function (api: string, data: object): Promise<unknown> {
+  const reqData = (await (
+    await axios({
+      method: 'post',
+      url: api,
+      data,
+      baseURL: `${getGameServer()}api/`
+    })
+  ).data) as unknown;
+  return reqData;
+};
+
+export { apiGet, apiPost };
