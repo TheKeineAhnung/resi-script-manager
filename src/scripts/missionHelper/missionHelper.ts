@@ -12,7 +12,7 @@ const missionHelper = async function (): Promise<void> {
     JSON.parse(sessionStorage.aVehicleCategories).lastUpdate <
       new Date().getTime() - 60 * 1000 * 60
   ) {
-    await $.getJSON('/api/vehicleCategories').done(data =>
+    await $.getJSON('/api/vehicleCategories').done((data: unknown) =>
       sessionStorage.setItem(
         'aVehicleCategories',
         JSON.stringify({ lastUpdate: new Date().getTime(), value: data })

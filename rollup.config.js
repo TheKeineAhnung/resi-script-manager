@@ -7,11 +7,16 @@ import cssnano from 'cssnano';
 import postcssPresetEnv from 'postcss-preset-env';
 import css from 'rollup-plugin-css-only';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
-import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import yargs from 'yargs';
 
-const production = process.env.ROLLUP_WATCH;
+// eslint-disable-next-line no-undef
+const argv = yargs(process.argv.slice(2)).argv;
+
+const getMode = function () {
+  return argv.mode;
+};
 
 function getConfig(inputPath, outputPath, cssPath) {
   let config = {
@@ -26,7 +31,14 @@ function getConfig(inputPath, outputPath, cssPath) {
       svelte({
         compilerOptions: {
           // enable run-time checks when not in production
-          dev: !production
+          dev: getMode() === 'production' ? false : true
+        },
+        onwarn: (warning, handler) => {
+          const { code } = warning;
+          const ignoreCodes = ['css-unused-selector'];
+          if (ignoreCodes.includes(code)) return;
+
+          handler(warning);
         },
         preprocess: autoPreprocess({
           postcss: {
@@ -43,25 +55,27 @@ function getConfig(inputPath, outputPath, cssPath) {
         output: cssPath
       }),
 
-      // If you have external dependencies installed from
-      // npm, you'll most likely need these plugins. In
-      // some cases you'll need additional configuration -
-      // consult the documentation for details:
-      // https://github.com/rollup/plugins/tree/master/packages/commonjs
       resolve({
         browser: true,
         dedupe: ['svelte']
       }),
       commonjs(),
-      typescript({ sourceMap: !production }),
+      typescript({
+        sourceMap: getMode() === 'production' ? false : true,
+        tsconfig: './tsconfig.rollup.json'
+      }),
 
-      // If we're building for production (npm run build
-      // instead of npm run dev), minify
-      production && terser(),
+      getMode() === 'production' && terser(),
 
       // set process.env.NODE_ENV to production or development
       injectProcessEnv({
-        NODE_ENV: !production ? 'production' : 'development'
+        NODE_ENV: getMode() === 'production' ? 'production' : 'development',
+        MODE:
+          getMode() === 'production'
+            ? 'production'
+            : getMode() === 'beta'
+            ? 'beta'
+            : 'development'
       })
     ],
     watch: {

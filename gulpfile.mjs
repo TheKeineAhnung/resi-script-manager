@@ -5,7 +5,8 @@ import gulp from 'gulp';
 import log from 'fancy-log';
 import path from 'path';
 import plumber from 'gulp-plumber';
-import webpack from 'webpack-stream';
+import webpack from 'webpack';
+import webpackStream from 'webpack-stream';
 import yargs from 'yargs';
 
 // Important variables
@@ -16,8 +17,8 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 // eslint-disable-next-line no-undef
 const argv = yargs(process.argv.slice(2)).argv;
 
-const isProd = function () {
-  return Boolean(argv.production);
+const getMode = function () {
+  return argv.mode;
 };
 
 const assets = () =>
@@ -26,6 +27,7 @@ const assets = () =>
     .pipe(plumber())
     .pipe(gulp.dest(`${dist}/assets`))
     .pipe(gulp.dest(`${dist}/js/svelte/assets`));
+
 const htaccess = () =>
   gulp
     .src(`${src}/.htaccess`)
@@ -37,7 +39,9 @@ const script = () =>
     .src([
       `${src}/ts/**/*.ts`,
       `!${src}/ts/svelte/**/*.*`,
-      `${src}/scripts/**/*.ts`
+      `${src}/scripts/**/*.ts`,
+      `!${src}/scripts/**/*.svelte.ts`,
+      `!${src}/scripts/**/*.svelte`
     ])
     .pipe(
       plumber(error => {
@@ -45,8 +49,8 @@ const script = () =>
       })
     )
     .pipe(
-      webpack({
-        mode: isProd() ? 'production' : 'development',
+      webpackStream({
+        mode: getMode() === 'production' ? 'production' : 'development',
         output: {
           filename: 'bundle.js',
           path: path.resolve(dirname, `${dist}/js`)
@@ -62,7 +66,17 @@ const script = () =>
               exclude: '/node_modules/'
             }
           ]
-        }
+        },
+        plugins: [
+          new webpack.DefinePlugin({
+            'process.env.MODE':
+              getMode() === 'production'
+                ? JSON.stringify('production')
+                : getMode() === 'beta'
+                ? JSON.stringify('beta')
+                : JSON.stringify('development')
+          })
+        ]
       })
     )
     .pipe(babel())

@@ -15,8 +15,7 @@
     "useDefineForClassFields": true,
     "isolatedModules": true,
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/ts/**/*.ts",

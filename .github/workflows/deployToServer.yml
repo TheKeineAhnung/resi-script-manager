@@ -20,17 +20,17 @@ jobs:
       - name: Install node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
       - name: npm install
         run: npm install --save-dev
       - name: npm fund
         run: npm fund
+      - name: Basic setup and theme
+        run: npm run build
       - name: Gulp
         run: npm run gulp-build:prod
       - name: Rollup
-        run: npm run rollup-build
-      - name: Theme
-        run: npm run theme
+        run: npm run rollup-build:prod
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:

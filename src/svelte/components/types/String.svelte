@@ -145,7 +145,10 @@
           {/if}
           <span
             class="color-danger transition-duration-250 cursor-pointer"
-            on:click={removeFromConfig}>{@html trashIcon}</span
+            on:click={removeFromConfig}
+            on:keyup={e => {
+              e.code === 'Enter' ? removeFromConfig() : '';
+            }}>{@html trashIcon}</span
           >
         {:else}
           Keine Konfiguration gefunden

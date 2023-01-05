@@ -18,7 +18,6 @@
     faSave
   } from '@fortawesome/free-solid-svg-icons';
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
-  import Input from '@smui/textfield/Input.svelte';
   library.add(
     faTrash,
     faBan,
@@ -222,7 +221,11 @@
                     <span
                       class="color-danger transition-duration-250 cursor-pointer"
                       on:click={() => removeFromConfig(inputArrayItem)}
-                      >{@html trashIcon}</span
+                      on:keyup={e => {
+                        e.code === 'Enter'
+                          ? removeFromConfig(inputArrayItem)
+                          : '';
+                      }}>{@html trashIcon}</span
                     >
                   </Cell>
                 </Row>
