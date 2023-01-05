@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { firstLetterUppercase } from './general';
+import { getGameServer } from './config';
 
 type BrowserStorage = 'local' | 'session';
 type ApiCacheStatus = 'up-to-date' | 'outdated' | 'non-existent';
@@ -46,8 +47,9 @@ const apiGet = async function (
   const reqData = (await (
     await axios({
       method: 'get',
-      url: `api/${api}`,
-      params
+      url: api,
+      params,
+      baseURL: `${getGameServer()}api/`
     })
   ).data) as unknown;
   localStorage.setItem(
