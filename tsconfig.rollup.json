@@ -15,12 +15,7 @@
     "target": "ES2019",
     "skipLibCheck": true,
     "useDefineForClassFields": true,
-    "isolatedModules": true,
-    "types": [
-      "./node_modules/@types/jquery",
-      "./node_modules/@types/node",
-      "./node_modules/@types/leaflet"
-    ]
+    "isolatedModules": true
   },
   "include": ["./src/ts/**/*.ts", "./src/types/**/*.ts"],
   "exclude": ["./node_modules", "./build", "./src/ts/svelte/**/*.ts"],
