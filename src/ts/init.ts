@@ -9,6 +9,7 @@ import { User } from '../types/api/User';
 import { getConfig, setConfigItem, updateConfig } from './config';
 import { Icon, icon, library } from '@fortawesome/fontawesome-svg-core';
 import { getGameServer, getHostServer } from './helper/config';
+import { apiGet } from './helper/api';
 
 library.add(faJsSquare, faTimes);
 const jsSquare: Icon = icon(faJsSquare);
@@ -113,7 +114,11 @@ const loadSettingsFrame = async function (): Promise<void> {
   head.appendChild(script);
   const link: HTMLLinkElement = document.createElement('link');
 
-  const userApi: User = await (await fetch('/api/user')).json();
+  const userApi = (await apiGet(
+    'user',
+    sessionStorage,
+    false
+  )) as unknown as User;
 
   if (userApi.usesDarkMode) {
     link.href = `${hostServer}/theme/smui-dark.css`;

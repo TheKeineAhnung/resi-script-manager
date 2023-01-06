@@ -1,6 +1,7 @@
 import { UserBuildings } from '../../types/api/UserBuildings';
 import { VehicleFms } from '../../types/socket/VehicleFms';
 import { variableIsNull, variableIsUndefined } from '../../ts/errors/console';
+import { apiGet } from '../../ts/helper/api';
 
 const alarmfax = async function (): Promise<any> {
   if (!localStorage.getItem('alarmfaxInfo')) {
@@ -27,23 +28,15 @@ const alarmfax = async function (): Promise<any> {
   >;
 
   if (!sessionStorage.getItem('alarmfaxInfoBuildingData')) {
-    // eslint-disable-next-line no-undef
-    await $.ajax({
-      url: `/api/userBuildings`,
-      dataType: 'json',
-      type: 'GET',
-      success(res: UserBuildings[]): void {
-        const data: UserBuildingData = {};
-
-        for (let i = 0; i < res.length; i++) {
-          data[res[i].userBuildingID] = res[i].userBuildingName;
-        }
-        sessionStorage.setItem(
-          'alarmfaxInfoBuildingData',
-          JSON.stringify(data)
-        );
-      }
+    const apiData = (await apiGet(
+      'userBuildings',
+      localStorage
+    )) as unknown as UserBuildings[];
+    const data: UserBuildingData = {};
+    apiData.forEach(e => {
+      data[e.userBuildingID] = e.userBuildingName;
     });
+    sessionStorage.setItem('alarmfaxInfoBuildingData', JSON.stringify(data));
   }
 
   const card = function (): void {
