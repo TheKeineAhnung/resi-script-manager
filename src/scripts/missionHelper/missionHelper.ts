@@ -75,13 +75,10 @@ const missionHelper = async function (): Promise<void> {
   style.innerText =
     '.card-headline.card-headline-info{background-color:#2196f3;color:#fff}.card';
   document.head.appendChild(style);
-  const missionID = document
-    .querySelector('.detail-title')
-    ?.getAttribute('missionid');
-  const mission = apiGet('missions', localStorage, true, {
-    id: missionID
-  }) as unknown as Mission;
-  showPanel(mission);
+  const missionID =
+    document.querySelector('.detail-title')?.getAttribute('missionid') ?? '0';
+  const missions = apiGet('missions', localStorage) as unknown as Mission[];
+  showPanel(missions[parseInt(missionID)]);
 
   function compare(a: string, b: string): number {
     const aVal = sortBy[a as never];
