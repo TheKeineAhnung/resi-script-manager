@@ -34,7 +34,7 @@ Also feel free to propose changes on this document in a pull request or issue.
 
 ## **Code of Conduct**
 
-The project and everyone in it is governed by the [Code of conduct](https://github.com/TheKeineAhnung/resi-script-manager/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this. Please report unacceptable behavior to kontakt@keineahnung.eu.
+The project and everyone in it is governed by the [Code of conduct](https://github.com/TheKeineAhnung/resi-script-manager/blob/dev/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this. Please report unacceptable behavior to kontakt@keineahnung.eu.
 
 ## **I just have a question**
 
@@ -113,7 +113,7 @@ When you are unshure where you should start? You can start with `beginner` or `h
    3.1. When your pull request isn´t for an issue or the issue has no milestone label, open the pull request to the branch for the next version.
 
 4. After submitting your pull request, verifiy that all status checks are passing
-<details><summary>What if the status checks are failing</summary>If a status check fails and you believe that this is a mistake, please leace a comment on the pull request explaining why you beliebe the failure is a mistake. A maintainer will re-run the status checks for you. When the status check fails again you must check your contribution.</details>
+<details><summary>What if the status checks are failing</summary>If a status check fails and you believe that this is a mistake, please leave a comment on the pull request explaining why you believe the failure is a mistake. A maintainer will re-run the status checks for you. When the status check fails again you must check your contribution.</details>
 
 ## **Styleguides**
 
