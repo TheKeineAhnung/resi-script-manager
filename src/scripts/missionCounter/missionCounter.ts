@@ -1,4 +1,5 @@
 import { UserBuildings } from '../../types/api/UserBuildings';
+import { apiGet } from '../../ts/helper/api';
 
 const missionCounter = async function (): Promise<any> {
   /*
@@ -28,20 +29,11 @@ const missionCounter = async function (): Promise<any> {
       sharedMissions.length.toString();
   }
 
-  if (
-    !localStorage.aUserBuildings ||
-    JSON.parse(localStorage.aUserBuildings).lastUpdate <
-      new Date().getTime() - 5 * 1000 * 60
-  )
-    await $.getJSON('/api/userBuildings').done((data: unknown) =>
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
-      )
-    );
-  const aUserBuildings: Array<UserBuildings> = JSON.parse(
-    localStorage.aUserBuildings
-  ).value;
+  const aUserBuildings = (await apiGet(
+    'userBuildings',
+    localStorage
+  )) as unknown as UserBuildings[];
+
   const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.05 * x) - 4;
   let dep = aUserBuildings.filter(x =>
     GENERATING_BUILDING_IDS.includes(x.buildingType)
@@ -91,14 +83,11 @@ const missionCounter = async function (): Promise<any> {
   });
 
   socket.on('departmentBuy', async () => {
-    await $.getJSON('/api/userBuildings').done((data: unknown) =>
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
-      )
-    );
-    const aUserBuildings = JSON.parse(localStorage.aUserBuildings)
-      .value as Array<UserBuildings>;
+    const aUserBuildings = (await apiGet(
+      'userBuildings',
+      localStorage,
+      false
+    )) as unknown as UserBuildings[];
     dep = aUserBuildings.filter(x =>
       GENERATING_BUILDING_IDS.includes(x.buildingType)
     );

@@ -97,7 +97,12 @@ const selectedVehicles = async function (): Promise<void> {
       }</td><td>${
         (vehicle.querySelector('.vehicle-department') as HTMLElement)?.innerText
       }</td>${
-        showDistanceSetting ? '<td>' + (vehicle.querySelector('.vehicle-distance') as HTMLElement)?.innerText + '</td>' : ''
+        showDistanceSetting
+          ? '<td>' +
+            (vehicle.querySelector('.vehicle-distance') as HTMLElement)
+              ?.innerText +
+            '</td>'
+          : ''
       }`;
       table?.appendChild(tr);
     });

@@ -7,6 +7,7 @@ import {
 import type { UserVehicles } from '../../types/api/UserVehicles';
 import type { VehicleBuy } from '../../types/socket/VehicleBuy';
 import type { VehicleFms } from '../../types/socket/VehicleFms';
+import { apiGet } from '../../ts/helper/api';
 
 const countVehicleStatus = async function (): Promise<any> {
   let vehicleStatus: Record<
@@ -24,7 +25,11 @@ const countVehicleStatus = async function (): Promise<any> {
   };
 
   const initCounting = async function () {
-    const aVehicles: UserVehicles[] = await $.getJSON('/api/userVehicles');
+    const aVehicles: UserVehicles[] = (await apiGet(
+      'userVehicles',
+      sessionStorage,
+      false
+    )) as unknown as UserVehicles[];
 
     aVehicles.forEach(vehicle => {
       vehicleStatus[vehicle.fms].count++;

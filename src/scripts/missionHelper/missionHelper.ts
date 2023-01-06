@@ -1,4 +1,5 @@
 import { Mission } from '../../types/api/Mission';
+import { apiGet } from '../../ts/helper/api';
 
 const missionHelper = async function (): Promise<void> {
   //  * Copyright (c) 2022 by Ron31
@@ -7,21 +8,10 @@ const missionHelper = async function (): Promise<void> {
   //  * Script Version: 1.4.0
   //  * Last Update: 2022-07-16
 
-  if (
-    !sessionStorage.aVehicleCategories ||
-    JSON.parse(sessionStorage.aVehicleCategories).lastUpdate <
-      new Date().getTime() - 60 * 1000 * 60
-  ) {
-    await $.getJSON('/api/vehicleCategories').done((data: unknown) =>
-      sessionStorage.setItem(
-        'aVehicleCategories',
-        JSON.stringify({ lastUpdate: new Date().getTime(), value: data })
-      )
-    );
-  }
-  const aVehicleCategories = JSON.parse(
-    sessionStorage.aVehicleCategories
-  ).value;
+  const aVehicleCategories = (await apiGet(
+    'vehicleCategories',
+    sessionStorage
+  )) as any;
 
   const sortBy = {
     tlf: 0,
@@ -88,17 +78,10 @@ const missionHelper = async function (): Promise<void> {
   const missionID = document
     .querySelector('.detail-title')
     ?.getAttribute('missionid');
-  await $.ajax({
-    url: '/api/missions',
-    dataType: 'json',
-    type: 'GET',
-    data: {
-      id: missionID
-    },
-    success: function (result: Mission) {
-      showPanel(result);
-    }
-  });
+  const mission = apiGet('missions', localStorage, true, {
+    id: missionID
+  }) as unknown as Mission;
+  showPanel(mission);
 
   function compare(a: string, b: string): number {
     const aVal = sortBy[a as never];
