@@ -2,7 +2,7 @@
 
 ### Struktur
 
-Innerhalb des Ordners einer Sprache gibt es verschiedene Ordner für verschiedene Teile der Dokumentation. Im `code` Ordner liegt jegliche Dokumentation zum Code aus dem `src` Ordner. Die Ordnerstruktur sieht einen Aufbau wie im `src` Ordner vor. Jede Datei kriegt ebenfalls einen eigenen Ordner, in welchem dann jede Funktion in einer eigenen Markdown Datei dokumentiert werden sollte. Der `docs` Ordner innerhalb einer Sprache gibt Informationen zur Dokumentation und der `template` Ordner enthält die zu nutzenden Vorlagen für die Dokumentation.
+Innerhalb des Ordners einer Sprache gibt es verschiedene Ordner für verschiedene Teile der Dokumentation. Im `code` Ordner liegt jegliche Dokumentation zum Code aus dem `src` Ordner. Die Ordnerstruktur sieht einen Aufbau wie im `src` Ordner vor. Jede Datei kriegt ebenfalls einen eigenen Ordner, in welchem dann jede Funktion in einer eigenen Markdown Datei dokumentiert werden sollte. Der `docs` Ordner innerhalb einer Sprache gibt Informationen zur Dokumentation und der `template` Ordner enthält die zu nutzenden Vorlagen für die Dokumentation. Der `scripts` Ordner enthält Dokumentationen für Skripte, die nicht den Code betreffen, wie zum Beispiel das ergänzen von neuen Skripten.
 
 ### Vorlage
 
