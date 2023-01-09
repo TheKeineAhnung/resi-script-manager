@@ -1,4 +1,4 @@
-## Commands
+## Befehle
 
 - `npm run build`: Aufbau der benötigten Ordner im `build` Ordner und bauen der Svelte Material UI CSS Dateien.
 - `npm run dev`: Aufbau der benötigten Ordner im `build` Ordner und bauen der Svelte Material UI CSS Dateien. Desweiteren wird ein Entwicklungsserver gestartet.
