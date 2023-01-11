@@ -16,6 +16,7 @@
   - Standardwert:
 
 - data
+
   - Typ: `object`
   - Funktion: Erwartet die Daten für die API Anfrage
   - Optional: `Nein`

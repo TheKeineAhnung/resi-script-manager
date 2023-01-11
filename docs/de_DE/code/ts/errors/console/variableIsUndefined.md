@@ -16,6 +16,7 @@
   - Standardwert:
 
 - fileName
+
   - Typ: `string`
   - Funktion: Angeben des Dateinamens, in welchem die Variable genutzt wird
   - Optional: `Nein`

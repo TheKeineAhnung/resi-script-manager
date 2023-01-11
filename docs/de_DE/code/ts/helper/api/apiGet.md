@@ -30,6 +30,7 @@
   - Standardwert: `true`
 
 - params
+
   - Typ: `object`
   - Funktion: Erwartet die Parameter für die API Anfrage
   - Optional: `Ja`

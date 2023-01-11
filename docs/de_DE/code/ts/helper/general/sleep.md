@@ -9,6 +9,7 @@
 ### Funktionsparameter
 
 - ms
+
   - Typ: `number`
   - Funktion: Zeit in Milisekunden, die gewartet werden soll
   - Optional: `Nein`
