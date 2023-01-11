@@ -9,6 +9,7 @@
 ### Funktionsparameter
 
 - Name
+
   - Typ: `Welcher Datentype wird erwartet`
   - Funktion: Welche Daten werden erwartet
   - Optional: `Ja/Nein`
