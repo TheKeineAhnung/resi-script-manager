@@ -2,7 +2,7 @@
 
 ### Generelle Informationen
 
-- Funktion: Ändern des ersten Buchstaben eines strings zu einem Großbuchstaben.
+- Funktion: Ändern des ersten Buchstaben eines strings zu einem Großbuchstaben
 - Pfad: `./src/ts/helper/general`
 - Asynchrone Funktion: `Nein`
 

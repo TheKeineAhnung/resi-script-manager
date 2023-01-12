@@ -2,8 +2,8 @@
 
 ### Generelle Informationen
 
-- Funktion: Ausführen eines POST requests an eine API vom ReSi.
-- Pfad: `./src/ts/helper/api.ts`.
+- Funktion: Ausführen eines POST requests an eine API vom ReSi
+- Pfad: `./src/ts/helper/api.ts`
 - Asynchrone Funktion: `Ja`
 
 ### Funktionsparameter

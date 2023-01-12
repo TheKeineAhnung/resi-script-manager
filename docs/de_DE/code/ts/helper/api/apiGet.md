@@ -2,8 +2,8 @@
 
 ### Generelle Informationen
 
-- Funktion: Ausführen eines GET requests an eine API vom ReSi und wenn nötig caching der API.
-- Pfad: `./src/ts/helper/api.ts`.
+- Funktion: Ausführen eines GET requests an eine API vom ReSi und wenn nötig caching der API
+- Pfad: `./src/ts/helper/api.ts`
 - Asynchrone Funktion: `Ja`
 
 ### Funktionsparameter
