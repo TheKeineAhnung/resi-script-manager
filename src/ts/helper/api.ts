@@ -49,7 +49,7 @@ const apiGet = async function (
       baseURL: `${getGameServer()}api/`
     })
   ).data) as unknown;
-  localStorage.setItem(
+  storage.setItem(
     cacheKey,
     JSON.stringify({
       lastUpdate: new Date().getTime(),
@@ -60,12 +60,20 @@ const apiGet = async function (
 };
 
 const apiPost = async function (api: string, data: object): Promise<unknown> {
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(data)) {
+    formData.append(key, value);
+  }
+
   const reqData = (await (
     await axios({
       method: 'post',
       url: api,
-      data,
-      baseURL: `${getGameServer()}api/`
+      data: formData,
+      baseURL: `${getGameServer()}api/`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
     })
   ).data) as unknown;
   return reqData;
