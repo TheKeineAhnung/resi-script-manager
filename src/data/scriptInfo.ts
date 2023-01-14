@@ -283,6 +283,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'hireMultiplePersonal',
+    displayName: 'Mehr Personal kaufen',
+    description: 'Kaufe mehr Personal mit Marken',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'missionCounter',
     displayName: 'Missionen zählen',
     description: 'Anzahl der Missionen bei der Einsatzliste',
