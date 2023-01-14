@@ -283,7 +283,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
-    name: 'hireMultiplePersonal',
+    name: 'hireMultipleStaff',
     displayName: 'Mehr Personal kaufen',
     description: 'Kaufe mehr Personal mit Marken',
     author: 'KeineAhnung',

@@ -15,7 +15,7 @@ import { filterMemberList } from './filterMemberList/filterMemberList';
 import { hideAchievementcard } from './hideAchievementcard/hideAchievementcard';
 import { hideBuildingIcons } from './hideBuildingIcons/hideBuildingIcons';
 import { hideFreeText } from './hideFreeText/hideFreeText';
-import {  hireMultiplePersonal} from "./hireMultiplePersonal/hireMultiplePersonal";
+import { hireMultipleStaff } from './hireMultipleStaff/hireMultipleStaff';
 import { missionCounter } from './missionCounter/missionCounter';
 import { missionHelper } from './missionHelper/missionHelper';
 import { missionTime } from './missionTime/missionTime';
@@ -43,7 +43,7 @@ export {
   hideAchievementcard,
   hideBuildingIcons,
   hideFreeText,
-  hireMultiplePersonal,
+  hireMultipleStaff,
   missionCounter,
   missionHelper,
   missionTime,

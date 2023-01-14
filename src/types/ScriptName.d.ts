@@ -16,7 +16,7 @@ type ScriptName =
   | 'hideAchievementcard'
   | 'hideBuildingIcons'
   | 'hideFreeText'
-  | 'hireMultiplePersonal'
+  | 'hireMultipleStaff'
   | 'missionCounter'
   | 'missionHelper'
   | 'missionTime'

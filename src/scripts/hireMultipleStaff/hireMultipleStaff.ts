@@ -2,7 +2,7 @@ import { apiGet, apiPost } from '../../ts/helper/api';
 import { sleep } from '../../ts/helper/general';
 import { UserBuildings } from '../../types/api/UserBuildings';
 
-const hireMultiplePersonal = async function (): Promise<any> {
+const hireMultipleStaff = async function (): Promise<any> {
   const showHire = async function (): Promise<boolean> {
     const userBuildings = (await apiGet(
       'userBuildings',
@@ -137,4 +137,4 @@ const hireMultiplePersonal = async function (): Promise<any> {
   }
 };
 
-export { hireMultiplePersonal };
+export { hireMultipleStaff };
