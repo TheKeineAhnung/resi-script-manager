@@ -53,7 +53,6 @@ const hireMultiplePersonal = async function (): Promise<any> {
 
     inputContent.insertAdjacentElement('beforeend', inputElem);
     inputContent.insertAdjacentElement('beforeend', inputIconContainer);
-    // inputContainer.insertAdjacentElement('beforeend', inputLabel);
     inputContainer.insertAdjacentElement('beforeend', inputContent);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
