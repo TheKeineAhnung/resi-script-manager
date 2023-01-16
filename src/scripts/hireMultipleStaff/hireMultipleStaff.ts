@@ -86,13 +86,13 @@ const hireMultipleStaff = async function (): Promise<any> {
       const inputElem: HTMLInputElement | null = document.querySelector(
         'input#multiplePersonalBuyCount'
       );
-      let buyCount = parseInt(inputElem?.value ?? '0');
+      const buyCount = parseInt(inputElem?.value ?? '0');
       const userBuildingID = parseInt(
         document
           .querySelector('div.detail-header div.detail-title')
           ?.getAttribute('userdepartmentid') ?? '0'
       );
-      while (buyCount > 0) {
+      for (let i = buyCount; i > 0; i--) {
         (await apiPost('hire', {
           userDepartmentID: userBuildingID.toString(),
           hire: 'instant'
@@ -106,7 +106,6 @@ const hireMultipleStaff = async function (): Promise<any> {
         };
 
         await sleep(100);
-        buyCount--;
       }
 
       noticeModal(
