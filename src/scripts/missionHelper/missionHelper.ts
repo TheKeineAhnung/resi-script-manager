@@ -77,7 +77,10 @@ const missionHelper = async function (): Promise<void> {
   document.head.appendChild(style);
   const missionID =
     document.querySelector('.detail-title')?.getAttribute('missionid') ?? '0';
-  const missions = apiGet('missions', localStorage) as unknown as Mission[];
+  const missions = (await apiGet(
+    'missions',
+    localStorage
+  )) as unknown as Mission[];
   showPanel(missions[parseInt(missionID)]);
 
   function compare(a: string, b: string): number {
