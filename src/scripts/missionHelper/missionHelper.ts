@@ -149,10 +149,10 @@ const missionHelper = async function (): Promise<void> {
       const tr = document.createElement('tr');
       const number = document.createElement('td');
       number.innerText = String(value as number);
-      number.style.padding = '0';
+      number.style.padding = '2px 0';
       const vehicle = document.createElement('td');
       vehicle.innerText = aVehicleCategories[key].name;
-      vehicle.style.padding = '0';
+      vehicle.style.padding = '2px 0';
       tr.appendChild(number);
       tr.appendChild(vehicle);
       tbody.appendChild(tr);
