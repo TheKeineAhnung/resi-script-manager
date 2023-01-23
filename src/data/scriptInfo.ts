@@ -154,6 +154,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     }
   },
   {
+    name: 'dashboard',
+    displayName: 'Dashboard',
+    description: 'Zeige ein Dashboard mit Statistiken an',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'deleteNewestFmsAfterTime',
     displayName: 'Neueste FMS nach bestimmter Zeit löschen',
     description: 'Löscht die neueste FMS nach einer bestimmter Zeit',

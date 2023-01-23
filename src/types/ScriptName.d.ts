@@ -7,6 +7,7 @@ type ScriptName =
   | 'customBuildingIcons'
   | 'customMapZoom'
   | 'customMissionIcons'
+  | 'dashboard'
   | 'deleteNewestFmsAfterTime'
   | 'expandAssociationCards'
   | 'expandMapLegend'

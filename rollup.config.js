@@ -91,5 +91,10 @@ export default [
     'src/ts/svelte/settings.ts',
     'build/js/svelte/settings.js',
     'css/settings.css'
+  ),
+  getConfig(
+    'src/scripts/dashboard/dashboard.svelte.ts',
+    'build/scripts/dashboard/dashboard.js',
+    'css/dashboard.css'
   )
 ];

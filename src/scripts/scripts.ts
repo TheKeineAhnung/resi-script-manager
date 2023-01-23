@@ -6,6 +6,7 @@ import { countVehicleStatus } from './countVehicleStatus/countVehicleStatus';
 import { customBuildingIcons } from './customBuildingIcons/customBuildingIcons';
 import { customMapZoom } from './customMapZoom/customMapZoom';
 import { customMissionIcons } from './customMissionIcons/customMissionIcons';
+import { dashboard } from './dashboard/dashboard';
 import { deleteNewestFmsAfterTime } from './deleteNewestFmsAfterTime/deleteNewestFmsAfterTime';
 import { expandAssociationCards } from './expandAssociationCards/expandAssociationCards';
 import { expandMapLegend } from './expandMapLegend/expandMapLegend';
@@ -34,6 +35,7 @@ export {
   customBuildingIcons,
   customMapZoom,
   customMissionIcons,
+  dashboard,
   deleteNewestFmsAfterTime,
   expandAssociationCards,
   expandMapLegend,
