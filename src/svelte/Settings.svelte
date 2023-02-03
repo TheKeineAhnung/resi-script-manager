@@ -26,6 +26,7 @@
   import ConfigStringElement from './components/types/String.svelte';
   import ConfigObjectElement from './components/types/Object.svelte';
   import ConfigArrayObjectElement from './components/types/ArrayObject.svelte';
+  import ConfigBooleanElement from './components/types/Boolean.svelte';
   import {
     getConfig,
     setConfig,
@@ -404,8 +405,17 @@
                                         localStorage.getItem(configElementName)
                                       )
                                     : configElementValue.default}
-                                  defaultConfig={configElementValue.default}
                                   scriptName={scriptInfoElement.displayName}
+                                  configName={configElementName}
+                                  configDescription={configElementValue.description}
+                                />
+                              {:else if configElementValue.type === 'boolean'}
+                                <ConfigBooleanElement
+                                  inputBoolean={localStorage.getItem(
+                                    configElementName
+                                  )
+                                    ? localStorage.getItem(configElementName)
+                                    : configElementValue.default.toString()}
                                   configName={configElementName}
                                   configDescription={configElementValue.description}
                                 />
