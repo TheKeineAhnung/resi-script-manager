@@ -42,7 +42,7 @@ const missionCounter = async function (): Promise<any> {
   const aUserBuildings: Array<UserBuildings> = JSON.parse(
     localStorage.aUserBuildings
   ).value;
-  const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.05 * x) - 4;
+  const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.25 * x) - 4;
   let dep = aUserBuildings.filter(x =>
     GENERATING_BUILDING_IDS.includes(x.buildingType)
   );
