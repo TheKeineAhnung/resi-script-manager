@@ -136,6 +136,7 @@ const missionHelper = async function (): Promise<void> {
     a?.insertAdjacentElement('afterbegin', helper);
     const table = document.querySelector('table#missionHelper-' + missionID);
     const tbody = document.createElement('tbody');
+    tbody.style.display = 'table-row';
     const needed = Object.keys(r.neededVehicles)
       .sort(compare)
       .reduce((obj, key: string) => {
