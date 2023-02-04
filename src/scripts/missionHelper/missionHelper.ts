@@ -24,7 +24,7 @@ const missionHelper = async function (): Promise<void> {
   ).value;
 
   const sortBy = {
-    tlf: 0,
+    tlf_ab_tank: 0,
     lgf: 1,
     lf: 2,
     hlf: 3,
