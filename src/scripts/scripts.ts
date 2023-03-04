@@ -21,6 +21,7 @@ import { missionHelper } from './missionHelper/missionHelper';
 import { missionTime } from './missionTime/missionTime';
 import { multipleStaffAssignment } from './multipleStaffAssignment/multipleStaffAssignment';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
+import { staffStatsInBuildingList } from './staffStatsInBuildingList/staffStatsInBuildingList';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
 import { selectedVehicles } from './selectedVehicles/selectedVehicles';
@@ -49,6 +50,7 @@ export {
   missionTime,
   multipleStaffAssignment,
   showOnlyLatestRadioMessage,
+  staffStatsInBuildingList,
   userBuildings,
   userVehicles,
   selectedVehicles

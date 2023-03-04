@@ -22,6 +22,7 @@ type ScriptName =
   | 'missionTime'
   | 'multipleStaffAssignment'
   | 'showOnlyLatestRadioMessage'
+  | 'staffStatsInBuildingList'
   | 'userBuildings'
   | 'userVehicles'
   | 'selectedVehicles';

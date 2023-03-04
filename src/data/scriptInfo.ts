@@ -378,6 +378,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'staffStatsInBuildingList',
+    displayName: 'Personalstatistiken im Gebäudenamen',
+    description:
+      'Zeigt Personalstatistiken eines Gebäudes in der Gebäudeliste an',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/'],
+    oneTime: true,
+    requiresConfig: false
+  },
+  {
     name: 'userBuildings',
     displayName: 'Gebäude zählen',
     description: 'Zählen der eigenen Gebäude auf der Profilseite',
