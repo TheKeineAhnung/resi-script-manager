@@ -42,6 +42,7 @@ const customMapZoom = async function (): Promise<any> {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore-error
+    if (mymap === undefined || L === undefined) return;
     mymap.fitBounds(L.latLngBounds(southWest, northEast), {
       padding: [20, 20],
       maxZoom: 14
