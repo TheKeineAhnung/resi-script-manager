@@ -1,3 +1,4 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import webpack from 'webpack';
@@ -11,7 +12,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const argv = yargs(process.argv.slice(2)).argv;
 
 const getMode = () => {
-  return argv.mode;
+  return argv.buildMode;
 };
 
 const config = {
@@ -24,6 +25,7 @@ const config = {
   resolve: {
     extensions: ['.ts', '.js']
   },
+  target: 'web',
   plugins: [
     new webpack.DefinePlugin({
       'process.env.MODE':
@@ -32,6 +34,15 @@ const config = {
           : getMode() === 'beta'
           ? JSON.stringify('beta')
           : JSON.stringify('development')
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${src}/assets`,
+          to: `../assets`
+        },
+        { from: `${src}/.htaccess`, to: '../' }
+      ]
     })
   ],
   module: {
@@ -39,12 +50,18 @@ const config = {
       {
         test: /\.ts$/u,
         use: 'ts-loader',
-        // TODO: Exclude svelte stuff
-        exclude: ['/node_modules/']
+        exclude: ['/node_modules/', `/${src}/ts/svelte/`],
+        rules: [
+          {
+            test: /\.svelte.ts$/u,
+            loader: 'ignore-loader',
+            exclude: ['/node_modules/']
+          }
+        ]
       }
     ]
   },
-  mode: 'production'
+  mode: getMode() === 'production' ? 'production' : 'development'
 };
 
 export default Object.assign({}, config);

@@ -45,6 +45,7 @@
     "@typescript-eslint/parser": "5.48.0",
     "autoprefixer": "10.4.13",
     "axios": "1.2.2",
+    "copy-webpack-plugin": "^11.0.0",
     "cssnano": "5.1.14",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.6.0",
@@ -93,7 +94,13 @@
     "rollup-dev:prod": "rollup -c -w rollup.config.js --mode='production'",
     "smui-theme-dark": "smui-theme compile build/theme/smui-dark.css -i src/theme/dark",
     "smui-theme-light": "smui-theme compile build/theme/smui.css -i src/theme",
-    "update": "npx npm-check -u"
+    "update": "npx npm-check -u",
+    "webpack-build": "webpack --env buildMode='development'",
+    "webpack-build:prod": "webpack --env buildMode='production'",
+    "webpack-build:beta": "webpack --env buildMode='beta'",
+    "webpack-dev": "webpack watch --env buildMode='development'",
+    "webpack-dev:prod": "webpack watch --env buildMode='production'",
+    "webpack-dev:beta": "webpack watch --env buildMode='beta'"
   },
   "repository": {
     "type": "git",
