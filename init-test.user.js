@@ -12,5 +12,5 @@
 
 const script = document.createElement('script');
 
-script.src = 'http://localhost:8080/js/bundle.js';
+script.src = 'http://localhost:8080/js/init.js';
 document.head.appendChild(script);
