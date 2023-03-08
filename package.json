@@ -94,13 +94,7 @@
     "rollup-dev:prod": "rollup -c -w rollup.config.js --mode='production'",
     "smui-theme-dark": "smui-theme compile build/theme/smui-dark.css -i src/theme/dark",
     "smui-theme-light": "smui-theme compile build/theme/smui.css -i src/theme",
-    "update": "npx npm-check -u",
-    "webpack-build": "webpack --env buildMode='development'",
-    "webpack-build:prod": "webpack --env buildMode='production'",
-    "webpack-build:beta": "webpack --env buildMode='beta'",
-    "webpack-dev": "webpack watch --env buildMode='development'",
-    "webpack-dev:prod": "webpack watch --env buildMode='production'",
-    "webpack-dev:beta": "webpack watch --env buildMode='beta'"
+    "update": "npx npm-check -u"
   },
   "repository": {
     "type": "git",
