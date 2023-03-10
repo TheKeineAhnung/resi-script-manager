@@ -14,5 +14,5 @@
 
 const script = document.createElement('script');
 
-script.src = 'https://keineahnung.eu/resi-script-manager/js/init.js';
+script.src = 'https://keineahnung.eu/resi-script-manager/js/start.js';
 document.head.appendChild(script);

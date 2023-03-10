@@ -1,6 +1,4 @@
 import { loadSettingsFrame } from './iframe';
-import { loadScripts } from './scriptLoader';
-import { checkConfig } from './config';
 import { faJsSquare } from '@fortawesome/free-brands-svg-icons';
 import { Icon, icon, library } from '@fortawesome/fontawesome-svg-core';
 import { getGameServer } from './helper/config';
@@ -57,35 +55,22 @@ const createPageLink = function (): void {
   });
 };
 
-window.addEventListener('load', async (): Promise<void> => {
+(async (): Promise<void> => {
   if (!self.top) {
     return;
   }
 
-  if (process.env.MODE === 'beta') {
-    if (
+  if (
+    (process.env.MODE === 'beta' &&
       !RegExp(
         /^https:\/\/(beta.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
-      ).test(window.location.href)
-    ) {
-      await loadScripts();
-
-      return;
-    }
-  } else {
-    if (
-      !RegExp(
-        /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
-      ).test(window.location.href)
-    ) {
-      await loadScripts();
-
-      return;
-    }
+      ).test(window.location.href)) ||
+    !RegExp(
+      /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
+    ).test(window.location.href)
+  ) {
+    return;
   }
 
-  sessionStorage.removeItem('scriptManagerActiveScripts');
   createPageLink();
-  await checkConfig();
-  await loadScripts();
-});
+})();
