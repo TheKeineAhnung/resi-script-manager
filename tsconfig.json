@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": "src",
-    "declaration": true,
+    "declaration": false,
     "esModuleInterop": true,
     "importHelpers": true,
     "lib": ["esnext", "DOM", "DOM.Iterable"],
