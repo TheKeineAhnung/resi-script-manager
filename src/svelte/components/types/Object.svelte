@@ -183,7 +183,10 @@
               {#if value !== 'null' && value !== null}
                 <span
                   class="color-danger transition-duration-250 cursor-pointer"
-                  on:click={() => removeFromConfig(key)}>{@html trashIcon}</span
+                  on:click={() => removeFromConfig(key)}
+                  on:keyup={e => {
+                    e.code === 'Enter' ? removeFromConfig(key) : '';
+                  }}>{@html trashIcon}</span
                 >
               {:else}
                 <span class="color-danger transition-duration-250"

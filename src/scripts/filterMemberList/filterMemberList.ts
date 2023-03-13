@@ -77,7 +77,9 @@ const filterMemberList = async function (): Promise<any> {
     checkboxContainer.classList.add('checkbox-container');
     checkboxContainer.style.width = '95%';
     checkboxContainer.style.boxShadow = '-1px 1px 5px 5px rgba(0,0,0,0.3)';
-    checkboxContainer.dataset.tooltip = `${matchCount.toString()} Mitglieder mit diesem Filter gefunden`;
+    checkboxContainer.dataset.tooltip = `${matchCount.toString()} ${
+      matchCount === 1 ? 'Mitglied' : 'Mitglieder'
+    } mit diesem Filter gefunden`;
     const checkboxInput = document.createElement('input');
     checkboxInput.id = label.replaceAll(' ', '-').toLowerCase();
     checkboxInput.type = 'checkbox';

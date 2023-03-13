@@ -283,6 +283,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'hireMultipleStaff',
+    displayName: 'Mehr Personal kaufen',
+    description: 'Kaufe mehr Personal mit Marken',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'missionCounter',
     displayName: 'Missionen zählen',
     description: 'Anzahl der Missionen bei der Einsatzliste',
@@ -338,7 +349,21 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      showBelowAAO: {
+        type: 'string',
+        default: 'false',
+        description:
+          'Zeige die ausgewählten Fahrzeuge unterhalb der AAO (true/false)'
+      },
+      showDistance: {
+        type: 'string',
+        default: 'false',
+        description:
+          'Zeige die Entfernung der Fahrzeuge zum Einsatzort (true/false)'
+      }
+    }
   },
   {
     name: 'showOnlyLatestRadioMessage',
@@ -350,6 +375,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
+    requiresConfig: false
+  },
+  {
+    name: 'staffStatsInBuildingList',
+    displayName: 'Personalstatistiken im Gebäudenamen',
+    description:
+      'Zeigt Personalstatistiken eines Gebäudes in der Gebäudeliste an',
+    author: 'KeineAhnung',
+    category: 'Gebäude',
+    usable: true,
+    match: ['https://rettungssimulator.online/'],
+    oneTime: true,
     requiresConfig: false
   },
   {

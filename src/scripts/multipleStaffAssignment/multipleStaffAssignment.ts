@@ -257,7 +257,6 @@ const multipleStaffAssignment = async function (): Promise<any> {
                 });
                 cell.innerHTML = cell.innerHTML.trim();
                 plannedCourseNames.forEach((plannedCourseName): void => {
-                  console.log(plannedCourseName);
                   const infoHTML = document.createElement('span');
                   infoHTML.classList.add('status', 's1', 'text-small');
                   infoHTML.textContent = `${plannedCourseName}`;
@@ -294,7 +293,6 @@ const multipleStaffAssignment = async function (): Promise<any> {
         outerDiv.insertAdjacentElement('beforeend', noneLabel);
         let outerDivHtml = outerDiv.outerHTML;
         for (const userDepartmentVehicle of USER_DEPARTMENT_VEHICLES) {
-          console.log(userDepartmentVehicle);
           const div = document.createElement('div');
           div.classList.add('modalAssignCourses');
           const radio = document.createElement('input');

@@ -270,6 +270,14 @@
                 on:click={async () => {
                   await categoryFilterInputHandling('add', categoryTextInput);
                 }}
+                on:keyup={async e => {
+                  e.code === 'Enter'
+                    ? await categoryFilterInputHandling(
+                        'add',
+                        categoryTextInput
+                      )
+                    : '';
+                }}
               >
                 <Icon class="material-icons">add</Icon>
               </span>
@@ -289,6 +297,14 @@
                   'remove',
                   activeFilterCategory
                 );
+              }}
+              on:keyup={async e => {
+                e.code === 'Enter'
+                  ? await categoryFilterInputHandling(
+                      'remove',
+                      activeFilterCategory
+                    )
+                  : '';
               }}
             >
               <InfoLabel

@@ -12,6 +12,14 @@ const selectedVehicles = async function (): Promise<void> {
 
   if (targetNode === null) return;
 
+  const belowAAO: string | null = localStorage.getItem('showBelowAAO');
+
+  const belowAAOSetting = belowAAO === 'true';
+
+  const showDistance: string | null = localStorage.getItem('showDistance');
+
+  const showDistanceSetting = showDistance === 'true';
+
   const config = { attributes: true, subtree: true };
 
   const callback = (mutationList: any) => {
@@ -34,7 +42,13 @@ const selectedVehicles = async function (): Promise<void> {
               mutation.target.querySelector('.vehicle-status').innerText
             }</td><td>${
               mutation.target.querySelector('.vehicle-department').innerText
-            }</td>`;
+            }</td>${
+              showDistanceSetting
+                ? '<td>' +
+                  mutation.target.querySelector('.vehicle-distance').innerText +
+                  '</td>'
+                : ''
+            }`;
             const table = document.querySelector(
               'table#selectedVehiclePanel tbody'
             );
@@ -58,9 +72,16 @@ const selectedVehicles = async function (): Promise<void> {
     helper.classList.add('card', 'selectedVehiclePanel');
     helper.innerHTML =
       '<div class="card-headline card-headline-info">Ausgewählte Fahrzeuge</div><div class="card-body"><table id="selectedVehiclePanel' +
-      '"><tr><th>Funkrufname</th><th>Status</th><th>Wache</th></tr></table></div>';
-    const a = document.querySelector('.alarmed-vehicles');
-    a?.insertAdjacentElement('beforeend', helper);
+      `"><tr><th>Funkrufname</th><th>Status</th><th>Wache</th>${
+        showDistanceSetting ? '<th>Distanz</th>' : ''
+      }</tr></table></div>`;
+    if (!belowAAOSetting) {
+      const a = document.querySelector('.alarmed-vehicles');
+      a?.insertAdjacentElement('beforeend', helper);
+    } else {
+      const a = document.querySelector('.mission-aao-container');
+      a?.insertAdjacentElement('afterend', helper);
+    }
     const table = document.querySelector('table#selectedVehiclePanel tbody');
     const vehicles = document.querySelectorAll(
       '.mission-vehicles-list .mission-vehicle-selected'
@@ -72,9 +93,17 @@ const selectedVehicles = async function (): Promise<void> {
         (vehicle.querySelector('.vehicle-name') as HTMLElement)?.innerText
       }</td><td>${
         (vehicle.querySelector('.vehicle-status') as HTMLElement)?.innerText
+      }
       }</td><td>${
         (vehicle.querySelector('.vehicle-department') as HTMLElement)?.innerText
-      }</td>`;
+      }</td>${
+        showDistanceSetting
+          ? '<td>' +
+            (vehicle.querySelector('.vehicle-distance') as HTMLElement)
+              ?.innerText +
+            '</td>'
+          : ''
+      }`;
       table?.appendChild(tr);
     });
   }

@@ -21,8 +21,6 @@ const getMode = function () {
   return argv.mode;
 };
 
-console.log(getMode());
-
 const assets = () =>
   gulp
     .src(`${src}/assets/**/*.*`)
@@ -53,13 +51,23 @@ const script = () =>
     .pipe(
       webpackStream({
         mode: getMode() === 'production' ? 'production' : 'development',
+        entry: {
+          init: `./${src}/ts/init.ts`,
+          start: `./${src}/ts/start.ts`,
+          script: `./${src}/ts/script.ts`
+        },
         output: {
-          filename: 'bundle.js',
+          filename: '[name].js',
           path: path.resolve(dirname, `${dist}/js`)
         },
         resolve: {
           extensions: ['.ts', '.js']
         },
+        optimization: {
+          minimize: true
+        },
+        target: 'web',
+        devtool: getMode() === 'production' ? false : 'eval-source-map',
         module: {
           rules: [
             {

@@ -1,21 +1,20 @@
 import { Buildings } from '../../types/api/Buildings';
+import { apiGet } from '../../ts/helper/api';
 
 const customBuildingIcons = async function (): Promise<any> {
   type Config = Record<string, string>;
   let config: Config = {};
 
-  if (sessionStorage.getItem('buildingIconsBuildingData') === null) {
-    // eslint-disable-next-line no-undef
-    await $.getJSON('/api/buildings').done((data: Buildings[]): void => {
-      sessionStorage.setItem(
-        'buildingIconsBuildingData',
-        JSON.stringify({ value: data })
-      );
+  const buildings = (await apiGet(
+    'buildings',
+    sessionStorage
+  )) as unknown as Buildings[];
 
-      data.forEach((elem): void => {
-        config[elem.buildingName] = 'null';
-      });
+  if (!localStorage.getItem('customBuildingIconsConfig')) {
+    buildings.forEach(e => {
+      config[e.buildingName] = 'null';
     });
+    localStorage.setItem('customBuildingIconsConfig', JSON.stringify(config));
   }
 
   const getConfig = function (configParam: Config): Config | null {
@@ -56,7 +55,7 @@ const customBuildingIcons = async function (): Promise<any> {
     const images: NodeListOf<HTMLImageElement> =
       document.querySelectorAll('img');
     const buildingData: { value: Buildings[] } = JSON.parse(
-      sessionStorage.getItem('buildingIconsBuildingData') ?? '{}'
+      sessionStorage.getItem('aBuildings') ?? '{}'
     );
 
     for (const i in images) {

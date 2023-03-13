@@ -28,9 +28,9 @@ jobs:
         run: npm install --save-dev
       - name: npm fund
         run: npm fund
+      - name: Basic setup and theme
+        run: npm run build
       - name: Gulp
         run: npm run gulp-build:prod
       - name: Rollup
         run: npm run rollup-build:prod
-      - name: Theme
-        run: npm run theme

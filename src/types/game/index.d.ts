@@ -1,4 +1,4 @@
-declare function modal(
+declare async function modal(
   title: string,
   text: string,
   confirmText: string,
@@ -16,9 +16,9 @@ declare class spinnerOverlay {
 declare function noticeModal(
   title: string,
   text: string,
-  noticedText: string?,
+  noticedText?: string,
   noticed?: () => void,
-  buttonClass: string?
+  buttonClass?: string
 ): void;
 
 interface InputModalObject {

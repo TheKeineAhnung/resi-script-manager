@@ -15,11 +15,13 @@ import { filterMemberList } from './filterMemberList/filterMemberList';
 import { hideAchievementcard } from './hideAchievementcard/hideAchievementcard';
 import { hideBuildingIcons } from './hideBuildingIcons/hideBuildingIcons';
 import { hideFreeText } from './hideFreeText/hideFreeText';
+import { hireMultipleStaff } from './hireMultipleStaff/hireMultipleStaff';
 import { missionCounter } from './missionCounter/missionCounter';
 import { missionHelper } from './missionHelper/missionHelper';
 import { missionTime } from './missionTime/missionTime';
 import { multipleStaffAssignment } from './multipleStaffAssignment/multipleStaffAssignment';
 import { showOnlyLatestRadioMessage } from './showOnlyLatestRadioMessage/showOnlyLatestRadioMessage';
+import { staffStatsInBuildingList } from './staffStatsInBuildingList/staffStatsInBuildingList';
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
 import { selectedVehicles } from './selectedVehicles/selectedVehicles';
@@ -42,11 +44,13 @@ export {
   hideAchievementcard,
   hideBuildingIcons,
   hideFreeText,
+  hireMultipleStaff,
   missionCounter,
   missionHelper,
   missionTime,
   multipleStaffAssignment,
   showOnlyLatestRadioMessage,
+  staffStatsInBuildingList,
   userBuildings,
   userVehicles,
   selectedVehicles

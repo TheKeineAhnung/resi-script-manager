@@ -47,4 +47,26 @@ const setConfigItem = async function (
   updateConfig(config);
 };
 
-export { getConfig, setConfig, setConfigItem, updateConfig };
+const checkConfig = async function (): Promise<void> {
+  const scriptNames: string[] = await getScriptNames();
+  const config: Config = await getConfig();
+
+  scriptNames.forEach(async (element): Promise<void> => {
+    if (!Object.keys(config).includes(element)) {
+      await setConfigItem(element, { active: false });
+    }
+  });
+
+  // Sort config object by key
+  const sortedConfig: Config = {};
+
+  Object.keys(config)
+    // eslint-disable-next-line id-length
+    .sort((a, b): number => a.localeCompare(b))
+    .forEach((key): void => {
+      sortedConfig[key] = config[key];
+    });
+  updateConfig(sortedConfig);
+};
+
+export { getConfig, setConfig, setConfigItem, updateConfig, checkConfig };

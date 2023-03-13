@@ -293,14 +293,16 @@ const missionTime = async function (): Promise<any> {
     }
   );
 
-  socket.on('finishMission', (missionObject: number): void => {
+  socket.on('finishMission', (userMissionID: number): void => {
     const newIntervals = getStorageIntervals();
     if (newIntervals !== null) {
       intervals = newIntervals;
     }
-    clearInterval(intervals[missionObject].interval);
-    delete intervals[missionObject];
-    setStorageIntervals(intervals);
+    if (intervals[userMissionID] !== undefined) {
+      clearInterval(intervals[userMissionID].interval);
+      delete intervals[userMissionID];
+      setStorageIntervals(intervals);
+    }
   });
 
   const storageIntervals = getStorageIntervals();

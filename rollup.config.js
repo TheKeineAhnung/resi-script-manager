@@ -7,8 +7,7 @@ import cssnano from 'cssnano';
 import postcssPresetEnv from 'postcss-preset-env';
 import css from 'rollup-plugin-css-only';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
-import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import yargs from 'yargs';
 
@@ -34,6 +33,13 @@ function getConfig(inputPath, outputPath, cssPath) {
           // enable run-time checks when not in production
           dev: getMode() === 'production' ? false : true
         },
+        onwarn: (warning, handler) => {
+          const { code } = warning;
+          const ignoreCodes = ['css-unused-selector'];
+          if (ignoreCodes.includes(code)) return;
+
+          handler(warning);
+        },
         preprocess: autoPreprocess({
           postcss: {
             plugins: [
@@ -49,20 +55,16 @@ function getConfig(inputPath, outputPath, cssPath) {
         output: cssPath
       }),
 
-      // If you have external dependencies installed from
-      // npm, you'll most likely need these plugins. In
-      // some cases you'll need additional configuration -
-      // consult the documentation for details:
-      // https://github.com/rollup/plugins/tree/master/packages/commonjs
       resolve({
         browser: true,
         dedupe: ['svelte']
       }),
       commonjs(),
-      typescript({ sourceMap: getMode() === 'production' ? false : true }),
+      typescript({
+        sourceMap: getMode() === 'production' ? false : true,
+        tsconfig: './tsconfig.rollup.json'
+      }),
 
-      // If we're building for production (npm run build
-      // instead of npm run dev), minify
       getMode() === 'production' && terser(),
 
       // set process.env.NODE_ENV to production or development

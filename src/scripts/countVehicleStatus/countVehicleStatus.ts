@@ -7,6 +7,7 @@ import {
 import type { UserVehicles } from '../../types/api/UserVehicles';
 import type { VehicleBuy } from '../../types/socket/VehicleBuy';
 import type { VehicleFms } from '../../types/socket/VehicleFms';
+import { apiGet } from '../../ts/helper/api';
 
 const countVehicleStatus = async function (): Promise<any> {
   let vehicleStatus: Record<
@@ -24,7 +25,11 @@ const countVehicleStatus = async function (): Promise<any> {
   };
 
   const initCounting = async function () {
-    const aVehicles: UserVehicles[] = await $.getJSON('/api/userVehicles');
+    const aVehicles: UserVehicles[] = (await apiGet(
+      'userVehicles',
+      sessionStorage,
+      false
+    )) as unknown as UserVehicles[];
 
     aVehicles.forEach(vehicle => {
       vehicleStatus[vehicle.fms].count++;
@@ -43,12 +48,17 @@ const countVehicleStatus = async function (): Promise<any> {
       return;
     }
 
+    parent.style.display = 'flex';
+
     const infoContainer: HTMLDivElement = document.createElement('div');
     infoContainer.id = 'vehicleStatusCountContainer';
     infoContainer.classList.add('vehicle');
-    infoContainer.style.display = 'fley';
+    infoContainer.style.display = 'flex';
     infoContainer.style.justifyContent = 'space-evenly';
     infoContainer.style.alignItems = 'center';
+    infoContainer.style.width = '100%';
+    infoContainer.style.fontSize = '1rem';
+    infoContainer.style.margin = '0';
 
     for (const key of Object.keys(vehicleStatus)) {
       const statusContainer = document.createElement('div');
@@ -61,7 +71,7 @@ const countVehicleStatus = async function (): Promise<any> {
       infoContainer.insertAdjacentElement('beforeend', statusContainer);
     }
 
-    parent.insertAdjacentElement('afterend', infoContainer);
+    parent.insertAdjacentElement('beforeend', infoContainer);
   };
 
   const updateInfobar = function () {
@@ -98,25 +108,27 @@ const countVehicleStatus = async function (): Promise<any> {
   updateInfobar();
 
   socket.on('vehicleFMS', (vehicleFMSObject: VehicleFms) => {
-    for (let key = 1; key <= 8; key++) {
-      if (
-        vehicleStatus[key].userVehicleIDs.includes(
-          vehicleFMSObject.userVehicleID
-        )
-      ) {
-        const index = vehicleStatus[key].userVehicleIDs.indexOf(
-          vehicleFMSObject.userVehicleID
-        );
-        vehicleStatus[key].userVehicleIDs.splice(index, 1);
-        vehicleStatus[key].count--;
-        break;
+    if (vehicleFMSObject.userName === ReSi.userName) {
+      for (let key = 1; key <= 8; key++) {
+        if (
+          vehicleStatus[key].userVehicleIDs.includes(
+            vehicleFMSObject.userVehicleID
+          )
+        ) {
+          const index = vehicleStatus[key].userVehicleIDs.indexOf(
+            vehicleFMSObject.userVehicleID
+          );
+          vehicleStatus[key].userVehicleIDs.splice(index, 1);
+          vehicleStatus[key].count--;
+          break;
+        }
       }
+      vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
+        vehicleFMSObject.userVehicleID
+      );
+      vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
+      updateInfobar();
     }
-    vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
-      vehicleFMSObject.userVehicleID
-    );
-    vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
-    updateInfobar();
   });
 
   socket.on('vehicleBuy', (vehicleBuyObject: VehicleBuy) => {

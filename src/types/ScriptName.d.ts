@@ -16,11 +16,13 @@ type ScriptName =
   | 'hideAchievementcard'
   | 'hideBuildingIcons'
   | 'hideFreeText'
+  | 'hireMultipleStaff'
   | 'missionCounter'
   | 'missionHelper'
   | 'missionTime'
   | 'multipleStaffAssignment'
   | 'showOnlyLatestRadioMessage'
+  | 'staffStatsInBuildingList'
   | 'userBuildings'
   | 'userVehicles'
   | 'selectedVehicles';
