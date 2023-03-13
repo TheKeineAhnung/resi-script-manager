@@ -1,9 +1,9 @@
 <script lang="ts">
-  import axios from 'axios';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import type { UserBuildings } from '../../../types/api/UserBuildings';
   import type { Buildings } from '../../../types/api/Buildings';
+  import { apiGet } from '../../../ts/helper/api';
 
   let aUserBuildings: UserBuildings[];
   let aBuildings: Buildings[];
@@ -13,49 +13,15 @@
 
   const init = async function () {
     loading = true;
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aUserBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/userBuildings`
-        })
-      ).data) as unknown as UserBuildings[];
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aUserBuildings
-        })
-      );
-    } else {
-      aUserBuildings = JSON.parse(localStorage.aUserBuildings).value;
-    }
+    aUserBuildings = (await apiGet(
+      'userBuildings',
+      localStorage
+    )) as unknown as UserBuildings[];
 
-    if (
-      !localStorage.aBuildings ||
-      JSON.parse(localStorage.aBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/buildings`
-        })
-      ).data) as unknown as Buildings[];
-      localStorage.setItem(
-        'aBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aBuildings
-        })
-      );
-    } else {
-      aBuildings = JSON.parse(localStorage.aBuildings).value;
-    }
+    aBuildings = (await apiGet(
+      'buildings',
+      localStorage
+    )) as unknown as Buildings[];
 
     if (localStorage.activeRenameBuildings) {
       renameBuildings = JSON.parse(localStorage.activeRenameBuildings);

@@ -8,6 +8,7 @@
   import type { UserBuildings } from '../../../types/api/UserBuildings';
   import { icon, library } from '@fortawesome/fontawesome-svg-core';
   import type { Buildings } from '../../../types/api/Buildings';
+  import { apiGet } from '../../../ts/helper/api';
 
   library.add(faEdit);
   const editIcon = icon(faEdit).html;
@@ -70,49 +71,14 @@
 
   const init = async function () {
     loading = true;
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aUserBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/userBuildings`
-        })
-      ).data) as unknown as UserBuildings[];
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aUserBuildings
-        })
-      );
-    } else {
-      aUserBuildings = JSON.parse(localStorage.aUserBuildings).value;
-    }
-
-    if (
-      !localStorage.aBuildings ||
-      JSON.parse(localStorage.aBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/buildings`
-        })
-      ).data) as unknown as Buildings[];
-      localStorage.setItem(
-        'aBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aBuildings
-        })
-      );
-    } else {
-      aBuildings = JSON.parse(localStorage.aBuildings).value;
-    }
+    aUserBuildings = (await apiGet(
+      'userBuildings',
+      localStorage
+    )) as unknown as UserBuildings[];
+    aBuildings = (await apiGet(
+      'buildings',
+      localStorage
+    )) as unknown as Buildings[];
 
     if (localStorage.getItem('renameManagerBuildingTownIdentifier')) {
       buildingTownIdentifier = JSON.parse(

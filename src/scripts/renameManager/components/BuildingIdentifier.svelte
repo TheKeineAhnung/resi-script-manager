@@ -7,6 +7,7 @@
   import Textfield from '@smui/textfield';
   import type { UserBuildings } from '../../../types/api/UserBuildings';
   import { icon, library } from '@fortawesome/fontawesome-svg-core';
+  import { apiGet } from '../../../ts/helper/api';
 
   library.add(faEdit);
   const editIcon = icon(faEdit).html;
@@ -41,27 +42,10 @@
 
   const init = async function () {
     loading = true;
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aUserBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/userBuildings`
-        })
-      ).data) as unknown as UserBuildings[];
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aUserBuildings
-        })
-      );
-    } else {
-      aUserBuildings = JSON.parse(localStorage.aUserBuildings).value;
-    }
+    aUserBuildings = (await apiGet(
+      'userBuildings',
+      localStorage
+    )) as unknown as UserBuildings[];
 
     if (localStorage.getItem('renameManagerBuildingIdentifier')) {
       buildingIdentifier = JSON.parse(

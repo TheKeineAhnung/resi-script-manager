@@ -3,12 +3,13 @@
   import Button, { Label } from '@smui/button';
   import Dialog, { Title, Actions } from '@smui/dialog';
   import { faEdit } from '@fortawesome/free-solid-svg-icons';
-  import { icon, library } from '@fortawesome/fontawesome-svg-core';
+  import { library } from '@fortawesome/fontawesome-svg-core';
   import LinearProgress from '@smui/linear-progress';
   import type { Buildings } from '../../../types/api/Buildings';
   import type { UserBuildings } from '../../../types/api/UserBuildings';
   import type { UserVehicles } from '../../../types/api/UserVehicles';
   import { sleep } from '../../../ts/helper/general';
+  import { apiGet } from '../../../ts/helper/api';
 
   library.add(faEdit);
 
@@ -19,75 +20,18 @@
 
   const rename = async function () {
     renameStatus = 'running';
-    let aBuildings: Buildings[];
-    let aUserBuildings: UserBuildings[];
-    let aUserVehicles: UserVehicles[];
-
-    if (
-      !localStorage.aBuildings ||
-      JSON.parse(localStorage.aBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/buildings`
-        })
-      ).data) as unknown as Buildings[];
-      localStorage.setItem(
-        'aBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aBuildings
-        })
-      );
-    } else {
-      aBuildings = JSON.parse(localStorage.aBuildings).value;
-    }
-
-    if (
-      !localStorage.aUserBuildings ||
-      JSON.parse(localStorage.aUserBuildings).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aUserBuildings = (await (
-        await axios({
-          method: 'get',
-          url: `api/userBuildings`
-        })
-      ).data) as unknown as UserBuildings[];
-      localStorage.setItem(
-        'aUserBuildings',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aUserBuildings
-        })
-      );
-    } else {
-      aUserBuildings = JSON.parse(localStorage.aUserBuildings).value;
-    }
-
-    if (
-      !localStorage.aUserVehicles ||
-      JSON.parse(localStorage.aUserVehicles).lastUpdate <
-        new Date().getTime() - 5 * 1000 * 60
-    ) {
-      aUserVehicles = (await (
-        await axios({
-          method: 'get',
-          url: `api/userVehicles`
-        })
-      ).data) as unknown as UserVehicles[];
-      localStorage.setItem(
-        'aUserVehicles',
-        JSON.stringify({
-          lastUpdate: new Date().getTime(),
-          value: aUserVehicles
-        })
-      );
-    } else {
-      aUserVehicles = JSON.parse(localStorage.aUserVehicles).value;
-    }
+    let aUserBuildings: UserBuildings[] = (await apiGet(
+      'userBuildings',
+      localStorage
+    )) as unknown as UserBuildings[];
+    let aBuildings: Buildings[] = (await apiGet(
+      'buildings',
+      localStorage
+    )) as unknown as Buildings[];
+    let aUserVehicles: UserVehicles[] = (await apiGet(
+      'userVehicles',
+      localStorage
+    )) as unknown as UserVehicles[];
 
     let renameBuildings: Record<number, { checked: boolean }> = JSON.parse(
       localStorage.getItem('activeRenameBuildings') ?? '{}'
