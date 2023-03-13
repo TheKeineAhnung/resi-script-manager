@@ -2,6 +2,10 @@ import { variableIsNull } from '../../ts/errors/console';
 
 const customMapZoom = async function (): Promise<any> {
   const focusMap = function () {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore-error
+    if (typeof L === 'undefined' || typeof mymap === 'undefined') return;
+
     const northernCoordinate = localStorage.getItem('customMapZoomNorth');
     const easternCoordinate = localStorage.getItem('customMapZoomEast');
     const southernCoordinate = localStorage.getItem('customMapZoomSouth');
@@ -22,6 +26,7 @@ const customMapZoom = async function (): Promise<any> {
       variableIsNull(Object.keys({ westernCoordinate })[0], 'customMapZoom');
       return;
     }
+
     const parsedNorthernCoordinate = parseFloat(northernCoordinate);
     const parsedEasternCoordinate = parseFloat(easternCoordinate);
     const parsedSouthernCoordinate = parseFloat(southernCoordinate);

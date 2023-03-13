@@ -1,3 +1,3 @@
-type SettingTypes = 'array' | 'arrayobject' | 'object' | 'string';
+type SettingTypes = 'array' | 'arrayobject' | 'object' | 'string' | 'boolean';
 
 export type { SettingTypes };

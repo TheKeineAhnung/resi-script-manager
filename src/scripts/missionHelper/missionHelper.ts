@@ -14,43 +14,47 @@ const missionHelper = async function (): Promise<void> {
   )) as any;
 
   const sortBy = {
-    tlf: 0,
+    tlf_ab_tank: 0,
     lgf: 1,
     lf: 2,
     hlf: 3,
     rw_lf: 4,
-    rw_hlf: 5,
-    'h*lf_rw_kef': 6,
+    rw_lf_ab_rüst: 5,
+    rw_hlf: 6,
+    rw_hlf_ab_rüst: 6,
     'h*lf_kef': 7,
-    'h*lf_kef_mtw_gw_tier': 8,
-    'h*lf_mtw': 9,
-    kdow: 10,
-    kdow_mzf: 11,
-    elw1_kdow_mzf: 12,
-    elw1_kdow: 13,
-    elw1: 14,
-    führungsdienst: 15,
-    elw_elw2: 16,
+    hlf_rw_kef_ab_rüst: 8,
+    'h*lf_rw_kef_gw_öl_ab_rüst_ab_öl': 9,
+    'h*lf_kef_mtw_gw_tier': 10,
+    hlf_rw_kef_ab_rüst_mtw: 11,
+    'h*lf_mtw': 12,
+    kdow: 13,
+    kdow_mzf: 14,
+    elw1_kdow_mzf: 15,
+    elw1_kdow: 16,
+    elw1: 17,
+    führungsdienst: 18,
+    elw_elw2: 19,
     dlk: 20,
     dlk_tmf: 21,
     tmf: 22,
-    elw2: 25,
-    sw: 29,
-    sw_tlf: 30,
-    rw: 34,
-    'rw_rw-k': 35,
+    elw2_ab_el: 25,
+    sw_ab_schlauch: 29,
+    sw_tlf_ab_tank_ab_schlauch: 30,
+    rw_ab_rüst: 34,
+    'rw_rw-k_ab_rüst': 35,
     gw_tier: 36,
     gw_tier_mtw: 37,
     gw_tier_lf: 38,
-    gw_öl_gw_g: 41,
-    gw_g: 50,
+    'h*lf_kef_gw_tier': 39,
+    gw_öl_gw_g_ab_öl_ab_g: 41,
+    gw_g_ab_g: 50,
     gw_mess: 51,
-    gw_a: 52,
-    gw_dekon: 53,
+    gw_a_ab_a: 52,
+    gw_dekon_ab_dekon: 53,
     gw_h: 54,
     kef: 57,
-    gw_öl: 70,
-    'h*lf_rw_kef_gw_öl': 71,
+    gw_öl_ab_öl: 70,
     kran: 74,
     'rw-k': 75,
     fwk: 76,
@@ -119,6 +123,7 @@ const missionHelper = async function (): Promise<void> {
     a?.insertAdjacentElement('afterbegin', helper);
     const table = document.querySelector('table#missionHelper-' + missionID);
     const tbody = document.createElement('tbody');
+    tbody.style.display = 'table-row';
     const needed = Object.keys(r.neededVehicles)
       .sort(compare)
       .reduce((obj, key: string) => {
@@ -132,8 +137,10 @@ const missionHelper = async function (): Promise<void> {
       const tr = document.createElement('tr');
       const number = document.createElement('td');
       number.innerText = String(value as number);
+      number.style.padding = '2px 10px 2px 0';
       const vehicle = document.createElement('td');
       vehicle.innerText = aVehicleCategories[key].name;
+      vehicle.style.padding = '2px 0';
       tr.appendChild(number);
       tr.appendChild(vehicle);
       tbody.appendChild(tr);
