@@ -26,7 +26,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       autoCollapseBuildingsBuildingTypes: {
         type: 'array',
         default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        description: 'Gebäudetypen, die automatisch eingeklappt werden sollen.'
+        description:
+          'Gebäudetypen, die automatisch eingeklappt werden sollen. Es werden die Gebäude IDs genutzt!'
       }
     }
   },
