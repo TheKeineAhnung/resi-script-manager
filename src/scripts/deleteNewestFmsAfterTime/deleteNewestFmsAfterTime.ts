@@ -2,26 +2,17 @@ import { VehicleFms } from '../../types/socket/VehicleFms';
 
 const deleteNewestFmsAfterTime = async function (): Promise<any> {
   const updateField = function (vehicleFsmObject: VehicleFms): void {
-    let time: string | null = localStorage.getItem('deleteNewestFmsAfterTime');
+    const time: number = parseInt(
+      localStorage.getItem('deleteNewestFmsAfterTime') ?? '2000'
+    );
 
-    if (time === null) {
-      localStorage.setItem('deleteNewestFmsAfterTime', '');
-      time = '';
-    }
-
-    const parsedTime = Number.parseInt(time, 10);
+    const message: HTMLDivElement | null = document.querySelector(
+      `div#radio-container-others div.radio-vehicle.frame-opener[uservehicleid="${vehicleFsmObject.userVehicleID}"]`
+    );
 
     setTimeout((): void => {
-      const messages: NodeListOf<HTMLDivElement> = document.querySelectorAll(
-        `div.radio-vehicle.frame-opener[uservehicleid="${vehicleFsmObject.userVehicleID}"]`
-      );
-
-      if (messages.length > 0) {
-        for (let i = 0; i < messages.length; i++) {
-          messages[i].remove();
-        }
-      }
-    }, parsedTime);
+      message?.remove();
+    }, time);
   };
 
   socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
