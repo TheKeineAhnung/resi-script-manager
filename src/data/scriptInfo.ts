@@ -117,7 +117,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
-    match: ['https://rettungssimulator.online/*'],
+    match: [
+      'https://rettungssimulator.online/',
+      'https://rettungssimulator.online/mission/*'
+    ],
     oneTime: false,
     requiresConfig: true,
     config: {
