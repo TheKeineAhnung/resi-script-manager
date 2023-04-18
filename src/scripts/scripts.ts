@@ -1,4 +1,5 @@
 import { alarmfax } from './alarmfax/alarmfax';
+import { alertOnMissionShare } from './alertOnMissionShare/alertOnMissionShare';
 import { autoCollapseBuildings } from './autoCollapseBuildings/autoCollapseBuildings';
 import { countPatients } from './countPatients/countPatients';
 import { countPossibleMissions } from './countPossibleMissions/countPossibleMissions';
@@ -28,6 +29,7 @@ import { selectedVehicles } from './selectedVehicles/selectedVehicles';
 
 export {
   alarmfax,
+  alertOnMissionShare,
   autoCollapseBuildings,
   countPatients,
   countPossibleMissions,

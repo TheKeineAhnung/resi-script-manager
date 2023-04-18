@@ -1,5 +1,6 @@
 type ScriptName =
   | 'alarmfax'
+  | 'alertOnMissionShare'
   | 'autoCollapseBuildings'
   | 'countPatients'
   | 'countPossibleMissions'
