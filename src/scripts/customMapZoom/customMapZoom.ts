@@ -57,7 +57,7 @@ const customMapZoom = async function (): Promise<any> {
     document.querySelector('a#mapCenter');
 
   if (zoomButton === null) {
-    variableIsNull(Object.keys({ zoomButton })[0], 'customMapZoom');
+    // ! Logging deliberately removed, because variable partly intentionally null
     return;
   }
 
