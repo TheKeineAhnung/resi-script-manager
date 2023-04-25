@@ -47,7 +47,7 @@ const alarmfax = async function (): Promise<any> {
       alarmfaxCard.id = 'alarmfax-card';
       const alarmfaxCardHeader: HTMLDivElement = document.createElement('div');
 
-      alarmfaxCardHeader.classList.add('card-headline', 'card-headline-info');
+      alarmfaxCardHeader.classList.add('card-headline', 'card-headline-danger');
       alarmfaxCardHeader.innerText = 'Alarmfax';
       alarmfaxCard.appendChild(alarmfaxCardHeader);
       const alarmfaxCardBody: HTMLDivElement = document.createElement('div');
