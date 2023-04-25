@@ -51,24 +51,25 @@ const customBuildingIcons = async function (): Promise<any> {
     return null;
   };
 
-  const customBuildingIconsFunc = function (): void {
+  const customBuildingIconsFunc = async function (): Promise<void> {
     const images: NodeListOf<HTMLImageElement> =
       document.querySelectorAll('img');
-    const buildingData: { value: Buildings[] } = JSON.parse(
-      sessionStorage.getItem('aBuildings') ?? '{}'
-    );
+    const buildingData = (await apiGet(
+      'buildings',
+      sessionStorage
+    )) as unknown as Buildings[];
 
     for (const i in images) {
       const currentImage = images[i];
       const src = currentImage.src;
 
-      for (let i = 0; i < buildingData.value.length; i++) {
+      for (let i = 0; i < buildingData.length; i++) {
         if (
           src ===
-            `https://rettungssimulator.online/images/marker/departments/${buildingData.value[i].markerName}.png` &&
-          config[buildingData.value[i].buildingName] !== undefined
+            `https://rettungssimulator.online/images/marker/departments/${buildingData[i].markerName}.png` &&
+          config[buildingData[i].buildingName] !== undefined
         ) {
-          currentImage.src = config[buildingData.value[i].buildingName];
+          currentImage.src = config[buildingData[i].buildingName];
           currentImage.style.width = 'auto';
           currentImage.style.height = 'auto';
         }
@@ -80,7 +81,7 @@ const customBuildingIcons = async function (): Promise<any> {
 
   if (configCheck !== null) {
     config = configCheck;
-    customBuildingIconsFunc();
+    await customBuildingIconsFunc();
   }
 };
 
