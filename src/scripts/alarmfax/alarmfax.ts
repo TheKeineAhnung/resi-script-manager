@@ -154,10 +154,14 @@ const alarmfax = async function (): Promise<any> {
       localStorage.getItem('alarmfaxInfo') ?? '{}'
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-    delete alarmFaxInfo[userMissionId][userVehicleId];
-    localStorage.setItem('alarmfaxInfo', JSON.stringify(alarmFaxInfo));
-    card();
+    if (
+      alarmFaxInfo[userMissionId] !== undefined &&
+      alarmFaxInfo[userMissionId][userVehicleId]
+    ) {
+      delete alarmFaxInfo[userMissionId][userVehicleId];
+      localStorage.setItem('alarmfaxInfo', JSON.stringify(alarmFaxInfo));
+      card();
+    }
   };
 
   let afterLoadingInterval: NodeJS.Timer | null = setInterval((): void => {
