@@ -142,7 +142,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Einsätze',
     usable: true,
-    match: ['https://rettungssimulator.online/*'],
+    match: ['https://rettungssimulator.online/'],
     oneTime: false,
     requiresConfig: true,
     config: {
