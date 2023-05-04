@@ -84,16 +84,18 @@ const customMissionIcons = async function (): Promise<any> {
     }
   };
 
-  socket.on(
-    'missionStatus',
-    (missionStatusObject: MissionStatus | MissionStatusOnWork): void => {
-      replaceIcons(missionStatusObject.icon);
-    }
-  );
+  if (typeof socket !== 'undefined') {
+    socket.on(
+      'missionStatus',
+      (missionStatusObject: MissionStatus | MissionStatusOnWork): void => {
+        replaceIcons(missionStatusObject.icon);
+      }
+    );
 
-  socket.on('newMission', (missionObject: NewMission): void => {
-    replaceIcons(missionObject.icon);
-  });
+    socket.on('newMission', (missionObject: NewMission): void => {
+      replaceIcons(missionObject.icon);
+    });
+  }
 
   config = getConfig(config);
   replaceIcons();
