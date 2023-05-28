@@ -9,7 +9,6 @@ window.addEventListener('load', async (): Promise<void> => {
   if (!self.top) {
     return;
   }
-  console.log(userIsBlocked(ReSi.userName));
   if (userIsBlocked(ReSi.userName)) {
     GrowlNotification.notify({
       title: 'Ausschluss',
