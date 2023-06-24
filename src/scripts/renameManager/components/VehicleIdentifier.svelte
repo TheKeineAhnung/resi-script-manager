@@ -7,6 +7,7 @@
   import Textfield from '@smui/textfield';
   import type { VehicleCategories } from '../../../types/api/VehicleCategories';
   import { icon, library } from '@fortawesome/fontawesome-svg-core';
+  import { vehicles } from '../../../data/game/vehicles';
 
   library.add(faEdit);
   const editIcon = icon(faEdit).html;
@@ -30,7 +31,13 @@
   // TODO: Implement correct type after API change
   let aVehicleCategories:
     | Record<string, VehicleCategories>
-    | Record<string, { id: number; name: string }>;
+    | Record<
+        number,
+        {
+          name: string;
+          id: number;
+        }
+      >;
 
   const editVehicleIdentifier = function (
     vehicleId: number,
@@ -68,23 +75,39 @@
     //   aVehicleCategories = JSON.parse(localStorage.aVehicleCategories).value;
     // }
 
-    // temporary template data
+    aVehicleCategories = vehicles;
+    localStorage.setItem(
+      'renameManagerVehicleIdentifier',
+      JSON.stringify(aVehicleCategories)
+    );
+    let storedIdentifier = JSON.parse(
+      localStorage.getItem('renameManagerVehicleIdentifier') ?? '[]'
+    );
 
-    aVehicleCategories = {
-      '0': {
-        id: 7,
-        name: 'HLF 10'
-      },
-      '1': {
-        id: 8,
-        name: 'HLF 20'
-      }
-    };
-
-    if (localStorage.getItem('renameManagerVehicleIdentifier')) {
+    if (
+      localStorage.getItem('renameManagerVehicleIdentifier') &&
+      storedIdentifier[
+        Object.keys(storedIdentifier)[Object.keys(storedIdentifier).length - 1]
+      ].id === aVehicleCategories[Object.keys(aVehicleCategories).length - 1].id
+    ) {
       vehicleIdentifier = JSON.parse(
         localStorage.getItem('renameManagerVehicleIdentifier') ?? '{}'
       );
+    } else if (
+      localStorage.getItem('renameManagerVehicleIdentifier') &&
+      storedIdentifier[
+        Object.keys(storedIdentifier)[Object.keys(storedIdentifier).length - 1]
+      ].id !== aVehicleCategories[Object.keys(aVehicleCategories).length - 1].id
+    ) {
+      for (let key in aVehicleCategories) {
+        const e: { id: number; name: string } = aVehicleCategories[key];
+        if (vehicleIdentifier[e.id] !== undefined) continue;
+        vehicleIdentifier[e.id] = {
+          id: e.id,
+          readbleShortName: e.name,
+          identifier: null
+        };
+      }
     } else {
       for (let key in aVehicleCategories) {
         const e: { id: number; name: string } = aVehicleCategories[key];

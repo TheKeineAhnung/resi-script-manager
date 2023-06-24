@@ -78,6 +78,10 @@
       '1': {
         id: 1,
         name: 'Rettungsdienst'
+      },
+      '2': {
+        id: 2,
+        name: 'Polizei'
       }
     };
 
