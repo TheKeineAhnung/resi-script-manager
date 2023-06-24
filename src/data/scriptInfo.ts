@@ -43,7 +43,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      shortText: {
+        type: 'string',
+        default: 'false',
+        description: 'Text in kurz anzeigen (true/false)'
+      }
+    }
   },
   {
     name: 'countPossibleMissions',
