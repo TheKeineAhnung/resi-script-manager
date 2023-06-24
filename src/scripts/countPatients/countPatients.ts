@@ -66,7 +66,7 @@ const countPatients = async function (): Promise<any> {
       parent.appendChild(patientWordContainer);
       parent.insertAdjacentText('beforeend', '/');
       parent.appendChild(totalPatientContainer);
-      parent.insertAdjacentHTML('beforeend', '<i class="fas fa-bed"></i>');
+      parent.insertAdjacentHTML('beforeend', ' <i class="fas fa-bed"></i>');
     } else {
       parent.appendChild(currentPatientContainer);
       parent.insertAdjacentText('beforeend', ' ');
