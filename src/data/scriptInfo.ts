@@ -312,7 +312,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      addOwnShared: {
+        type: 'string',
+        default: 'false',
+        description: 'Zeige zusätzlich eigene Shared Missions an'
+      }
+    }
   },
   {
     name: 'missionTime',
