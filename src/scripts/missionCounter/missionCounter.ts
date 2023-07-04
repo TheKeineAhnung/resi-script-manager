@@ -16,7 +16,7 @@ const missionCounter = async function (): Promise<any> {
 
   const ownShared = () => {
     const ownSharedElements = document.querySelectorAll(
-      '#missions-container-own >>> .mission-participation'
+      '#missions-container-own > div > span > .mission-participation'
     );
     if (!addOwnSharedSetting) return '';
     return '+' + ownSharedElements.length;
