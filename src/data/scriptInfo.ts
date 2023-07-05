@@ -46,9 +46,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: true,
     config: {
       shortText: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
-        description: 'Text in kurz anzeigen (true/false)'
+        description: 'Text als Icon anzeigen'
       }
     }
   },
@@ -315,7 +315,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: true,
     config: {
       addOwnShared: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
         description: 'Zeige zusätzlich eigene Shared Missions an'
       }
@@ -367,16 +367,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: true,
     config: {
       showBelowAAO: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
-        description:
-          'Zeige die ausgewählten Fahrzeuge unterhalb der AAO (true/false)'
+        description: 'Zeige die ausgewählten Fahrzeuge unterhalb der AAO'
       },
       showDistance: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
-        description:
-          'Zeige die Entfernung der Fahrzeuge zum Einsatzort (true/false)'
+        description: 'Zeige die Entfernung der Fahrzeuge zum Einsatzort'
       }
     }
   },
