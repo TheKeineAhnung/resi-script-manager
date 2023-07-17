@@ -266,44 +266,46 @@ const missionTime = async function (): Promise<any> {
     sessionStorage.setItem('missionTimeIntervals', JSON.stringify(data));
   };
 
-  socket.on(
-    'missionStatus',
-    (missionObject: MissionStatus | MissionStatusOnWork): void => {
-      if (isMissionStatusOnWork(missionObject)) {
-        init(missionObject);
-        intervals[missionObject.userMissionID] = {
-          remainingTime: new Date(
-            missionObject.userMissionFinishTime.toString()
-          ).getTime(),
-          paused: false
-        };
-      } else {
-        if (missionObject.userMissionStatus !== 3) {
-          if (intervals[missionObject.userMissionID] !== undefined) {
-            clearInterval(intervals[missionObject.userMissionID].interval);
-            intervals[missionObject.userMissionID] = {
-              paused: true,
-              remainingTime:
-                intervals[missionObject.userMissionID].remainingTime
-            };
+  if (typeof socket !== 'undefined') {
+    socket.on(
+      'missionStatus',
+      (missionObject: MissionStatus | MissionStatusOnWork): void => {
+        if (isMissionStatusOnWork(missionObject)) {
+          init(missionObject);
+          intervals[missionObject.userMissionID] = {
+            remainingTime: new Date(
+              missionObject.userMissionFinishTime.toString()
+            ).getTime(),
+            paused: false
+          };
+        } else {
+          if (missionObject.userMissionStatus !== 3) {
+            if (intervals[missionObject.userMissionID] !== undefined) {
+              clearInterval(intervals[missionObject.userMissionID].interval);
+              intervals[missionObject.userMissionID] = {
+                paused: true,
+                remainingTime:
+                  intervals[missionObject.userMissionID].remainingTime
+              };
+            }
           }
         }
+        setStorageIntervals(intervals);
       }
-      setStorageIntervals(intervals);
-    }
-  );
+    );
 
-  socket.on('finishMission', (userMissionID: number): void => {
-    const newIntervals = getStorageIntervals();
-    if (newIntervals !== null) {
-      intervals = newIntervals;
-    }
-    if (intervals[userMissionID] !== undefined) {
-      clearInterval(intervals[userMissionID].interval);
-      delete intervals[userMissionID];
-      setStorageIntervals(intervals);
-    }
-  });
+    socket.on('finishMission', (userMissionID: number): void => {
+      const newIntervals = getStorageIntervals();
+      if (newIntervals !== null) {
+        intervals = newIntervals;
+      }
+      if (intervals[userMissionID] !== undefined) {
+        clearInterval(intervals[userMissionID].interval);
+        delete intervals[userMissionID];
+        setStorageIntervals(intervals);
+      }
+    });
+  }
 
   const storageIntervals = getStorageIntervals();
   if (storageIntervals === null) {

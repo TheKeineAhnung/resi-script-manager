@@ -24,11 +24,13 @@ const deleteNewestFmsAfterTime = async function (): Promise<any> {
     }, parsedTime);
   };
 
-  socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
-    if (vehicleFmsObject.fms5Type === null) {
-      updateField(vehicleFmsObject);
-    }
-  });
+  if (typeof socket !== 'undefined') {
+    socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
+      if (vehicleFmsObject.fms5Type === null) {
+        updateField(vehicleFmsObject);
+      }
+    });
+  }
 };
 
 export { deleteNewestFmsAfterTime };
