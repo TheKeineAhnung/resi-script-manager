@@ -108,7 +108,13 @@ const missionTime = async function (): Promise<any> {
     timerContainer.style.right = '27px';
     timerContainer.style.top = '7px';
 
-    timerParent.insertAdjacentElement('beforeend', timerContainer);
+    if (
+      !document.querySelector(
+        `#timer-${missionObject.userMissionID.toString()}`
+      )
+    ) {
+      timerParent.insertAdjacentElement('beforeend', timerContainer);
+    }
     updateTimer(missionObject);
   };
 
