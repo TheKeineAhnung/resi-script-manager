@@ -100,19 +100,18 @@ const missionTime = async function (): Promise<any> {
       return;
     }
 
-    const timerContainer: HTMLDivElement = document.createElement('div');
-    timerContainer.id = `timer-${missionObject.userMissionID.toString()}`;
-    timerContainer.classList.add('timer', 'mission-timer');
-    timerContainer.style.width = 'fit-content';
-    timerContainer.style.position = 'absolute';
-    timerContainer.style.right = '27px';
-    timerContainer.style.top = '7px';
-
     if (
       !document.querySelector(
         `#timer-${missionObject.userMissionID.toString()}`
       )
     ) {
+      const timerContainer: HTMLDivElement = document.createElement('div');
+      timerContainer.id = `timer-${missionObject.userMissionID.toString()}`;
+      timerContainer.classList.add('timer', 'mission-timer');
+      timerContainer.style.width = 'fit-content';
+      timerContainer.style.position = 'absolute';
+      timerContainer.style.right = '27px';
+      timerContainer.style.top = '7px';
       timerParent.insertAdjacentElement('beforeend', timerContainer);
     }
     updateTimer(missionObject);
