@@ -57,7 +57,7 @@
     "gulp-babel": "8.0.0",
     "gulp-plumber": "1.2.1",
     "material-colors": "1.2.6",
-    "postcss": "8.4.21",
+    "postcss": "8.4.31",
     "postcss-preset-env": "7.8.3",
     "prettier": "2.8.4",
     "rollup": "2.61.1",
