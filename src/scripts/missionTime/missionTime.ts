@@ -210,7 +210,7 @@ const missionTime = async function (): Promise<any> {
     const seconds = parseInt(splittedTime[2]);
 
     const currentDate = new Date(
-      `${new Date().getFullYear()} ${hours}:${minutes}:${seconds}`
+      `Jan 01 ${new Date().getFullYear()} ${hours}:${minutes}:${seconds}`
     );
 
     const remainingTimeCalc = currentDate.getTime() - 1000;
