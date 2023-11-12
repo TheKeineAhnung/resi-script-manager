@@ -7,7 +7,7 @@ const getGameServer = function (): string {
 const getHostServer = function (): string {
   return process.env.MODE === 'production'
     ? 'https://keineahnung.eu/resi-script-manager'
-    : 'https://localhost/ka';
+    : 'https://localhost/';
 };
 
 export { getGameServer, getHostServer };
