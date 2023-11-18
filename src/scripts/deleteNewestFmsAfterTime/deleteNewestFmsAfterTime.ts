@@ -30,6 +30,14 @@ const deleteNewestFmsAfterTime = async function (): Promise<any> {
         updateField(vehicleFmsObject);
       }
     });
+
+    socket.on('vehicleFMSGrouped', (vehicleFMSObjectArray: VehicleFms[]) => {
+      vehicleFMSObjectArray.forEach(vehicleFMSObject => {
+        if (vehicleFMSObject.fms5Type === null) {
+          updateField(vehicleFMSObject);
+        }
+      });
+    });
   }
 };
 

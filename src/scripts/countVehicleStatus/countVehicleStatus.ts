@@ -131,6 +131,32 @@ const countVehicleStatus = async function (): Promise<any> {
     }
   });
 
+  socket.on('vehicleFMSGrouped', (vehicleFMSObjectArray: VehicleFms[]) => {
+    vehicleFMSObjectArray.forEach(vehicleFMSObject => {
+      if (vehicleFMSObject.userName === ReSi.userName) {
+        for (let key = 1; key <= 8; key++) {
+          if (
+            vehicleStatus[key].userVehicleIDs.includes(
+              vehicleFMSObject.userVehicleID
+            )
+          ) {
+            const index = vehicleStatus[key].userVehicleIDs.indexOf(
+              vehicleFMSObject.userVehicleID
+            );
+            vehicleStatus[key].userVehicleIDs.splice(index, 1);
+            vehicleStatus[key].count--;
+            break;
+          }
+        }
+        vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
+          vehicleFMSObject.userVehicleID
+        );
+        vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
+        updateInfobar();
+      }
+    });
+  });
+
   socket.on('vehicleBuy', (vehicleBuyObject: VehicleBuy) => {
     vehicleStatus[2].count++;
     vehicleStatus[2].userVehicleIDs.push(vehicleBuyObject.userVehicleID);
