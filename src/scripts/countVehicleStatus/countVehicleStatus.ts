@@ -25,7 +25,6 @@ const countVehicleStatus = async function (): Promise<any> {
   };
 
   const initCounting = async function () {
-    console.debug('Counting initialized');
     const aVehicles: UserVehicles[] = (await apiGet(
       'userVehicles',
       sessionStorage,
@@ -36,7 +35,6 @@ const countVehicleStatus = async function (): Promise<any> {
       vehicleStatus[vehicle.fms].count++;
       vehicleStatus[vehicle.fms].userVehicleIDs.push(vehicle.userVehicleID);
     });
-    console.log('init count', vehicleStatus);
   };
 
   const createInfobar = function () {
@@ -104,7 +102,6 @@ const countVehicleStatus = async function (): Promise<any> {
         vehicleStatus[parseInt(key)].count.toString();
     }
   };
-  console.debug('executed fms counter');
   await initCounting();
   createInfobar();
   updateInfobar();
