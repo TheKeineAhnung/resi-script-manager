@@ -9,11 +9,9 @@ const fastMissionSpeed = async function (): Promise<any> {
 
   ControlCenter.generateNewMission = async function () {
     if (this.resi.settings.missionGenerationSpeed && this.doNotPing !== true) {
-      const reqMission = (await apiGet(
-        'generateMission',
-        localStorage,
-        false
-      )) as string;
+      const reqMission = (
+        (await apiGet('generateMission', localStorage, false)) as string
+      ).toString();
       if (reqMission.match(/^(?=.*error)(?=.*Einsatz generiert).*$/gi)) {
         setTimeout(async () => await this.generateNewMission(), 5000);
         return;
