@@ -15,7 +15,7 @@ const fastMissionSpeed = async function (): Promise<any> {
       if (reqMission.match(/^(?=.*error)(?=.*Einsatz generiert).*$/gi)) {
         setTimeout(async () => await this.generateNewMission(), 5000);
         return;
-      } else if (!reqMission.match(/"status|success"/gi) || !reqMission) {
+      } else if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
         setTimeout(async () => await this.generateNewMission(), 200);
         return;
       }
