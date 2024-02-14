@@ -12,17 +12,19 @@ const fastMissionSpeed = async function (): Promise<any> {
       const reqMission = (
         (await apiGet('generateMission', localStorage, false)) as string
       ).toString();
+
       if (reqMission.match(/^(?=.*error)(?=.*Einsatz generiert).*$/gi)) {
         setTimeout(async () => await this.generateNewMission(), 5000);
         return;
       } else if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
         setTimeout(async () => await this.generateNewMission(), 200);
         return;
+      } else {
+        setTimeout(
+          async () => await this.generateNewMission(),
+          this.resi.settings.missionGenerationSpeed * 1000
+        );
       }
-      setTimeout(
-        async () => await this.generateNewMission(),
-        this.resi.settings.missionGenerationSpeed * 1000
-      );
     }
   };
 
