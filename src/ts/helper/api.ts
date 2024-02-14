@@ -48,7 +48,7 @@ const apiGet = async function (
     baseURL: `${getGameServer()}api/`
   });
 
-  if (reqData.status > 400) {
+  if (reqData.status >= 400) {
     throw new Error(
       `Request failed with statuscode ${reqData.status}. Message: ${reqData.data}`
     );
