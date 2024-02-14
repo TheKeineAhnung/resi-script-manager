@@ -68,6 +68,7 @@ const countVehicleStatus = async function (): Promise<any> {
       );
       statusContainer.id = `vehicleStatusCountStatus${key}`;
       statusContainer.setAttribute('data-tooltip', `Status: ${key}`);
+      statusContainer.style.cursor = "default"
       infoContainer.insertAdjacentElement('beforeend', statusContainer);
     }
 
