@@ -41,12 +41,20 @@ const apiGet = async function (
   if (cacheStatus === 'up-to-date' && cache) {
     return JSON.parse(storage.getItem(cacheKey) ?? '{}').value;
   }
-  const reqData = await axios({
-    method: 'get',
-    url: api,
-    params,
-    baseURL: `${getGameServer()}api/`
-  });
+
+  let reqData;
+
+  try {
+    reqData = await axios({
+      method: 'get',
+      url: api,
+      params,
+      baseURL: `${getGameServer()}api/`
+    });
+  } catch (ex) {
+    console.error(ex);
+    return;
+  }
 
   if (reqData.status >= 400) {
     throw new Error(
