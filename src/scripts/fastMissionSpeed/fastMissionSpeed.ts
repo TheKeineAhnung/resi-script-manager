@@ -13,7 +13,11 @@ const fastMissionSpeed = async function (): Promise<any> {
         (await apiGet('generateMission', localStorage, false)) as string
       ).toString();
 
-      if (reqMission.match(/^(?=.*error)(?=.*Einsatz generiert).*$/gi)) {
+      if (
+        reqMission.match(
+          /^(?=.*error)((?=.*Einsatz generiert)|(?=.*Maximale Anzahl)).*$/gi
+        )
+      ) {
         setTimeout(async () => await this.generateNewMission(), 5000);
         return;
       } else if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
