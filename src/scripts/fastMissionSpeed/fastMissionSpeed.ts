@@ -7,30 +7,30 @@ const fastMissionSpeed = async function (): Promise<any> {
   //  * Script Version: 1.6
   //  * Last Update: 2024-02-05
 
-  ControlCenter.generateNewMission = async function () {
-    if (this.resi.settings.missionGenerationSpeed && this.doNotPing !== true) {
-      const reqMission = (
-        (await apiGet('generateMission', localStorage, false)) as string
-      ).toString();
+  // ControlCenter.generateNewMission = async function () {
+  //   if (this.resi.settings.missionGenerationSpeed && this.doNotPing !== true) {
+  //     const reqMission = (
+  //       (await apiGet('generateMission', localStorage, false)) as string
+  //     ).toString();
 
-      if (
-        reqMission.match(
-          /^(?=.*error)((?=.*Einsatz generiert)|(?=.*Maximale Anzahl)).*$/gi
-        )
-      ) {
-        setTimeout(async () => await this.generateNewMission(), 5000);
-        return;
-      } else if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
-        setTimeout(async () => await this.generateNewMission(), 200);
-        return;
-      } else {
-        setTimeout(
-          async () => await this.generateNewMission(),
-          this.resi.settings.missionGenerationSpeed * 1000
-        );
-      }
-    }
-  };
+  //     if (
+  //       reqMission.match(
+  //         /^(?=.*error)((?=.*Einsatz generiert)|(?=.*Maximale Anzahl)).*$/gi
+  //       )
+  //     ) {
+  //       setTimeout(async () => await this.generateNewMission(), 5000);
+  //       return;
+  //     } else if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
+  //       setTimeout(async () => await this.generateNewMission(), 200);
+  //       return;
+  //     } else {
+  //       setTimeout(
+  //         async () => await this.generateNewMission(),
+  //         this.resi.settings.missionGenerationSpeed * 1000
+  //       );
+  //     }
+  //   }
+  // };
 
   let missionSpeedSVG: HTMLElement | null = document.querySelector(
     '#mission-speed-pause'
