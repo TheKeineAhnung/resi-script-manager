@@ -6,7 +6,7 @@ const hireMultipleStaff = async function (): Promise<any> {
   const showHire = async function (): Promise<boolean> {
     const userBuildings = (await apiGet(
       'userBuildings',
-      localStorage
+      sessionStorage
     )) as unknown as UserBuildings[];
     const userBuildingID = parseInt(
       document

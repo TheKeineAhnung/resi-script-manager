@@ -46,7 +46,7 @@ const missionCounter = async function (): Promise<any> {
 
   const aUserBuildings = (await apiGet(
     'userBuildings',
-    localStorage
+    sessionStorage
   )) as unknown as UserBuildings[];
 
   const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.25 * x) - 4;
@@ -103,7 +103,7 @@ const missionCounter = async function (): Promise<any> {
   socket.on('departmentBuy', async () => {
     const aUserBuildings = (await apiGet(
       'userBuildings',
-      localStorage,
+      sessionStorage,
       false
     )) as unknown as UserBuildings[];
     dep = aUserBuildings.filter(x =>

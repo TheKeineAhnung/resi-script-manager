@@ -10,7 +10,7 @@ const missionHelper = async function (): Promise<void> {
 
   const aVehicleCategories = (await apiGet(
     'vehicleCategories',
-    sessionStorage
+    localStorage
   )) as any;
 
   const sortBy = {

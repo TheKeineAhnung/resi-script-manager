@@ -7,7 +7,7 @@ const customBuildingIcons = async function (): Promise<any> {
 
   const buildings = (await apiGet(
     'buildings',
-    sessionStorage
+    localStorage
   )) as unknown as Buildings[];
 
   if (!localStorage.getItem('customBuildingIconsConfig')) {
@@ -56,7 +56,7 @@ const customBuildingIcons = async function (): Promise<any> {
       document.querySelectorAll('img');
     const buildingData = (await apiGet(
       'buildings',
-      sessionStorage
+      localStorage
     )) as unknown as Buildings[];
 
     for (const i in images) {

@@ -30,7 +30,7 @@ const alarmfax = async function (): Promise<any> {
   if (!sessionStorage.getItem('alarmfaxInfoBuildingData')) {
     const apiData = (await apiGet(
       'userBuildings',
-      localStorage
+      sessionStorage
     )) as unknown as UserBuildings[];
     const data: UserBuildingData = {};
     apiData.forEach(e => {
