@@ -5,6 +5,7 @@ interface Mission {
   maxCalls: number;
   duration: number;
   credits: number;
+  maxCredits?: number;
   neededVehicles: {
     [key: string]: number;
   };
