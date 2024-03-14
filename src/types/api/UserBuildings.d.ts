@@ -11,6 +11,7 @@ interface UserBuildings {
     lng: number;
   };
   adress: string;
+  assignedControlCenterID: number | null;
 }
 
 export type { UserBuildings };
