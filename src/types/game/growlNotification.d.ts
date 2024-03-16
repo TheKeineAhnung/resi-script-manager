@@ -5,7 +5,7 @@ interface LibGrowlNotification {
     type: string;
     position?: string;
     showProgress?: boolean;
-    closeTimeout?: boolean;
+    closeTimeout?: number;
   }) => {
     body: object;
     notification: object;
