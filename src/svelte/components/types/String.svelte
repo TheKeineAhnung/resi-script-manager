@@ -56,7 +56,7 @@
 
   function exportConfig(): void {
     let config = localStorage.getItem(configName);
-    dialogTitle = 'Deine Einstellungen für den Script-manager';
+    dialogTitle = 'Deine Einstellungen f&uuml;r den Script-manager';
 
     if (config === null) {
       variableIsNull(Object.keys({ config })[0], 'String.svelte');
@@ -111,21 +111,21 @@
       <Textfield
         variant="outlined"
         bind:value={userInputValue}
-        label="Wert zur Konfiguration hinzufügen"
+        label="Wert zur Konfiguration hinzuf&uuml;gen"
         style="width: 100%;"
       />
     </div>
     <div class="w-95 flex justify-content-between">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Zurücksetzen</Button
+        >Zur&uuml;cksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Hinzufügen</Button
+        >Hinzuf&uuml;gen</Button
       >
     </div>
   </div>
   <div class="existing">
-    Aktuelle Konfiguration für {scriptName}.
+    Aktuelle Konfiguration f&uuml;r {scriptName}.
     <br />
     {#if configDescription !== undefined && configDescription !== null}
       {@html configDescription}
@@ -224,7 +224,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schließen</Label>
+      <Label>{@html closeIcon} Schlie&szlig;en</Label>
     </Button>
   </DialogActions>
 </Dialog>

@@ -18,13 +18,7 @@
     faXmark,
     faSave
   } from '@fortawesome/free-solid-svg-icons';
-  library.add(
-    faCloudArrowDown,
-    faCloudArrowUp,
-    faCopy,
-    faXmark,
-    faSave
-  );
+  library.add(faCloudArrowDown, faCloudArrowUp, faCopy, faXmark, faSave);
   let exportIcon = icon(faCloudArrowDown).html;
   let importIcon = icon(faCloudArrowUp).html;
   let copyIcon = icon(faCopy).html;
@@ -56,7 +50,7 @@
 
   function exportConfig(): void {
     let config = localStorage.getItem(configName);
-    dialogTitle = 'Deine Einstellungen für den Script-manager';
+    dialogTitle = 'Deine Einstellungen f&uuml;r den Script-manager';
 
     if (config === null) {
       variableIsNull(Object.keys({ config })[0], 'Boolean.svelte');
@@ -121,7 +115,8 @@
         style="width: 100%;"
         on:click={addToConfig}
         variant="raised"
-        disabled>Deine Änderungen werden automatisch übernommen</Button
+        disabled
+        >Deine &Auml;nderungen werden automatisch &uuml;bernommen</Button
       >
     </div>
   </div>
@@ -194,7 +189,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schließen</Label>
+      <Label>{@html closeIcon} Schlie&szlig;en</Label>
     </Button>
   </DialogActions>
 </Dialog>
