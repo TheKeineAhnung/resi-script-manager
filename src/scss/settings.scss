@@ -1,3 +1,7 @@
-@import "classes";
-@import "default";
-@import "styles/snackbar";
+@import 'classes';
+@import 'default';
+@import 'styles/snackbar';
+
+#scriptManagerSettingsTab {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

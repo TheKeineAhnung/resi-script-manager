@@ -317,7 +317,7 @@
           {/each}
         </div>
       </div>
-      <div class="grid gap-1 columns-auto mt-1" id="scriptManagerSettings">
+      <div class="grid gap-1 mt-1" id="scriptManagerSettingsTab">
         {#each scriptInfo as info}
           <div class="card-container">
             <Card style="border-radius: 0.75rem">
