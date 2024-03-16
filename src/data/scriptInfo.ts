@@ -4,9 +4,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'alarmfax',
     displayName: 'Alarmfax',
-    description: 'Hinzufügen eines Alarmfax-Feldes auf der Missionsseite',
+    description: 'Hinzuf&uuml;gen eines Alarmfax-Feldes auf der Missionsseite',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -26,8 +26,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'autoCollapseBuildings',
-    displayName: 'Automatisches Gebäudekarten einklappen',
-    description: 'Gebäudekarten in der Übersicht automatisch einklappen',
+    displayName: 'Automatisches Geb&auml;udekarten einklappen',
+    description:
+      'Geb&auml;udekarten in der &uuml;bersicht automatisch einklappen',
     author: 'KeineAhnung',
     category: 'Design',
     usable: true,
@@ -39,17 +40,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'array',
         default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         description:
-          'Gebäudetypen, die automatisch eingeklappt werden sollen. Es werden die Gebäude IDs genutzt!'
+          'Geb&auml;udetypen, die automatisch eingeklappt werden sollen. Es werden die Geb&auml;ude IDs genutzt!'
       }
     }
   },
   {
     name: 'controlCenterRequirementCheck',
-    displayName: 'Anforderungen pro Leitstelle überprüfen',
+    displayName: 'Anforderungen pro Leitstelle &uuml;berpr&uuml;fen',
     description:
-      'Überprüft ob die Anforderungen innerhalb der Wachen einer Leitstelle funktioniert',
+      '&uuml;berpr&uuml;ft ob die Anforderungen innerhalb der Wachen einer Leitstelle funktioniert',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/department/*'],
     oneTime: false,
@@ -59,7 +60,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     name: 'countPatients',
     displayName: 'Patientenanzahl anzeigen',
     description:
-      'Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazität',
+      'Anzeige der Anzahl der Patienten im Krankenhaus und der Krankenhauskapazit&auml;t',
     author: 'KeineAhnung',
     category: 'Patienten',
     usable: true,
@@ -78,11 +79,11 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'countPossibleMissions',
-    displayName: 'Mögliche Einsätze zählen',
+    displayName: 'M&ouml;gliche Eins&auml;tze z&auml;hlen',
     description:
-      'Zählen der Anzahl der möglichen Einsätze auf der Einsatzübersichtsseite',
+      'Z&auml;hlen der Anzahl der m&ouml;glichen Eins&auml;tze auf der Einsatz&uuml;bersichtsseite',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['^https://rettungssimulator.online/missionOverview$'],
     oneTime: false,
@@ -90,8 +91,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'countVehicleStatus',
-    displayName: 'Fahrzeugstatus zählen',
-    description: 'Zählen der Fahrzeugstatus',
+    displayName: 'Fahrzeugstatus z&auml;hlen',
+    description: 'Z&auml;hlen der Fahrzeugstatus',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,
@@ -101,10 +102,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'customBuildingIcons',
-    displayName: 'Benutzerdefinierte Gebäudesymbole',
-    description: 'Anpassen der Gebäudesymbole',
+    displayName: 'Benutzerdefinierte Geb&auml;udesymbole',
+    description: 'Anpassen der Geb&auml;udesymbole',
     author: 'KeineAhnung',
-    category: 'Gebäude',
+    category: 'Geb&auml;ude',
     usable: true,
     match: ['https://rettungssimulator.online/*'],
     oneTime: false,
@@ -124,7 +125,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
           Notarztstandort: 'null'
         },
         description:
-          'Link zu Gebäudesymbolen, die benutzt werden sollen. Die Symbole müssen auf ein valides Format verweisen (png, jpg, ...)'
+          'Link zu Geb&auml;udesymbolen, die benutzt werden sollen. Die Symbole m&uuml;ssen auf ein valides Format verweisen (png, jpg, ...)'
       }
     }
   },
@@ -132,7 +133,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     name: 'customMapZoom',
     displayName: 'Eigener Kartenzoom',
     description:
-      'Eigenen Bereich der Karte zum Standard zoom festlegen. <b>Die Eckpunkte sind Südwesten und Nordosten.</b>',
+      'Eigenen Bereich der Karte zum Standard zoom festlegen. <b>Die Eckpunkte sind S&uuml;dwesten und Nordosten.</b>',
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
@@ -144,19 +145,19 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'string',
         default: '0',
         description:
-          'Lege den nördlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+          'Lege den n&ouml;rdlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
       },
       customMapZoomEast: {
         type: 'string',
         default: '0',
         description:
-          'Lege den östlichsten (Longitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+          'Lege den &ouml;stlichsten (Longitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
       },
       customMapZoomSouth: {
         type: 'string',
         default: '0',
         description:
-          'Lege den südlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
+          'Lege den s&uuml;dlichsten (Latitude) Punkt per Koordinate fest. Du kannst die Koordinaten z.B <a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer">hier</a> entnehmen.'
       },
       customMapZoomWest: {
         type: 'string',
@@ -171,7 +172,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Benutzerdefinierte Einsatzsymbole',
     description: 'Anpassen der Einsatzsymbole',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: false,
@@ -181,14 +182,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'arrayobject',
         default: [{ name: '', 1: '', 2: '', 3: '' }],
         description:
-          'Link zu Einsatzsymbolen, die benutzt werden sollen. Die Symbole müssen auf ein valides Format verweisen (png, jpg, ...)'
+          'Link zu Einsatzsymbolen, die benutzt werden sollen. Die Symbole m&uuml;ssen auf ein valides Format verweisen (png, jpg, ...)'
       }
     }
   },
   {
     name: 'deleteNewestFmsAfterTime',
-    displayName: 'Neueste FMS nach bestimmter Zeit löschen',
-    description: 'Löscht die neueste FMS nach einer bestimmter Zeit',
+    displayName: 'Neueste FMS nach bestimmter Zeit l&ouml;schen',
+    description: 'L&ouml;scht die neueste FMS nach einer bestimmter Zeit',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,
@@ -200,7 +201,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'string',
         default: '2000',
         description:
-          'Zeit in Millisekunden, nach der der neueste FMS gelöscht werden soll'
+          'Zeit in Millisekunden, nach der der neueste FMS gel&ouml;scht werden soll'
       }
     }
   },
@@ -208,7 +209,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     name: 'expandAssociationCards',
     displayName: 'Verbandskarten erweitern',
     description:
-      'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten auf der Verbandsseite',
+      'Hinzuf&uuml;gen von Pfeilen zum Erweitern und Falten von Karten auf der Verbandsseite',
     author: 'KeineAhnung',
     category: 'Verband',
     usable: true,
@@ -220,7 +221,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     name: 'expandMapLegend',
     displayName: 'Kartenlegende erweitern',
     description:
-      'Hinzufügen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende',
+      'Hinzuf&uuml;gen von Pfeilen zum Erweitern und Falten von Karten der Kartenlegende',
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
@@ -231,9 +232,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   {
     name: 'fastMissionSpeed',
     displayName: 'Geschwindigkeit schnell wechseln',
-    description: 'Lässt einen die Einsatzgeschwindigkeit schneller wechseln',
+    description:
+      'L&auml;sst einen die Einsatzgeschwindigkeit schneller wechseln',
     author: 'Ron31',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -286,8 +288,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'hideBuildingIcons',
-    displayName: 'Gebäudesymbole ausblenden',
-    description: 'Blendet die Gebäudesymbole auf der Karte aus',
+    displayName: 'Geb&auml;udesymbole ausblenden',
+    description: 'Blendet die Geb&auml;udesymbole auf der Karte aus',
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
@@ -299,7 +301,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'array',
         default: [],
         description:
-          'Blendet die Gebäudesymbole auf der Karte aus. Die zu verwendenen Links sind <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheKeineAhnung/ReSi-Scripte/blob/main/information/buildingLinks.md">hier</a> zu entnehmen.'
+          'Blendet die Geb&auml;udesymbole auf der Karte aus. Die zu verwendenen Links sind <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheKeineAhnung/ReSi-Scripte/blob/main/information/buildingLinks.md">hier</a> zu entnehmen.'
       }
     }
   },
@@ -308,7 +310,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Freitextfeld verbergen',
     description: 'Ausblenden der Freitexteingabe auf der Anrufannahme-Seite',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/missionNew/*'],
     oneTime: false,
@@ -319,7 +321,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Mehr Personal kaufen',
     description: 'Kaufe mehr Personal mit Marken',
     author: 'KeineAhnung',
-    category: 'Gebäude',
+    category: 'Geb&auml;ude',
     usable: true,
     match: ['https://rettungssimulator.online/department/*'],
     oneTime: false,
@@ -327,10 +329,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'missionCounter',
-    displayName: 'Missionen zählen',
+    displayName: 'Missionen z&auml;hlen',
     description: 'Anzahl der Missionen bei der Einsatzliste',
     author: 'Ron31',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
@@ -341,7 +343,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       addOwnShared: {
         type: 'boolean',
         default: 'false',
-        description: 'Zeige zusätzlich eigene Shared Missions an'
+        description: 'Zeige zus&auml;tzlich eigene Shared Missions an'
       }
     }
   },
@@ -350,7 +352,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Einsatzzeit anzeigen',
     description: 'Einsatzzeit in der Einsatzliste anzeigen',
     author: 'KeineAhnung',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['^https://rettungssimulator.online/*$'],
     oneTime: false,
@@ -362,7 +364,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     description:
       'Zuweisen von mehreren Personen gleichzeitig auf Fahrzeuge, Lehrgangsplanungen, etc.',
     author: 'KeineAhnung',
-    category: 'Gebäude',
+    category: 'Geb&auml;ude',
     usable: true,
     match: ['https://rettungssimulator.online/department/[0-9]*'],
     oneTime: false,
@@ -373,7 +375,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     displayName: 'Einsatzhilfe anzeigen',
     description: 'Einsatzhilfe im Einsatzfenster',
     author: 'Ron31',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
@@ -381,10 +383,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'selectedVehicles',
-    displayName: 'Ausgewählte Fahrzeuge anzeigen',
-    description: 'Ausgewählte Fahrzeuge in Tabelle anzeigen',
+    displayName: 'Ausgew&auml;hlte Fahrzeuge anzeigen',
+    description: 'Ausgew&auml;hlte Fahrzeuge in Tabelle anzeigen',
     author: 'Ron31',
-    category: 'Einsätze',
+    category: 'Eins&auml;tze',
     usable: true,
     match: ['https://rettungssimulator.online/mission/[0-9]*'],
     oneTime: false,
@@ -393,7 +395,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       showBelowAAO: {
         type: 'boolean',
         default: 'false',
-        description: 'Zeige die ausgewählten Fahrzeuge unterhalb der AAO'
+        description: 'Zeige die ausgew&auml;hlten Fahrzeuge unterhalb der AAO'
       },
       showDistance: {
         type: 'boolean',
@@ -416,11 +418,11 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'staffStatsInBuildingList',
-    displayName: 'Personalstatistiken im Gebäudenamen',
+    displayName: 'Personalstatistiken im Geb&auml;udenamen',
     description:
-      'Zeigt Personalstatistiken eines Gebäudes in der Gebäudeliste an',
+      'Zeigt Personalstatistiken eines Geb&auml;udes in der Geb&auml;udeliste an',
     author: 'KeineAhnung',
-    category: 'Gebäude',
+    category: 'Geb&auml;ude',
     usable: true,
     match: ['https://rettungssimulator.online/'],
     oneTime: true,
@@ -428,10 +430,10 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'userBuildings',
-    displayName: 'Gebäude zählen',
-    description: 'Zählen der eigenen Gebäude auf der Profilseite',
+    displayName: 'Geb&auml;ude z&auml;hlen',
+    description: 'Z&auml;hlen der eigenen Geb&auml;ude auf der Profilseite',
     author: 'KeineAhnung',
-    category: 'Gebäude',
+    category: 'Geb&auml;ude',
     usable: true,
     match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
@@ -439,8 +441,8 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
   },
   {
     name: 'userVehicles',
-    displayName: 'Fahrzeuge zählen',
-    description: 'Zählen der eigenen Fahrzeuge auf der Profilseite',
+    displayName: 'Fahrzeuge z&auml;hlen',
+    description: 'Z&auml;hlen der eigenen Fahrzeuge auf der Profilseite',
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,

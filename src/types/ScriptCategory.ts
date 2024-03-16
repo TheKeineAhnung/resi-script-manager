@@ -1,9 +1,9 @@
 type ScriptCategory =
-  | 'Einsätze'
+  | 'Eins&auml;tze'
   | 'Design'
   | 'Chat'
   | 'Patienten'
-  | 'Gebäude'
+  | 'Geb&auml;ude'
   | 'Fahrzeuge'
   | 'Verband'
   | 'Karte'
@@ -14,9 +14,9 @@ function isScriptCategory(string: string): string is ScriptCategory {
     'AAO',
     'Chat',
     'Design',
-    'Einsätze',
+    'Eins&auml;tze',
     'Fahrzeuge',
-    'Gebäude',
+    'Geb&auml;ude',
     'Karte',
     'Patienten',
     'Verband'
