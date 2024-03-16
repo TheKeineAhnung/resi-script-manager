@@ -1,7 +1,5 @@
 import { variableIsNull, variableIsUndefined } from '../../ts/errors/console';
 
-// TODO: Better selection interface
-
 const filterMemberList = async function (): Promise<any> {
   const card: Element = document.querySelectorAll('div.card')[4];
   const headline: HTMLDivElement | null =
@@ -96,8 +94,6 @@ const filterMemberList = async function (): Promise<any> {
   };
 
   const showFilterField = function (headline: HTMLDivElement) {
-    // head.innerHTML +=
-    //   '<div><input type="checkbox" id="green" name="Online" checked><label for="green">Online</label></div><div><input type="checkbox" id="red" name="red" checked><label for="red">Offline</label></div><div><input type="checkbox" id="purple" name="purple" checked><label for="purple">Mehr als 90 Tage offline</label></div>';
     const filterCard = document.createElement('div');
     filterCard.classList.add('card-body');
     filterCard.style.borderRadius = '0';

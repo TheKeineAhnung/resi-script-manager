@@ -13,6 +13,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'alertOnMissionShare',
+    displayName: 'Benachrichtigung bei Einsatzfreigabe',
+    description:
+      'Zeige eine Benachrichtigung an, wenn ein Einsatz von einem Verbandsmitglied freigegeben wurde',
+    author: 'KeineAhnung',
+    category: 'Verband',
+    usable: true,
+    match: ['https://rettungssimulator.online/'],
+    oneTime: true,
+    requiresConfig: false
+  },
+  {
     name: 'autoCollapseBuildings',
     displayName: 'Automatisches Gebäudekarten einklappen',
     description: 'Gebäudekarten in der Übersicht automatisch einklappen',
@@ -30,6 +42,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
           'Gebäudetypen, die automatisch eingeklappt werden sollen. Es werden die Gebäude IDs genutzt!'
       }
     }
+  },
+  {
+    name: 'controlCenterRequirementCheck',
+    displayName: 'Anforderungen pro Leitstelle überprüfen',
+    description:
+      'Überprüft ob die Anforderungen innerhalb der Wachen einer Leitstelle funktioniert',
+    author: 'KeineAhnung',
+    category: 'Einsätze',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
   },
   {
     name: 'countPatients',
