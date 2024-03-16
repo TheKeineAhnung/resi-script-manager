@@ -1,10 +1,29 @@
 import { variableIsNull } from '../../ts/errors/console';
+import { apiGet } from '../../ts/helper/api';
 
 const fastMissionSpeed = async function (): Promise<any> {
   //  * Copyright (c) 2022 by Ron31
   //  * Scripts for the browser-side of the rettungssimulator.online
-  //  * Script Version: 1.5
-  //  * Last Update: 2022-07-16
+  //  * Script Version: 1.6
+  //  * Last Update: 2024-02-20
+
+  ControlCenter.generateNewMission = async function () {
+    if (this.resi.settings.missionGenerationSpeed && this.doNotPing !== true) {
+      const reqMission = JSON.stringify(
+        await apiGet('generateMission', localStorage, false)
+      );
+
+      if (!reqMission.match(/"status|success|error"/gi) || !reqMission) {
+        setTimeout(async () => await this.generateNewMission(), 200);
+        return;
+      } else {
+        setTimeout(
+          async () => await this.generateNewMission(),
+          this.resi.settings.missionGenerationSpeed * 1000
+        );
+      }
+    }
+  };
 
   let missionSpeedSVG: HTMLElement | null = document.querySelector(
     '#mission-speed-pause'

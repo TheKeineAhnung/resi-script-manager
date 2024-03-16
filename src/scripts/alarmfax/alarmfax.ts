@@ -30,7 +30,7 @@ const alarmfax = async function (): Promise<any> {
   if (!sessionStorage.getItem('alarmfaxInfoBuildingData')) {
     const apiData = (await apiGet(
       'userBuildings',
-      localStorage
+      sessionStorage
     )) as unknown as UserBuildings[];
     const data: UserBuildingData = {};
     apiData.forEach(e => {
@@ -47,7 +47,7 @@ const alarmfax = async function (): Promise<any> {
       alarmfaxCard.id = 'alarmfax-card';
       const alarmfaxCardHeader: HTMLDivElement = document.createElement('div');
 
-      alarmfaxCardHeader.classList.add('card-headline', 'card-headline-info');
+      alarmfaxCardHeader.classList.add('card-headline', 'card-headline-danger');
       alarmfaxCardHeader.innerText = 'Alarmfax';
       alarmfaxCard.appendChild(alarmfaxCardHeader);
       const alarmfaxCardBody: HTMLDivElement = document.createElement('div');
@@ -154,10 +154,14 @@ const alarmfax = async function (): Promise<any> {
       localStorage.getItem('alarmfaxInfo') ?? '{}'
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-    delete alarmFaxInfo[userMissionId][userVehicleId];
-    localStorage.setItem('alarmfaxInfo', JSON.stringify(alarmFaxInfo));
-    card();
+    if (
+      alarmFaxInfo[userMissionId] !== undefined &&
+      alarmFaxInfo[userMissionId][userVehicleId]
+    ) {
+      delete alarmFaxInfo[userMissionId][userVehicleId];
+      localStorage.setItem('alarmfaxInfo', JSON.stringify(alarmFaxInfo));
+      card();
+    }
   };
 
   let afterLoadingInterval: NodeJS.Timer | null = setInterval((): void => {

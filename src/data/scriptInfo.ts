@@ -44,6 +44,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     }
   },
   {
+    name: 'controlCenterRequirementCheck',
+    displayName: 'Anforderungen pro Leitstelle überprüfen',
+    description:
+      'Überprüft ob die Anforderungen innerhalb der Wachen einer Leitstelle funktioniert',
+    author: 'KeineAhnung',
+    category: 'Einsätze',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'countPatients',
     displayName: 'Patientenanzahl anzeigen',
     description:
@@ -55,7 +67,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      shortText: {
+        type: 'boolean',
+        default: 'false',
+        description: 'Text als Icon anzeigen'
+      }
+    }
   },
   {
     name: 'countPossibleMissions',
@@ -117,10 +136,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
-    match: [
-      'https://rettungssimulator.online/',
-      'https://rettungssimulator.online/mission/*'
-    ],
+    match: ['https://rettungssimulator.online/'],
     oneTime: false,
     requiresConfig: true,
     config: {
@@ -157,7 +173,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Einsätze',
     usable: true,
-    match: ['https://rettungssimulator.online/*'],
+    match: ['https://rettungssimulator.online/'],
     oneTime: false,
     requiresConfig: true,
     config: {
@@ -320,7 +336,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
       '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
-    requiresConfig: false
+    requiresConfig: true,
+    config: {
+      addOwnShared: {
+        type: 'boolean',
+        default: 'false',
+        description: 'Zeige zusätzlich eigene Shared Missions an'
+      }
+    }
   },
   {
     name: 'missionTime',
@@ -368,16 +391,14 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: true,
     config: {
       showBelowAAO: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
-        description:
-          'Zeige die ausgewählten Fahrzeuge unterhalb der AAO (true/false)'
+        description: 'Zeige die ausgewählten Fahrzeuge unterhalb der AAO'
       },
       showDistance: {
-        type: 'string',
+        type: 'boolean',
         default: 'false',
-        description:
-          'Zeige die Entfernung der Fahrzeuge zum Einsatzort (true/false)'
+        description: 'Zeige die Entfernung der Fahrzeuge zum Einsatzort'
       }
     }
   },
@@ -389,7 +410,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,
-    match: ['https://rettungssimulator.online/*'],
+    match: ['https://rettungssimulator.online/'],
     oneTime: false,
     requiresConfig: false
   },

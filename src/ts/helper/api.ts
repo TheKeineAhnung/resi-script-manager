@@ -41,22 +41,35 @@ const apiGet = async function (
   if (cacheStatus === 'up-to-date' && cache) {
     return JSON.parse(storage.getItem(cacheKey) ?? '{}').value;
   }
-  const reqData = (await (
-    await axios({
+
+  let reqData;
+
+  try {
+    reqData = await axios({
       method: 'get',
       url: api,
       params,
       baseURL: `${getGameServer()}api/`
-    })
-  ).data) as unknown;
+    });
+  } catch (ex) {
+    console.error(ex);
+    return;
+  }
+
+  if (reqData.status >= 400) {
+    throw new Error(
+      `Request failed with statuscode ${reqData.status}. Message: ${reqData.data}`
+    );
+  }
+
   storage.setItem(
     cacheKey,
     JSON.stringify({
       lastUpdate: new Date().getTime(),
-      value: reqData
+      value: reqData.data
     })
   );
-  return reqData;
+  return reqData.data;
 };
 
 const apiPost = async function (api: string, data: object): Promise<unknown> {

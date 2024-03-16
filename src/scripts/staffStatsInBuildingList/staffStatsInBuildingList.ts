@@ -10,7 +10,7 @@ const staffStatsInBuildingList = async function (): Promise<any> {
     )) as unknown as UserBuildings[];
     const buildings = (await apiGet(
       'buildings',
-      sessionStorage
+      localStorage
     )) as unknown as Buildings[];
 
     const buildingsInList: NodeListOf<HTMLDivElement> =

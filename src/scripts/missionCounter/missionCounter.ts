@@ -6,9 +6,22 @@ const missionCounter = async function (): Promise<any> {
    * Copyright (c) 2022 by Ron31
    * missionCounter
    * Script for the browser-side of the rettungssimulator.online
-   * Script Version: 0.9
-   * Last Update: 2022-07-16
+   * Script Version: 0.10
+   * Last Update: 2023-07-04
    */
+
+  const addOwnShared: string | null = localStorage.getItem('addOwnShared');
+
+  const addOwnSharedSetting = addOwnShared === 'true';
+
+  const ownShared = () => {
+    const ownSharedElements = document.querySelectorAll(
+      '#missions-container-own > div > span > .mission-participation'
+    );
+    if (!addOwnSharedSetting) return '';
+    return '+' + ownSharedElements.length;
+  };
+
   function updateCount() {
     const ownMissions = document.querySelectorAll(
       'div#missions-container-own div.mission-list-mission'
@@ -27,11 +40,13 @@ const missionCounter = async function (): Promise<any> {
     ).innerText = attendedMissions.length.toString();
     (document.getElementById('missionCountShared') as HTMLElement).innerText =
       sharedMissions.length.toString();
+    (document.getElementById('ownCountShared') as HTMLElement).innerText =
+      ownShared();
   }
 
   const aUserBuildings = (await apiGet(
     'userBuildings',
-    localStorage
+    sessionStorage
   )) as unknown as UserBuildings[];
 
   const f = (x: number) => Math.ceil(4 * Math.log2(x + 2) + 0.25 * x) - 4;
@@ -53,6 +68,7 @@ const missionCounter = async function (): Promise<any> {
   const attendedMissions = document.querySelectorAll(
     'div#missions-container-shared div.mission-list-mission svg.mission-participation[class*="text"]'
   );
+
   span?.insertAdjacentHTML(
     'afterbegin',
     '<span class="badge-container"><span class="badge ncOpenMissions" style="color: #fff !important; background-color: red !important;"><span id="missionCount">' +
@@ -67,6 +83,8 @@ const missionCounter = async function (): Promise<any> {
       attendedMissions.length +
       '</span>/<span id="missionCountShared">' +
       sharedMissions.length +
+      '</span><span id="ownCountShared">' +
+      ownShared() +
       '</span></span></span>'
   );
 
@@ -85,7 +103,7 @@ const missionCounter = async function (): Promise<any> {
   socket.on('departmentBuy', async () => {
     const aUserBuildings = (await apiGet(
       'userBuildings',
-      localStorage,
+      sessionStorage,
       false
     )) as unknown as UserBuildings[];
     dep = aUserBuildings.filter(x =>

@@ -1,6 +1,7 @@
 import { alarmfax } from './alarmfax/alarmfax';
 import { alertOnMissionShare } from './alertOnMissionShare/alertOnMissionShare';
 import { autoCollapseBuildings } from './autoCollapseBuildings/autoCollapseBuildings';
+import { controlCenterRequirementCheck } from './controlCenterRequirementCheck/controlCenterRequirementCheck';
 import { countPatients } from './countPatients/countPatients';
 import { countPossibleMissions } from './countPossibleMissions/countPossibleMissions';
 import { countVehicleStatus } from './countVehicleStatus/countVehicleStatus';
@@ -31,6 +32,7 @@ export {
   alarmfax,
   alertOnMissionShare,
   autoCollapseBuildings,
+  controlCenterRequirementCheck,
   countPatients,
   countPossibleMissions,
   countVehicleStatus,

@@ -15,11 +15,21 @@ const deleteNewestFmsAfterTime = async function (): Promise<any> {
     }, time);
   };
 
-  socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
-    if (vehicleFmsObject.fms5Type === null) {
-      updateField(vehicleFmsObject);
-    }
-  });
+  if (typeof socket !== 'undefined') {
+    socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
+      if (vehicleFmsObject.fms5Type === null) {
+        updateField(vehicleFmsObject);
+      }
+    });
+
+    socket.on('vehicleFMSGrouped', (vehicleFMSObjectArray: VehicleFms[]) => {
+      vehicleFMSObjectArray.forEach(vehicleFMSObject => {
+        if (vehicleFMSObject.fms5Type === null) {
+          updateField(vehicleFMSObject);
+        }
+      });
+    });
+  }
 };
 
 export { deleteNewestFmsAfterTime };

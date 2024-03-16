@@ -15,9 +15,11 @@ const showOnlyLatestRadioMessage = async function (): Promise<any> {
     }
   };
 
-  socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
-    updateField(vehicleFmsObject);
-  });
+  if (typeof socket !== 'undefined') {
+    socket.on('vehicleFMS', (vehicleFmsObject: VehicleFms): void => {
+      updateField(vehicleFmsObject);
+    });
+  }
 };
 
 export { showOnlyLatestRadioMessage };

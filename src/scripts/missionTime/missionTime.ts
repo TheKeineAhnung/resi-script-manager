@@ -100,15 +100,20 @@ const missionTime = async function (): Promise<any> {
       return;
     }
 
-    const timerContainer: HTMLDivElement = document.createElement('div');
-    timerContainer.id = `timer-${missionObject.userMissionID.toString()}`;
-    timerContainer.classList.add('timer', 'mission-timer');
-    timerContainer.style.width = 'fit-content';
-    timerContainer.style.position = 'absolute';
-    timerContainer.style.right = '27px';
-    timerContainer.style.top = '7px';
-
-    timerParent.insertAdjacentElement('beforeend', timerContainer);
+    if (
+      !document.querySelector(
+        `#timer-${missionObject.userMissionID.toString()}`
+      )
+    ) {
+      const timerContainer: HTMLDivElement = document.createElement('div');
+      timerContainer.id = `timer-${missionObject.userMissionID.toString()}`;
+      timerContainer.classList.add('timer', 'mission-timer');
+      timerContainer.style.width = 'fit-content';
+      timerContainer.style.position = 'absolute';
+      timerContainer.style.right = '27px';
+      timerContainer.style.top = '7px';
+      timerParent.insertAdjacentElement('beforeend', timerContainer);
+    }
     updateTimer(missionObject);
   };
 
@@ -205,7 +210,7 @@ const missionTime = async function (): Promise<any> {
     const seconds = parseInt(splittedTime[2]);
 
     const currentDate = new Date(
-      `${new Date().getFullYear()} ${hours}:${minutes}:${seconds}`
+      `Jan 01 ${new Date().getFullYear()} ${hours}:${minutes}:${seconds}`
     );
 
     const remainingTimeCalc = currentDate.getTime() - 1000;
@@ -266,44 +271,46 @@ const missionTime = async function (): Promise<any> {
     sessionStorage.setItem('missionTimeIntervals', JSON.stringify(data));
   };
 
-  socket.on(
-    'missionStatus',
-    (missionObject: MissionStatus | MissionStatusOnWork): void => {
-      if (isMissionStatusOnWork(missionObject)) {
-        init(missionObject);
-        intervals[missionObject.userMissionID] = {
-          remainingTime: new Date(
-            missionObject.userMissionFinishTime.toString()
-          ).getTime(),
-          paused: false
-        };
-      } else {
-        if (missionObject.userMissionStatus !== 3) {
-          if (intervals[missionObject.userMissionID] !== undefined) {
-            clearInterval(intervals[missionObject.userMissionID].interval);
-            intervals[missionObject.userMissionID] = {
-              paused: true,
-              remainingTime:
-                intervals[missionObject.userMissionID].remainingTime
-            };
+  if (typeof socket !== 'undefined') {
+    socket.on(
+      'missionStatus',
+      (missionObject: MissionStatus | MissionStatusOnWork): void => {
+        if (isMissionStatusOnWork(missionObject)) {
+          init(missionObject);
+          intervals[missionObject.userMissionID] = {
+            remainingTime: new Date(
+              missionObject.userMissionFinishTime.toString()
+            ).getTime(),
+            paused: false
+          };
+        } else {
+          if (missionObject.userMissionStatus !== 3) {
+            if (intervals[missionObject.userMissionID] !== undefined) {
+              clearInterval(intervals[missionObject.userMissionID].interval);
+              intervals[missionObject.userMissionID] = {
+                paused: true,
+                remainingTime:
+                  intervals[missionObject.userMissionID].remainingTime
+              };
+            }
           }
         }
+        setStorageIntervals(intervals);
       }
-      setStorageIntervals(intervals);
-    }
-  );
+    );
 
-  socket.on('finishMission', (userMissionID: number): void => {
-    const newIntervals = getStorageIntervals();
-    if (newIntervals !== null) {
-      intervals = newIntervals;
-    }
-    if (intervals[userMissionID] !== undefined) {
-      clearInterval(intervals[userMissionID].interval);
-      delete intervals[userMissionID];
-      setStorageIntervals(intervals);
-    }
-  });
+    socket.on('finishMission', (userMissionID: number): void => {
+      const newIntervals = getStorageIntervals();
+      if (newIntervals !== null) {
+        intervals = newIntervals;
+      }
+      if (intervals[userMissionID] !== undefined) {
+        clearInterval(intervals[userMissionID].interval);
+        delete intervals[userMissionID];
+        setStorageIntervals(intervals);
+      }
+    });
+  }
 
   const storageIntervals = getStorageIntervals();
   if (storageIntervals === null) {

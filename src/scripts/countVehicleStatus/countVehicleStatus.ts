@@ -68,6 +68,7 @@ const countVehicleStatus = async function (): Promise<any> {
       );
       statusContainer.id = `vehicleStatusCountStatus${key}`;
       statusContainer.setAttribute('data-tooltip', `Status: ${key}`);
+      statusContainer.style.cursor = "default"
       infoContainer.insertAdjacentElement('beforeend', statusContainer);
     }
 
@@ -102,7 +103,6 @@ const countVehicleStatus = async function (): Promise<any> {
         vehicleStatus[parseInt(key)].count.toString();
     }
   };
-
   await initCounting();
   createInfobar();
   updateInfobar();
@@ -129,6 +129,32 @@ const countVehicleStatus = async function (): Promise<any> {
       vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
       updateInfobar();
     }
+  });
+
+  socket.on('vehicleFMSGrouped', (vehicleFMSObjectArray: VehicleFms[]) => {
+    vehicleFMSObjectArray.forEach(vehicleFMSObject => {
+      if (vehicleFMSObject.userName === ReSi.userName) {
+        for (let key = 1; key <= 8; key++) {
+          if (
+            vehicleStatus[key].userVehicleIDs.includes(
+              vehicleFMSObject.userVehicleID
+            )
+          ) {
+            const index = vehicleStatus[key].userVehicleIDs.indexOf(
+              vehicleFMSObject.userVehicleID
+            );
+            vehicleStatus[key].userVehicleIDs.splice(index, 1);
+            vehicleStatus[key].count--;
+            break;
+          }
+        }
+        vehicleStatus[vehicleFMSObject.userVehicleFMS].userVehicleIDs.push(
+          vehicleFMSObject.userVehicleID
+        );
+        vehicleStatus[vehicleFMSObject.userVehicleFMS].count++;
+        updateInfobar();
+      }
+    });
   });
 
   socket.on('vehicleBuy', (vehicleBuyObject: VehicleBuy) => {

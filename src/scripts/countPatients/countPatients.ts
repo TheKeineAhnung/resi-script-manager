@@ -1,6 +1,10 @@
 import { variableIsNull, variableIsUndefined } from '../../ts/errors/console';
 
 const countPatients = async function (): Promise<any> {
+  const shortText: string | null = localStorage.getItem('shortText');
+
+  const shortTextSetting = shortText === 'true';
+
   const getPatientSlots = function (): number {
     const elements: NodeListOf<HTMLDivElement> = document.querySelectorAll(
       'div.card-body div.vehicle.hospital-capacity div.vehicle-name'
@@ -28,7 +32,8 @@ const countPatients = async function (): Promise<any> {
     return parseInt(localStorage.currentPatients);
   };
 
-  const getPatientWord = function (): 'Patient' | 'Patienten' {
+  const getPatientWord = function (): 'Patient' | 'Patienten' | '' {
+    if (shortTextSetting) return '';
     return getCurrentPatients() === 1 ? 'Patient' : 'Patienten';
   };
 
@@ -56,12 +61,20 @@ const countPatients = async function (): Promise<any> {
       document.createElement('span');
     totalPatientContainer.id = 'totalPatients';
 
-    parent.appendChild(currentPatientContainer);
-    parent.insertAdjacentText('beforeend', ' ');
-    parent.appendChild(patientWordContainer);
-    parent.insertAdjacentText('beforeend', ' bei ');
-    parent.appendChild(totalPatientContainer);
-    parent.insertAdjacentText('beforeend', ' Betten');
+    if (shortTextSetting) {
+      parent.appendChild(currentPatientContainer);
+      parent.appendChild(patientWordContainer);
+      parent.insertAdjacentText('beforeend', '/');
+      parent.appendChild(totalPatientContainer);
+      parent.insertAdjacentHTML('beforeend', ' <i class="fas fa-bed"></i>');
+    } else {
+      parent.appendChild(currentPatientContainer);
+      parent.insertAdjacentText('beforeend', ' ');
+      parent.appendChild(patientWordContainer);
+      parent.insertAdjacentText('beforeend', ' bei ');
+      parent.appendChild(totalPatientContainer);
+      parent.insertAdjacentText('beforeend', ' Betten');
+    }
     await updatePanel();
   };
 

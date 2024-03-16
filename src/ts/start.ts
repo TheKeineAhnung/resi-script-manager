@@ -3,9 +3,20 @@ import {
   createInitLoaderElement
 } from './elementCreator';
 import { checkConfig } from './config';
+import { userIsBlocked } from './block';
 
 window.addEventListener('load', async (): Promise<void> => {
   if (!self.top) {
+    return;
+  }
+  if (userIsBlocked(ReSi.userName)) {
+    GrowlNotification.notify({
+      title: 'Ausschluss',
+      description:
+        'Wir haben entschieden, dass du keinen Zugriff mehr auf den Skript-Manager haben sollst. Wenn du dies für einen Fehler hälst, beschwere dich über Discord bei KeineAhnung#0306.',
+      type: 'info',
+      position: 'top-left'
+    });
     return;
   }
 

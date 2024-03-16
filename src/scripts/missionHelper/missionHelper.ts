@@ -10,7 +10,7 @@ const missionHelper = async function (): Promise<void> {
 
   const aVehicleCategories = (await apiGet(
     'vehicleCategories',
-    sessionStorage
+    localStorage
   )) as any;
 
   const sortBy = {
@@ -26,19 +26,20 @@ const missionHelper = async function (): Promise<void> {
     hlf_rw_kef_ab_rüst: 8,
     'h*lf_rw_kef_gw_öl_ab_rüst_ab_öl': 9,
     'h*lf_kef_mtw_gw_tier': 10,
-    hlf_rw_kef_ab_rüst_mtw: 11,
-    'h*lf_mtw': 12,
-    kdow: 13,
-    kdow_mzf: 14,
-    elw1_kdow_mzf: 15,
-    elw1_kdow: 16,
-    elw1: 17,
-    führungsdienst: 18,
-    elw_elw2: 19,
-    dlk: 20,
-    dlk_tmf: 21,
-    tmf: 22,
-    elw2_ab_el: 25,
+    'h*lf_rw_ab_rüst_kef': 11,
+    hlf_rw_kef_ab_rüst_mtw: 12,
+    'h*lf_mtw': 14,
+    kdow: 15,
+    kdow_mzf: 16,
+    elw1_kdow_mzf: 17,
+    elw1_kdow: 18,
+    elw1: 19,
+    führungsdienst: 20,
+    elw_elw2: 21,
+    dlk: 22,
+    dlk_tmf: 23,
+    tmf: 24,
+    elw2_ab_el: 27,
     sw_ab_schlauch: 29,
     sw_tlf_ab_tank_ab_schlauch: 30,
     rw_ab_rüst: 34,
@@ -59,9 +60,13 @@ const missionHelper = async function (): Promise<void> {
     'rw-k': 75,
     fwk: 76,
     pol: 80,
-    fustw: 81,
-    lpol: 82,
-    bpol: 83,
+    pol_all: 81,
+    pol_dhufuekw: 83,
+    fustw: 90,
+    lpol: 100,
+    lpol_dhufuekw: 101,
+    bpol: 200,
+    bpol_dhufuekw: 201,
     mtw: 2000,
     mzf: 2001,
     mtw_mzf: 2002,
@@ -162,6 +167,18 @@ const missionHelper = async function (): Promise<void> {
     vehicle.innerText = 'Vergütung:';
     tr.appendChild(vehicle);
     tr.appendChild(number);
+    if (r.maxCredits != null && r.maxCredits !== r.credits) {
+      const number2 = document.createElement('td');
+      number2.innerText =
+        new Intl.NumberFormat('de-DE').format(r.maxCredits) +
+        ' Münzen (80%: ' +
+        new Intl.NumberFormat('de-DE').format(r.maxCredits * 0.8) +
+        ')';
+      const vehicle2 = document.createElement('td');
+      vehicle2.innerText = 'Max. mögliche Variantenvergütung:';
+      tr.appendChild(vehicle2);
+      tr.appendChild(number2);
+    }
     tbody2.appendChild(tr);
     if (r.patients) {
       const tr2 = document.createElement('tr');
