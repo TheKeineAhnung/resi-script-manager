@@ -116,7 +116,7 @@
         on:click={addToConfig}
         variant="raised"
         disabled
-        >Deine &Auml;nderungen werden automatisch &uuml;bernommen</Button
+        >Deine {@html '&Auml;'}nderungen werden automatisch {@html '&uuml;'}bernommen</Button
       >
     </div>
   </div>
@@ -149,7 +149,7 @@
   scrimClickAction=""
   escapeKeyAction=""
 >
-  <Title id="simple-title">{dialogTitle}</Title>
+  <Title id="simple-title">{@html dialogTitle}</Title>
   <DialogContent id="simple-content" style="word-wrap: break-word;"
     >{dialogContent}</DialogContent
   >
@@ -189,7 +189,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schlie&szlig;en</Label>
+      <Label>{@html closeIcon} Schlie{@html '&szlig;'}en</Label>
     </Button>
   </DialogActions>
 </Dialog>

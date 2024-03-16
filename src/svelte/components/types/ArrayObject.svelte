@@ -165,7 +165,7 @@
               <Textfield
                 variant="outlined"
                 bind:value={userInputValue[key]}
-                label={`Wert '${key}' zur Konfiguration hinzuf&uuml;gen`}
+                label={`Wert '${key}' der Konfiguration bearbeiten`}
                 style="width: 100%;"
               />
             </div>
@@ -175,17 +175,17 @@
     </div>
     <div class="w-95 flex justify-content-between mt-2">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Zur&uuml;cksetzen</Button
+        >Zur{@html '&uuml;'}cksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Hinzuf&uuml;gen</Button
+        >Hinzuf{@html '&uuml;'}gen</Button
       >
     </div>
   </div>
   <div
     class="existing flex justify-content-start align-items-start flex-column"
   >
-    Aktuelle Konfiguration f&uuml;r {scriptName}.
+    Aktuelle Konfiguration f{@html '&uuml;'}r {scriptName}.
     <br />
     {#if configDescription !== undefined && configDescription !== null}
       {@html configDescription}
@@ -199,7 +199,7 @@
           >
             <Head>
               <Row>
-                <Cell>Schl&uuml;ssel</Cell>
+                <Cell>Schl{@html '&uuml;'}ssel</Cell>
                 <Cell>Wert</Cell>
                 <Cell>Entfernen</Cell>
               </Row>
@@ -264,7 +264,7 @@
   scrimClickAction=""
   escapeKeyAction=""
 >
-  <Title id="simple-title">{dialogTitle}</Title>
+  <Title id="simple-title">{@html dialogTitle}</Title>
   <DialogContent id="simple-content" style="word-wrap: break-word;"
     >{dialogContent}</DialogContent
   >
@@ -304,7 +304,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schlie&szlig;en</Label>
+      <Label>{@html closeIcon} Schlie{@html '&szlig;'}'&szlig;'}en</Label>
     </Button>
   </DialogActions>
 </Dialog>

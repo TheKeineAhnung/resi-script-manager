@@ -364,7 +364,7 @@
                 {#if scriptInfoElement.requiresConfig}
                   {#if value.active}
                     <Panel extend>
-                      <Header>{scriptInfoElement.displayName}</Header>
+                      <Header>{@html scriptInfoElement.displayName}</Header>
                       <AccordionContent>
                         {#each Object.entries(scriptInfoElement.config) as [configElementName, configElementValue]}
                           <div

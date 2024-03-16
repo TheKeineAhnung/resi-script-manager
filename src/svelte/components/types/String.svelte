@@ -111,21 +111,21 @@
       <Textfield
         variant="outlined"
         bind:value={userInputValue}
-        label="Wert zur Konfiguration hinzuf&uuml;gen"
+        label="Konfiguration bearbeiten"
         style="width: 100%;"
       />
     </div>
     <div class="w-95 flex justify-content-between">
       <Button style="width: 48%;" on:click={clearUserInput} variant="raised"
-        >Zur&uuml;cksetzen</Button
+        >Zur{@html '&uuml;'}cksetzen</Button
       >
       <Button style="width: 48%;" on:click={addToConfig} variant="raised"
-        >Hinzuf&uuml;gen</Button
+        >Hinzuf{@html '&uuml;'}gen</Button
       >
     </div>
   </div>
   <div class="existing">
-    Aktuelle Konfiguration f&uuml;r {scriptName}.
+    Aktuelle Konfiguration f{@html '&uuml;'}r {scriptName}.
     <br />
     {#if configDescription !== undefined && configDescription !== null}
       {@html configDescription}
@@ -184,7 +184,7 @@
   scrimClickAction=""
   escapeKeyAction=""
 >
-  <Title id="simple-title">{dialogTitle}</Title>
+  <Title id="simple-title">{@html dialogTitle}</Title>
   <DialogContent id="simple-content" style="word-wrap: break-word;"
     >{dialogContent}</DialogContent
   >
@@ -224,7 +224,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schlie&szlig;en</Label>
+      <Label>{@html closeIcon} Schlie{@html '&szlig;'}en</Label>
     </Button>
   </DialogActions>
 </Dialog>
