@@ -28,8 +28,8 @@ const alertOnMissionShare = async function (): Promise<any> {
           setTimeout(() => {
             const missionInfo = ControlCenter.missions[missionId];
             GrowlNotification.notify({
-              title: `<a href="mission/${missionId}">Neuer Einsatz freigegeben</a>`,
-              description: `<a href="mission/${missionId}">Einsatz ${missionInfo.missionName} wurde von ${missionInfo.userName} freigegeben.</a>`,
+              title: `<div class="frame-opener" frame="1/1/4/5" frame-url="/mission/${missionId}">Neuer Einsatz freigegeben</div>`,
+              description: `<div class="frame-opener" frame="1/1/4/5" frame-url="/mission/${missionId}">Einsatz ${missionInfo.missionName} wurde von ${missionInfo.userName} freigegeben.</div>`,
               type: 'info',
               position: 'top-left',
               closeTimeout: 10000,
