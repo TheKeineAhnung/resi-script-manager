@@ -194,7 +194,9 @@ const controlCenterRequirementCheck = async function (): Promise<any> {
               <td name="name"><a href="missionOverview/${
                 mission.id
               }" target="_blank">${mission.name}</a></td>
-              <td>${mission.credits}</td>
+              <td name="name"><a href="missionOverview/${
+                mission.id
+              }" target="_blank">${mission.credits}</a></td>
               <td><span class="status ${
                 e.generatable ? 's2' : 's4'
               }">Voraussetzungen ${
@@ -205,7 +207,7 @@ const controlCenterRequirementCheck = async function (): Promise<any> {
             }</td>
             <td name="name"><a href="missionOverview/${
               mission.id
-            }" target="_blank">${mission.name}</a></td>
+            }" target="_blank">Mehr anzeigen</a></td>
             </tr>`;
           }
           return contentString;
