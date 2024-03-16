@@ -1,3 +1,6 @@
+import { Buildings } from '../../types/api/Buildings';
+import { apiGet } from '../../ts/helper/api';
+
 const autoCollapseBuildings = async function (): Promise<any> {
   let collapseBuildingTypes: number[];
 
@@ -6,23 +9,24 @@ const autoCollapseBuildings = async function (): Promise<any> {
       localStorage.getItem('autoCollapseBuildingsBuildingTypes') ?? '[]'
     );
   } else {
-    collapseBuildingTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const apiData = (await apiGet(
+      'buildings',
+      localStorage
+    )) as unknown as Buildings[];
+    collapseBuildingTypes = apiData.map(building => building.buildingID);
     localStorage.setItem(
       'autoCollapseBuildingsBuildingTypes',
       JSON.stringify(collapseBuildingTypes)
     );
   }
-  const cards: NodeListOf<HTMLDivElement> =
-    document.querySelectorAll('#departments .card');
 
-  for (const currentBuildingType of collapseBuildingTypes) {
-    for (let i = 0; i < cards.length; i++) {
-      if (
-        cards[i].getAttribute('buildingtype') === currentBuildingType.toString()
-      ) {
-        cards[i].classList.add('collapsed');
-      }
-    }
+  for (const collapseBuildingType of collapseBuildingTypes) {
+    const cards: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+      `#departments .card[buildingtype='${collapseBuildingType}']`
+    );
+    cards.forEach(card => {
+      card.classList.add('collapsed');
+    });
   }
 };
 
