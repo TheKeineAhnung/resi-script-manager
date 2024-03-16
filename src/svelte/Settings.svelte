@@ -323,7 +323,7 @@
             <Card style="border-radius: 0.75rem">
               <Content>
                 <div class="flex justify-content-between align-items-center">
-                  <h2 class="m-0 h-fit">{info.displayName}</h2>
+                  <h2 class="m-0 h-fit">{@html info.displayName}</h2>
                   <Actions style="padding: 0;">
                     <FormField>
                       <Switch
