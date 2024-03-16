@@ -194,6 +194,7 @@ const controlCenterRequirementCheck = async function (): Promise<any> {
               <td name="name"><a href="missionOverview/${
                 mission.id
               }" target="_blank">${mission.name}</a></td>
+              <td>${mission.credits}</td>
               <td><span class="status ${
                 e.generatable ? 's2' : 's4'
               }">Voraussetzungen ${
