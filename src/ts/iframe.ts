@@ -124,6 +124,10 @@ const loadSettingsFrame = async function (): Promise<void> {
   link2.href = `${hostServer}/js/svelte/css/settings.css`;
   link2.rel = 'stylesheet';
   head.appendChild(link2);
+
+  const charset = document.createElement('meta');
+  charset.setAttribute('charset', 'utf-8');
+  head.appendChild(charset);
 };
 
 const closeSettingsFrame = function (): void {
