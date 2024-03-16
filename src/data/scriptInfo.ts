@@ -32,6 +32,18 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     }
   },
   {
+    name: 'controlCenterRequirementCheck',
+    displayName: 'Anforderungen pro Leitstelle überprüfen',
+    description:
+      'Überprüft ob die Anforderungen innerhalb der Wachen einer Leitstelle funktioniert',
+    author: 'KeineAhnung',
+    category: 'Einsätze',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'countPatients',
     displayName: 'Patientenanzahl anzeigen',
     description:

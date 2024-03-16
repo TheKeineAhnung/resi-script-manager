@@ -1,6 +1,7 @@
 type ScriptName =
   | 'alarmfax'
   | 'autoCollapseBuildings'
+  | 'controlCenterRequirementCheck'
   | 'countPatients'
   | 'countPossibleMissions'
   | 'countVehicleStatus'
