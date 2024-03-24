@@ -424,6 +424,7 @@
                                   scriptName={scriptInfoElement.displayName}
                                   configName={configElementName}
                                   configDescription={configElementValue.description}
+                                  defaultConfig={configElementValue.default}
                                 />
                               {:else if configElementValue.type === 'boolean'}
                                 <ConfigBooleanElement
