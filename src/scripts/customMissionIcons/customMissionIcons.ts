@@ -48,19 +48,19 @@ const customMissionIcons = async function (): Promise<any> {
   const replaceIcons = function (icon = 'fire'): any {
     for (const i in config) {
       const oneMap: NodeListOf<HTMLImageElement> = document.querySelectorAll(
-        `img[src='images/marker/missions/${config[i].name}_1.png']`
+        `img[src='images/marker/missions/${config[i].name}_1.svg']`
       );
       const twoMap: NodeListOf<HTMLImageElement> = document.querySelectorAll(
-        `img[src='images/marker/missions/${config[i].name}_2.png']`
+        `img[src='images/marker/missions/${config[i].name}_2.svg']`
       );
       const threeMap: NodeListOf<HTMLImageElement> = document.querySelectorAll(
-        `img[src='images/marker/missions/${config[i].name}_3.png']`
+        `img[src='images/marker/missions/${config[i].name}_3.svg']`
       );
 
       for (const elem in oneMap) {
         if (
           oneMap[elem].src ===
-          `https://rettungssimulator.online/images/marker/missions/${icon}_1.png`
+          `https://rettungssimulator.online/images/marker/missions/${icon}_1.svg`
         ) {
           oneMap[elem].src = `${config[i]['1']}`;
         }
@@ -68,7 +68,7 @@ const customMissionIcons = async function (): Promise<any> {
       for (const elem in twoMap) {
         if (
           twoMap[elem].src ===
-          `https://rettungssimulator.online/images/marker/missions/${icon}_2.png`
+          `https://rettungssimulator.online/images/marker/missions/${icon}_2.svg`
         ) {
           twoMap[elem].src = `${config[i]['2']}`;
         }
@@ -76,7 +76,7 @@ const customMissionIcons = async function (): Promise<any> {
       for (const elem in threeMap) {
         if (
           threeMap[elem].src ===
-          `https://rettungssimulator.online/images/marker/missions/${icon}_3.png`
+          `https://rettungssimulator.online/images/marker/missions/${icon}_3.svg`
         ) {
           threeMap[elem].src = `${config[i]['3']}`;
         }
