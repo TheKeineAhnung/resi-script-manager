@@ -22,7 +22,7 @@ const customMissionIcons = async function (): Promise<any> {
 
       if (configStorage !== configParam) {
         for (const item of configParam) {
-          for (const [, value] of Object.entries(item)) {
+          for (const value of Object.values(item)) {
             if (value !== '') {
               localStorage.setItem(
                 'customMissionIconsConfig',
@@ -98,7 +98,10 @@ const customMissionIcons = async function (): Promise<any> {
   }
 
   config = getConfig(config);
-  replaceIcons();
+
+  for (const configItem of config) {
+    replaceIcons(configItem.name);
+  }
 };
 
 export { customMissionIcons };
