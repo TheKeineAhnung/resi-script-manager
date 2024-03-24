@@ -1,5 +1,4 @@
 import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import autoPreprocess from 'svelte-preprocess';
 import autoprefixer from 'autoprefixer';
@@ -7,6 +6,7 @@ import cssnano from 'cssnano';
 import postcssPresetEnv from 'postcss-preset-env';
 import css from 'rollup-plugin-css-only';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import yargs from 'yargs';
 
@@ -21,23 +21,23 @@ function getConfig(inputPath, outputPath, cssPath) {
   let config = {
     input: inputPath,
     output: {
-      sourcemap: true,
+      sourcemap: getMode() === 'production' ? false : true,
       format: 'iife',
       name: 'app',
       file: outputPath
     },
     plugins: [
+      nodeResolve(),
       svelte({
-        compilerOptions: {
-          // enable run-time checks when not in production
-          dev: getMode() === 'production' ? false : true
-        },
         onwarn: (warning, handler) => {
           const { code } = warning;
           const ignoreCodes = ['css-unused-selector'];
           if (ignoreCodes.includes(code)) return;
 
           handler(warning);
+        },
+        compilerOptions: {
+          dev: getMode() === 'production' ? false : true
         },
         preprocess: autoPreprocess({
           postcss: {
@@ -49,21 +49,14 @@ function getConfig(inputPath, outputPath, cssPath) {
           }
         })
       }),
-
       css({
         output: cssPath
       }),
-
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
       typescript({
         sourceMap: getMode() === 'production' ? false : true,
         tsconfig: './tsconfig.rollup.json'
       }),
-
+      commonjs(),
       // set process.env.NODE_ENV to production or development
       injectProcessEnv({
         NODE_ENV: getMode() === 'production' ? 'production' : 'development',
