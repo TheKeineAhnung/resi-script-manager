@@ -304,7 +304,7 @@
       </Button>
     {/if}
     <Button on:click={() => resetDialog()}>
-      <Label>{@html closeIcon} Schlie{@html '&szlig;'}'&szlig;'}en</Label>
+      <Label>{@html closeIcon} Schlie{@html '&szlig;'}n</Label>
     </Button>
   </DialogActions>
 </Dialog>
