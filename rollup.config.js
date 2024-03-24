@@ -7,7 +7,6 @@ import cssnano from 'cssnano';
 import postcssPresetEnv from 'postcss-preset-env';
 import css from 'rollup-plugin-css-only';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
-import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import yargs from 'yargs';
 
@@ -64,8 +63,6 @@ function getConfig(inputPath, outputPath, cssPath) {
         sourceMap: getMode() === 'production' ? false : true,
         tsconfig: './tsconfig.rollup.json'
       }),
-
-      getMode() === 'production' && terser(),
 
       // set process.env.NODE_ENV to production or development
       injectProcessEnv({
