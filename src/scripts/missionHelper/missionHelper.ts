@@ -167,7 +167,10 @@ const missionHelper = async function (): Promise<void> {
     vehicle.innerText = 'Vergütung:';
     tr.appendChild(vehicle);
     tr.appendChild(number);
+    tbody2.appendChild(tr);
+
     if (r.maxCredits != null && r.maxCredits !== r.credits) {
+      const tr2 = document.createElement('tr');
       const number2 = document.createElement('td');
       number2.innerText =
         new Intl.NumberFormat('de-DE').format(r.maxCredits) +
@@ -176,10 +179,11 @@ const missionHelper = async function (): Promise<void> {
         ')';
       const vehicle2 = document.createElement('td');
       vehicle2.innerText = 'Max. mögliche Variantenvergütung:';
-      tr.appendChild(vehicle2);
-      tr.appendChild(number2);
+      tr2.appendChild(vehicle2);
+      tr2.appendChild(number2);
+
+      tbody2.appendChild(tr2);
     }
-    tbody2.appendChild(tr);
     if (r.patients) {
       const tr2 = document.createElement('tr');
       const number2 = document.createElement('td');
