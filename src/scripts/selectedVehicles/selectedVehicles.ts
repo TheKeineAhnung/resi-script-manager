@@ -77,10 +77,10 @@ const selectedVehicles = async function (): Promise<void> {
       }</tr></table></div>`;
     if (!belowAAOSetting) {
       const a = document.querySelector('.alarmed-vehicles');
-      a?.insertAdjacentElement('beforeend', helper);
+      a?.insertAdjacentElement('afterbegin', helper);
     } else {
       const a = document.querySelector('.mission-aao-container');
-      a?.insertAdjacentElement('afterbegin', helper);
+      a?.insertAdjacentElement('afterend', helper);
     }
     const table = document.querySelector('table#selectedVehiclePanel tbody');
     const vehicles = document.querySelectorAll(
