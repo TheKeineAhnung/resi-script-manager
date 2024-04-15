@@ -80,7 +80,7 @@ const selectedVehicles = async function (): Promise<void> {
       a?.insertAdjacentElement('beforeend', helper);
     } else {
       const a = document.querySelector('.mission-aao-container');
-      a?.insertAdjacentElement('afterend', helper);
+      a?.insertAdjacentElement('afterbegin', helper);
     }
     const table = document.querySelector('table#selectedVehiclePanel tbody');
     const vehicles = document.querySelectorAll(
