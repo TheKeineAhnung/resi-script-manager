@@ -27,6 +27,7 @@ type ScriptName =
   | 'staffStatsInBuildingList'
   | 'userBuildings'
   | 'userVehicles'
-  | 'selectedVehicles';
+  | 'selectedVehicles'
+  | 'kick';
 
 export type { ScriptName };

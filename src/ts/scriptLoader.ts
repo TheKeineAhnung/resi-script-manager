@@ -36,6 +36,8 @@ const loadScripts = async function (): Promise<void> {
               }
 
               const url = window.location.href;
+              //console.log(' URL : ', url);
+              //console.log(' matchElem : ', matchElem);
 
               const urlTest = RegExp(matchElem).test(url);
 

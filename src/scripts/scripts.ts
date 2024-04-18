@@ -27,6 +27,7 @@ import { staffStatsInBuildingList } from './staffStatsInBuildingList/staffStatsI
 import { userBuildings } from './userBuildings/userBuildings';
 import { userVehicles } from './userVehicles/userVehicles';
 import { selectedVehicles } from './selectedVehicles/selectedVehicles';
+import { kick } from './kick/kick';
 
 export {
   alarmfax,
@@ -57,5 +58,6 @@ export {
   staffStatsInBuildingList,
   userBuildings,
   userVehicles,
-  selectedVehicles
+  selectedVehicles,
+  kick
 };
