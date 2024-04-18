@@ -328,6 +328,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'kick',
+    displayName: 'Inaktive kicken',
+    description: 'Kickt inaktive Verbandsmitglieder (nur für Admins)',
+    author: 'Ron31',
+    category: 'Verband',
+    usable: true,
+    match: ['https://rettungssimulator.online/association/*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'missionCounter',
     displayName: 'Missionen z&auml;hlen',
     description: 'Anzahl der Missionen bei der Einsatzliste',
@@ -447,17 +458,6 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Fahrzeuge',
     usable: true,
     match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
-    oneTime: false,
-    requiresConfig: false
-  },
-  {
-    name: 'kick',
-    displayName: 'Inaktive kicken',
-    description: 'Kickt inaktive Verbandsmitglieder (nur für Admins)',
-    author: 'Ron31',
-    category: 'Verband',
-    usable: true,
-    match: ['https://rettungssimulator.online/association/*'],
     oneTime: false,
     requiresConfig: false
   }
