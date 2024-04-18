@@ -76,8 +76,8 @@ const selectedVehicles = async function (): Promise<void> {
         showDistanceSetting ? '<th>Distanz</th>' : ''
       }</tr></table></div>`;
     if (!belowAAOSetting) {
-      const a = document.querySelector('.alarmed-vehicles');
-      a?.insertAdjacentElement('afterbegin', helper);
+      const a = document.querySelector('.enroute');
+      a?.insertAdjacentElement('beforebegin', helper);
     } else {
       const a = document.querySelector('.mission-aao-container');
       a?.insertAdjacentElement('afterend', helper);
