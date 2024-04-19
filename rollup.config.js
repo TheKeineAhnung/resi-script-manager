@@ -27,7 +27,9 @@ function getConfig(inputPath, outputPath, cssPath) {
       file: outputPath
     },
     plugins: [
-      nodeResolve(),
+      nodeResolve({
+        exportConditions: ['svelte'],
+      }),
       svelte({
         onwarn: (warning, handler) => {
           const { code } = warning;
