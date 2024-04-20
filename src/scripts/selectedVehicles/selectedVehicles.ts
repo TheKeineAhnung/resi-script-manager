@@ -39,7 +39,9 @@ const selectedVehicles = async function (): Promise<void> {
             tr.innerHTML = `<td>${
               mutation.target.querySelector('.vehicle-name').innerText
             }</td><td>${
-              mutation.target.querySelector('.vehicle-status').innerText
+              ReSi.userName == 'Ron31'
+                ? mutation.target.querySelector('.vehicle-shortname').innerText
+                : mutation.target.querySelector('.vehicle-status').innerText
             }</td><td>${
               mutation.target.querySelector('.vehicle-department').innerText
             }</td>${
@@ -72,7 +74,9 @@ const selectedVehicles = async function (): Promise<void> {
     helper.classList.add('card', 'selectedVehiclePanel');
     helper.innerHTML =
       '<div class="card-headline card-headline-info">Ausgewählte Fahrzeuge</div><div class="card-body"><table id="selectedVehiclePanel' +
-      `"><tr><th>Funkrufname</th><th>Status</th><th>Wache</th>${
+      `"><tr><th>Funkrufname</th>${
+        ReSi.userName === 'Ron31' ? '<th>Typ</th>' : '<th>Status</th>'
+      }<th>Wache</th>${
         showDistanceSetting ? '<th>Distanz</th>' : ''
       }</tr></table></div>`;
     if (!belowAAOSetting) {
@@ -92,7 +96,10 @@ const selectedVehicles = async function (): Promise<void> {
       tr.innerHTML = `<td>${
         (vehicle.querySelector('.vehicle-name') as HTMLElement)?.innerText
       }</td><td>${
-        (vehicle.querySelector('.vehicle-status') as HTMLElement)?.innerText
+        ReSi.userName == 'Ron31'
+          ? (vehicle.querySelector('.vehicle-shortname') as HTMLElement)
+              ?.innerText
+          : (vehicle.querySelector('.vehicle-status') as HTMLElement)?.innerText
       }
       }</td><td>${
         (vehicle.querySelector('.vehicle-department') as HTMLElement)?.innerText
