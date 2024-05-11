@@ -27,6 +27,7 @@ type ScriptName =
   | 'staffStatsInBuildingList'
   | 'userBuildings'
   | 'userVehicles'
+  | 'userVehiclesCC'
   | 'selectedVehicles'
   | 'kick';
 

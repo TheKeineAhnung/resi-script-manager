@@ -460,6 +460,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     match: [/^https:\/\/(www.)?rettungssimulator.online\/profile$/],
     oneTime: false,
     requiresConfig: false
+  },
+  {
+    name: 'userVehiclesCC',
+    displayName: 'Fahrzeuge zählen LST',
+    description: 'Zählen der eigenen Fahrzeuge innerhalb einer Leitstelle',
+    author: 'KeineAhnung, Ron31',
+    category: 'Fahrzeuge',
+    usable: true,
+    match: ['https://rettungssimulator.online/department/*'],
+    oneTime: false,
+    requiresConfig: false
   }
 ];
 export { info };
