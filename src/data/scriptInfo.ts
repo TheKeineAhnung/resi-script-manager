@@ -20,7 +20,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Verband',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: true,
     requiresConfig: false
   },
@@ -32,7 +34,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Design',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: true,
     requiresConfig: true,
     config: {
@@ -65,7 +69,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Patienten',
     usable: true,
     match: [
-      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
     requiresConfig: true,
@@ -137,7 +141,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: false,
     requiresConfig: true,
     config: {
@@ -174,7 +180,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Eins&auml;tze',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: false,
     requiresConfig: true,
     config: {
@@ -193,7 +201,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: true,
     requiresConfig: true,
     config: {
@@ -238,7 +248,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Eins&auml;tze',
     usable: true,
     match: [
-      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
     requiresConfig: false
@@ -293,7 +303,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Karte',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: true,
     requiresConfig: true,
     config: {
@@ -346,7 +358,7 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     category: 'Eins&auml;tze',
     usable: true,
     match: [
-      '^https:\\/\\/(www.)?rettungssimulator.online(\\/#?\\??(#[A-Za-z=]*)?)?$'
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
     ],
     oneTime: true,
     requiresConfig: true,
@@ -423,7 +435,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Fahrzeuge',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: false,
     requiresConfig: false
   },
@@ -435,7 +449,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Geb&auml;ude',
     usable: true,
-    match: ['https://rettungssimulator.online/'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: true,
     requiresConfig: false
   },
