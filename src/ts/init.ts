@@ -63,10 +63,10 @@ const createPageLink = function (): void {
   if (
     (process.env.MODE === 'beta' &&
       !RegExp(
-        /^https:\/\/(beta.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
+        /^https:\/\/(beta.)?rettungssimulator.online(\/(([#?])[A-Za-z=]*)?)?$/
       ).test(window.location.href)) ||
     !RegExp(
-      /^https:\/\/(www.)?rettungssimulator.online(\/#?\??(#[A-Za-z=]*)?)?$/
+      /^https:\/\/(www.)?rettungssimulator.online(\/(([#?])[A-Za-z=]*)?)?$/
     ).test(window.location.href)
   ) {
     return;
