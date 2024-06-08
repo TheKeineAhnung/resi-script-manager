@@ -2,7 +2,6 @@ import { getConfig } from './config';
 import { getScriptInfo } from './scripts';
 import { ScriptInfo, ScriptInfoConfig } from '../types/ScriptInfo';
 import * as scripts from '../scripts/scripts';
-import { compare_node } from 'svelte/types/compiler/compile/utils/compare_node';
 
 type ActiveScripts = Record<
   string,
@@ -37,13 +36,13 @@ const loadScripts = async function (): Promise<void> {
               }
 
               const url = window.location.href;
-              console.log('Skript: ' + scriptName);
-              console.log(' URL : ', url);
-              console.log(' matchElem : ', matchElem);
+              //console.log('Skript: ' + scriptName);
+              //console.log(' URL : ', url);
+              //console.log(' matchElem : ', matchElem);
 
               const urlTest = RegExp(matchElem).test(url);
 
-              console.log(' urlTest : ', urlTest);
+              //console.log(' urlTest : ', urlTest);
 
               const activeScripts: ActiveScripts = JSON.parse(
                 sessionStorage.getItem('scriptManagerActiveScripts') ?? '{}'
