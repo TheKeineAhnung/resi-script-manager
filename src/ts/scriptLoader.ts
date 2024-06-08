@@ -43,6 +43,8 @@ const loadScripts = async function (): Promise<void> {
 
               const urlTest = RegExp(matchElem).test(url);
 
+              console.log(' urlTest : ', urlTest);
+
               const activeScripts: ActiveScripts = JSON.parse(
                 sessionStorage.getItem('scriptManagerActiveScripts') ?? '{}'
               );
