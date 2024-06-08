@@ -405,6 +405,17 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     requiresConfig: false
   },
   {
+    name: 'ownAttendanceInMission',
+    displayName: 'Eigene Anwesenheit im Einsatz',
+    description: 'Zeigt die eigene Anwesenheit im Einsatz an',
+    author: 'Ron31',
+    category: 'Eins&auml;tze',
+    usable: true,
+    match: ['https://rettungssimulator.online/mission/[0-9]*'],
+    oneTime: false,
+    requiresConfig: false
+  },
+  {
     name: 'selectedVehicles',
     displayName: 'Ausgew&auml;hlte Fahrzeuge anzeigen',
     description: 'Ausgew&auml;hlte Fahrzeuge in Tabelle anzeigen',

@@ -23,6 +23,7 @@ type ScriptName =
   | 'missionHelper'
   | 'missionTime'
   | 'multipleStaffAssignment'
+  | 'ownAttendanceInMission'
   | 'showOnlyLatestRadioMessage'
   | 'staffStatsInBuildingList'
   | 'userBuildings'

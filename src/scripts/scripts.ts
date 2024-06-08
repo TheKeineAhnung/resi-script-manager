@@ -29,6 +29,7 @@ import { userVehicles } from './userVehicles/userVehicles';
 import { selectedVehicles } from './selectedVehicles/selectedVehicles';
 import { kick } from './kick/kick';
 import { userVehiclesCC } from './statsControlCenter/userVehiclesControlCenter';
+import { ownAttendanceInMission } from './ownAttendanceInMission/ownAttendanceInMission';
 
 export {
   alarmfax,
@@ -61,5 +62,6 @@ export {
   userVehicles,
   selectedVehicles,
   kick,
-  userVehiclesCC
+  userVehiclesCC,
+  ownAttendanceInMission
 };
