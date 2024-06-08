@@ -69,6 +69,7 @@ const createPageLink = function (): void {
       /^https:\/\/(www.)?rettungssimulator.online(\/(([#?])[A-Za-z=]*)?)?$/
     ).test(window.location.href)
   ) {
+    console.warn('Script is on the wrong page ' + window.location.href);
     return;
   }
 
