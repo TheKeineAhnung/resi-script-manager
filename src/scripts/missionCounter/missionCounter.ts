@@ -1,5 +1,6 @@
 import { UserBuildings } from '../../types/api/UserBuildings';
 import { apiGet } from '../../ts/helper/api';
+import { variableIsNull } from '../../ts/errors/console';
 
 const missionCounter = async function (): Promise<any> {
   /*
@@ -11,8 +12,32 @@ const missionCounter = async function (): Promise<any> {
    */
 
   const addOwnShared: string | null = localStorage.getItem('addOwnShared');
+  const showSharedInHeader: string | null =
+    localStorage.getItem('showSharedInHeader');
 
   const addOwnSharedSetting = addOwnShared === 'true';
+  const showSharedInHeaderSetting = showSharedInHeader === 'true';
+
+  const showPanel = async function (): Promise<void> {
+    if (!showSharedInHeaderSetting) return;
+    const parent: HTMLDivElement | null =
+      document.querySelector('div.muenzen_marken');
+
+    if (parent === null) {
+      variableIsNull(Object.keys({ parent })[0], 'missionCounter');
+
+      return;
+    }
+
+    parent.innerHTML += ' | ';
+
+    const currentMissionsContainer: HTMLSpanElement =
+      document.createElement('span');
+    currentMissionsContainer.id = 'currentMissions';
+
+    parent.appendChild(currentMissionsContainer);
+    parent.insertAdjacentHTML('beforeend', ' <i class="fas fa-fire"></i>');
+  };
 
   const ownShared = () => {
     const ownSharedElements = document.querySelectorAll(
@@ -42,6 +67,13 @@ const missionCounter = async function (): Promise<any> {
       sharedMissions.length.toString();
     (document.getElementById('ownCountShared') as HTMLElement).innerText =
       ownShared();
+
+    // Headercount
+    if (showSharedInHeaderSetting) {
+      (document.getElementById('currentMissions') as HTMLElement).innerText = (
+        sharedMissions.length + parseInt(ownShared())
+      ).toString();
+    }
   }
 
   const aUserBuildings = (await apiGet(
@@ -112,6 +144,8 @@ const missionCounter = async function (): Promise<any> {
     (document.querySelector('missionCountPossible') as HTMLElement).innerText =
       String(f(dep.length));
   });
+
+  showPanel();
 };
 
 export { missionCounter };

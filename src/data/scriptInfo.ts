@@ -367,6 +367,11 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         type: 'boolean',
         default: 'false',
         description: 'Zeige zus&auml;tzlich eigene Shared Missions an'
+      },
+      showSharedInHeader: {
+        type: 'boolean',
+        default: 'false',
+        description: 'Zeigt im Header die Anzahl aller Shared Missionen an'
       }
     }
   },
