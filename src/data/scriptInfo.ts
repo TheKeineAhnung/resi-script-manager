@@ -377,7 +377,9 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
     author: 'KeineAhnung',
     category: 'Eins&auml;tze',
     usable: true,
-    match: ['^https://rettungssimulator.online/*$'],
+    match: [
+      '^https:\\/\\/(www.)?rettungssimulator.online(\\/((#|\\?)[A-Za-z=]*)?)?$'
+    ],
     oneTime: false,
     requiresConfig: false
   },
