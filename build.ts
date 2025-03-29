@@ -49,7 +49,7 @@ if (!existsSync('build/theme')) {
 onetimeCommands.forEach(command => {
   info('Starting command');
   const stdout = spawnSync(command.command, command.args);
-  console.log(stdout.output.toString());
+  console.log(stdout.output?.toString());
 });
 
 if (getCmd() === 'dev') {

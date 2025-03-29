@@ -212,6 +212,11 @@ const info: (ScriptInfo | ScriptInfoConfig)[] = [
         default: '2000',
         description:
           'Zeit in Millisekunden, nach der der neueste FMS gel&ouml;scht werden soll'
+      },
+      deleteRadioMessages: {
+        type: 'boolean',
+        default: false,
+        description: 'Lagemeldungen auch nach gleicher Zeit l&oumlschen'
       }
     }
   },
