@@ -1,4 +1,4 @@
-import { variableIsNull } from '../../ts/errors/console';
+import { variableIsNull, variableIsUndefined } from '../../ts/errors/console';
 
 const alertOnMissionShare = async function (): Promise<any> {
   const missionsContainer = document.querySelector(
@@ -6,7 +6,10 @@ const alertOnMissionShare = async function (): Promise<any> {
   );
 
   if (missionsContainer === null) {
-    variableIsNull(Object.keys({ missionsContainer })[0], 'alertMissionShare');
+    variableIsNull(
+      Object.keys({ missionsContainer })[0],
+      'alertOnMissionShare'
+    );
     return;
   }
 
@@ -22,11 +25,21 @@ const alertOnMissionShare = async function (): Promise<any> {
             addedNode as HTMLDivElement
           )?.nextElementSibling?.getAttribute('usermissionid');
           if (missionId === null || missionId === undefined) {
-            variableIsNull(Object.keys({ missionId })[0], 'alertMissionShare');
+            variableIsNull(
+              Object.keys({ missionId })[0],
+              'alertOnMissionShare'
+            );
             return;
           }
           setTimeout(() => {
             const missionInfo = ControlCenter.missions[missionId];
+            if (missionInfo === undefined) {
+              variableIsUndefined(
+                Object.keys({ missionInfo })[0],
+                'alertOnMissionShare'
+              );
+              return;
+            }
             GrowlNotification.notify({
               title: `<div class="frame-opener" frame="1/1/4/5" frame-url="/mission/${missionId}">Neuer Einsatz freigegeben</div>`,
               description: `<div class="frame-opener" frame="1/1/4/5" frame-url="/mission/${missionId}">Einsatz ${missionInfo.missionName} wurde von ${missionInfo.userName} freigegeben.</div>`,
