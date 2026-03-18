@@ -6,11 +6,31 @@ const selectedVehicles = async function (): Promise<void> {
    * Last Update: 2022-09-11
    */
 
-  const targetNode = document.querySelector(
-    '#mission-vehicle-group-by-vehicle .mission-vehicles-list'
-  );
+  const getMode = () => {
+    const vehicleContainer = $('#mission-vehicle-group-by-vehicle');
+    if (vehicleContainer.is(':visible')) {
+      return 'vehicle';
+    }
+    return 'building';
+  };
 
-  if (targetNode === null) return;
+  const getTargetNode = () => {
+    const mode = getMode();
+    if (mode === 'vehicle') {
+      return document.querySelector(
+        '#mission-vehicle-group-by-vehicle .mission-vehicles-list'
+      );
+    }
+
+    return document.querySelector('#mission-vehicle-group-by-building');
+  };
+
+  const targetNode = getTargetNode();
+
+  if (targetNode === null) {
+    console.warn('Selected Vehicles: Target Node is null');
+    return;
+  }
 
   const belowAAO: string | null = localStorage.getItem('showBelowAAO');
 
@@ -22,8 +42,24 @@ const selectedVehicles = async function (): Promise<void> {
 
   const config = { attributes: true, subtree: true };
 
+  const getDepartment = (vehicle: Element) => {
+    let building = null;
+    if (getMode() === 'building') {
+      building = vehicle.parentElement?.parentElement?.querySelector(
+        '.mission-department-name'
+      );
+    } else {
+      building = vehicle.querySelector('.vehicle-department');
+    }
+    if (building) {
+      return (building as HTMLElement).innerText;
+    }
+    return null;
+  };
+
   const callback = (mutationList: any) => {
     for (const mutation of mutationList) {
+      console.log(mutation);
       if (mutation.type === 'attributes') {
         if (mutation.attributeName === 'class') {
           if (
@@ -42,9 +78,7 @@ const selectedVehicles = async function (): Promise<void> {
               ReSi.userName == 'Ron31'
                 ? mutation.target.querySelector('.vehicle-shortname').innerText
                 : mutation.target.querySelector('.vehicle-status').innerText
-            }</td><td>${
-              mutation.target.querySelector('.vehicle-department').innerText
-            }</td>${
+            }</td><td>${getDepartment(mutation.target) ?? ''}</td>${
               showDistanceSetting
                 ? '<td>' +
                   mutation.target.querySelector('.vehicle-distance').innerText +
@@ -88,7 +122,7 @@ const selectedVehicles = async function (): Promise<void> {
     }
     const table = document.querySelector('table#selectedVehiclePanel tbody');
     const vehicles = document.querySelectorAll(
-      '.mission-vehicles-list .mission-vehicle-selected'
+      '.mission-vehicle-selected'
     );
     vehicles.forEach(vehicle => {
       const tr = document.createElement('tr');
@@ -100,9 +134,8 @@ const selectedVehicles = async function (): Promise<void> {
           ? (vehicle.querySelector('.vehicle-shortname') as HTMLElement)
               ?.innerText
           : (vehicle.querySelector('.vehicle-status') as HTMLElement)?.innerText
-      }
       }</td><td>${
-        (vehicle.querySelector('.vehicle-department') as HTMLElement)?.innerText
+        getDepartment(vehicle) ?? ''
       }</td>${
         showDistanceSetting
           ? '<td>' +
