@@ -59,7 +59,7 @@ const selectedVehicles = async function (): Promise<void> {
 
   const callback = (mutationList: any) => {
     for (const mutation of mutationList) {
-      console.log(mutation);
+      //console.log(mutation);
       if (mutation.type === 'attributes') {
         if (mutation.attributeName === 'class') {
           if (
